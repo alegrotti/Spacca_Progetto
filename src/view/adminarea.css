@@ -98,6 +98,13 @@
     -fx-font-style: italic;
 }
 
+#creaNuovaCartaTitolo {
+    -fx-color: rgb(0, 64, 128);
+    -fx-font: 25px "Felix Titling", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
 #creaNuovaPartitaTitolo{
     -fx-color: rgb(0, 64, 128);
     -fx-font: 25px "Felix Titling", sans-serif;

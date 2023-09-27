@@ -117,7 +117,94 @@ public class AdminAreaController {
 
     @FXML
     private TextField usernameField;
+    
+    @FXML
+    private TextField codicePartitaField1;
 
+    @FXML
+    private Label creaNuovaCartaTitolo;
+
+    @FXML
+    private Label fraseSliderLabel1;
+
+    @FXML
+    private Label fraseSliderLabel11;
+
+    @FXML
+    private Label fraseSliderLabel111;
+
+    @FXML
+    private Label fraseSliderLabel1111;
+
+    @FXML
+    private ComboBox<?> genereNuovaCarta;
+
+    @FXML
+    private HBox hBoxSliderPartita1;
+
+    @FXML
+    private HBox hBoxSliderPartita11;
+
+    @FXML
+    private HBox hBoxSliderPartita111;
+
+    @FXML
+    private HBox hBoxSliderPartita1111;
+
+	@FXML
+    private Label labelPunteggioCommerciale;
+
+    @FXML
+    private Label labelPunteggioCulturale;
+
+    @FXML
+    private Label labelPunteggioResidenziale;
+
+    @FXML
+    private ComboBox<?> listaCarteCreaCarta;
+
+    @FXML
+    private ComboBox<?> listaGiocatoriNuovaPartitaButton;
+
+    @FXML
+    private Label numeroSliderPartitaLabel111;
+
+    @FXML
+    private Slider sliderPunteggioCommerciale;
+
+    @FXML
+    private Slider sliderPunteggioCulturale;
+
+    @FXML
+    private Slider sliderPunteggioPubblico;
+
+    @FXML
+    private Slider sliderPunteggioResidenziale;
+
+    @FXML
+    private ComboBox<?> tipoNuovaCarta;
+
+    
+    @FXML
+    void creaCarta(ActionEvent event) {
+
+    }
+
+    @FXML
+    void eliminaCartaNuovaCarta(ActionEvent event) {
+
+    }
+
+    @FXML
+    void scegliGenereNuovaCarta(ActionEvent event) {
+
+    }
+
+    @FXML
+    void scegliTipoNuovaCarta(ActionEvent event) {
+
+    }
+    
     @FXML
     void aggiungiPartita(ActionEvent event) {
 
@@ -323,6 +410,9 @@ public class AdminAreaController {
             int roundedValue = (int) Math.round(newValue.doubleValue());
             numeroSliderPartitaLabel.setText(String.valueOf(roundedValue));
         });
+    	
+    	//Nuova carta
+    	
     }
 
 }
