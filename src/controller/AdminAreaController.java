@@ -54,6 +54,18 @@ public class AdminAreaController {
     
     @FXML
     private HBox hBoxSliderPartita;
+    
+    @FXML
+    private HBox hBoxPuntiCommerciale;
+
+    @FXML
+    private HBox hBoxPuntiCulturale;
+
+    @FXML
+    private HBox hBoxPuntiPubblico;
+
+    @FXML
+    private HBox hBoxPuntiResidenziale;
 
     @FXML
     private Label infoAdminTitolo;
@@ -125,33 +137,9 @@ public class AdminAreaController {
     private Label creaNuovaCartaTitolo;
 
     @FXML
-    private Label fraseSliderLabel1;
+    private ComboBox<String> genereNuovaCarta;
 
     @FXML
-    private Label fraseSliderLabel11;
-
-    @FXML
-    private Label fraseSliderLabel111;
-
-    @FXML
-    private Label fraseSliderLabel1111;
-
-    @FXML
-    private ComboBox<?> genereNuovaCarta;
-
-    @FXML
-    private HBox hBoxSliderPartita1;
-
-    @FXML
-    private HBox hBoxSliderPartita11;
-
-    @FXML
-    private HBox hBoxSliderPartita111;
-
-    @FXML
-    private HBox hBoxSliderPartita1111;
-
-	@FXML
     private Label labelPunteggioCommerciale;
 
     @FXML
@@ -159,15 +147,15 @@ public class AdminAreaController {
 
     @FXML
     private Label labelPunteggioResidenziale;
+    
+    @FXML
+    private Label labelPunteggioPubblico;
 
     @FXML
     private ComboBox<?> listaCarteCreaCarta;
 
     @FXML
     private ComboBox<?> listaGiocatoriNuovaPartitaButton;
-
-    @FXML
-    private Label numeroSliderPartitaLabel111;
 
     @FXML
     private Slider sliderPunteggioCommerciale;
@@ -182,7 +170,7 @@ public class AdminAreaController {
     private Slider sliderPunteggioResidenziale;
 
     @FXML
-    private ComboBox<?> tipoNuovaCarta;
+    private ComboBox<String> tipoNuovaCarta;
 
     
     @FXML
@@ -202,7 +190,23 @@ public class AdminAreaController {
 
     @FXML
     void scegliTipoNuovaCarta(ActionEvent event) {
-
+    	if("Edificio".equals(tipoNuovaCarta.getValue())) {
+    		hBoxPuntiResidenziale.setVisible(true);
+    		hBoxPuntiCommerciale.setVisible(true);
+    		hBoxPuntiPubblico.setVisible(true);
+    		hBoxPuntiCulturale.setVisible(true);
+    		genereNuovaCarta.setVisible(true);
+    		ObservableList<String> genereCarta = FXCollections.observableArrayList("Residenziale","Commerciale","Pubblico","Culturale");
+    		genereNuovaCarta.setItems(genereCarta);
+    	}else if("Special".equals(tipoNuovaCarta.getValue())) {
+    		hBoxPuntiResidenziale.setVisible(false);
+    		hBoxPuntiCommerciale.setVisible(false);
+    		hBoxPuntiPubblico.setVisible(false);
+    		hBoxPuntiCulturale.setVisible(false);
+    		genereNuovaCarta.setVisible(true);
+    		ObservableList<String> genereCarta = FXCollections.observableArrayList("Bonus","Malus");
+    		genereNuovaCarta.setItems(genereCarta);
+    	}
     }
     
     @FXML
@@ -412,7 +416,45 @@ public class AdminAreaController {
         });
     	
     	//Nuova carta
+    	ObservableList<String> tipoCarta = FXCollections.observableArrayList("Edificio","Special");
+    	tipoNuovaCarta.setItems(tipoCarta); 
     	
+    	hBoxPuntiResidenziale.setVisible(false);
+		hBoxPuntiCommerciale.setVisible(false);
+		hBoxPuntiPubblico.setVisible(false);
+		hBoxPuntiCulturale.setVisible(false);
+    	
+    	labelPunteggioCommerciale.setText(String.valueOf((int) sliderPartita.getValue()));
+    	sliderPunteggioCommerciale.valueProperty().addListener((observable, oldValue, newValue) -> {
+            int roundedValue = (int) Math.round(newValue.doubleValue());
+            labelPunteggioCommerciale.setText(String.valueOf(roundedValue));
+        });
+    	sliderPunteggioCommerciale.setMin(0);
+    	sliderPunteggioCommerciale.setMax(10);
+    	
+    	labelPunteggioResidenziale.setText(String.valueOf((int) sliderPartita.getValue()));
+    	sliderPunteggioResidenziale.valueProperty().addListener((observable, oldValue, newValue) -> {
+            int roundedValue = (int) Math.round(newValue.doubleValue());
+            labelPunteggioResidenziale.setText(String.valueOf(roundedValue));
+        });
+    	sliderPunteggioResidenziale.setMin(0);
+    	sliderPunteggioResidenziale.setMax(10);
+    	
+    	labelPunteggioCulturale.setText(String.valueOf((int) sliderPartita.getValue()));
+    	sliderPunteggioCulturale.valueProperty().addListener((observable, oldValue, newValue) -> {
+            int roundedValue = (int) Math.round(newValue.doubleValue());
+            labelPunteggioCulturale.setText(String.valueOf(roundedValue));
+        });
+    	sliderPunteggioCulturale.setMin(0);
+    	sliderPunteggioCulturale.setMax(10);
+    	
+    	labelPunteggioPubblico.setText(String.valueOf((int) sliderPartita.getValue()));
+    	sliderPunteggioPubblico.valueProperty().addListener((observable, oldValue, newValue) -> {
+            int roundedValue = (int) Math.round(newValue.doubleValue());
+            labelPunteggioPubblico.setText(String.valueOf(roundedValue));
+        });
+    	sliderPunteggioPubblico.setMin(0);
+    	sliderPunteggioPubblico.setMax(10);
     }
 
 }

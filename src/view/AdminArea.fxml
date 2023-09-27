@@ -244,7 +244,7 @@
                            <children>
                               <Label fx:id="creaNuovaCartaTitolo" text="Crea nuova carta">
                                  <VBox.margin>
-                                    <Insets top="30.0" />
+                                    <Insets top="10.0" />
                                  </VBox.margin>
                               </Label>
                               <HBox prefHeight="264.0" prefWidth="850.0">
@@ -262,7 +262,7 @@
                                           </HBox>
                                           <HBox alignment="CENTER">
                                              <VBox.margin>
-                                                <Insets top="20.0" />
+                                                <Insets top="10.0" />
                                              </VBox.margin>
                                              <children>
                                                 <Label text="Tipo carta: " />
@@ -275,15 +275,15 @@
                                                 <ComboBox fx:id="genereNuovaCarta" onAction="#scegliGenereNuovaCarta" prefHeight="26.0" prefWidth="205.0" />
                                              </children>
                                              <VBox.margin>
-                                                <Insets top="20.0" />
+                                                <Insets top="10.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <HBox fx:id="hBoxSliderPartita1" alignment="CENTER">
+                                          <HBox fx:id="hBoxPuntiResidenziale" alignment="CENTER">
                                              <VBox.margin>
                                                 <Insets top="20.0" />
                                              </VBox.margin>
                                              <children>
-                                                <Label fx:id="fraseSliderLabel1" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="149.0" text="Punteggio residenziale: " />
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="149.0" text="Punteggio residenziale: " />
                                                 <Slider fx:id="sliderPunteggioResidenziale" majorTickUnit="5.0" max="50.0" maxWidth="422.0" min="4.0" minorTickCount="5" prefHeight="6.0" prefWidth="188.0">
                                                    <HBox.margin>
                                                       <Insets left="10.0" />
@@ -292,9 +292,9 @@
                                                 <Label fx:id="labelPunteggioResidenziale" />
                                              </children>
                                           </HBox>
-                                          <HBox fx:id="hBoxSliderPartita11" alignment="CENTER" layoutX="10.0" layoutY="205.0">
+                                          <HBox fx:id="hBoxPuntiCommerciale" alignment="CENTER" layoutX="10.0" layoutY="205.0">
                                              <children>
-                                                <Label fx:id="fraseSliderLabel11" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="151.0" text="Punteggio commerciale: " />
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="151.0" text="Punteggio commerciale: " />
                                                 <Slider fx:id="sliderPunteggioCommerciale" majorTickUnit="5.0" max="50.0" maxWidth="422.0" min="4.0" minorTickCount="5" prefHeight="6.0" prefWidth="188.0">
                                                    <HBox.margin>
                                                       <Insets left="10.0" />
@@ -303,20 +303,20 @@
                                                 <Label fx:id="labelPunteggioCommerciale" />
                                              </children>
                                           </HBox>
-                                          <HBox fx:id="hBoxSliderPartita111" alignment="CENTER" layoutX="10.0" layoutY="215.0">
+                                          <HBox fx:id="hBoxPuntiPubblico" alignment="CENTER" layoutX="10.0" layoutY="215.0">
                                              <children>
-                                                <Label fx:id="fraseSliderLabel111" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="151.0" text="Punteggio pubblico: " />
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="151.0" text="Punteggio pubblico: " />
                                                 <Slider fx:id="sliderPunteggioPubblico" majorTickUnit="5.0" max="50.0" maxWidth="422.0" min="4.0" minorTickCount="5" prefHeight="6.0" prefWidth="188.0">
                                                    <HBox.margin>
                                                       <Insets left="10.0" />
                                                    </HBox.margin>
                                                 </Slider>
-                                                <Label fx:id="numeroSliderPartitaLabel111" />
+                                                <Label fx:id="labelPunteggioPubblico" />
                                              </children>
                                           </HBox>
-                                          <HBox fx:id="hBoxSliderPartita1111" alignment="CENTER" layoutX="10.0" layoutY="224.0">
+                                          <HBox fx:id="hBoxPuntiCulturale" alignment="CENTER" layoutX="10.0" layoutY="224.0">
                                              <children>
-                                                <Label fx:id="fraseSliderLabel1111" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="151.0" text="Punteggio culturale: " />
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="151.0" text="Punteggio culturale: " />
                                                 <Slider fx:id="sliderPunteggioCulturale" majorTickUnit="5.0" max="50.0" maxWidth="422.0" min="4.0" minorTickCount="5" prefHeight="6.0" prefWidth="188.0">
                                                    <HBox.margin>
                                                       <Insets left="10.0" />
