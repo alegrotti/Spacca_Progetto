@@ -5,6 +5,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Random;
 import model.Giocatore;
 import model.GiocatoreFisico;
@@ -19,6 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import model.GestoreFile;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
@@ -27,6 +34,8 @@ public class AdminAreaController {
 
 	private static ObservableList<String> giocatoriPartita;
 	private static ObservableList<String> cartePartita;
+	private static Path origine;
+	private static Path destinazione;
 	
     @FXML
     private VBox centralBox;
@@ -48,6 +57,9 @@ public class AdminAreaController {
 
     @FXML
     private Button homeButton;
+    
+    @FXML
+    private HBox hBoxIcona;
 
     @FXML
     private HBox hBoxDifficolta;
@@ -171,11 +183,44 @@ public class AdminAreaController {
 
     @FXML
     private ComboBox<String> tipoNuovaCarta;
+    
+    @FXML
+    private TextField nomeNuovaCarta;
+    
+    @FXML
+    private Label iconaCaricataMessaggio;
 
+    @FXML
+    void caricaIconaNuovaCarta(ActionEvent event) {
+    	FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Immagini", "*.jpg", "*.png", "*.jpeg"));
+        File selectedFile = fileChooser.showOpenDialog(Main.parentWindow);
+
+        if (selectedFile != null) {
+            String selectedFilePath = selectedFile.getAbsolutePath();
+
+            String percorsoProgetto = System.getProperty("user.dir");
+            String percorsoCartellaDestinazione = percorsoProgetto + "/src/immagini";
+
+            this.origine = Path.of(selectedFilePath);
+
+			this.destinazione = Paths.get(percorsoCartellaDestinazione, origine.getFileName().toString());
+
+			iconaCaricataMessaggio.setText(selectedFilePath);
+        }
+    }
     
     @FXML
     void creaCarta(ActionEvent event) {
 
+    	try {
+    		
+			Files.copy(origine, destinazione, StandardCopyOption.REPLACE_EXISTING);
+		} catch (IOException e) {
+			e.printStackTrace();
+			
+		}
+        
     }
 
     @FXML
@@ -190,22 +235,27 @@ public class AdminAreaController {
 
     @FXML
     void scegliTipoNuovaCarta(ActionEvent event) {
+    	hBoxPuntiResidenziale.setVisible(true);
+		hBoxPuntiCommerciale.setVisible(true);
+		hBoxPuntiPubblico.setVisible(true);
+		hBoxPuntiCulturale.setVisible(true);
+		genereNuovaCarta.setVisible(true);
     	if("Edificio".equals(tipoNuovaCarta.getValue())) {
-    		hBoxPuntiResidenziale.setVisible(true);
-    		hBoxPuntiCommerciale.setVisible(true);
-    		hBoxPuntiPubblico.setVisible(true);
-    		hBoxPuntiCulturale.setVisible(true);
-    		genereNuovaCarta.setVisible(true);
     		ObservableList<String> genereCarta = FXCollections.observableArrayList("Residenziale","Commerciale","Pubblico","Culturale");
     		genereNuovaCarta.setItems(genereCarta);
+        	sliderPunteggioCommerciale.setMax(10);
+        	sliderPunteggioPubblico.setMax(10);
+        	sliderPunteggioResidenziale.setMax(10);
+        	sliderPunteggioCulturale.setMax(10);
+        	hBoxIcona.setVisible(true);
     	}else if("Special".equals(tipoNuovaCarta.getValue())) {
-    		hBoxPuntiResidenziale.setVisible(false);
-    		hBoxPuntiCommerciale.setVisible(false);
-    		hBoxPuntiPubblico.setVisible(false);
-    		hBoxPuntiCulturale.setVisible(false);
-    		genereNuovaCarta.setVisible(true);
     		ObservableList<String> genereCarta = FXCollections.observableArrayList("Bonus","Malus");
     		genereNuovaCarta.setItems(genereCarta);
+    		sliderPunteggioCommerciale.setMax(4);
+        	sliderPunteggioPubblico.setMax(4);
+        	sliderPunteggioResidenziale.setMax(4);
+        	sliderPunteggioCulturale.setMax(4);
+        	hBoxIcona.setVisible(false);
     	}
     }
     
@@ -423,38 +473,28 @@ public class AdminAreaController {
 		hBoxPuntiCommerciale.setVisible(false);
 		hBoxPuntiPubblico.setVisible(false);
 		hBoxPuntiCulturale.setVisible(false);
+		
+		hBoxIcona.setVisible(false);
     	
-    	labelPunteggioCommerciale.setText(String.valueOf((int) sliderPartita.getValue()));
-    	sliderPunteggioCommerciale.valueProperty().addListener((observable, oldValue, newValue) -> {
-            int roundedValue = (int) Math.round(newValue.doubleValue());
-            labelPunteggioCommerciale.setText(String.valueOf(roundedValue));
-        });
     	sliderPunteggioCommerciale.setMin(0);
-    	sliderPunteggioCommerciale.setMax(10);
-    	
-    	labelPunteggioResidenziale.setText(String.valueOf((int) sliderPartita.getValue()));
-    	sliderPunteggioResidenziale.valueProperty().addListener((observable, oldValue, newValue) -> {
-            int roundedValue = (int) Math.round(newValue.doubleValue());
-            labelPunteggioResidenziale.setText(String.valueOf(roundedValue));
-        });
     	sliderPunteggioResidenziale.setMin(0);
-    	sliderPunteggioResidenziale.setMax(10);
-    	
-    	labelPunteggioCulturale.setText(String.valueOf((int) sliderPartita.getValue()));
-    	sliderPunteggioCulturale.valueProperty().addListener((observable, oldValue, newValue) -> {
-            int roundedValue = (int) Math.round(newValue.doubleValue());
-            labelPunteggioCulturale.setText(String.valueOf(roundedValue));
-        });
     	sliderPunteggioCulturale.setMin(0);
-    	sliderPunteggioCulturale.setMax(10);
-    	
-    	labelPunteggioPubblico.setText(String.valueOf((int) sliderPartita.getValue()));
-    	sliderPunteggioPubblico.valueProperty().addListener((observable, oldValue, newValue) -> {
-            int roundedValue = (int) Math.round(newValue.doubleValue());
-            labelPunteggioPubblico.setText(String.valueOf(roundedValue));
-        });
     	sliderPunteggioPubblico.setMin(0);
-    	sliderPunteggioPubblico.setMax(10);
+    	
+    	inizializzaSlider(labelPunteggioCommerciale,sliderPunteggioCommerciale);
+    	inizializzaSlider(labelPunteggioResidenziale,sliderPunteggioResidenziale);
+    	inizializzaSlider(labelPunteggioCulturale,sliderPunteggioCulturale);
+    	inizializzaSlider(labelPunteggioPubblico,sliderPunteggioPubblico);
+    }
+    
+    private void inizializzaSlider(Label label, Slider slider){
+    	label.setText(String.valueOf((int) slider.getValue()));
+    	slider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            int roundedValue = (int) Math.round(newValue.doubleValue());
+            label.setText(String.valueOf(roundedValue));
+        });
+    	slider.setMin(0);
+    	slider.setMax(10);
     }
 
 }
