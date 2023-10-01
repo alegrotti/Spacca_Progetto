@@ -14,13 +14,17 @@ import java.nio.file.StandardCopyOption;
 import java.util.Random;
 import model.Giocatore;
 import model.GiocatoreFisico;
+import model.Gruppo;
 import model.GiocatoreCPUFacile;
 import model.GiocatoreCPUDifficile;
+import model.Carta;
+import model.Building;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -32,8 +36,6 @@ import javafx.scene.control.Slider;
 
 public class AdminAreaController {
 
-	private static ObservableList<String> giocatoriPartita;
-	private static ObservableList<String> cartePartita;
 	private static Path origine;
 	private static Path destinazione;
 	
@@ -48,6 +50,9 @@ public class AdminAreaController {
     
     @FXML
     private Label creaNuovaPartitaTitolo;
+    
+    @FXML
+    private TextArea descrizioneCartaTesto;
 
     @FXML
     private Button eliminaGiocatoreButton;
@@ -164,10 +169,10 @@ public class AdminAreaController {
     private Label labelPunteggioPubblico;
 
     @FXML
-    private ComboBox<?> listaCarteCreaCarta;
+    private ComboBox<String> listaCarteCreaCarta;
 
     @FXML
-    private ComboBox<?> listaGiocatoriNuovaPartitaButton;
+    private ComboBox<String> listaGiocatoriNuovaPartitaButton;
 
     @FXML
     private Slider sliderPunteggioCommerciale;
@@ -202,9 +207,9 @@ public class AdminAreaController {
             String percorsoProgetto = System.getProperty("user.dir");
             String percorsoCartellaDestinazione = percorsoProgetto + "/src/immagini";
 
-            this.origine = Path.of(selectedFilePath);
+            AdminAreaController.origine = Path.of(selectedFilePath);
 
-			this.destinazione = Paths.get(percorsoCartellaDestinazione, origine.getFileName().toString());
+			AdminAreaController.destinazione = Paths.get(percorsoCartellaDestinazione, origine.getFileName().toString());
 
 			iconaCaricataMessaggio.setText(selectedFilePath);
         }
@@ -214,6 +219,65 @@ public class AdminAreaController {
     void creaCarta(ActionEvent event) {
 
     	try {
+    		String nomeCarta = nomeNuovaCarta.getText();
+    		String descrizioneCarta = descrizioneCartaTesto.getText();
+    		int resi = Integer.parseInt(labelPunteggioResidenziale.getText());
+        	int comm = Integer.parseInt(labelPunteggioResidenziale.getText());
+        	int pubb = Integer.parseInt(labelPunteggioResidenziale.getText());
+        	int cult = Integer.parseInt(labelPunteggioResidenziale.getText());
+        	if("Edificio".equals(tipoNuovaCarta)) {
+        		switch(genereNuovaCarta.getValue()) {
+        			case "Residenziale" :
+        				Carta c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,Gruppo.Residenziale,destinazione);
+        				break;
+        			case "Commerciale" :
+        			case "Pubblico" :
+        			case "Culturale" :
+        		
+        		}
+        		
+        		/*
+        		if(!username.equals("")) {
+        			Giocatore g = new GiocatoreFisico(username);
+    				WelcomeController.admin.aggiungiGiocatore(g);
+    		    	GestoreFile gestoreFile = new GestoreFile();
+    		    	gestoreFile.salvaAdmin(WelcomeController.admin);
+        		}
+        		*/
+        	}else{
+        		String difficolta = selezionaDifficoltaButton.getValue();
+        		if("Facile".equals(difficolta)) {
+    	    		String username = nuovoGiocatoreField.getText();
+    	    		if(!username.equals("")) {
+    	    			Giocatore g = new GiocatoreCPUFacile(username);
+    					WelcomeController.admin.aggiungiGiocatore(g);
+    			    	GestoreFile gestoreFile = new GestoreFile();
+    			    	gestoreFile.salvaAdmin(WelcomeController.admin);
+    	    		}
+        		}else if("Difficile".equals(difficolta)){
+        			String username = nuovoGiocatoreField.getText();
+    	    		if(!username.equals("")) {
+    	    			Giocatore g = new GiocatoreCPUDifficile(username);
+    					WelcomeController.admin.aggiungiGiocatore(g);
+    			    	GestoreFile gestoreFile = new GestoreFile();
+    			    	gestoreFile.salvaAdmin(WelcomeController.admin);
+    	    		}
+        		}else {
+        			
+        		}
+        	}
+        	WelcomeController.admin.aggiungiCarta(c);
+	    	GestoreFile gestoreFile = new GestoreFile();
+	    	gestoreFile.salvaAdmin(WelcomeController.admin);
+        	ObservableList<String> giocatori = FXCollections.observableArrayList();
+        	for(String s : WelcomeController.admin.getGiocatori().keySet())
+        		giocatori.add(s);
+        	giocatori.sort(null);
+        	listaGiocatoriButton.setItems(giocatori);
+        	scegliGiocatoriPartitaButton.setItems(giocatori);
+        	nuovoGiocatoreField.clear();
+        	tipoDiGiocatoreButton.setValue(null);
+    		
     		
 			Files.copy(origine, destinazione, StandardCopyOption.REPLACE_EXISTING);
 		} catch (IOException e) {
@@ -468,6 +532,12 @@ public class AdminAreaController {
     	//Nuova carta
     	ObservableList<String> tipoCarta = FXCollections.observableArrayList("Edificio","Special");
     	tipoNuovaCarta.setItems(tipoCarta); 
+    	
+    	ObservableList<String> carteCreate = FXCollections.observableArrayList();
+    	for(String s : WelcomeController.admin.getGiocatori().keySet())
+    		carteCreate.add(s);
+    	carteCreate.sort(null);
+    	listaCarteCreaCarta.setItems(carteCreate);
     	
     	hBoxPuntiResidenziale.setVisible(false);
 		hBoxPuntiCommerciale.setVisible(false);

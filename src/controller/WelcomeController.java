@@ -139,7 +139,10 @@ public class WelcomeController {
     void initialize(){
     	
     	GestoreFile gestoreFile = new GestoreFile();
+    	
     	Admin a = gestoreFile.importaAdmin();
+    	
+    	//Admin a = new Admin("alegrotti","AleG2003");
     	
     	admin = a;
     	partite = a.getPartite();

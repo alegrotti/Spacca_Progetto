@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Vector;
 
 public class Admin implements Serializable{
 	
@@ -11,6 +10,7 @@ public class Admin implements Serializable{
 	private String password;
 	private String username;
 	private HashMap <String,Mazzo> mazzi;
+	private HashMap <String,Carta> carte;
 	private HashMap <String,Giocatore> giocatori;
 	private HashMap <String,Partita> partite;
 	private HashMap <String,Torneo> tornei;
@@ -22,6 +22,7 @@ public class Admin implements Serializable{
 		this.partite = new HashMap <String,Partita>();
 		this.tornei = new HashMap <String,Torneo>();
 		this.mazzi = new HashMap <String,Mazzo>();
+		this.carte = new HashMap <String,Carta>();
 	}
 	
 	public String getUsername() {
@@ -50,6 +51,14 @@ public class Admin implements Serializable{
 	
 	public HashMap <String,Giocatore> getGiocatori(){
 		return giocatori;
+	}
+	
+	public HashMap<String, Mazzo> getMazzi(){
+		return mazzi;
+	}
+	
+	public HashMap<String, Carta> getCarte(){
+		return carte;
 	}
 	
 	public void aggiungiGiocatore(Giocatore g) {
