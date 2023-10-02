@@ -216,9 +216,10 @@ public class AdminAreaController {
         }
     }
     
+    
     @FXML
     void creaCarta(ActionEvent event) {
-
+    	
     	try {
     		Carta c = new Carta();
     		String nomeCarta = nomeNuovaCarta.getText();
@@ -230,16 +231,16 @@ public class AdminAreaController {
         	if("Edificio".equals(tipoNuovaCarta.getValue())) {
         		switch(genereNuovaCarta.getValue()) {
         			case "Residenziale" :
-        				c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,Gruppo.Residenziale,destinazione);
+        				c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,Gruppo.Residenziale,destinazione.toString());
         				break;
         			case "Commerciale" :
-        				c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,Gruppo.Commerciale,destinazione);
+        				c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,Gruppo.Commerciale,destinazione.toString());
         				break;
         			case "Pubblico" :
-        				c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,Gruppo.Pubblico,destinazione);
+        				c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,Gruppo.Pubblico,destinazione.toString());
         				break;
         			case "Culturale" :
-        				c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,Gruppo.Culturale,destinazione);
+        				c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,Gruppo.Culturale,destinazione.toString());
         				break;
         		}
         	}else{

@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.nio.file.Path;
 import java.awt.Color;
 
 public class Building extends Carta implements Serializable{
@@ -9,10 +8,10 @@ public class Building extends Carta implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private int punteggio;
-	Path percorsoIcona;
+	String percorsoIcona;
 	Gruppo group;
 	
-	public Building(String nome, String descrizione, int resi, int comm, int pubb, int cult, Gruppo group,Path percorsoIcona) {
+	public Building(String nome, String descrizione, int resi, int comm, int pubb, int cult, Gruppo group,String percorsoIcona) {
 		super(nome, descrizione, assegnaColore(group), resi, comm, pubb, cult);
 		this.punteggio = assegnaPunteggio(resi, comm, pubb, cult); 
 		this.group = group;
