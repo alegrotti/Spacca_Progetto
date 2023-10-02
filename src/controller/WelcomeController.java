@@ -142,8 +142,6 @@ public class WelcomeController {
     	
     	Admin a = gestoreFile.importaAdmin();
     	
-    	//Admin a = new Admin("alegrotti","AleG2003");
-    	
     	admin = a;
     	partite = a.getPartite();
     	tornei = a.getTornei();

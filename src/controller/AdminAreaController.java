@@ -269,7 +269,7 @@ public class AdminAreaController {
     		
     		
 			Files.copy(origine, destinazione, StandardCopyOption.REPLACE_EXISTING);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			
 		}
