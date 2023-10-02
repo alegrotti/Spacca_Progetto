@@ -38,4 +38,8 @@ public class Building extends Carta implements Serializable{
 		return super.getNome();
 	}
 	
+	public String getPercorso() {
+		return percorsoIcona;
+	}
+	
 }

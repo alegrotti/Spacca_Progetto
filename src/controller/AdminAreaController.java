@@ -255,32 +255,40 @@ public class AdminAreaController {
         	WelcomeController.admin.aggiungiCarta(c);
 	    	GestoreFile gestoreFile = new GestoreFile();
 	    	gestoreFile.salvaAdmin(WelcomeController.admin);
-	    	
-        	ObservableList<String> carteCreate = FXCollections.observableArrayList();
-        	for(String s : WelcomeController.admin.getGiocatori().keySet())
-        		carteCreate.add(s);
-        	carteCreate.sort(null);
-        	
-        	listaCarteCreaCarta.setItems(carteCreate);
-        	nomeNuovaCarta.clear();
-        	listaCarteCreaCarta.setValue(null);
-        	tipoNuovaCarta.setValue(null);
-        	descrizioneCartaTesto.clear();
-        	
-    		
-    		
-			Files.copy(origine, destinazione, StandardCopyOption.REPLACE_EXISTING);
+	    	Files.copy(origine, destinazione, StandardCopyOption.REPLACE_EXISTING);
+
+	    	inizializzaCreaCarta();
 		} catch (Exception e) {
 			e.printStackTrace();
 			
 		}
         
+    	inizializzaCreaCarta();
+    	
     }
 
     @FXML
     void eliminaCartaNuovaCarta(ActionEvent event) {
-    	String descrizioneCarta = descrizioneCartaTesto.getText();
-    	System.out.println(descrizioneCarta);
+    	String nomeCarta = listaCarteCreaCarta.getValue();
+    	
+    	Carta c = WelcomeController.admin.getCarta(nomeCarta);
+    	
+    	WelcomeController.admin.eliminaCarta(nomeCarta);
+    	
+    	if(c instanceof Building) {
+    		Building b = (Building)c;
+    		String percorsoFoto = b.getPercorso();
+            try {
+                Files.deleteIfExists(Paths.get(percorsoFoto));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+    	}
+    	
+    	GestoreFile gestoreFile = new GestoreFile();
+    	gestoreFile.salvaAdmin(WelcomeController.admin);
+    	
+    	inizializzaCreaCarta();
     }
 
     @FXML
@@ -290,11 +298,6 @@ public class AdminAreaController {
 
     @FXML
     void scegliTipoNuovaCarta(ActionEvent event) {
-    	hBoxPuntiResidenziale.setVisible(true);
-		hBoxPuntiCommerciale.setVisible(true);
-		hBoxPuntiPubblico.setVisible(true);
-		hBoxPuntiCulturale.setVisible(true);
-		genereNuovaCarta.setVisible(true);
     	if("Edificio".equals(tipoNuovaCarta.getValue())) {
     		ObservableList<String> genereCarta = FXCollections.observableArrayList("Residenziale","Commerciale","Pubblico","Culturale");
     		genereNuovaCarta.setItems(genereCarta);
@@ -401,14 +404,8 @@ public class AdminAreaController {
     			
     		}
     	}
-    	ObservableList<String> giocatori = FXCollections.observableArrayList();
-    	for(String s : WelcomeController.admin.getGiocatori().keySet())
-    		giocatori.add(s);
-    	giocatori.sort(null);
-    	listaGiocatoriButton.setItems(giocatori);
-    	scegliGiocatoriPartitaButton.setItems(giocatori);
-    	nuovoGiocatoreField.clear();
-    	tipoDiGiocatoreButton.setValue(null);
+
+    	inizializzaNuovoGiocatore();
     }
 
     @FXML
@@ -420,13 +417,7 @@ public class AdminAreaController {
     	GestoreFile gestoreFile = new GestoreFile();
     	gestoreFile.salvaAdmin(WelcomeController.admin);
     	
-    	ObservableList<String> giocatori = FXCollections.observableArrayList();
-    	for(String s : WelcomeController.admin.getGiocatori().keySet())
-    		giocatori.add(s);
-    	giocatori.sort(null);
-    	listaGiocatoriButton.setItems(giocatori);
-    	scegliGiocatoriPartitaButton.setItems(giocatori);
-    	listaGiocatoriButton.setValue(null);
+    	inizializzaNuovoGiocatore();
     }
 
     @FXML
@@ -466,6 +457,8 @@ public class AdminAreaController {
     	GestoreFile gestoreFile = new GestoreFile();
     	gestoreFile.salvaAdmin(WelcomeController.admin);
     	
+    	inizializzaProfilo();
+    	
     }
 
     @FXML
@@ -484,10 +477,30 @@ public class AdminAreaController {
     @FXML
     void initialize() {
     	
-    	usernameField.setText(WelcomeController.admin.getUsername());
-    	passwordField.setText(WelcomeController.admin.getPassword());
+    	//Profilo
+    	inizializzaProfilo();
     	
     	//Nuovo giocatore
+    	inizializzaNuovoGiocatore();
+    	
+    	//Nuova Partita
+    	inizializzaNuovaPartita();
+    	
+    	//Nuova carta
+    	inizializzaCreaCarta();
+    }
+    
+    private void inizializzaProfilo() {
+    	usernameField.setText(WelcomeController.admin.getUsername());
+    	passwordField.setText(WelcomeController.admin.getPassword());
+    }
+    
+    private void inizializzaNuovoGiocatore() {
+    	tipoDiGiocatoreButton.setValue(null);
+    	selezionaDifficoltaButton.setValue(null);
+    	listaGiocatoriButton.setValue(null);
+    	nuovoGiocatoreField.setText(null);
+    	
     	ObservableList<String> difficolta = FXCollections.observableArrayList("Facile","Difficile");
     	selezionaDifficoltaButton.setItems(difficolta); 
     	
@@ -501,14 +514,24 @@ public class AdminAreaController {
     	listaGiocatoriButton.setItems(giocatori);
     	
     	hBoxDifficolta.setVisible(false);
+    }
+    
+    private void inizializzaNuovaPartita() {
+    	tipoPartitaButton.setValue(null);
+    	scegliMazzoPartitaButton.setValue(null);
+    	scegliGiocatoriPartitaButton.setValue(null);
     	
-    	//Nuova Partita
     	ObservableList<String> mazzo = FXCollections.observableArrayList();
     	
     	ObservableList<String> tipoPartita = FXCollections.observableArrayList("A turni","A palazzi");
     	tipoPartitaButton.setItems(tipoPartita);
     	
     	scegliMazzoPartitaButton.setItems(mazzo);
+    	
+    	ObservableList<String> giocatori = FXCollections.observableArrayList();
+    	for(String s : WelcomeController.admin.getGiocatori().keySet())
+    		giocatori.add(s);
+    	giocatori.sort(null);
     	
     	scegliGiocatoriPartitaButton.setItems(giocatori);
     	
@@ -519,8 +542,15 @@ public class AdminAreaController {
             int roundedValue = (int) Math.round(newValue.doubleValue());
             numeroSliderPartitaLabel.setText(String.valueOf(roundedValue));
         });
+    }
+    
+    private void inizializzaCreaCarta() {
+    	nomeNuovaCarta.setText(null);
+    	descrizioneCartaTesto.setText(null);
+    	tipoNuovaCarta.setValue(null);
+    	listaCarteCreaCarta.setValue(null);
+    	genereNuovaCarta.setValue(null);
     	
-    	//Nuova carta
     	ObservableList<String> tipoCarta = FXCollections.observableArrayList("Edificio","Special");
     	tipoNuovaCarta.setItems(tipoCarta); 
     	
@@ -530,12 +560,7 @@ public class AdminAreaController {
     	carteCreate.sort(null);
     	listaCarteCreaCarta.setItems(carteCreate);
     	
-    	hBoxPuntiResidenziale.setVisible(false);
-		hBoxPuntiCommerciale.setVisible(false);
-		hBoxPuntiPubblico.setVisible(false);
-		hBoxPuntiCulturale.setVisible(false);
-		
-		hBoxIcona.setVisible(false);
+    	hBoxIcona.setVisible(false);
     	
     	sliderPunteggioCommerciale.setMin(0);
     	sliderPunteggioResidenziale.setMin(0);
@@ -549,6 +574,7 @@ public class AdminAreaController {
     }
     
     private void inizializzaSlider(Label label, Slider slider){
+    	slider.setValue(0);
     	label.setText(String.valueOf((int) slider.getValue()));
     	slider.valueProperty().addListener((observable, oldValue, newValue) -> {
             int roundedValue = (int) Math.round(newValue.doubleValue());

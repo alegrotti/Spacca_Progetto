@@ -77,4 +77,11 @@ public class Admin implements Serializable{
 		return giocatori.get(s);
 	}
 	
+	public void eliminaCarta(String c) {
+		carte.remove(c);
+	}
+	
+	public Carta getCarta(String c) {
+		return carte.get(c);
+	}
 }

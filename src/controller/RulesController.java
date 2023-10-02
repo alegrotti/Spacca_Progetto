@@ -50,27 +50,30 @@ public class RulesController {
     	}
     }
     
+    /*
+    "Casa Familiare",
+    "Negozio di Abbigliamento",
+    "Scuola Elementare",
+    "Parco Giochi",
+    "Centro Commerciale",
+    "Teatro Municipale",
+    "Ospedale Cittadino",
+    "Piazza del Mercato",
+    "Università",
+    "Complesso Residenziale",
+    "Biblioteca Comunale",
+    "Parchi Urbani",
+    "Museo d'Arte"
+     */
+    
     @FXML
     void initialize() {
-    	ObservableList<String> carte = FXCollections.observableArrayList(
-    	        "Casa Familiare",
-    	        "Negozio di Abbigliamento",
-    	        "Scuola Elementare",
-    	        "Parco Giochi",
-    	        "Centro Commerciale",
-    	        "Teatro Municipale",
-    	        "Ospedale Cittadino",
-    	        "Piazza del Mercato",
-    	        "Università",
-    	        "Complesso Residenziale",
-    	        "Biblioteca Comunale",
-    	        "Parchi Urbani",
-    	        "Museo d'Arte"
-    	    );
-    	    
-    	carte.sort(null);
     	
-    	listaCarte.setItems(carte);   	
+    	ObservableList<String> carteCreate = FXCollections.observableArrayList();
+    	for(String s : WelcomeController.admin.getCarte().keySet())
+    		carteCreate.add(s);
+    	carteCreate.sort(null);
+    	listaCarte.setItems(carteCreate);   	
     }
     
     @FXML

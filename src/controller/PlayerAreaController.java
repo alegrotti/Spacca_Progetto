@@ -62,12 +62,11 @@ public class PlayerAreaController {
     
     @FXML
     void initialize() {
-    	ObservableList<String> options = FXCollections.observableArrayList(
-    	        "Leo",
-    	        "Pol",
-    	        "Ale"
-    	    );
-    	listaGiocatori.setItems(options);   	
+    	ObservableList<String> giocatori = FXCollections.observableArrayList();
+    	for(String s : WelcomeController.admin.getGiocatori().keySet())
+    		giocatori.add(s);
+    	giocatori.sort(null);
+    	listaGiocatori.setItems(giocatori);   	
     }
 
     @FXML
