@@ -9,7 +9,7 @@ public class Special extends Carta implements Serializable{
 
 	private boolean specialType;
 
-	public Special(String nome, String descrizione, int valore, int resi, int comm, int pubb, int cult, boolean specialType) {
+	public Special(String nome, String descrizione, int resi, int comm, int pubb, int cult, boolean specialType) {
 		super(nome, descrizione, assegnaColore(specialType), resi, comm, pubb, cult);
 		this.specialType = specialType;
 	}
@@ -17,5 +17,9 @@ public class Special extends Carta implements Serializable{
 	private static Color assegnaColore(boolean specialType) {
 		
 		return Color.white;
+	}
+	
+	public String getNome() {
+		return super.getNome();
 	}
 }

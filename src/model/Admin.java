@@ -65,6 +65,10 @@ public class Admin implements Serializable{
 		giocatori.put(g.getUsername(),g);
 	}
 	
+	public void aggiungiCarta(Carta c) {
+		carte.put(c.getNome(),c);
+	}
+	
 	public void eliminaGiocatore(String g) {
 		giocatori.remove(g);
 	}

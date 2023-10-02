@@ -25,4 +25,18 @@ public class Carta implements Serializable{
 		this.color = color;
 	}
 	
+	public Carta() {
+		this.resi = 0;
+		this.comm = 0;
+		this.pubb = 0;
+		this.cult = 0;
+		this.nome = null;
+		this.descrizione = null;
+		this.color = null;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	
 }

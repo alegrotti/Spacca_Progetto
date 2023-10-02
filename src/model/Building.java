@@ -35,4 +35,8 @@ public class Building extends Carta implements Serializable{
 		return punteggio;
 	}
 	
+	public String getNome() {
+		return super.getNome();
+	}
+	
 }

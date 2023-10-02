@@ -15,6 +15,7 @@ import java.util.Random;
 import model.Giocatore;
 import model.GiocatoreFisico;
 import model.Gruppo;
+import model.Special;
 import model.GiocatoreCPUFacile;
 import model.GiocatoreCPUDifficile;
 import model.Carta;
@@ -219,49 +220,33 @@ public class AdminAreaController {
     void creaCarta(ActionEvent event) {
 
     	try {
+    		Carta c = new Carta();
     		String nomeCarta = nomeNuovaCarta.getText();
     		String descrizioneCarta = descrizioneCartaTesto.getText();
     		int resi = Integer.parseInt(labelPunteggioResidenziale.getText());
         	int comm = Integer.parseInt(labelPunteggioResidenziale.getText());
         	int pubb = Integer.parseInt(labelPunteggioResidenziale.getText());
         	int cult = Integer.parseInt(labelPunteggioResidenziale.getText());
-        	if("Edificio".equals(tipoNuovaCarta)) {
+        	if("Edificio".equals(tipoNuovaCarta.getValue())) {
         		switch(genereNuovaCarta.getValue()) {
         			case "Residenziale" :
-        				Carta c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,Gruppo.Residenziale,destinazione);
+        				c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,Gruppo.Residenziale,destinazione);
         				break;
         			case "Commerciale" :
+        				c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,Gruppo.Commerciale,destinazione);
+        				break;
         			case "Pubblico" :
+        				c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,Gruppo.Pubblico,destinazione);
+        				break;
         			case "Culturale" :
-        		
+        				c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,Gruppo.Culturale,destinazione);
+        				break;
         		}
-        		
-        		/*
-        		if(!username.equals("")) {
-        			Giocatore g = new GiocatoreFisico(username);
-    				WelcomeController.admin.aggiungiGiocatore(g);
-    		    	GestoreFile gestoreFile = new GestoreFile();
-    		    	gestoreFile.salvaAdmin(WelcomeController.admin);
-        		}
-        		*/
         	}else{
-        		String difficolta = selezionaDifficoltaButton.getValue();
-        		if("Facile".equals(difficolta)) {
-    	    		String username = nuovoGiocatoreField.getText();
-    	    		if(!username.equals("")) {
-    	    			Giocatore g = new GiocatoreCPUFacile(username);
-    					WelcomeController.admin.aggiungiGiocatore(g);
-    			    	GestoreFile gestoreFile = new GestoreFile();
-    			    	gestoreFile.salvaAdmin(WelcomeController.admin);
-    	    		}
-        		}else if("Difficile".equals(difficolta)){
-        			String username = nuovoGiocatoreField.getText();
-    	    		if(!username.equals("")) {
-    	    			Giocatore g = new GiocatoreCPUDifficile(username);
-    					WelcomeController.admin.aggiungiGiocatore(g);
-    			    	GestoreFile gestoreFile = new GestoreFile();
-    			    	gestoreFile.salvaAdmin(WelcomeController.admin);
-    	    		}
+        		if("Bonus".equals(genereNuovaCarta.getValue())) {
+    	    		c = new Special(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,true);
+        		}else if("Malus".equals(genereNuovaCarta.getValue())){
+        			c = new Special(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,true);
         		}else {
         			
         		}
@@ -269,14 +254,18 @@ public class AdminAreaController {
         	WelcomeController.admin.aggiungiCarta(c);
 	    	GestoreFile gestoreFile = new GestoreFile();
 	    	gestoreFile.salvaAdmin(WelcomeController.admin);
-        	ObservableList<String> giocatori = FXCollections.observableArrayList();
+	    	
+        	ObservableList<String> carteCreate = FXCollections.observableArrayList();
         	for(String s : WelcomeController.admin.getGiocatori().keySet())
-        		giocatori.add(s);
-        	giocatori.sort(null);
-        	listaGiocatoriButton.setItems(giocatori);
-        	scegliGiocatoriPartitaButton.setItems(giocatori);
-        	nuovoGiocatoreField.clear();
-        	tipoDiGiocatoreButton.setValue(null);
+        		carteCreate.add(s);
+        	carteCreate.sort(null);
+        	
+        	listaCarteCreaCarta.setItems(carteCreate);
+        	nomeNuovaCarta.clear();
+        	listaCarteCreaCarta.setValue(null);
+        	tipoNuovaCarta.setValue(null);
+        	descrizioneCartaTesto.clear();
+        	
     		
     		
 			Files.copy(origine, destinazione, StandardCopyOption.REPLACE_EXISTING);
@@ -289,7 +278,8 @@ public class AdminAreaController {
 
     @FXML
     void eliminaCartaNuovaCarta(ActionEvent event) {
-
+    	String descrizioneCarta = descrizioneCartaTesto.getText();
+    	System.out.println(descrizioneCarta);
     }
 
     @FXML
@@ -534,7 +524,7 @@ public class AdminAreaController {
     	tipoNuovaCarta.setItems(tipoCarta); 
     	
     	ObservableList<String> carteCreate = FXCollections.observableArrayList();
-    	for(String s : WelcomeController.admin.getGiocatori().keySet())
+    	for(String s : WelcomeController.admin.getCarte().keySet())
     		carteCreate.add(s);
     	carteCreate.sort(null);
     	listaCarteCreaCarta.setItems(carteCreate);
