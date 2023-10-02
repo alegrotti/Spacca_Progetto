@@ -39,6 +39,13 @@
     -fx-font-style: italic;
 }
 
+#titoloCarta {
+    -fx-color: rgb(0, 64, 128);
+    -fx-font: 25px "Felix Titling", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
 #sfondo {
 	-fx-background-image: url("/immagini/sfondoWelcome.jpg");
 	-fx-border-width: 2px;

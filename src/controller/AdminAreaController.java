@@ -245,9 +245,9 @@ public class AdminAreaController {
         		}
         	}else{
         		if("Bonus".equals(genereNuovaCarta.getValue())) {
-    	    		c = new Special(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,true);
+    	    		c = new Special(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,true,"percorso_bonus");
         		}else if("Malus".equals(genereNuovaCarta.getValue())){
-        			c = new Special(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,true);
+        			c = new Special(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,true,"percorso_malus");
         		}else {
         			
         		}

@@ -5,6 +5,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import model.Carta;
 
 public class RulesController {
 
@@ -27,6 +30,12 @@ public class RulesController {
 
     @FXML
     private ComboBox<String> listaCarte;
+    
+    @FXML
+    private Pane immaginaCarta;
+
+    @FXML
+    private Label punteggioCarta;
 
     @FXML
     private Pane sfondo;
@@ -36,6 +45,9 @@ public class RulesController {
 
     @FXML
     private Label titolo;
+    
+    @FXML
+    private Label titoloCarta;
 
     @FXML
     void backWelcome(ActionEvent event) {
@@ -73,13 +85,33 @@ public class RulesController {
     	for(String s : WelcomeController.admin.getCarte().keySet())
     		carteCreate.add(s);
     	carteCreate.sort(null);
-    	listaCarte.setItems(carteCreate);   	
+    	listaCarte.setItems(carteCreate);   
+    	
     }
     
     @FXML
     void cartaScelta(ActionEvent event) {
     	String s = listaCarte.getValue();
-    	testoCarta.setText(s);
+    	Carta c = WelcomeController.admin.getCarta(s);
+    	stampaCarta(c);    
+    }
+    
+    private void stampaCarta(Carta c) {
+    	titoloCarta.setText(c.getNome());
+    	testoCarta.setText(c.getDescrizione());
+    	String s = 
+    			"Residenziale : "+c.getResidenziale()+
+		    	"\nCommerciale : "+c.getCommerciale()+
+		    	"\nPubblico : "+c.getPubblico()+
+		    	"\nCulturale : "+c.getCulturale();
+    	punteggioCarta.setText(s);
+    	
+    	String imageURL = c.getPercorso();
+        
+        Image image = new Image(imageURL);
+        ImageView imageView = new ImageView(image);
+        immaginaCarta.getChildren().setAll(imageView);
+    
     }
 
 }
