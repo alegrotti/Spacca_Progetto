@@ -110,6 +110,8 @@ public class RulesController {
         
         Image image = new Image(imageURL);
         ImageView imageView = new ImageView(image);
+        imageView.setPreserveRatio(true);
+        imageView.setFitWidth(200);
         immaginaCarta.getChildren().setAll(imageView);
     
     }

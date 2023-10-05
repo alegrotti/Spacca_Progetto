@@ -27,7 +27,7 @@
                               <ComboBox fx:id="listaCarte" onAction="#cartaScelta" prefWidth="150.0" />
                               <Label fx:id="titoloCarta" prefHeight="28.0" prefWidth="275.0">
                                  <VBox.margin>
-                                    <Insets top="20.0" />
+                                    <Insets top="10.0" />
                                  </VBox.margin>
                               </Label>
                               <HBox alignment="CENTER" prefHeight="317.0" prefWidth="822.0">
@@ -35,13 +35,9 @@
                                     <Insets top="10.0" />
                                  </VBox.margin>
                                  <children>
-                                    <VBox alignment="CENTER" prefHeight="318.0" prefWidth="411.0">
-                                       <children>
-                                          <Pane fx:id="immaginaCarta" prefHeight="138.0" prefWidth="210.0" />
-                                          <Label fx:id="punteggioCarta" prefHeight="158.0" prefWidth="317.0" />
-                                       </children>
-                                    </VBox>
-                                    <Label fx:id="testoCarta" alignment="CENTER" prefHeight="359.0" prefWidth="411.0" />
+                                    <Pane fx:id="immaginaCarta" prefHeight="298.0" prefWidth="254.0" />
+                                    <Label fx:id="punteggioCarta" prefHeight="266.0" prefWidth="258.0" />
+                                    <Label fx:id="testoCarta" alignment="CENTER" prefHeight="298.0" prefWidth="253.0" />
                                  </children>
                               </HBox>
                            </children>
