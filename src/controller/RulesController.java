@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.Carta;
@@ -24,30 +25,48 @@ public class RulesController {
 
     @FXML
     private Button homeButton;
+
+    @FXML
+    private Label punteggiCarta;
     
     @FXML
-    private Label testoCarta;
+    private Label descrizioneCarta;
+
+    @FXML
+    private Label genereCarta;
 
     @FXML
     private ComboBox<String> listaCarte;
     
     @FXML
-    private Pane immaginaCarta;
-
-    @FXML
-    private Label punteggioCarta;
+    private ImageView immagineCarta;
 
     @FXML
     private Pane sfondo;
 
     @FXML
     private TabPane tabPane;
+    
+    @FXML
+    private VBox infoCarta;
+    
+    @FXML
+    private HBox sfondoCarta;
 
     @FXML
     private Label titolo;
     
     @FXML
     private Label titoloCarta;
+    
+    @FXML
+    private Label titoloDescrizione;
+    
+    @FXML
+    private Label titoloGenere;
+
+    @FXML
+    private Label titoloPunteggio;
 
     @FXML
     void backWelcome(ActionEvent event) {
@@ -93,27 +112,30 @@ public class RulesController {
     void cartaScelta(ActionEvent event) {
     	String s = listaCarte.getValue();
     	Carta c = WelcomeController.admin.getCarta(s);
-    	stampaCarta(c);    
+    	stampaCarta(c);
+    	
     }
     
     private void stampaCarta(Carta c) {
     	titoloCarta.setText(c.getNome());
-    	testoCarta.setText(c.getDescrizione());
-    	String s = 
+    	String s =
     			"Residenziale : "+c.getResidenziale()+
 		    	"\nCommerciale : "+c.getCommerciale()+
 		    	"\nPubblico : "+c.getPubblico()+
 		    	"\nCulturale : "+c.getCulturale();
-    	punteggioCarta.setText(s);
+    	
+    	punteggiCarta.setText(s);
+
+    	descrizioneCarta.setText(c.getDescrizione());
+    	
+    	genereCarta.setText(c.getGenere());
     	
     	String imageURL = c.getPercorso();
         
         Image image = new Image(imageURL);
-        ImageView imageView = new ImageView(image);
-        imageView.setPreserveRatio(true);
-        imageView.setFitWidth(200);
-        immaginaCarta.getChildren().setAll(imageView);
-    
+        immagineCarta.setImage(image);
+        immagineCarta.setPreserveRatio(true);
+        
     }
 
 }

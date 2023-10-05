@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -16,7 +17,7 @@
       <VBox fx:id="centralBox" alignment="CENTER" layoutX="50.0" layoutY="42.0" prefHeight="550.0" prefWidth="850.0">
          <children>
             <Label fx:id="titolo" alignment="CENTER" prefHeight="43.0" prefWidth="849.0" text="Regole e catalogo carte" />
-            <TabPane fx:id="tabPane" maxWidth="854.0" prefHeight="390.0" prefWidth="850.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="tabPane" maxWidth="854.0" prefHeight="412.0" prefWidth="850.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Partita" />
                 <Tab text="Torneo" />
@@ -24,20 +25,35 @@
                      <content>
                         <VBox alignment="CENTER" prefHeight="457.0" prefWidth="822.0">
                            <children>
-                              <ComboBox fx:id="listaCarte" onAction="#cartaScelta" prefWidth="150.0" />
-                              <Label fx:id="titoloCarta" prefHeight="28.0" prefWidth="275.0">
+                              <ComboBox fx:id="listaCarte" onAction="#cartaScelta" prefWidth="150.0">
                                  <VBox.margin>
-                                    <Insets top="10.0" />
+                                    <Insets top="5.0" />
+                                 </VBox.margin></ComboBox>
+                              <Label fx:id="titoloCarta" alignment="CENTER" prefHeight="28.0" prefWidth="275.0">
+                                 <VBox.margin>
+                                    <Insets />
                                  </VBox.margin>
                               </Label>
-                              <HBox alignment="CENTER" prefHeight="317.0" prefWidth="822.0">
+                              <HBox fx:id="sfondoCarta" alignment="CENTER" prefHeight="282.0" prefWidth="850.0">
                                  <VBox.margin>
-                                    <Insets top="10.0" />
+                                    <Insets />
                                  </VBox.margin>
                                  <children>
-                                    <Pane fx:id="immaginaCarta" prefHeight="298.0" prefWidth="254.0" />
-                                    <Label fx:id="punteggioCarta" prefHeight="266.0" prefWidth="258.0" />
-                                    <Label fx:id="testoCarta" alignment="CENTER" prefHeight="298.0" prefWidth="253.0" />
+                                    <ImageView fx:id="immagineCarta" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                       <HBox.margin>
+                                          <Insets right="30.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <VBox fx:id="infoCarta" alignment="CENTER" prefHeight="304.0" prefWidth="566.0">
+                                       <children>
+                                          <Label fx:id="titoloPunteggio" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="37.0" prefWidth="566.0" text="Punteggi: " />
+                                          <Label fx:id="punteggiCarta" alignment="CENTER" layoutX="10.0" layoutY="133.0" prefHeight="83.0" prefWidth="569.0" />
+                                          <Label fx:id="titoloGenere" alignment="CENTER" prefHeight="37.0" prefWidth="566.0" text="Genere: " />
+                                          <Label fx:id="genereCarta" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="39.0" prefWidth="566.0" />
+                                          <Label fx:id="titoloDescrizione" alignment="CENTER" prefHeight="39.0" prefWidth="566.0" text="Descrizione:" />
+                                          <Label fx:id="descrizioneCarta" alignment="CENTER" prefHeight="113.0" prefWidth="566.0" />
+                                       </children>
+                                    </VBox>
                                  </children>
                               </HBox>
                            </children>
@@ -57,7 +73,7 @@
             </TabPane>
             <Button fx:id="homeButton" mnemonicParsing="false" onAction="#backWelcome" prefHeight="43.0" prefWidth="133.0" text="Schermata home">
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="5.0" />
                </VBox.margin>
             </Button>
          </children>

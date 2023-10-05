@@ -10,13 +10,12 @@ public class Building extends Carta implements Serializable{
 	private int punteggio;
 	Gruppo group;
 	
-	public Building(String nome, String descrizione, int resi, int comm, int pubb, int cult, Gruppo group,String percorsoIcona) {
-		super(nome, descrizione, assegnaColore(group), resi, comm, pubb, cult, percorsoIcona);
-		this.punteggio = assegnaPunteggio(resi, comm, pubb, cult); 
-		this.group = group;
+	public Building(String nome, String descrizione, int resi, int comm, int pubb, int cult, String percorsoIcona,String genere) {
+		super(nome, descrizione, assegnaColore(genere), resi, comm, pubb, cult, percorsoIcona,genere);
+		this.punteggio = assegnaPunteggio(resi, comm, pubb, cult);
 	}
 
-	private static Color assegnaColore(Gruppo g) {
+	private static Color assegnaColore(String g) {
 		
 		return Color.white;
 		

@@ -46,6 +46,12 @@
     -fx-font-style: italic;
 }
 
+#infoCarta{
+	-fx-border-width: 2px;
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-text-fill: rgb(0, 64, 128);
+}
+
 #sfondo {
 	-fx-background-image: url("/immagini/sfondoWelcome.jpg");
 	-fx-border-width: 2px;
@@ -79,5 +85,58 @@
     -fx-text-fill: rgb(209, 155, 0);
     -fx-background-color: rgb(0, 64, 128);
     -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#titoloDescrizione{
+    -fx-background-color: rgb(209, 155, 0, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#descrizioneCarta{
+    -fx-background-color: rgb(0, 64, 128, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#titoloPunteggio{
+    -fx-background-color: rgb(209, 155, 0, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#punteggiCarta{
+    -fx-background-color: rgb(0, 64, 128, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#titoloGenere{
+    -fx-background-color: rgb(209, 155, 0, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#genereCarta{
+    -fx-background-color: rgb(0, 64, 128, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+/*
+#immagineCarta{
+	-fx-border-width: 2px;
+    -fx-border-color: rgb(0, 0, 0);
+}
+*/
+
+#punteggioCarta{
+	-fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#testoCarta{
+	-fx-font-family: "Georgia";
     -fx-font-size: 12px;
 }

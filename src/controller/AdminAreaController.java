@@ -225,29 +225,16 @@ public class AdminAreaController {
     		String nomeCarta = nomeNuovaCarta.getText();
     		String descrizioneCarta = descrizioneCartaTesto.getText();
     		int resi = Integer.parseInt(labelPunteggioResidenziale.getText());
-        	int comm = Integer.parseInt(labelPunteggioResidenziale.getText());
-        	int pubb = Integer.parseInt(labelPunteggioResidenziale.getText());
-        	int cult = Integer.parseInt(labelPunteggioResidenziale.getText());
+        	int comm = Integer.parseInt(labelPunteggioCommerciale.getText());
+        	int pubb = Integer.parseInt(labelPunteggioPubblico.getText());
+        	int cult = Integer.parseInt(labelPunteggioCulturale.getText());
         	if("Edificio".equals(tipoNuovaCarta.getValue())) {
-        		switch(genereNuovaCarta.getValue()) {
-        			case "Residenziale" :
-        				c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,Gruppo.Residenziale,destinazione.toString());
-        				break;
-        			case "Commerciale" :
-        				c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,Gruppo.Commerciale,destinazione.toString());
-        				break;
-        			case "Pubblico" :
-        				c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,Gruppo.Pubblico,destinazione.toString());
-        				break;
-        			case "Culturale" :
-        				c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,Gruppo.Culturale,destinazione.toString());
-        				break;
-        		}
+        		c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,destinazione.toString(),genereNuovaCarta.getValue());
         	}else{
         		if("Bonus".equals(genereNuovaCarta.getValue())) {
-    	    		c = new Special(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,true,"percorso_bonus");
+    	    		c = new Special(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,true,"percorso_bonus",genereNuovaCarta.getValue());
         		}else if("Malus".equals(genereNuovaCarta.getValue())){
-        			c = new Special(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,true,"percorso_malus");
+        			c = new Special(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,false,"percorso_malus",genereNuovaCarta.getValue());
         		}else {
         			
         		}

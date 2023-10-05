@@ -9,8 +9,8 @@ public class Special extends Carta implements Serializable{
 
 	private boolean specialType;
 
-	public Special(String nome, String descrizione, int resi, int comm, int pubb, int cult, boolean specialType,String percorsoIcona) {
-		super(nome, descrizione, assegnaColore(specialType), resi, comm, pubb, cult,percorsoIcona);
+	public Special(String nome, String descrizione, int resi, int comm, int pubb, int cult, boolean specialType,String percorsoIcona, String genere) {
+		super(nome, descrizione, assegnaColore(specialType), resi, comm, pubb, cult,percorsoIcona,genere);
 		this.specialType = specialType;
 	}
 	

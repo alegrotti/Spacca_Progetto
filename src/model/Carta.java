@@ -14,9 +14,10 @@ public class Carta implements Serializable{
 	private int comm;
 	private int pubb;
 	private int cult;
-	String percorsoIcona;
+	private String percorsoIcona;
+	private String genere;
 	
-	public Carta(String nome, String descrizione, Color color,int resi, int comm, int pubb, int cult, String percorsoIcona) {
+	public Carta(String nome, String descrizione, Color color,int resi, int comm, int pubb, int cult, String percorsoIcona, String genere) {
 		this.resi = resi;
 		this.comm = comm;
 		this.pubb = pubb;
@@ -25,6 +26,7 @@ public class Carta implements Serializable{
 		this.descrizione = descrizione;
 		this.color = color;
 		this.percorsoIcona = percorsoIcona;
+		this.genere = genere;
 	}
 	
 	public Carta() {
@@ -63,6 +65,14 @@ public class Carta implements Serializable{
 	
 	public String getPercorso() {
 		return percorsoIcona;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+	
+	public String getGenere() {
+		return genere;
 	}
 	
 }
