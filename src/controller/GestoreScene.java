@@ -9,7 +9,7 @@ public class GestoreScene {
 		Main.parentWindow.setScene(scena);
         Main.parentWindow.setResizable(false);
         Main.parentWindow.setMaximized(t);
-        Main.parentWindow.setTitle("Pokeropoly");
+        Main.parentWindow.setTitle("SPACCA");
         Image image = new Image("/immagini/icon.jpg");
         Main.parentWindow.getIcons().add(image);
         Main.parentWindow.show();

@@ -475,6 +475,7 @@ public class AdminAreaController {
     	
     	//Nuova carta
     	inizializzaCreaCarta();
+    	
     }
     
     private void inizializzaProfilo() {
