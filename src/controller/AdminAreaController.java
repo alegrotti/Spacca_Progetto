@@ -36,11 +36,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
 
 public class AdminAreaController {
-
-	private static Path origine;
-	private static Path destinazione;
 	
-    @FXML
+	@FXML
     private VBox centralBox;
 
     @FXML
@@ -48,12 +45,9 @@ public class AdminAreaController {
 
     @FXML
     private Label creaGiocatoreTitolo;
-    
+
     @FXML
     private Label creaNuovaPartitaTitolo;
-    
-    @FXML
-    private TextArea descrizioneCartaTesto;
 
     @FXML
     private Button eliminaGiocatoreButton;
@@ -62,28 +56,13 @@ public class AdminAreaController {
     private Label fraseSliderLabel;
 
     @FXML
-    private Button homeButton;
-    
-    @FXML
-    private HBox hBoxIcona;
-
-    @FXML
     private HBox hBoxDifficolta;
-    
+
     @FXML
     private HBox hBoxSliderPartita;
-    
-    @FXML
-    private HBox hBoxPuntiCommerciale;
 
     @FXML
-    private HBox hBoxPuntiCulturale;
-
-    @FXML
-    private HBox hBoxPuntiPubblico;
-
-    @FXML
-    private HBox hBoxPuntiResidenziale;
+    private Button homeButton;
 
     @FXML
     private Label infoAdminTitolo;
@@ -92,13 +71,13 @@ public class AdminAreaController {
     private Label infoGiocatore;
 
     @FXML
-    private ComboBox<String> listaGiocatoriButton;
-
-    @FXML
     private ComboBox<String> listaCarteNuovaPartitaButton;
 
     @FXML
-    private ComboBox<String> listaGiocatoriNuovaPartitaButton2;
+    private ComboBox<String> listaGiocatoriButton;
+
+    @FXML
+    private ComboBox<String> listaGiocatoriNuovaPartitaButton;
 
     @FXML
     private Label listaGiocatoriTitolo;
@@ -147,164 +126,8 @@ public class AdminAreaController {
 
     @FXML
     private TextField usernameField;
-    
-    @FXML
-    private TextField codicePartitaField1;
 
-    @FXML
-    private Label creaNuovaCartaTitolo;
-
-    @FXML
-    private ComboBox<String> genereNuovaCarta;
-
-    @FXML
-    private Label labelPunteggioCommerciale;
-
-    @FXML
-    private Label labelPunteggioCulturale;
-
-    @FXML
-    private Label labelPunteggioResidenziale;
-    
-    @FXML
-    private Label labelPunteggioPubblico;
-
-    @FXML
-    private ComboBox<String> listaCarteCreaCarta;
-
-    @FXML
-    private ComboBox<String> listaGiocatoriNuovaPartitaButton;
-
-    @FXML
-    private Slider sliderPunteggioCommerciale;
-
-    @FXML
-    private Slider sliderPunteggioCulturale;
-
-    @FXML
-    private Slider sliderPunteggioPubblico;
-
-    @FXML
-    private Slider sliderPunteggioResidenziale;
-
-    @FXML
-    private ComboBox<String> tipoNuovaCarta;
-    
-    @FXML
-    private TextField nomeNuovaCarta;
-    
-    @FXML
-    private Label iconaCaricataMessaggio;
-
-    @FXML
-    void caricaIconaNuovaCarta(ActionEvent event) {
-    	FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Immagini", "*.jpg", "*.png", "*.jpeg"));
-        File selectedFile = fileChooser.showOpenDialog(Main.parentWindow);
-
-        if (selectedFile != null) {
-            String selectedFilePath = selectedFile.getAbsolutePath();
-
-            String percorsoProgetto = System.getProperty("user.dir");
-            String percorsoCartellaDestinazione = percorsoProgetto + "/src/immagini";
-
-            AdminAreaController.origine = Path.of(selectedFilePath);
-
-			AdminAreaController.destinazione = Paths.get(percorsoCartellaDestinazione, origine.getFileName().toString());
-
-			iconaCaricataMessaggio.setText(selectedFilePath);
-        }
-    }
-    
-    
-    @FXML
-    void creaCarta(ActionEvent event) {
-    	
-    	try {
-    		Carta c = new Carta();
-    		String nomeCarta = nomeNuovaCarta.getText();
-    		String descrizioneCarta = descrizioneCartaTesto.getText();
-    		int resi = Integer.parseInt(labelPunteggioResidenziale.getText());
-        	int comm = Integer.parseInt(labelPunteggioCommerciale.getText());
-        	int pubb = Integer.parseInt(labelPunteggioPubblico.getText());
-        	int cult = Integer.parseInt(labelPunteggioCulturale.getText());
-        	if("Edificio".equals(tipoNuovaCarta.getValue())) {
-        		c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,destinazione.toString(),genereNuovaCarta.getValue());
-        	}else{
-        		if("Bonus".equals(genereNuovaCarta.getValue())) {
-    	    		c = new Special(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,true,"percorso_bonus",genereNuovaCarta.getValue());
-        		}else if("Malus".equals(genereNuovaCarta.getValue())){
-        			c = new Special(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,false,"percorso_malus",genereNuovaCarta.getValue());
-        		}else {
-        			
-        		}
-        	}
-        	WelcomeController.admin.aggiungiCarta(c);
-	    	GestoreFile gestoreFile = new GestoreFile();
-	    	gestoreFile.salvaAdmin(WelcomeController.admin);
-	    	Files.copy(origine, destinazione, StandardCopyOption.REPLACE_EXISTING);
-
-	    	inizializzaCreaCarta();
-		} catch (Exception e) {
-			e.printStackTrace();
-			
-		}
-        
-    	inizializzaCreaCarta();
-    	
-    }
-
-    @FXML
-    void eliminaCartaNuovaCarta(ActionEvent event) {
-    	String nomeCarta = listaCarteCreaCarta.getValue();
-    	
-    	Carta c = WelcomeController.admin.getCarta(nomeCarta);
-    	
-    	WelcomeController.admin.eliminaCarta(nomeCarta);
-    	
-    	if(c instanceof Building) {
-    		Building b = (Building)c;
-    		String percorsoFoto = b.getPercorso();
-            try {
-                Files.deleteIfExists(Paths.get(percorsoFoto));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-    	}
-    	
-    	GestoreFile gestoreFile = new GestoreFile();
-    	gestoreFile.salvaAdmin(WelcomeController.admin);
-    	
-    	inizializzaCreaCarta();
-    }
-
-    @FXML
-    void scegliGenereNuovaCarta(ActionEvent event) {
-
-    }
-
-    @FXML
-    void scegliTipoNuovaCarta(ActionEvent event) {
-    	if("Edificio".equals(tipoNuovaCarta.getValue())) {
-    		ObservableList<String> genereCarta = FXCollections.observableArrayList("Residenziale","Commerciale","Pubblico","Culturale");
-    		genereNuovaCarta.setItems(genereCarta);
-        	sliderPunteggioCommerciale.setMax(10);
-        	sliderPunteggioPubblico.setMax(10);
-        	sliderPunteggioResidenziale.setMax(10);
-        	sliderPunteggioCulturale.setMax(10);
-        	hBoxIcona.setVisible(true);
-    	}else if("Special".equals(tipoNuovaCarta.getValue())) {
-    		ObservableList<String> genereCarta = FXCollections.observableArrayList("Bonus","Malus");
-    		genereNuovaCarta.setItems(genereCarta);
-    		sliderPunteggioCommerciale.setMax(4);
-        	sliderPunteggioPubblico.setMax(4);
-        	sliderPunteggioResidenziale.setMax(4);
-        	sliderPunteggioCulturale.setMax(4);
-        	hBoxIcona.setVisible(false);
-    	}
-    }
-    
-    @FXML
+	@FXML
     void aggiungiPartita(ActionEvent event) {
 
     }
@@ -473,9 +296,6 @@ public class AdminAreaController {
     	//Nuova Partita
     	inizializzaNuovaPartita();
     	
-    	//Nuova carta
-    	inizializzaCreaCarta();
-    	
     }
     
     private void inizializzaProfilo() {
@@ -530,46 +350,6 @@ public class AdminAreaController {
             int roundedValue = (int) Math.round(newValue.doubleValue());
             numeroSliderPartitaLabel.setText(String.valueOf(roundedValue));
         });
-    }
-    
-    private void inizializzaCreaCarta() {
-    	nomeNuovaCarta.setText(null);
-    	descrizioneCartaTesto.setText(null);
-    	tipoNuovaCarta.setValue(null);
-    	listaCarteCreaCarta.setValue(null);
-    	genereNuovaCarta.setValue(null);
-    	
-    	ObservableList<String> tipoCarta = FXCollections.observableArrayList("Edificio","Special");
-    	tipoNuovaCarta.setItems(tipoCarta); 
-    	
-    	ObservableList<String> carteCreate = FXCollections.observableArrayList();
-    	for(String s : WelcomeController.admin.getCarte().keySet())
-    		carteCreate.add(s);
-    	carteCreate.sort(null);
-    	listaCarteCreaCarta.setItems(carteCreate);
-    	
-    	hBoxIcona.setVisible(false);
-    	
-    	sliderPunteggioCommerciale.setMin(0);
-    	sliderPunteggioResidenziale.setMin(0);
-    	sliderPunteggioCulturale.setMin(0);
-    	sliderPunteggioPubblico.setMin(0);
-    	
-    	inizializzaSlider(labelPunteggioCommerciale,sliderPunteggioCommerciale);
-    	inizializzaSlider(labelPunteggioResidenziale,sliderPunteggioResidenziale);
-    	inizializzaSlider(labelPunteggioCulturale,sliderPunteggioCulturale);
-    	inizializzaSlider(labelPunteggioPubblico,sliderPunteggioPubblico);
-    }
-    
-    private void inizializzaSlider(Label label, Slider slider){
-    	slider.setValue(0);
-    	label.setText(String.valueOf((int) slider.getValue()));
-    	slider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            int roundedValue = (int) Math.round(newValue.doubleValue());
-            label.setText(String.valueOf(roundedValue));
-        });
-    	slider.setMin(0);
-    	slider.setMax(10);
     }
 
 }
