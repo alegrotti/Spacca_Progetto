@@ -41,6 +41,9 @@ public class AdminAreaController {
     private VBox centralBox;
 
     @FXML
+    private Button eliminaMazzoButton;
+
+    @FXML
     private TextField codicePartitaField;
 
     @FXML
@@ -126,6 +129,77 @@ public class AdminAreaController {
 
     @FXML
     private TextField usernameField;
+    
+    @FXML
+    private Button aggiungiCartaButton;
+
+    @FXML
+    private Label gestisciMazzoTitolo;
+
+    @FXML
+    private Label gestisciMazzoTitolo1;
+
+    @FXML
+    private Label gestisciMazzoTitolo11;
+
+    @FXML
+    private Label infoCartaDaAggiungere;
+
+    @FXML
+    private Label infoCartaDelMazzo;
+
+    @FXML
+    private ComboBox<?> listaCarteDaAggiungere;
+
+    @FXML
+    private ComboBox<?> listaCarteMazzo;
+
+    @FXML
+    private ComboBox<?> listaMazziButton;
+
+    @FXML
+    private TextField nomeMazzo;
+
+    @FXML
+    private Button rimuoviCartaDalMazzoButton;
+
+    @FXML
+    private Button salvaMazzoButton;
+
+    @FXML
+    void aggiungiCartaAlMazzo(ActionEvent event) {
+
+    }
+
+    @FXML
+    void cartaDaAggiungereSelezionata(ActionEvent event) {
+
+    }
+
+    @FXML
+    void cartaDelMazzoSelezionata(ActionEvent event) {
+
+    }
+
+    @FXML
+    void eliminaMazzo(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void cartaSelezionata(ActionEvent event) {
+
+    }
+
+    @FXML
+    void rimuoviCartaDalMazzo(ActionEvent event) {
+
+    }
+
+    @FXML
+    void salvaMazzo(ActionEvent event) {
+
+    }
 
 	@FXML
     void aggiungiPartita(ActionEvent event) {
@@ -180,7 +254,6 @@ public class AdminAreaController {
     	}
     }
     
-    
     @FXML
     void aggiungiGiocatore(ActionEvent event) {
     	String tipoGiocatore = tipoDiGiocatoreButton.getValue();
@@ -214,7 +287,6 @@ public class AdminAreaController {
     			
     		}
     	}
-
     	inizializzaNuovoGiocatore();
     }
 
@@ -268,7 +340,6 @@ public class AdminAreaController {
     	gestoreFile.salvaAdmin(WelcomeController.admin);
     	
     	inizializzaProfilo();
-    	
     }
 
     @FXML
@@ -295,6 +366,9 @@ public class AdminAreaController {
     	
     	//Nuova Partita
     	inizializzaNuovaPartita();
+    	
+    	//Gestione Mazzi
+    	inizializzaGestioneMazzi();
     	
     }
     
@@ -350,6 +424,11 @@ public class AdminAreaController {
             int roundedValue = (int) Math.round(newValue.doubleValue());
             numeroSliderPartitaLabel.setText(String.valueOf(roundedValue));
         });
+    }
+    
+    private void inizializzaGestioneMazzi() {
+    	usernameField.setText(WelcomeController.admin.getUsername());
+    	passwordField.setText(WelcomeController.admin.getPassword());
     }
 
 }

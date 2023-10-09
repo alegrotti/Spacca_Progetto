@@ -241,85 +241,88 @@
                      <content>
                         <VBox>
                            <children>
-                              <HBox>
+                              <VBox alignment="CENTER" prefHeight="378.0" prefWidth="422.0">
                                  <children>
-                                    <VBox alignment="CENTER" prefHeight="378.0" prefWidth="422.0">
+                                    <Label fx:id="gestisciMazzoTitolo" alignment="CENTER" prefHeight="18.0" prefWidth="425.0" text="Gestione mazzi" />
+                                    <HBox alignment="CENTER">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
                                        <children>
-                                          <Label fx:id="modificaMazzoTitolo" alignment="CENTER" prefHeight="18.0" prefWidth="425.0" text="Modifica mazzo" />
-                                          <HBox alignment="CENTER">
-                                             <VBox.margin>
-                                                <Insets top="10.0" />
-                                             </VBox.margin>
-                                             <children>
-                                                <Label text="Scegli mazzo: " />
-                                                <ComboBox fx:id="listaCarteButton" onAction="#cartaSelezionata" prefHeight="32.0" prefWidth="154.0" />
-                                             </children>
-                                          </HBox>
-                                          <HBox alignment="CENTER" prefHeight="32.0" prefWidth="434.0">
-                                             <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="106.0" text="Nome mazzo: " />
-                                                <TextField fx:id="nuovoGiocatoreField11" prefHeight="32.0" prefWidth="239.0" />
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="20.0" />
-                                             </VBox.margin>
-                                          </HBox>
-                                          <HBox alignment="CENTER" layoutX="10.0" layoutY="136.0">
-                                             <children>
-                                                <Label text="Scegli carta: " />
-                                                <ComboBox fx:id="listaCarteButton1" onAction="#cartaSelezionata" prefHeight="32.0" prefWidth="154.0" />
-                                                <Button fx:id="eliminaGiocatoreButton1" mnemonicParsing="false" onAction="#eliminaGiocatore" prefHeight="26.0" prefWidth="113.0" text="Rimuovi carta">
-                                                   <HBox.margin>
-                                                      <Insets left="10.0" />
-                                                   </HBox.margin>
-                                                </Button>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="20.0" />
-                                             </VBox.margin>
-                                          </HBox>
-                                          <Label fx:id="infoCarta" alignment="CENTER" prefHeight="64.0" prefWidth="266.0">
-                                             <VBox.margin>
-                                                <Insets top="10.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                          <Button fx:id="savePlayerButton11" mnemonicParsing="false" onAction="#aggiungiGiocatore" prefHeight="28.0" prefWidth="113.0" text="Salva mazzo">
-                                             <VBox.margin>
-                                                <Insets top="30.0" />
-                                             </VBox.margin>
+                                          <Label text="Scegli mazzo: " />
+                                          <ComboBox fx:id="listaMazziButton" onAction="#cartaSelezionata" prefHeight="32.0" prefWidth="154.0" />
+                                          <Button fx:id="eliminaMazzoButton" mnemonicParsing="false" onAction="#eliminaMazzo" prefHeight="26.0" prefWidth="113.0" text="Elimina mazzo">
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
                                           </Button>
                                        </children>
-                                    </VBox>
-                                    <VBox alignment="CENTER" prefHeight="378.0" prefWidth="440.0">
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="32.0" prefWidth="434.0">
                                        <children>
-                                          <Label fx:id="creaMazzoTitolo" alignment="CENTER" prefHeight="18.0" prefWidth="425.0" text="Crea mazzo" />
-                                          <HBox alignment="CENTER" prefHeight="32.0" prefWidth="434.0">
-                                             <VBox.margin>
-                                                <Insets top="30.0" />
-                                             </VBox.margin>
-                                             <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="106.0" text="Nome mazzo: " />
-                                                <TextField fx:id="nuovoGiocatoreField1" prefHeight="32.0" prefWidth="239.0" />
-                                             </children>
-                                          </HBox>
-                                          <HBox alignment="CENTER">
-                                             <VBox.margin>
-                                                <Insets top="20.0" />
-                                             </VBox.margin>
-                                             <children>
-                                                <Label text="Scegli carta da aggiungere: " />
-                                                <ComboBox fx:id="tipoDiGiocatoreButton1" onAction="#selezionaTipoGiocatore" prefHeight="26.0" prefWidth="205.0" />
-                                             </children>
-                                          </HBox>
-                                          <Button fx:id="savePlayerButton1" mnemonicParsing="false" onAction="#aggiungiGiocatore" prefHeight="28.0" prefWidth="113.0" text="Crea mazzo">
-                                             <VBox.margin>
-                                                <Insets top="30.0" />
-                                             </VBox.margin>
-                                          </Button>
+                                          <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="106.0" text="Nome mazzo: " />
+                                          <TextField fx:id="nomeMazzo" prefHeight="32.0" prefWidth="239.0" />
                                        </children>
-                                    </VBox>
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox prefHeight="155.0" prefWidth="850.0">
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="100.0" prefWidth="446.0">
+                                             <children>
+                                                <Label fx:id="gestisciMazzoTitolo1" alignment="CENTER" prefHeight="18.0" prefWidth="425.0" text="Carte del mazzo" />
+                                                <HBox alignment="CENTER" prefHeight="41.0" prefWidth="426.0">
+                                                   <children>
+                                                      <Label text="Scegli carta: " />
+                                                      <ComboBox fx:id="listaCarteMazzo" onAction="#cartaDelMazzoSelezionata" prefHeight="32.0" prefWidth="154.0" />
+                                                      <Button fx:id="rimuoviCartaDalMazzoButton" mnemonicParsing="false" onAction="#rimuoviCartaDalMazzo" prefHeight="26.0" prefWidth="113.0" text="Rimuovi carta">
+                                                         <HBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                   </children>
+                                                </HBox>
+                                                <Label fx:id="infoCartaDelMazzo" alignment="CENTER" prefHeight="64.0" prefWidth="266.0">
+                                                   <VBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </VBox>
+                                          <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="446.0">
+                                             <children>
+                                                <Label fx:id="gestisciMazzoTitolo11" alignment="CENTER" prefHeight="18.0" prefWidth="425.0" text="Carte aggiungibili" />
+                                                <HBox alignment="CENTER" prefHeight="41.0" prefWidth="426.0">
+                                                   <children>
+                                                      <Label text="Scegli carta: " />
+                                                      <ComboBox fx:id="listaCarteDaAggiungere" onAction="#cartaDaAggiungereSelezionata" prefHeight="32.0" prefWidth="154.0" />
+                                                      <Button fx:id="aggiungiCartaButton" mnemonicParsing="false" onAction="#aggiungiCartaAlMazzo" prefHeight="26.0" prefWidth="113.0" text="Aggiungi carta">
+                                                         <HBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                   </children>
+                                                </HBox>
+                                                <Label fx:id="infoCartaDaAggiungere" alignment="CENTER" prefHeight="64.0" prefWidth="266.0">
+                                                   <VBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <Button fx:id="salvaMazzoButton" mnemonicParsing="false" onAction="#salvaMazzo" prefHeight="28.0" prefWidth="113.0" text="Salva mazzo">
+                                       <VBox.margin>
+                                          <Insets top="30.0" />
+                                       </VBox.margin>
+                                    </Button>
                                  </children>
-                              </HBox>
+                              </VBox>
                            </children>
                         </VBox>
                      </content>
