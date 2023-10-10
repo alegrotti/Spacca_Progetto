@@ -12,7 +12,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.Admin;
+import model.Carta;
 import model.GestoreFile;
+import model.Mazzo;
 import model.Partita;
 import model.Torneo;
 
@@ -21,6 +23,9 @@ public class WelcomeController {
 	public static Admin admin;
 	public static HashMap <String,Partita> partite;
 	public static HashMap <String,Torneo> tornei;
+	public static HashMap <String,Carta> carte;
+	public static HashMap <String,Mazzo> mazzi;
+	
 	
     @FXML
     private Button adminLogin;

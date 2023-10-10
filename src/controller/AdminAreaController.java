@@ -355,6 +355,10 @@ public class AdminAreaController {
     	}
     }
    
+    private void aggiungiCarte() {
+    	
+    }
+    
     @FXML
     void initialize() {
     	
@@ -427,8 +431,7 @@ public class AdminAreaController {
     }
     
     private void inizializzaGestioneMazzi() {
-    	usernameField.setText(WelcomeController.admin.getUsername());
-    	passwordField.setText(WelcomeController.admin.getPassword());
+    	
     }
 
 }
