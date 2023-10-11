@@ -128,6 +128,7 @@ public class RulesController {
 
     	descrizioneCarta.setText(c.getDescrizione());
     	
+    	
     	genereCarta.setText(c.getGenere());
     	
     	String imageURL = c.getPercorso();

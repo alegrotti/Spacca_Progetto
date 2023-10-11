@@ -26,7 +26,6 @@ public class WelcomeController {
 	public static HashMap <String,Carta> carte;
 	public static HashMap <String,Mazzo> mazzi;
 	
-	
     @FXML
     private Button adminLogin;
 

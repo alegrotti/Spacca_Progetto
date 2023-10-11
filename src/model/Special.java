@@ -7,11 +7,11 @@ public class Special extends Carta implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
-	private boolean specialType;
+	private boolean tipo;
 
-	public Special(String nome, String descrizione, int resi, int comm, int pubb, int cult, boolean specialType,String percorsoIcona, String genere) {
-		super(nome, descrizione, assegnaColore(specialType), resi, comm, pubb, cult,percorsoIcona,genere);
-		this.specialType = specialType;
+	public Special(String nome, String descrizione, int resi, int comm, int pubb, int cult, boolean tipo,String percorsoIcona,String genere) {
+		super(nome, descrizione, assegnaColore(tipo), resi, comm, pubb, cult,percorsoIcona,genere);
+		this.tipo = tipo;
 	}
 	
 	private static Color assegnaColore(boolean specialType) {

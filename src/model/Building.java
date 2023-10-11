@@ -8,7 +8,6 @@ public class Building extends Carta implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private int punteggio;
-	Gruppo group;
 	
 	public Building(String nome, String descrizione, int resi, int comm, int pubb, int cult, String percorsoIcona,String genere) {
 		super(nome, descrizione, assegnaColore(genere), resi, comm, pubb, cult, percorsoIcona,genere);
