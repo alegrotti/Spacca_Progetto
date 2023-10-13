@@ -11,7 +11,7 @@
    <children>
       <VBox fx:id="centralBox" alignment="TOP_CENTER" layoutX="199.0" layoutY="120.0" prefHeight="390.0" prefWidth="552.0">
          <children>
-            <Label fx:id="titolo" text="Pokeropoly" textAlignment="CENTER">
+            <Label fx:id="titolo" text="S.P.A.C.C.A." textAlignment="CENTER">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
