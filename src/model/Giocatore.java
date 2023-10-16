@@ -23,4 +23,7 @@ public class Giocatore implements Serializable{
 		return nome;
 	}
 	
+	public City getCity() {
+		return citta;
+	}
 }
