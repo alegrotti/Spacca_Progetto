@@ -23,7 +23,12 @@ public class Giocatore implements Serializable{
 		return nome;
 	}
 	
+
+	public int getCrediti() {
+		return crediti;
+  }
 	public City getCity() {
 		return citta;
 	}
+  
 }
