@@ -9,7 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import model.Admin;
 import model.Carta;
@@ -51,7 +51,7 @@ public class WelcomeController {
     private Button rulesButton;
 
     @FXML
-    private Pane sfondo;
+    private StackPane sfondo;
 
     @FXML
     private Button standingsButton;
