@@ -7,7 +7,7 @@ public class GestoreScene {
 	
 	public void setScene (Scene scena, boolean t) {
 		Main.parentWindow.setScene(scena);
-        Main.parentWindow.setResizable(true);
+        Main.parentWindow.setResizable(false);
         Main.parentWindow.setMaximized(t);
         Main.parentWindow.setTitle("SPACCA");
         Image image = new Image("/immagini/icon.jpg");
