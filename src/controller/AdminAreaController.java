@@ -5,37 +5,29 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.util.HashSet;
 import java.util.Random;
 import model.Giocatore;
 import model.GiocatoreFisico;
-import model.Gruppo;
-import model.Special;
 import model.GiocatoreCPUFacile;
 import model.GiocatoreCPUDifficile;
 import model.Carta;
-import model.Building;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
 import model.GestoreFile;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
 
 public class AdminAreaController {
+	
+	private HashSet<Carta> carteMazzo;
 	
 	@FXML
     private VBox centralBox;
@@ -72,9 +64,6 @@ public class AdminAreaController {
 
     @FXML
     private Label infoGiocatore;
-
-    @FXML
-    private ComboBox<String> listaCarteNuovaPartitaButton;
 
     @FXML
     private ComboBox<String> listaGiocatoriButton;
@@ -149,13 +138,13 @@ public class AdminAreaController {
     private Label infoCartaDelMazzo;
 
     @FXML
-    private ComboBox<?> listaCarteDaAggiungere;
+    private ComboBox<String> listaCarteDaAggiungere;
 
     @FXML
-    private ComboBox<?> listaCarteMazzo;
+    private ComboBox<String> listaCarteMazzo;
 
     @FXML
-    private ComboBox<?> listaMazziButton;
+    private ComboBox<String> listaMazziButton;
 
     @FXML
     private TextField nomeMazzo;
@@ -166,8 +155,152 @@ public class AdminAreaController {
     @FXML
     private Button salvaMazzoButton;
 
+    //-------------------------------------------//
+    
+    /*
+    @FXML
+    private Button aggiungiCartaButton;
+
+    @FXML
+    private VBox centralBox;
+
+    @FXML
+    private TextField codicePartitaField;
+
+    @FXML
+    private Label creaGiocatoreTitolo;
+
+    @FXML
+    private Label creaNuovaPartitaTitolo;
+
+    @FXML
+    private Button eliminaGiocatoreButton;
+
+    @FXML
+    private Button eliminaMazzoButton;
+
+    @FXML
+    private Label fraseSliderLabel;
+
+    @FXML
+    private Label gestisciMazzoTitolo;
+
+    @FXML
+    private Label gestisciMazzoTitolo1;
+
+    @FXML
+    private Label gestisciMazzoTitolo11;
+
+    @FXML
+    private HBox hBoxDifficolta;
+
+    @FXML
+    private HBox hBoxSliderPartita;
+
+    @FXML
+    private Button homeButton;
+
+    @FXML
+    private Label infoAdminTitolo;
+
+    @FXML
+    private Label infoCartaDaAggiungere;
+
+    @FXML
+    private Label infoCartaDelMazzo;
+
+    @FXML
+    private Label infoGiocatore;
+
+    @FXML
+    private ComboBox<?> listaCarteDaAggiungere;
+
+    @FXML
+    private ComboBox<?> listaCarteMazzo;
+
+    @FXML
+    private ComboBox<?> listaGiocatoriButton;
+
+    @FXML
+    private ComboBox<?> listaGiocatoriNuovaPartitaButton;
+
+    @FXML
+    private Label listaGiocatoriTitolo;
+
+    @FXML
+    private ComboBox<?> listaMazziButton;
+
+    @FXML
+    private TextField nomeMazzo;
+
+    @FXML
+    private Label numeroSliderPartitaLabel;
+
+    @FXML
+    private TextField nuovoGiocatoreField;
+
+    @FXML
+    private TextField passwordField;
+
+    @FXML
+    private Button rimuoviCartaDalMazzoButton;
+
+    @FXML
+    private Button salvaMazzoButton;
+
+    @FXML
+    private Button saveInfoButton;
+
+    @FXML
+    private Button savePlayerButton;
+
+    @FXML
+    private ComboBox<?> scegliGiocatoriPartitaButton;
+
+    @FXML
+    private ComboBox<?> scegliMazzoPartitaButton;
+
+    @FXML
+    private ComboBox<?> selezionaDifficoltaButton;
+
+    @FXML
+    private Pane sfondo;
+
+    @FXML
+    private Slider sliderPartita;
+
+    @FXML
+    private TabPane tabPane;
+
+    @FXML
+    private ComboBox<?> tipoDiGiocatoreButton;
+
+    @FXML
+    private ComboBox<?> tipoPartitaButton;
+
+    @FXML
+    private Label titolo;
+
+    @FXML
+    private TextField usernameField;
+
     @FXML
     void aggiungiCartaAlMazzo(ActionEvent event) {
+
+    }
+
+    @FXML
+    void aggiungiGiocatore(ActionEvent event) {
+
+    }
+
+    @FXML
+    void aggiungiPartita(ActionEvent event) {
+
+    }
+
+    @FXML
+    void backWelcome(ActionEvent event) {
 
     }
 
@@ -182,12 +315,32 @@ public class AdminAreaController {
     }
 
     @FXML
+    void cartaSelezionata(ActionEvent event) {
+
+    }
+
+    @FXML
+    void eliminaGiocatore(ActionEvent event) {
+
+    }
+
+    @FXML
+    void eliminaGiocatoreNuovaPartita(ActionEvent event) {
+
+    }
+
+    @FXML
     void eliminaMazzo(ActionEvent event) {
 
     }
-    
+
     @FXML
-    void cartaSelezionata(ActionEvent event) {
+    void generaCodiceRandom(ActionEvent event) {
+
+    }
+
+    @FXML
+    void giocatoreSelezionato(ActionEvent event) {
 
     }
 
@@ -198,35 +351,12 @@ public class AdminAreaController {
 
     @FXML
     void salvaMazzo(ActionEvent event) {
-    	
-    }
-
-	@FXML
-    void aggiungiPartita(ActionEvent event) {
 
     }
 
     @FXML
-    void eliminaCarteNuovaPartita(ActionEvent event) {
+    void saveNewInfo(ActionEvent event) {
 
-    }
-
-    @FXML
-    void eliminaGiocatoreNuovaPartita(ActionEvent event) {
-
-    }
-
-    @FXML
-    void generaCodiceRandom(ActionEvent event) {
-    	String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-	    Random random = new Random();
-	    char[] code = new char[8];
-
-	    for (int i = 0; i < 8; i++) {
-	        code[i] = characters.charAt(random.nextInt(characters.length()));
-	    }
-
-	    codicePartitaField.setText(new String(code));
     }
 
     @FXML
@@ -238,22 +368,36 @@ public class AdminAreaController {
     void scegliMazzoPartita(ActionEvent event) {
 
     }
-    
+
     @FXML
     void scegliTipoPartita(ActionEvent event) {
-    	if("A turni".equals(tipoPartitaButton.getValue())) {
-    		hBoxSliderPartita.setVisible(true);
-    		fraseSliderLabel.setText("Numero turni: ");
-    		sliderPartita.setMin(4);
-    		sliderPartita.setMax(50);
-    	}else if("A palazzi".equals(tipoPartitaButton.getValue())) {
-    		hBoxSliderPartita.setVisible(true);
-    		fraseSliderLabel.setText("Numero palazzi: ");
-    		sliderPartita.setMin(3);
-    		sliderPartita.setMax(20);
-    	}
+
+    }
+
+    @FXML
+    void selezionaTipoGiocatore(ActionEvent event) {
+
     }
     
+    */
+    
+    //-------------------------------------------//
+    
+    
+    //Admin
+    @FXML
+    void saveNewInfo(ActionEvent event) {
+    	
+    	WelcomeController.admin.setPassword(passwordField.getText());
+    	WelcomeController.admin.setUsername(usernameField.getText());
+    	
+    	GestoreFile gestoreFile = new GestoreFile();
+    	gestoreFile.salvaAdmin(WelcomeController.admin);
+    	
+    	inizializzaProfilo();
+    }
+    
+    //Giocatore
     @FXML
     void aggiungiGiocatore(ActionEvent event) {
     	String tipoGiocatore = tipoDiGiocatoreButton.getValue();
@@ -330,18 +474,101 @@ public class AdminAreaController {
     	infoGiocatore.setText(testo);;
     }
     
+    //Mazzo
     @FXML
-    void saveNewInfo(ActionEvent event) {
+    void eliminaMazzo(ActionEvent event) {
     	
-    	WelcomeController.admin.setPassword(passwordField.getText());
-    	WelcomeController.admin.setUsername(usernameField.getText());
+    }
+    
+    @FXML
+    void cartaSelezionata(ActionEvent event) {
     	
-    	GestoreFile gestoreFile = new GestoreFile();
-    	gestoreFile.salvaAdmin(WelcomeController.admin);
-    	
-    	inizializzaProfilo();
+    }
+    
+    @FXML
+    void aggiungiCartaAlMazzo(ActionEvent event) {
+    	String carta = listaCarteDaAggiungere.getValue();
+    	carteMazzo.add(WelcomeController.admin.getCarta(carta));
+    	inizializzaGestioneMazzi();
+    }
+    
+    
+    //Partita
+    @FXML
+    void generaCodiceRandom(ActionEvent event) {
+    	String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	    Random random = new Random();
+	    char[] code = new char[8];
+
+	    for (int i = 0; i < 8; i++) {
+	        code[i] = characters.charAt(random.nextInt(characters.length()));
+	    }
+
+	    codicePartitaField.setText(new String(code));
+    }
+    
+    @FXML
+    void scegliTipoPartita(ActionEvent event) {
+    	if("A turni".equals(tipoPartitaButton.getValue())) {
+    		hBoxSliderPartita.setVisible(true);
+    		fraseSliderLabel.setText("Numero turni: ");
+    		sliderPartita.setMin(4);
+    		sliderPartita.setMax(50);
+    	}else if("A palazzi".equals(tipoPartitaButton.getValue())) {
+    		hBoxSliderPartita.setVisible(true);
+    		fraseSliderLabel.setText("Numero palazzi: ");
+    		sliderPartita.setMin(3);
+    		sliderPartita.setMax(20);
+    	}
+    }
+    
+    
+    //Torneo
+    
+    
+
+    @FXML
+    void cartaDaAggiungereSelezionata(ActionEvent event) {
+
     }
 
+    @FXML
+    void cartaDelMazzoSelezionata(ActionEvent event) {
+
+    }
+
+    @FXML
+    void rimuoviCartaDalMazzo(ActionEvent event) {
+
+    }
+
+    @FXML
+    void salvaMazzo(ActionEvent event) {
+    	
+    }
+
+	@FXML
+    void aggiungiPartita(ActionEvent event) {
+
+    }
+
+    @FXML
+    void eliminaGiocatoreNuovaPartita(ActionEvent event) {
+
+    }
+
+    @FXML
+    void scegliGiocatorePartita(ActionEvent event) {
+
+    }
+
+    @FXML
+    void scegliMazzoPartita(ActionEvent event) {
+
+    }
+    
+    
+    //Generale e inizializzazione
     @FXML
     void backWelcome(ActionEvent event) {
     	try {
@@ -354,13 +581,11 @@ public class AdminAreaController {
     		
     	}
     }
-   
-    private void aggiungiCarte() {
-    	
-    }
     
     @FXML
     void initialize() {
+    	
+    	carteMazzo = new HashSet<Carta>();
     	
     	//Profilo
     	inizializzaProfilo();
@@ -430,8 +655,37 @@ public class AdminAreaController {
         });
     }
     
+    
     private void inizializzaGestioneMazzi() {
     	
-    }
+    	nomeMazzo.setText(null);
+    	listaMazziButton.setValue(null);
+    	listaCarteDaAggiungere.setValue(null);
+    	listaCarteMazzo.setValue(null);
+    	infoCartaDelMazzo.setText(null);
+    	infoCartaDaAggiungere.setText(null);
+    	
+    	
+    	ObservableList<String> mazzi = FXCollections.observableArrayList();
+    	for(String s : WelcomeController.admin.getMazzi().keySet())
+    		mazzi.add(s);
+    	mazzi.sort(null);
+    	listaMazziButton.setItems(mazzi);
+    	
+    	
+    	ObservableList<String> carteAggiunte = FXCollections.observableArrayList();
+    	for(Carta c : carteMazzo)
+    		carteAggiunte.add(c.getNome());
+    	carteAggiunte.sort(null);
+    	listaCarteMazzo.setItems(carteAggiunte);
 
+    	ObservableList<String> carteCreate = FXCollections.observableArrayList();
+    	for(String s : WelcomeController.admin.getCarte().keySet())
+    		carteCreate.add(s);
+    	carteCreate.sort(null);
+    	listaCarteDaAggiungere.setItems(carteCreate);   
+
+    }
+    
 }
+
