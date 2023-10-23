@@ -131,7 +131,15 @@ public class WelcomeController {
 
     @FXML
     void playGame(ActionEvent event) {
-
+    	try {
+	    	Parent root = FXMLLoader.load(getClass().getResource("/view/LoginPartita.fxml"));
+	        Scene scenaHomepage = new Scene(root);
+	        scenaHomepage.getStylesheets().add("/view/loginpartita.css");
+	        GestoreScene gestoreScene = new GestoreScene ();
+	        gestoreScene.setScene(scenaHomepage,false);
+    	}catch(Exception e) {
+    		
+    	}
     }
 
     @FXML

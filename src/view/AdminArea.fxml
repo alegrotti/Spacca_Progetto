@@ -126,117 +126,6 @@
                         </VBox>
                      </content>
                   </Tab>
-                  <Tab text="Nuova partita">
-                     <content>
-                        <VBox alignment="CENTER">
-                           <children>
-                              <Label fx:id="creaNuovaPartitaTitolo" text="Crea nuova partita">
-                                 <VBox.margin>
-                                    <Insets top="30.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <HBox prefHeight="264.0" prefWidth="850.0">
-                                 <children>
-                                    <VBox alignment="CENTER" prefHeight="378.0" prefWidth="440.0">
-                                       <children>
-                                          <HBox alignment="CENTER" prefHeight="32.0" prefWidth="434.0">
-                                             <VBox.margin>
-                                                <Insets />
-                                             </VBox.margin>
-                                             <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="106.0" text="Codice partita: " />
-                                                <TextField fx:id="codicePartitaField" prefHeight="32.0" prefWidth="162.0" />
-                                                <Button mnemonicParsing="false" onAction="#generaCodiceRandom" text="Genera random">
-                                                   <HBox.margin>
-                                                      <Insets left="10.0" />
-                                                   </HBox.margin>
-                                                </Button>
-                                             </children>
-                                          </HBox>
-                                          <HBox alignment="CENTER">
-                                             <VBox.margin>
-                                                <Insets top="20.0" />
-                                             </VBox.margin>
-                                             <children>
-                                                <Label text="Scegli mazzo: " />
-                                                <ComboBox fx:id="scegliMazzoPartitaButton" onAction="#scegliMazzoPartita" prefHeight="26.0" prefWidth="205.0" />
-                                             </children>
-                                          </HBox>
-                                          <HBox alignment="CENTER">
-                                             <VBox.margin>
-                                                <Insets top="20.0" />
-                                             </VBox.margin>
-                                             <children>
-                                                <Label text="Scegli giocatori: " />
-                                                <ComboBox fx:id="scegliGiocatoriPartitaButton" onAction="#scegliGiocatorePartita" prefHeight="26.0" prefWidth="205.0" />
-                                             </children>
-                                          </HBox>
-                                          <HBox alignment="CENTER">
-                                             <VBox.margin>
-                                                <Insets top="20.0" />
-                                             </VBox.margin>
-                                             <children>
-                                                <Label text="Scegli tipo di partita: " />
-                                                <ComboBox fx:id="tipoPartitaButton" onAction="#scegliTipoPartita" prefHeight="26.0" prefWidth="205.0" />
-                                             </children>
-                                          </HBox>
-                                          <HBox fx:id="hBoxSliderPartita" alignment="CENTER">
-                                             <VBox.margin>
-                                                <Insets top="20.0" />
-                                             </VBox.margin>
-                                             <children>
-                                                <Label fx:id="fraseSliderLabel" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="106.0" />
-                                                <Slider fx:id="sliderPartita" majorTickUnit="5.0" max="50.0" maxWidth="422.0" min="4.0" minorTickCount="5" prefHeight="6.0" prefWidth="188.0">
-                                                   <HBox.margin>
-                                                      <Insets left="10.0" />
-                                                   </HBox.margin>
-                                                </Slider>
-                                                <Label fx:id="numeroSliderPartitaLabel" />
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="CENTER" prefHeight="378.0" prefWidth="422.0">
-                                       <children>
-                                          <HBox alignment="CENTER" layoutX="10.0" layoutY="199.0">
-                                             <children>
-                                                <ComboBox fx:id="listaCarteNuovaPartitaButton" prefHeight="32.0" prefWidth="205.0" />
-                                                <Button mnemonicParsing="false" onAction="#eliminaCarteNuovaPartita" prefHeight="28.0" prefWidth="115.0" text="Elimina carta">
-                                                   <HBox.margin>
-                                                      <Insets left="10.0" />
-                                                   </HBox.margin>
-                                                </Button>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets />
-                                             </VBox.margin>
-                                          </HBox>
-                                          <HBox alignment="CENTER">
-                                             <VBox.margin>
-                                                <Insets top="30.0" />
-                                             </VBox.margin>
-                                             <children>
-                                                <ComboBox fx:id="listaGiocatoriNuovaPartitaButton" prefHeight="32.0" prefWidth="205.0" />
-                                                <Button mnemonicParsing="false" onAction="#eliminaGiocatoreNuovaPartita" prefHeight="28.0" prefWidth="115.0" text="Elimina giocatore">
-                                                   <HBox.margin>
-                                                      <Insets left="10.0" />
-                                                   </HBox.margin>
-                                                </Button>
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </HBox>
-                              <Button mnemonicParsing="false" onAction="#aggiungiPartita" prefHeight="35.0" prefWidth="139.0" text="Crea partita">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin>
-                              </Button>
-                           </children>
-                        </VBox>
-                     </content>
-                  </Tab>
                   <Tab text="Mazzi">
                      <content>
                         <VBox>
@@ -323,6 +212,104 @@
                                     </Button>
                                  </children>
                               </VBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </Tab>
+                  <Tab text="Nuova partita">
+                     <content>
+                        <VBox alignment="CENTER">
+                           <children>
+                              <Label fx:id="creaNuovaPartitaTitolo" text="Crea nuova partita">
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox alignment="CENTER" prefHeight="32.0" prefWidth="434.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="106.0" text="Codice partita: " />
+                                    <TextField fx:id="codicePartitaField" prefHeight="32.0" prefWidth="162.0" />
+                                    <Button mnemonicParsing="false" onAction="#generaCodiceRandom" text="Genera random">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="162.0" prefWidth="850.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="378.0" prefWidth="440.0">
+                                       <children>
+                                          <HBox alignment="CENTER">
+                                             <VBox.margin>
+                                                <Insets top="20.0" />
+                                             </VBox.margin>
+                                             <children>
+                                                <Label text="Scegli mazzo: " />
+                                                <ComboBox fx:id="scegliMazzoPartitaButton" onAction="#scegliMazzoPartita" prefHeight="26.0" prefWidth="205.0" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER">
+                                             <VBox.margin>
+                                                <Insets top="20.0" />
+                                             </VBox.margin>
+                                             <children>
+                                                <Label text="Scegli tipo di partita: " />
+                                                <ComboBox fx:id="tipoPartitaButton" onAction="#scegliTipoPartita" prefHeight="26.0" prefWidth="205.0" />
+                                             </children>
+                                          </HBox>
+                                          <HBox fx:id="hBoxSliderPartita" alignment="CENTER">
+                                             <VBox.margin>
+                                                <Insets top="20.0" />
+                                             </VBox.margin>
+                                             <children>
+                                                <Label fx:id="fraseSliderLabel" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="106.0" />
+                                                <Slider fx:id="sliderPartita" majorTickUnit="5.0" max="50.0" maxWidth="422.0" min="4.0" minorTickCount="5" prefHeight="6.0" prefWidth="188.0">
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Slider>
+                                                <Label fx:id="numeroSliderPartitaLabel" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="378.0" prefWidth="422.0">
+                                       <children>
+                                          <HBox alignment="CENTER">
+                                             <children>
+                                                <Label text="Scegli giocatori: " />
+                                                <ComboBox fx:id="scegliGiocatoriPartitaButton" onAction="#scegliGiocatorePartita" prefHeight="26.0" prefWidth="205.0" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER">
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                             <children>
+                                                <ComboBox fx:id="listaGiocatoriNuovaPartitaButton" prefHeight="32.0" prefWidth="205.0" />
+                                                <Button mnemonicParsing="false" onAction="#eliminaGiocatoreNuovaPartita" prefHeight="28.0" prefWidth="115.0" text="Elimina giocatore">
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <Button mnemonicParsing="false" onAction="#aggiungiPartita" prefHeight="35.0" prefWidth="139.0" text="Crea partita">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="20.0" />
+                                 </VBox.margin>
+                              </Button>
                            </children>
                         </VBox>
                      </content>
