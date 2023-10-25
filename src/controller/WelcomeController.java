@@ -131,19 +131,13 @@ public class WelcomeController {
     void playGame(ActionEvent event) {
     	
     	try {
-			Main.messaggioErrore("Ciao");
-		} catch (Exception e) {
-			
-		}
-
-/*
-	    	Parent root = FXMLLoader.load(getClass().getResource("/view/LoginPartita.fxml"));
+    		Parent root = FXMLLoader.load(getClass().getResource("/view/LoginPartita.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/loginpartita.css");
 	        Main.setScene(scenaHomepage,false);
     	}catch(Exception e) {
-    		
-      }*/
+    		Main.messaggioErrore("Errore apertura finestra");
+    	}
     }
     
     @FXML

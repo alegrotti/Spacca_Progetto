@@ -40,24 +40,6 @@ public class Main extends Application {
 	
 	public static void messaggioErrore(String s) {
 		
-		/*
-		try {
-
-			Parent root = FXMLLoader.load(FXMLLoader.class.getResource("/view/messaggioErrore.fxml"));
-			Scene scenaHomepage = new Scene(root);
-	        scenaHomepage.getStylesheets().add("/view/messaggioErrore.css");
-	        messaggioErroreController.impostaTesto(s);
-	        Stage stage = new Stage();
-	        stage.setScene(scenaHomepage);
-	        stage.initOwner(Main.parentWindow);
-	        stage.initModality(Modality.APPLICATION_MODAL);
-	        stage.show();
-	        
-    	}catch(Exception e) {
-    		
-    	}
-    	*/
-		
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/messaggioErrore.fxml"));
 			Parent root = loader.load();
@@ -72,9 +54,9 @@ public class Main extends Application {
 			errorStage.setScene(errorScene);
 			errorStage.initOwner(parentWindow);
 			errorStage.initModality(Modality.APPLICATION_MODAL);
-			errorStage.showAndWait();
+			errorStage.show();
 		} catch (Exception e) {
-			e.printStackTrace(); // Gestisci l'eccezione in modo appropriato
+			
 		}
 		
 	}
