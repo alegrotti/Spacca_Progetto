@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -35,6 +36,23 @@ public class Main extends Application {
         Image image = new Image("/immagini/icon.jpg");
         parentWindow.getIcons().add(image);
         parentWindow.show();
+	}
+	
+	public static void messaggioErrore(Parent root, String s) {
+		try {
+
+			Scene scenaHomepage = new Scene(root);
+	        scenaHomepage.getStylesheets().add("/view/messaggioErrore.css");
+	        messaggioErroreController.impostaTesto(s);
+	        Stage stage = new Stage();
+	        stage.setScene(scenaHomepage);
+	        stage.initOwner(Main.parentWindow);
+	        stage.initModality(Modality.APPLICATION_MODAL);
+	        stage.show();
+	        
+    	}catch(Exception e) {
+    		
+    	}
 	}
 	
 

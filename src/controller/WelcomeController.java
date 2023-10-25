@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -128,20 +129,12 @@ public class WelcomeController {
 
     @FXML
     void playGame(ActionEvent event) {
+    	
     	try {
-
-	    	Parent root = FXMLLoader.load(getClass().getResource("/view/messaggioErrore.fxml"));
-	        Scene scenaHomepage = new Scene(root);
-	        scenaHomepage.getStylesheets().add("/view/messaggioErrore.css");
-	        Stage stage = new Stage();
-	        stage.setScene(scenaHomepage);
-	        stage.initOwner(Main.parentWindow);
-	        stage.initModality(Modality.APPLICATION_MODAL);
-	        stage.show();
-	        
-    	}catch(Exception e) {
-    		
-    	}
+			Main.messaggioErrore(FXMLLoader.load(getClass().getResource("/view/messaggioErrore.fxml")), "Ciao");
+		} catch (Exception e) {
+			
+		}
 
 /*
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/LoginPartita.fxml"));

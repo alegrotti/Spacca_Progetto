@@ -7,6 +7,8 @@ import javafx.scene.input.MouseEvent;
 
 public class messaggioErroreController {
 
+	private static String stringa;
+	
     @FXML
     private Button bottoneOk;
 
@@ -18,6 +20,13 @@ public class messaggioErroreController {
     	bottoneOk.getScene().getWindow().hide();
     }
     
+    public static void impostaTesto(String s) {
+    	stringa = s;
+    }
     
+    @FXML
+    private void initialize() {
+    	testoMessaggioErrore.setText(stringa);
+    }
 
 }
