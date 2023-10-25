@@ -138,6 +138,7 @@ public class WelcomeController {
     	}catch(Exception e) {
     		Main.messaggioErrore("Errore apertura finestra");
     	}
+    	
     }
     
     @FXML
