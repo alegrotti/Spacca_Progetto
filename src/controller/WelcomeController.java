@@ -11,6 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.Admin;
 import model.Carta;
 import model.GestoreFile;
@@ -131,9 +133,22 @@ public class WelcomeController {
 
     @FXML
     void playGame(ActionEvent event) {
+    	try {
+	    	Parent root = FXMLLoader.load(getClass().getResource("/view/messaggioErrore.fxml"));
+	        Scene scenaHomepage = new Scene(root);
+	        scenaHomepage.getStylesheets().add("/view/messaggioErrore.css");
+	        Stage stage = new Stage();
+	        stage.setScene(scenaHomepage);
+	        stage.initOwner(Main.parentWindow);
+	        stage.initModality(Modality.APPLICATION_MODAL);
+	        stage.show();
+	        
+    	}catch(Exception e) {
+    		
+    	}
 
     }
-
+    
     @FXML
     void playTournament(ActionEvent event) {
 

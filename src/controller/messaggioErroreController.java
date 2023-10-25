@@ -17,5 +17,7 @@ public class messaggioErroreController {
     void MouseOkClicked(MouseEvent event) {
     	bottoneOk.getScene().getWindow().hide();
     }
+    
+    
 
 }
