@@ -131,7 +131,7 @@ public class WelcomeController {
     void playGame(ActionEvent event) {
     	
     	try {
-			Main.messaggioErrore(FXMLLoader.load(getClass().getResource("/view/messaggioErrore.fxml")), "Ciao");
+			Main.messaggioErrore("Ciao");
 		} catch (Exception e) {
 			
 		}

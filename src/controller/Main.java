@@ -38,9 +38,12 @@ public class Main extends Application {
         parentWindow.show();
 	}
 	
-	public static void messaggioErrore(Parent root, String s) {
+	public static void messaggioErrore(String s) {
+		
+		/*
 		try {
 
+			Parent root = FXMLLoader.load(FXMLLoader.class.getResource("/view/messaggioErrore.fxml"));
 			Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/messaggioErrore.css");
 	        messaggioErroreController.impostaTesto(s);
@@ -53,6 +56,27 @@ public class Main extends Application {
     	}catch(Exception e) {
     		
     	}
+    	*/
+		
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/messaggioErrore.fxml"));
+			Parent root = loader.load();
+			
+			messaggioErroreController controller = loader.getController();
+			controller.impostaTesto(s);
+			
+			Scene errorScene = new Scene(root);
+			errorScene.getStylesheets().add("/view/messaggioErrore.css");
+			
+			Stage errorStage = new Stage();
+			errorStage.setScene(errorScene);
+			errorStage.initOwner(parentWindow);
+			errorStage.initModality(Modality.APPLICATION_MODAL);
+			errorStage.showAndWait();
+		} catch (Exception e) {
+			e.printStackTrace(); // Gestisci l'eccezione in modo appropriato
+		}
+		
 	}
 	
 
