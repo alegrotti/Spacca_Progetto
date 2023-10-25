@@ -70,8 +70,7 @@ public class WelcomeController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/AdminLogin.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/adminlogin.css");
-	        GestoreScene gestoreScene = new GestoreScene ();
-	        gestoreScene.setScene(scenaHomepage,false);
+	        Main.setScene(scenaHomepage,false);
     	}catch(Exception e) {
     		
     	}
@@ -83,8 +82,7 @@ public class WelcomeController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/PlayerArea.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/playerarea.css");
-	        GestoreScene gestoreScene = new GestoreScene ();
-	        gestoreScene.setScene(scenaHomepage,false);
+	        Main.setScene(scenaHomepage,false);
     	}catch(Exception e) {
     		
     	}
@@ -96,8 +94,7 @@ public class WelcomeController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Rules.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/rules.css");
-	        GestoreScene gestoreScene = new GestoreScene ();
-	        gestoreScene.setScene(scenaHomepage,false);
+	        Main.setScene(scenaHomepage,false);
     	}catch(Exception e) {
     		
     	}
@@ -109,8 +106,7 @@ public class WelcomeController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Setting.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/setting.css");
-	        GestoreScene gestoreScene = new GestoreScene ();
-	        gestoreScene.setScene(scenaHomepage,false);
+	        Main.setScene(scenaHomepage,false);
     	}catch(Exception e) {
     		
     	}
@@ -122,8 +118,7 @@ public class WelcomeController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Standing.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/standing.css");
-	        GestoreScene gestoreScene = new GestoreScene ();
-	        gestoreScene.setScene(scenaHomepage,false);
+	        Main.setScene(scenaHomepage,false);
     	}catch(Exception e) {
     		
     	}
@@ -135,8 +130,7 @@ public class WelcomeController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/LoginPartita.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/loginpartita.css");
-	        GestoreScene gestoreScene = new GestoreScene ();
-	        gestoreScene.setScene(scenaHomepage,false);
+	        Main.setScene(scenaHomepage,false);
     	}catch(Exception e) {
     		
     	}

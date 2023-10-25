@@ -74,8 +74,7 @@ public class RulesController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/welcome.css");
-	        GestoreScene gestoreScene = new GestoreScene ();
-	        gestoreScene.setScene(scenaHomepage,false);
+	        Main.setScene(scenaHomepage,false);
     	}catch(Exception e) {
     		
     	}
