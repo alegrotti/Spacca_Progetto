@@ -84,4 +84,9 @@ public class Admin implements Serializable{
 	public Carta getCarta(String c) {
 		return carte.get(c);
 	}
+	
+	public void eliminaMazzo(String m) {
+		mazzi.remove(m);
+	}
+	
 }
