@@ -71,8 +71,8 @@ public class AdminLoginController {
 
     @FXML
     void initialize() {
-    	//usernameButton.setText(WelcomeController.admin.getUsername());
-    	//passwordButton.setText(WelcomeController.admin.getPassword());
+    	usernameButton.setText(WelcomeController.admin.getUsername());
+    	passwordButton.setText(WelcomeController.admin.getPassword());
     }
 
 }

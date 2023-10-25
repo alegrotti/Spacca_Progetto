@@ -160,7 +160,7 @@
                                        <children>
                                           <VBox alignment="CENTER" prefHeight="100.0" prefWidth="446.0">
                                              <children>
-                                                <Label fx:id="gestisciMazzoTitolo1" alignment="CENTER" prefHeight="18.0" prefWidth="425.0" text="Carte del mazzo" />
+                                                <Label fx:id="carteMazzoLabel" alignment="CENTER" prefHeight="18.0" prefWidth="425.0" text="Carte del mazzo" />
                                                 <HBox alignment="CENTER" prefHeight="41.0" prefWidth="426.0">
                                                    <children>
                                                       <Label text="Scegli carta: " />
@@ -184,7 +184,7 @@
                                           </VBox>
                                           <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="446.0">
                                              <children>
-                                                <Label fx:id="gestisciMazzoTitolo11" alignment="CENTER" prefHeight="18.0" prefWidth="425.0" text="Carte aggiungibili" />
+                                                <Label fx:id="carteAggiungibiliLabel" alignment="CENTER" prefHeight="18.0" prefWidth="425.0" text="Carte aggiungibili" />
                                                 <HBox alignment="CENTER" prefHeight="41.0" prefWidth="426.0">
                                                    <children>
                                                       <Label text="Scegli carta: " />
@@ -241,7 +241,7 @@
                               </HBox>
                               <HBox prefHeight="146.0" prefWidth="850.0">
                                  <children>
-                                    <VBox alignment="CENTER" prefHeight="378.0" prefWidth="440.0">
+                                    <VBox alignment="CENTER" prefHeight="146.0" prefWidth="418.0">
                                        <children>
                                           <HBox alignment="CENTER">
                                              <VBox.margin>
@@ -277,12 +277,17 @@
                                           </HBox>
                                        </children>
                                     </VBox>
-                                    <VBox alignment="CENTER" prefHeight="378.0" prefWidth="422.0">
+                                    <VBox alignment="CENTER" prefHeight="146.0" prefWidth="419.0">
                                        <children>
                                           <HBox alignment="CENTER">
                                              <children>
-                                                <Label text="Scegli giocatori: " />
-                                                <ComboBox fx:id="scegliGiocatoriPartitaButton" onAction="#scegliGiocatorePartita" prefHeight="30.0" prefWidth="205.0" />
+                                                <Label text="Giocatori da aggiungere:" />
+                                                <ComboBox fx:id="giocatoriDaAggiungere" prefHeight="30.0" prefWidth="132.0" />
+                                                <Button mnemonicParsing="false" onAction="#aggiungiGiocatorePartita" prefHeight="28.0" prefWidth="144.0" text="Aggiungi giocatore">
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Button>
                                              </children>
                                           </HBox>
                                           <HBox alignment="CENTER">
@@ -290,8 +295,9 @@
                                                 <Insets top="30.0" />
                                              </VBox.margin>
                                              <children>
-                                                <ComboBox fx:id="listaGiocatoriNuovaPartitaButton" prefHeight="30.0" prefWidth="205.0" />
-                                                <Button mnemonicParsing="false" onAction="#eliminaGiocatoreNuovaPartita" prefHeight="28.0" prefWidth="115.0" text="Elimina giocatore">
+                                                <Label text="Giocatori della partita:" />
+                                                <ComboBox fx:id="giocatoriPartita" prefHeight="30.0" prefWidth="132.0" />
+                                                <Button mnemonicParsing="false" onAction="#eliminaGiocatoreNuovaPartita" prefHeight="28.0" prefWidth="140.0" text="Elimina giocatore">
                                                    <HBox.margin>
                                                       <Insets left="10.0" />
                                                    </HBox.margin>
