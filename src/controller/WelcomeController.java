@@ -87,7 +87,7 @@ public class WelcomeController {
 	        scenaHomepage.getStylesheets().add("/view/playerarea.css");
 	        Main.setScene(scenaHomepage,false);
     	}catch(Exception e) {
-    		
+    		Main.messaggioErrore("Errore apertura finestra");
     	}
     }
 

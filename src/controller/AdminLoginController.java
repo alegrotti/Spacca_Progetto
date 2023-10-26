@@ -37,24 +37,28 @@ public class AdminLoginController {
 
     @FXML
     void checkLogin(ActionEvent event) {
-    	if(usernameButton.getText().equals(WelcomeController.admin.getUsername()))
-    		if(passwordButton.getText().equals(WelcomeController.admin.getPassword())) {
-    			try {
-    		    	Parent root = FXMLLoader.load(getClass().getResource("/view/AdminArea.fxml"));
-    		        Scene scenaHomepage = new Scene(root);
-    		        scenaHomepage.getStylesheets().add("/view/adminarea.css");
-    		        Main.setScene(scenaHomepage,false);
-    	    	}catch(Exception e) {	
-    	    		Main.messaggioErrore("Errore apertura finestra");
-    	    	}
-    		}else {
-    			Main.messaggioErrore("Password errata");
-    			initialize();
-    		}
-    	else{
-			Main.messaggioErrore("Nome utente errato");
-			initialize();
-		}
+    	try {
+	    	if(usernameButton.getText().equals(WelcomeController.admin.getUsername()))
+	    		if(passwordButton.getText().equals(WelcomeController.admin.getPassword())) {
+	    			try {
+	    		    	Parent root = FXMLLoader.load(getClass().getResource("/view/AdminArea.fxml"));
+	    		        Scene scenaHomepage = new Scene(root);
+	    		        scenaHomepage.getStylesheets().add("/view/adminarea.css");
+	    		        Main.setScene(scenaHomepage,false);
+	    	    	}catch(Exception e) {	
+	    	    		throw new Exception("Errore apertura finestra");
+	    	    	}
+	    		}else {
+	    			throw new Exception("Password errata");
+	    		}
+	    	else{
+	    		throw new Exception("Username errato");
+			}
+    	}
+	    catch(Exception e) {
+	    	Main.messaggioErrore(e.getMessage());
+	    }
+    	initialize();
     }
 
     @FXML
