@@ -5,9 +5,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.Random;
 import model.Giocatore;
 import model.GiocatoreFisico;
@@ -30,12 +29,19 @@ import javafx.scene.control.Slider;
 public class AdminAreaController {
 	
 	private ArrayList<Carta> carteMazzo;
-	
-	@FXML
-    private VBox centralBox;
+	private HashMap<String,Giocatore> giocatoriAggiunti;
 
     @FXML
-    private Button eliminaMazzoButton;
+    private Button aggiungiCartaButton;
+
+    @FXML
+    private Label carteAggiungibiliLabel;
+
+    @FXML
+    private Label carteMazzoLabel;
+
+    @FXML
+    private VBox centralBox;
 
     @FXML
     private TextField codicePartitaField;
@@ -50,7 +56,19 @@ public class AdminAreaController {
     private Button eliminaGiocatoreButton;
 
     @FXML
+    private Button eliminaMazzoButton;
+
+    @FXML
     private Label fraseSliderLabel;
+
+    @FXML
+    private Label gestisciMazzoTitolo;
+
+    @FXML
+    private ComboBox<String> giocatoriDaAggiungere;
+
+    @FXML
+    private ComboBox<String> giocatoriPartita;
 
     @FXML
     private HBox hBoxDifficolta;
@@ -65,16 +83,31 @@ public class AdminAreaController {
     private Label infoAdminTitolo;
 
     @FXML
+    private Label infoCartaDaAggiungere;
+
+    @FXML
+    private Label infoCartaDelMazzo;
+
+    @FXML
     private Label infoGiocatore;
+
+    @FXML
+    private ComboBox<String> listaCarteDaAggiungere;
+
+    @FXML
+    private ComboBox<String> listaCarteMazzo;
 
     @FXML
     private ComboBox<String> listaGiocatoriButton;
 
     @FXML
-    private ComboBox<String> listaGiocatoriNuovaPartitaButton;
+    private Label listaGiocatoriTitolo;
 
     @FXML
-    private Label listaGiocatoriTitolo;
+    private ComboBox<String> listaMazziButton;
+
+    @FXML
+    private TextField nomeMazzo;
 
     @FXML
     private Label numeroSliderPartitaLabel;
@@ -86,13 +119,16 @@ public class AdminAreaController {
     private TextField passwordField;
 
     @FXML
+    private Button rimuoviCartaDalMazzoButton;
+
+    @FXML
+    private Button salvaMazzoButton;
+
+    @FXML
     private Button saveInfoButton;
 
     @FXML
     private Button savePlayerButton;
-
-    @FXML
-    private ComboBox<String> scegliGiocatoriPartitaButton;
 
     @FXML
     private ComboBox<String> scegliMazzoPartitaButton;
@@ -121,42 +157,6 @@ public class AdminAreaController {
     @FXML
     private TextField usernameField;
     
-    @FXML
-    private Button aggiungiCartaButton;
-
-    @FXML
-    private Label gestisciMazzoTitolo;
-
-    @FXML
-    private Label gestisciMazzoTitolo1;
-
-    @FXML
-    private Label gestisciMazzoTitolo11;
-
-    @FXML
-    private Label infoCartaDaAggiungere;
-
-    @FXML
-    private Label infoCartaDelMazzo;
-
-    @FXML
-    private ComboBox<String> listaCarteDaAggiungere;
-
-    @FXML
-    private ComboBox<String> listaCarteMazzo;
-
-    @FXML
-    private ComboBox<String> listaMazziButton;
-
-    @FXML
-    private TextField nomeMazzo;
-
-    @FXML
-    private Button rimuoviCartaDalMazzoButton;
-
-    @FXML
-    private Button salvaMazzoButton;
-
     
     //Admin
     @FXML
@@ -168,7 +168,7 @@ public class AdminAreaController {
     	GestoreFile gestoreFile = new GestoreFile();
     	gestoreFile.salvaAdmin(WelcomeController.admin);
     	
-    	inizializzaProfilo();
+    	inizializzaSchermata();
     }
     
     //Giocatore
@@ -205,9 +205,9 @@ public class AdminAreaController {
     			
     		}
     	}
-    	inizializzaNuovoGiocatore();
+    	inizializzaSchermata();
     }
-
+    
     @FXML
     void eliminaGiocatore(ActionEvent event) {
     	String username = listaGiocatoriButton.getValue();
@@ -217,7 +217,7 @@ public class AdminAreaController {
     	GestoreFile gestoreFile = new GestoreFile();
     	gestoreFile.salvaAdmin(WelcomeController.admin);
     	
-    	inizializzaNuovoGiocatore();
+    	inizializzaSchermata();
     }
 
     @FXML
@@ -245,7 +245,7 @@ public class AdminAreaController {
     	else if(g instanceof GiocatoreCPUDifficile)
     		testo = "Giocatore CPU\nDifficoltà difficile";
     	
-    	infoGiocatore.setText(testo);;
+    	infoGiocatore.setText(testo);
     }
     
     //Mazzo
@@ -258,7 +258,7 @@ public class AdminAreaController {
     	GestoreFile gestoreFile = new GestoreFile();
     	gestoreFile.salvaAdmin(WelcomeController.admin);
     	
-    	inizializzaGestioneMazzi();
+    	inizializzaSchermata();
     }
     
     @FXML
@@ -283,7 +283,24 @@ public class AdminAreaController {
     void aggiungiCartaAlMazzo(ActionEvent event) {
     	String carta = listaCarteDaAggiungere.getValue();
     	carteMazzo.add(WelcomeController.admin.getCarta(carta));
-    	inizializzaGestioneMazzi();
+    	inizializzaSchermata();
+    }
+    
+    @FXML
+    void cartaDaAggiungereSelezionata(ActionEvent event) {
+    	String s = listaCarteDaAggiungere.getValue();
+    	Carta c = WelcomeController.admin.getCarta(s);
+    	
+    	if(c!=null) {
+    	
+	    	String stampa =
+	    			"Residenziale : "+c.getResidenziale()+
+			    	"\nCommerciale : "+c.getCommerciale()+
+			    	"\nPubblico : "+c.getPubblico()+
+			    	"\nCulturale : "+c.getCulturale();
+	    	
+	    	infoCartaDaAggiungere.setText(stampa);
+    	}
     }
     
     @FXML
@@ -299,7 +316,7 @@ public class AdminAreaController {
     	GestoreFile gestoreFile = new GestoreFile();
     	gestoreFile.salvaAdmin(WelcomeController.admin);
     	
-    	inizializzaGestioneMazzi();
+    	inizializzaSchermata();
     	
     }
     
@@ -338,6 +355,13 @@ public class AdminAreaController {
     }
     
     @FXML
+    void aggiungiGiocatorePartita(ActionEvent event) {
+    	String giocatore = giocatoriDaAggiungere.getValue();
+    	giocatoriAggiunti.put(giocatore,WelcomeController.admin.getGiocatore(giocatore));
+    	inizializzaSchermata();
+    }
+    
+    @FXML
     void scegliTipoPartita(ActionEvent event) {
     	if("A turni".equals(tipoPartitaButton.getValue())) {
     		hBoxSliderPartita.setVisible(true);
@@ -356,12 +380,6 @@ public class AdminAreaController {
     //Torneo
     
     
-
-    @FXML
-    void cartaDaAggiungereSelezionata(ActionEvent event) {
-
-    }
-
     @FXML
     void salvaMazzo(ActionEvent event) {
     	
@@ -405,7 +423,13 @@ public class AdminAreaController {
     void initialize() {
     	
     	carteMazzo = new ArrayList<Carta>();
+    	giocatoriAggiunti = new HashMap<String,Giocatore>();
     	
+    	inizializzaSchermata();
+    	
+    }
+    
+    private void inizializzaSchermata() {
     	//Profilo
     	inizializzaProfilo();
     	
@@ -417,7 +441,6 @@ public class AdminAreaController {
     	
     	//Gestione Mazzi
     	inizializzaGestioneMazzi();
-    	
     }
     
     private void inizializzaProfilo() {
@@ -449,7 +472,8 @@ public class AdminAreaController {
     private void inizializzaNuovaPartita() {
     	tipoPartitaButton.setValue(null);
     	scegliMazzoPartitaButton.setValue(null);
-    	scegliGiocatoriPartitaButton.setValue(null);
+    	giocatoriPartita.setValue(null);
+    	giocatoriDaAggiungere.setValue(null);
     	
     	ObservableList<String> mazzo = FXCollections.observableArrayList();
     	
@@ -458,12 +482,17 @@ public class AdminAreaController {
     	
     	scegliMazzoPartitaButton.setItems(mazzo);
     	
-    	ObservableList<String> giocatori = FXCollections.observableArrayList();
+    	ObservableList<String> giocatori1 = FXCollections.observableArrayList();
     	for(String s : WelcomeController.admin.getGiocatori().keySet())
-    		giocatori.add(s);
-    	giocatori.sort(null);
+    		giocatori1.add(s);
+    	giocatori1.sort(null);
+    	giocatoriDaAggiungere.setItems(giocatori1);
     	
-    	scegliGiocatoriPartitaButton.setItems(giocatori);
+    	ObservableList<String> giocatori2 = FXCollections.observableArrayList();
+    	for(String s : giocatoriAggiunti.keySet())
+    		giocatori2.add(s);
+    	giocatori2.sort(null);
+    	giocatoriPartita.setItems(giocatori2);
     	
     	hBoxSliderPartita.setVisible(false);
     	

@@ -13,3 +13,13 @@
     -fx-text-fill: rgb(0, 64, 128);
     -fx-transition: background-color 0.3s ease;
 }
+
+.label{
+	-fx-text-fill: rgb(0, 64, 128);;
+	-fx-font-family: "Georgia";
+    -fx-font-size: 15px;
+}
+
+#sfondo{
+	-fx-background-color:rgb(209, 155, 0);
+}

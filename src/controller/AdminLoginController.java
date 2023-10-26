@@ -44,9 +44,17 @@ public class AdminLoginController {
     		        Scene scenaHomepage = new Scene(root);
     		        scenaHomepage.getStylesheets().add("/view/adminarea.css");
     		        Main.setScene(scenaHomepage,false);
-    	    	}catch(Exception e) {		
+    	    	}catch(Exception e) {	
+    	    		Main.messaggioErrore("Errore apertura finestra");
     	    	}
+    		}else {
+    			Main.messaggioErrore("Password errata");
+    			initialize();
     		}
+    	else{
+			Main.messaggioErrore("Nome utente errato");
+			initialize();
+		}
     }
 
     @FXML
