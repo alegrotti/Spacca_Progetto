@@ -351,7 +351,14 @@ public class AdminAreaController {
     void aggiungiGiocatorePartita(ActionEvent event) {
     	String giocatore = giocatoriDaAggiungere.getValue();
     	giocatoriAggiunti.put(giocatore,WelcomeController.admin.getGiocatore(giocatore));
-    	inizializzaSchermata();
+
+    	ObservableList<String> giocatori2 = FXCollections.observableArrayList();
+    	for(String s : giocatoriAggiunti.keySet())
+    		giocatori2.add(s);
+    	giocatori2.sort(null);
+    	giocatoriPartita.setItems(giocatori2);
+    	
+    	giocatoriDaAggiungere.setValue(null);
     }
     
     @FXML
@@ -369,6 +376,27 @@ public class AdminAreaController {
     	}
     }
     
+    @FXML
+    void eliminaGiocatoreNuovaPartita(ActionEvent event) {
+    	try {
+			String giocatore = giocatoriPartita.getValue();
+			if(giocatore.equalsIgnoreCase(""))
+				throw new Exception("Nessun giocatore selezionato");
+			giocatoriAggiunti.remove(giocatore);
+		
+			ObservableList<String> giocatori2 = FXCollections.observableArrayList();
+			for(String s : giocatoriAggiunti.keySet())
+				giocatori2.add(s);
+			giocatori2.sort(null);
+			giocatoriPartita.setItems(giocatori2);
+			
+			giocatoriPartita.setValue(null);
+			giocatoriDaAggiungere.setValue(null);
+    	}catch(Exception e) {
+    		Main.messaggioErrore(e.getMessage());
+    	}
+    }
+    
     
     //Torneo
     
@@ -380,11 +408,6 @@ public class AdminAreaController {
 
 	@FXML
     void aggiungiPartita(ActionEvent event) {
-
-    }
-
-    @FXML
-    void eliminaGiocatoreNuovaPartita(ActionEvent event) {
 
     }
 

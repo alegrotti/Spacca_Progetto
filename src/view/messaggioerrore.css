@@ -15,11 +15,20 @@
 }
 
 .label{
-	-fx-text-fill: rgb(0, 64, 128);;
+	-fx-text-fill: rgb(0, 0, 0);;
 	-fx-font-family: "Georgia";
     -fx-font-size: 15px;
 }
 
-#sfondo{
-	-fx-background-color:rgb(209, 155, 0);
+#sfondo {
+	-fx-background-image: url("/immagini/sfondoerrore.jpg");
+	-fx-background-size: cover;
+	-fx-border-width: 2px;
+    -fx-border-color: rgb(0, 0, 0);
+}
+
+#testoMessaggioErrore{
+	-fx-background-color: rgb(255, 255, 255, 0.7);
+	-fx-border-width: 2px;
+    -fx-border-color: rgb(0, 0, 0);
 }

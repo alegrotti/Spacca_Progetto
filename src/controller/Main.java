@@ -82,7 +82,7 @@ public class Main extends Application {
 			errorStage.setScene(errorScene);
 			errorStage.initOwner(parentWindow);
 			errorStage.initModality(Modality.APPLICATION_MODAL);
-	        errorStage.setTitle("SPACCA");
+	        errorStage.setTitle("SPACCA - Errore");
 	        Image image = new Image("/immagini/icon.jpg");
 	        errorStage.getIcons().add(image);
 			
