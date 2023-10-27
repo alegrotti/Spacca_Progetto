@@ -15,12 +15,36 @@ public class Partita implements Serializable{
 	
 	
 	public Partita(Mazzo mazzo, ArrayList<Giocatore> giocatori, String codice) {
-		this.mazzo = mazzo;
+		this.setMazzo(mazzo);
 		for(int i = 0 ; i < giocatori.size() ; i++)
 			postazioni.put(i, giocatori.get(i));
-		this.codice = codice;
-		this.turno = 0;
+		this.setCodice(codice);
+		this.setTurno(0);
 			
+	}
+
+	public Mazzo getMazzo() {
+		return mazzo;
+	}
+
+	public void setMazzo(Mazzo mazzo) {
+		this.mazzo = mazzo;
+	}
+
+	public int getTurno() {
+		return turno;
+	}
+
+	public void setTurno(int turno) {
+		this.turno = turno;
+	}
+
+	public String getCodice() {
+		return codice;
+	}
+
+	public void setCodice(String codice) {
+		this.codice = codice;
 	}
 	
 }

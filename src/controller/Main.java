@@ -69,14 +69,14 @@ public class Main extends Application {
 	public static void messaggioErrore(String s) {
 		
 		try {
-			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/messaggioErrore.fxml"));
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/MessaggioErrore.fxml"));
 			Parent root = loader.load();
 			
-			messaggioErroreController controller = loader.getController();
+			MessaggioErroreController controller = loader.getController();
 			controller.impostaTesto(s);
 			
 			Scene errorScene = new Scene(root);
-			errorScene.getStylesheets().add("/view/messaggioErrore.css");
+			errorScene.getStylesheets().add("/view/messaggioerrore.css");
 			
 			Stage errorStage = new Stage();
 			errorStage.setScene(errorScene);
