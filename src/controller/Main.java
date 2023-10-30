@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -26,38 +28,32 @@ public class Main extends Application {
         Scene scenaHomepage = new Scene(root);
         scenaHomepage.getStylesheets().add("/view/welcome.css");
         setScene(scenaHomepage,false);
-       
-        //gestione chiusuera finestra
-       /* parentWindow.setOnCloseRequest(event -> {
-        	
         
-        	
-        });*/
-
         //Gestione chiusura finestra
         parentWindow.setOnCloseRequest(event -> {
-            Alert alert = new Alert(AlertType.CONFIRMATION, "Chiudere e salvare?");
-            alert.setHeaderText(null);
 
-            alert.setTitle("SPACCA");
-            
-	        Image image = new Image("/immagini/icon.jpg");
-            Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
-            alertStage.getIcons().add(image);
-            
-            alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
-
-            ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
-            
-            if (result == ButtonType.NO) {
-                event.consume();
-            }else {
-            	GestoreFile.salvaAdmin(WelcomeController.admin);
-            	Platform.exit();
-            }
+        	try {
+    			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/MessaggioDiUscita.fxml"));
+    			Parent parent = loader.load();
+    			
+    			Scene exitScene = new Scene(parent);
+    			exitScene.getStylesheets().add("/view/messaggiodiuscita.css");
+    			
+    			Stage exitStage = new Stage();
+    			exitStage.setScene(exitScene);
+    			exitStage.initOwner(parentWindow);
+    			exitStage.initModality(Modality.APPLICATION_MODAL);
+    			exitStage.setTitle("SPACCA - Errore");
+    	        Image image = new Image("/immagini/icon.jpg");
+    	        exitStage.getIcons().add(image);
+    			
+    	        exitStage.show();
+    		} catch (Exception e) {
+    			
+    		}
+        	
         });
      
-
 	}
 	
 	public static void main (String[] args) {
@@ -100,29 +96,6 @@ public class Main extends Application {
 		}
 		
 	}
-	
-	/*public static void messaggioDiUscita(String s) {
-		
-		try {
-			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/messaggioDiUscita.fxml"));
-			Parent root = loader.load();
-			
-			MessaggioDiUscitaController controller = loader.getController();
-			controller.impostaTesto(s);
-			
-			Scene ExitScene = new Scene(root);
-			ExitScene.getStylesheets().add("/view/messaggiodiuscita.css");
-			
-			Stage exitStage = new Stage();
-			exitStage.setScene(ExitScene);
-			exitStage.initOwner(parentWindow);
-			exitStage.initModality(Modality.APPLICATION_MODAL);
-			exitStage.show();
-			
-		}catch (Exception e) {
-			
-		}*/
-	//}
 	
 
 }
