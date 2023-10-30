@@ -33,7 +33,7 @@ public class Main extends Application {
         //Gestione chiusura finestra
         parentWindow.setOnCloseRequest(event -> {
 			try {
-				messaggioDiUscita("Suca");
+				messaggioDiUscita("Chiudere e salvare?");
 				event.consume();
 			} catch (Exception e) {
 				messaggioErrore("Errore apertura scheda");
@@ -100,7 +100,7 @@ public class Main extends Application {
 				exitStage.setScene(exitScene);
 				exitStage.initOwner(parentWindow);
 				exitStage.initModality(Modality.APPLICATION_MODAL);
-				exitStage.setTitle("SPACCA - Errore");
+				exitStage.setTitle("SPACCA - Uscita senza salvataggio");
 		        Image image = new Image("/immagini/icon.jpg");
 		        exitStage.getIcons().add(image);
 				

@@ -15,11 +15,22 @@
 }
 
 .label{
-	-fx-text-fill: rgb(0, 64, 128);;
+	-fx-text-fill: rgb(0, 64,128);
 	-fx-font-family: "Georgia";
-    -fx-font-size: 15px;
+  	-fx-font-weight: bold;
+  	-fx-font-style: italic;
+    -fx-font-size: 20px;
 }
 
-.sfondo{
-	-fx-background-color:rgb(255, 255, 211);
+#sfondoBianco{
+	-fx-background-color: rgb(255, 255, 255,0.75);
+	-fx-border-width: 2px;
+    -fx-border-color: rgb(0, 0, 0);
+}
+
+#sfondo {
+	-fx-background-image: url("/immagini/sfondoerrore.jpg");
+	-fx-background-size: cover;
+	-fx-border-width: 2px;
+    -fx-border-color: rgb(0, 0, 0);
 }
