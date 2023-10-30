@@ -21,7 +21,13 @@ public class Main extends Application {
         Scene scenaHomepage = new Scene(root);
         scenaHomepage.getStylesheets().add("/view/welcome.css");
         setScene(scenaHomepage,false);
-     
+        
+        //gestione chiusuera finestra
+       /* parentWindow.setOnCloseRequest(event -> {
+        	
+        
+        	
+        });*/
 	}
 	
 	public static void main (String[] args) {
@@ -61,7 +67,7 @@ public class Main extends Application {
 		
 	}
 	
-	public static void messaggioDiUscita(String s) {
+	/*public static void messaggioDiUscita(String s) {
 		
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/messaggioDiUscita.fxml"));
@@ -81,8 +87,8 @@ public class Main extends Application {
 			
 		}catch (Exception e) {
 			
-		}
-	}
+		}*/
+	//}
 	
 
 }

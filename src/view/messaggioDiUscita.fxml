@@ -29,7 +29,7 @@
                         <Insets left="60.0" top="40.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="noButton" mnemonicParsing="false" onAction="#ButtonNoClicked" onMouseClicked="#ButtonNoClicked" text="No">
+                  <Button fx:id="noButton" mnemonicParsing="false" onAction="#ButtonNoClicked" text="No">
                      <VBox.margin>
                         <Insets left="180.0" top="-25.0" />
                      </VBox.margin>

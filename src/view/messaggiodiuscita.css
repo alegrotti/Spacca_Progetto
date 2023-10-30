@@ -20,6 +20,6 @@
     -fx-font-size: 15px;
 }
 
-#sfondo{
+.sfondo{
 	-fx-background-color:rgb(255, 255, 211);
 }
