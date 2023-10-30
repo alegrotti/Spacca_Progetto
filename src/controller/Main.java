@@ -61,5 +61,28 @@ public class Main extends Application {
 		
 	}
 	
+	public static void messaggioDiUscita(String s) {
+		
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/messaggioDiUscita.fxml"));
+			Parent root = loader.load();
+			
+			MessaggioDiUscitaController controller = loader.getController();
+			controller.impostaTesto(s);
+			
+			Scene ExitScene = new Scene(root);
+			ExitScene.getStylesheets().add("/view/messaggiodiuscita.css");
+			
+			Stage exitStage = new Stage();
+			exitStage.setScene(ExitScene);
+			exitStage.initOwner(parentWindow);
+			exitStage.initModality(Modality.APPLICATION_MODAL);
+			exitStage.show();
+			
+		}catch (Exception e) {
+			
+		}
+	}
+	
 
 }
