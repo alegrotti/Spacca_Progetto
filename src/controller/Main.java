@@ -26,7 +26,14 @@ public class Main extends Application {
         Scene scenaHomepage = new Scene(root);
         scenaHomepage.getStylesheets().add("/view/welcome.css");
         setScene(scenaHomepage,false);
+       
+        //gestione chiusuera finestra
+       /* parentWindow.setOnCloseRequest(event -> {
+        	
         
+        	
+        });*/
+
         //Gestione chiusura finestra
         parentWindow.setOnCloseRequest(event -> {
             Alert alert = new Alert(AlertType.CONFIRMATION, "Chiudere e salvare?");
@@ -50,6 +57,7 @@ public class Main extends Application {
             }
         });
      
+
 	}
 	
 	public static void main (String[] args) {
@@ -92,6 +100,29 @@ public class Main extends Application {
 		}
 		
 	}
+	
+	/*public static void messaggioDiUscita(String s) {
+		
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/messaggioDiUscita.fxml"));
+			Parent root = loader.load();
+			
+			MessaggioDiUscitaController controller = loader.getController();
+			controller.impostaTesto(s);
+			
+			Scene ExitScene = new Scene(root);
+			ExitScene.getStylesheets().add("/view/messaggiodiuscita.css");
+			
+			Stage exitStage = new Stage();
+			exitStage.setScene(ExitScene);
+			exitStage.initOwner(parentWindow);
+			exitStage.initModality(Modality.APPLICATION_MODAL);
+			exitStage.show();
+			
+		}catch (Exception e) {
+			
+		}*/
+	//}
 	
 
 }

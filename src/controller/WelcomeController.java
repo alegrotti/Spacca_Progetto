@@ -141,7 +141,14 @@ public class WelcomeController {
     
     @FXML
     void playTournament(ActionEvent event) {
-
+    	try {
+    		Parent root = FXMLLoader.load(getClass().getResource("/view/messaggioDiUscita.fxml"));
+	        Scene scenaHomepage = new Scene(root);
+	        scenaHomepage.getStylesheets().add("/view/messaggiodiuscita.css");
+	        Main.setScene(scenaHomepage,false);
+    	}catch(Exception e) {
+    		Main.messaggioErrore("Errore apertura finestra");
+    	}
     }
     
     @FXML
