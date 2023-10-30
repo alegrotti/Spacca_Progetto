@@ -12,28 +12,32 @@
    <children>
       <HBox layoutX="5.0" layoutY="7.0" prefHeight="165.0" prefWidth="372.0">
          <children>
-            <ImageView fx:id="ImageIcon" fitHeight="82.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ImageIcon" fitHeight="105.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
                   <Insets bottom="25.0" left="10.0" top="15.0" />
                </HBox.margin>
             </ImageView>
-            <VBox prefHeight="189.0" prefWidth="272.0">
+            <VBox prefHeight="166.0" prefWidth="274.0">
                <children>
-                  <Label fx:id="text" prefHeight="34.0" prefWidth="240.0">
+                  <Label fx:id="text" prefHeight="51.0" prefWidth="226.0">
                      <VBox.margin>
                         <Insets left="20.0" top="25.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="yesButton" mnemonicParsing="false" onAction="#ButtonYesClicked" text="Sì">
-                     <VBox.margin>
-                        <Insets left="60.0" top="40.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button fx:id="noButton" mnemonicParsing="false" onAction="#ButtonNoClicked" text="No">
-                     <VBox.margin>
-                        <Insets left="180.0" top="-25.0" />
-                     </VBox.margin>
-                  </Button>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="yesButton" mnemonicParsing="false" onAction="#ButtonYesClicked" text="Sì">
+                           <HBox.margin>
+                              <Insets left="60.0" top="50.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="noButton" mnemonicParsing="false" onAction="#ButtonNoClicked" text="No">
+                           <HBox.margin>
+                              <Insets left="100.0" top="50.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>

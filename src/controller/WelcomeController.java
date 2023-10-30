@@ -148,6 +148,7 @@ public class WelcomeController {
 	        scenaHomepage.getStylesheets().add("/view/logintorneo.css");
 	        Main.setScene(scenaHomepage,false);
 	        */
+    		Main.messaggioDiUscita("Suca");
     	}catch(Exception e) {
     		Main.messaggioErrore("Errore apertura finestra");
     	}

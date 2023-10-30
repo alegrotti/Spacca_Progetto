@@ -32,26 +32,13 @@ public class Main extends Application {
         //Gestione chiusura finestra
         parentWindow.setOnCloseRequest(event -> {
 
-        	try {
-    			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/MessaggioDiUscita.fxml"));
-    			Parent parent = loader.load();
-    			
-    			Scene exitScene = new Scene(parent);
-    			exitScene.getStylesheets().add("/view/messaggiodiuscita.css");
-    			
-    			Stage exitStage = new Stage();
-    			exitStage.setScene(exitScene);
-    			exitStage.initOwner(parentWindow);
-    			exitStage.initModality(Modality.APPLICATION_MODAL);
-    			exitStage.setTitle("SPACCA - Errore");
-    	        Image image = new Image("/immagini/icon.jpg");
-    	        exitStage.getIcons().add(image);
-    			
-    	        exitStage.show();
-    		} catch (Exception e) {
-    			
-    		}
         	
+			try {
+				messaggioDiUscita("Suca");
+			} catch (Exception e) {
+				
+			}
+			
         });
      
 	}
@@ -97,5 +84,32 @@ public class Main extends Application {
 		
 	}
 	
+	
+	public static void messaggioDiUscita(String s) {
+			
+			try {
+				FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/MessaggioDiUscita.fxml"));
+				Parent root = loader.load();
+				
+				MessaggioDiUscitaController controller = loader.getController();
+				controller.impostaTesto(s);
+				
+				Scene exitScene = new Scene(root);
+				exitScene.getStylesheets().add("/view/messaggiodiuscita.css");
+				
+				Stage exitStage = new Stage();
+				exitStage.setScene(exitScene);
+				exitStage.initOwner(parentWindow);
+				exitStage.initModality(Modality.APPLICATION_MODAL);
+				exitStage.setTitle("SPACCA - Errore");
+		        Image image = new Image("/immagini/icon.jpg");
+		        exitStage.getIcons().add(image);
+				
+		        exitStage.show();
+			} catch (Exception e) {
+				
+			}
+			
+	}
 
 }
