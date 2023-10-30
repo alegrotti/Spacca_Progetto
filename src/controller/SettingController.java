@@ -1,7 +1,5 @@
 package controller;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import model.GestoreFile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,7 +39,7 @@ public class SettingController {
     
     @FXML
     private Label labelCo;
-
+    
     @FXML
     private Label labelCu;
 
@@ -104,8 +102,7 @@ public class SettingController {
     	Carta c = new Special(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,true,percorso,"Bonus");
     	
     	WelcomeController.admin.aggiungiCarta(c);
-    	GestoreFile gestoreFile = new GestoreFile();
-    	gestoreFile.salvaAdmin(WelcomeController.admin);
+    	GestoreFile.salvaAdmin(WelcomeController.admin);
     	
     	inizializzaFinestra();
     }
@@ -123,8 +120,8 @@ public class SettingController {
     	Carta c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,percorso,genere.getText());
     	
     	WelcomeController.admin.aggiungiCarta(c);
-    	GestoreFile gestoreFile = new GestoreFile();
-    	gestoreFile.salvaAdmin(WelcomeController.admin);
+
+    	GestoreFile.salvaAdmin(WelcomeController.admin);
     	
     	inizializzaFinestra();
     }
@@ -143,8 +140,8 @@ public class SettingController {
     	Carta c = new Special(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,false,percorso,"Malus");
     	
     	WelcomeController.admin.aggiungiCarta(c);
-    	GestoreFile gestoreFile = new GestoreFile();
-    	gestoreFile.salvaAdmin(WelcomeController.admin);
+
+    	GestoreFile.salvaAdmin(WelcomeController.admin);
     	
     	inizializzaFinestra();
     }
@@ -154,12 +151,9 @@ public class SettingController {
 
     	String nomeCarta = listaCarte.getValue();
     	
-    	Carta c = WelcomeController.admin.getCarta(nomeCarta);
-    	
     	WelcomeController.admin.eliminaCarta(nomeCarta);
     	
-    	GestoreFile gestoreFile = new GestoreFile();
-    	gestoreFile.salvaAdmin(WelcomeController.admin);
+    	GestoreFile.salvaAdmin(WelcomeController.admin);
     	
     	inizializzaFinestra();
     	

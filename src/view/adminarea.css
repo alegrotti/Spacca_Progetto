@@ -117,6 +117,27 @@
     -fx-font-size: 12px;
 }
 
+#gestisciMazzoTitolo{
+    -fx-color: rgb(0, 64, 128);
+    -fx-font: 25px "Felix Titling", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+#carteMazzoLabel{
+    -fx-color: rgb(0, 64, 128);
+    -fx-font: 15px "Felix Titling", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+#carteAggiungibiliLabel{
+    -fx-color: rgb(0, 64, 128);
+    -fx-font: 15px "Felix Titling", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
 #titoloPartite {
     -fx-color: rgb(0, 64, 128);
     -fx-font: 25px "Felix Titling", sans-serif;
@@ -125,13 +146,6 @@
 }
 
 #infoAdminTitolo {
-    -fx-color: rgb(0, 64, 128);
-    -fx-font: 25px "Felix Titling", sans-serif;
-    -fx-font-weight: bold;
-    -fx-font-style: italic;
-}
-
-#creaNuovaCartaTitolo {
     -fx-color: rgb(0, 64, 128);
     -fx-font: 25px "Felix Titling", sans-serif;
     -fx-font-weight: bold;
@@ -173,13 +187,6 @@
 	-fx-background-color: rgb(209, 155, 0);
 	-fx-font-family: "Georgia";
     -fx-font-size: 12px;
-}
-
-#titoloTornei {
-    -fx-color: rgb(0, 64, 128);
-    -fx-font: 25px "Felix Titling", sans-serif;
-    -fx-font-weight: bold;
-    -fx-font-style: italic;
 }
 
 \\da riguardare tutto

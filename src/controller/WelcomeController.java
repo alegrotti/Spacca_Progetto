@@ -1,6 +1,5 @@
 package controller;
 
-import java.io.IOException;
 import java.util.HashMap;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -12,8 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import model.Admin;
 import model.Carta;
 import model.GestoreFile;
@@ -65,6 +62,7 @@ public class WelcomeController {
     @FXML
     void closeProgram(ActionEvent event) {
     	Platform.exit();
+    	GestoreFile.salvaAdmin(admin);
     }
 
     @FXML
@@ -75,7 +73,7 @@ public class WelcomeController {
 	        scenaHomepage.getStylesheets().add("/view/adminlogin.css");
 	        Main.setScene(scenaHomepage,false);
     	}catch(Exception e) {
-    		
+    		Main.messaggioErrore("Errore apertura finestra");
     	}
     }
 
@@ -99,7 +97,7 @@ public class WelcomeController {
 	        scenaHomepage.getStylesheets().add("/view/rules.css");
 	        Main.setScene(scenaHomepage,false);
     	}catch(Exception e) {
-    		
+    		Main.messaggioErrore("Errore apertura finestra");
     	}
     }
 
@@ -111,7 +109,7 @@ public class WelcomeController {
 	        scenaHomepage.getStylesheets().add("/view/setting.css");
 	        Main.setScene(scenaHomepage,false);
     	}catch(Exception e) {
-    		
+    		Main.messaggioErrore("Errore apertura finestra");
     	}
     }
 
@@ -123,7 +121,7 @@ public class WelcomeController {
 	        scenaHomepage.getStylesheets().add("/view/standing.css");
 	        Main.setScene(scenaHomepage,false);
     	}catch(Exception e) {
-    		
+    		Main.messaggioErrore("Errore apertura finestra");
     	}
     }
 
@@ -156,9 +154,7 @@ public class WelcomeController {
     @FXML
     void initialize(){
     	
-    	GestoreFile gestoreFile = new GestoreFile();
-    	
-    	Admin a = gestoreFile.importaAdmin();
+    	Admin a = GestoreFile.importaAdmin();
     	
     	admin = a;
     	partite = a.getPartite();
