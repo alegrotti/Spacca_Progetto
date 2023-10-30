@@ -37,7 +37,7 @@ public class MessaggioErroreController {
     
     @FXML
     void initialize() {
-    	Image foto = new Image("/immagini/errorefoto.jpg");
+    	Image foto = new Image("/immagini/errorefoto.png");
     	immagine.setImage(foto);
     }
 
