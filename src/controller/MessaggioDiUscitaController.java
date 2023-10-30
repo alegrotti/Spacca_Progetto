@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import model.GestoreFile;
 
 public class MessaggioDiUscitaController {
 
@@ -30,10 +31,12 @@ public class MessaggioDiUscitaController {
     @FXML
     void ButtonNoClicked(ActionEvent event) {
     	noButton.getScene().getWindow().hide();
+    	Main.uscita = false;
     }
 
     @FXML
     void ButtonYesClicked(ActionEvent event) {
+    	GestoreFile.salvaAdmin(WelcomeController.admin);
     	Platform.exit();
     }
 

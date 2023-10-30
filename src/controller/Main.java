@@ -18,6 +18,7 @@ import javafx.scene.control.ButtonType;
 public class Main extends Application {
 	
 	public static Stage parentWindow;
+	public static boolean uscita;
 	
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -31,14 +32,12 @@ public class Main extends Application {
         
         //Gestione chiusura finestra
         parentWindow.setOnCloseRequest(event -> {
-
-        	
 			try {
 				messaggioDiUscita("Suca");
+				event.consume();
 			} catch (Exception e) {
-				
+				messaggioErrore("Errore apertura scheda");
 			}
-			
         });
      
 	}
