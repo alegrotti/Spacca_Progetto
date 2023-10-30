@@ -12,7 +12,7 @@ public class GestoreFile {
 	
 	public static final String DATABASE_PATH = "log/adminDatabase.dat";
 
-	public Admin importaAdmin() {
+	public static Admin importaAdmin() {
 		try {
 			FileInputStream f = new FileInputStream(GestoreFile.DATABASE_PATH);
 			ObjectInputStream inputStream =	new ObjectInputStream(f);
@@ -31,7 +31,7 @@ public class GestoreFile {
 		return null;
 	}
 	
-	public void salvaAdmin (Admin admin) {
+	public static void salvaAdmin (Admin admin) {
 		String nomeFile = DATABASE_PATH;
 		ObjectOutputStream outputStream = null;	
 		try {
