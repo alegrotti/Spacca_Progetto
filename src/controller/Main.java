@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +18,7 @@ import javafx.scene.control.ButtonType;
 public class Main extends Application {
 	
 	public static Stage parentWindow;
+	public static boolean uscita;
 	
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -29,25 +32,12 @@ public class Main extends Application {
         
         //Gestione chiusura finestra
         parentWindow.setOnCloseRequest(event -> {
-            Alert alert = new Alert(AlertType.CONFIRMATION, "Chiudere e salvare?");
-            alert.setHeaderText(null);
-
-            alert.setTitle("SPACCA");
-            
-	        Image image = new Image("/immagini/icon.jpg");
-            Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
-            alertStage.getIcons().add(image);
-            
-            alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
-
-            ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
-            
-            if (result == ButtonType.NO) {
-                event.consume();
-            }else {
-            	GestoreFile.salvaAdmin(WelcomeController.admin);
-            	Platform.exit();
-            }
+			try {
+				messaggioDiUscita("Chiudere e salvare?");
+				event.consume();
+			} catch (Exception e) {
+				messaggioErrore("Errore apertura scheda");
+			}
         });
      
 	}
@@ -94,5 +84,32 @@ public class Main extends Application {
 		
 	}
 	
+	
+	public static void messaggioDiUscita(String s) {
+			
+			try {
+				FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/MessaggioDiUscita.fxml"));
+				Parent root = loader.load();
+				
+				MessaggioDiUscitaController controller = loader.getController();
+				controller.impostaTesto(s);
+				
+				Scene exitScene = new Scene(root);
+				exitScene.getStylesheets().add("/view/messaggiodiuscita.css");
+				
+				Stage exitStage = new Stage();
+				exitStage.setScene(exitScene);
+				exitStage.initOwner(parentWindow);
+				exitStage.initModality(Modality.APPLICATION_MODAL);
+				exitStage.setTitle("SPACCA - Uscita senza salvataggio");
+		        Image image = new Image("/immagini/icon.jpg");
+		        exitStage.getIcons().add(image);
+				
+		        exitStage.show();
+			} catch (Exception e) {
+				
+			}
+			
+	}
 
 }
