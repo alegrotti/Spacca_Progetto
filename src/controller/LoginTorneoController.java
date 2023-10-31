@@ -10,13 +10,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-public class LoginPartitaController {
+public class LoginTorneoController {
 
     @FXML
     private VBox centralBox;
 
     @FXML
-    private TextField codicePartita;
+    private TextField codiceTorneo;
 
     @FXML
     private Pane sfondo;
@@ -25,8 +25,8 @@ public class LoginPartitaController {
     private Label titolo;
 
     @FXML
-    void giocaPartita(ActionEvent event) {
-    	
+    void giocaTorneo(ActionEvent event) {
+
     }
 
     @FXML

@@ -69,6 +69,7 @@ public class Main extends Application {
 			errorScene.getStylesheets().add("/view/messaggioerrore.css");
 			
 			Stage errorStage = new Stage();
+			errorStage.setResizable(false);
 			errorStage.setScene(errorScene);
 			errorStage.initOwner(parentWindow);
 			errorStage.initModality(Modality.APPLICATION_MODAL);

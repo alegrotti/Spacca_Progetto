@@ -26,7 +26,7 @@
                      <content>
                         <VBox alignment="TOP_CENTER" prefHeight="457.0" prefWidth="822.0">
                            <children>
-                              <ComboBox fx:id="listaCarte" onAction="#cartaScelta" prefWidth="150.0">
+                              <ComboBox fx:id="listaCarte" onAction="#cartaScelta" prefHeight="26.0" prefWidth="241.0">
                                  <VBox.margin>
                                     <Insets top="15.0" />
                                  </VBox.margin></ComboBox>

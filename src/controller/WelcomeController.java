@@ -146,7 +146,6 @@ public class WelcomeController {
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/logintorneo.css");
 	        Main.setScene(scenaHomepage,false);
-	        
     	}catch(Exception e) {
     		Main.messaggioErrore("Errore apertura finestra");
     	}
