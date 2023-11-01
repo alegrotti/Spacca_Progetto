@@ -10,7 +10,7 @@
 
 <AnchorPane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="178.0" prefWidth="381.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MessaggioDiUscitaController">
    <children>
-      <HBox fx:id="sfondoBianco" layoutX="5.0" layoutY="7.0" prefHeight="165.0" prefWidth="372.0">
+      <HBox fx:id="sfondoBianco" layoutX="5.0" layoutY="6.0" prefHeight="165.0" prefWidth="372.0">
          <children>
             <ImageView fx:id="ImageIcon" fitHeight="105.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>

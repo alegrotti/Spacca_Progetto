@@ -8,23 +8,26 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane fx:id="sfondo" prefHeight="158.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MessaggioErroreController">
+<Pane fx:id="sfondo" prefHeight="200.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MessaggioErroreController">
    <children>
-      <VBox fx:id="sfondoBianco" alignment="CENTER" prefHeight="158.0" prefWidth="300.0">
+      <VBox fx:id="sfondoBianco" alignment="CENTER" layoutX="5.0" layoutY="5.0" prefHeight="190.0" prefWidth="370.0">
          <children>
-            <HBox alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="125.0" prefWidth="370.0">
                <children>
-                  <ImageView fx:id="immagine" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="immagine" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="testoMessaggioErrore" alignment="CENTER" prefHeight="101.0" prefWidth="178.0" textAlignment="CENTER" wrapText="true">
                      <HBox.margin>
-                        <Insets left="10.0" right="10.0" />
+                        <Insets left="40.0" />
                      </HBox.margin>
-                  </ImageView>
-                  <Label fx:id="testoMessaggioErrore" alignment="CENTER" prefHeight="101.0" prefWidth="178.0" textAlignment="CENTER" wrapText="true" />
+                  </Label>
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </HBox>
             <Button fx:id="bottoneOk" mnemonicParsing="false" onAction="#mouseOkClicked" prefHeight="37.0" prefWidth="136.0" text="OK">
                <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
+                  <Insets bottom="20.0" top="10.0" />
                </VBox.margin>
             </Button>
          </children>
