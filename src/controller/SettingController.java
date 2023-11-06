@@ -1,6 +1,5 @@
 package controller;
 
-import model.GestoreFile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import model.Carta;
+import model.DBAdmin;
+import model.DBCarte;
 import model.Building;
 import model.Special;
 import javafx.scene.control.Button;
@@ -78,7 +79,7 @@ public class SettingController {
     	
     	String carta = listaCarte.getValue();
     	
-    	Carta c = WelcomeController.admin.getCarta(carta);
+    	Carta c = DBCarte.getCarta(carta);
     	
     	nome.setText(c.getNome());
 		descrizione.setText(c.getDescrizione());
@@ -101,9 +102,9 @@ public class SettingController {
     	
     	Carta c = new Special(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,true,percorso,"Bonus");
     	
-    	WelcomeController.admin.aggiungiCarta(c);
-    	GestoreFile.salvaAdmin(WelcomeController.admin);
-    	
+    	DBAdmin.getAdmin().aggiungiCarta(c);
+    	DBCarte.aggiungiCarta(c);
+
     	inizializzaFinestra();
     }
 
@@ -119,9 +120,8 @@ public class SettingController {
     	String percorso = "/immagini/" + nomeCarta.replaceAll("\\s", "").toLowerCase() + ".jpg";
     	Carta c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,percorso,genere.getText());
     	
-    	WelcomeController.admin.aggiungiCarta(c);
-
-    	GestoreFile.salvaAdmin(WelcomeController.admin);
+    	DBAdmin.getAdmin().aggiungiCarta(c);
+    	DBCarte.aggiungiCarta(c);
     	
     	inizializzaFinestra();
     }
@@ -139,9 +139,8 @@ public class SettingController {
     	
     	Carta c = new Special(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,false,percorso,"Malus");
     	
-    	WelcomeController.admin.aggiungiCarta(c);
-
-    	GestoreFile.salvaAdmin(WelcomeController.admin);
+    	DBAdmin.getAdmin().aggiungiCarta(c);
+    	DBCarte.aggiungiCarta(c);
     	
     	inizializzaFinestra();
     }
@@ -153,7 +152,8 @@ public class SettingController {
     	
     	WelcomeController.admin.eliminaCarta(nomeCarta);
     	
-    	GestoreFile.salvaAdmin(WelcomeController.admin);
+    	DBAdmin.getAdmin().eliminaCarta(nomeCarta);
+    	DBCarte.eliminaCarta(nomeCarta);
     	
     	inizializzaFinestra();
     	
@@ -184,7 +184,7 @@ public class SettingController {
     private void inizializzaFinestra() {
     	
     	ObservableList<String> carte = FXCollections.observableArrayList();
-    	for(String s : WelcomeController.admin.getCarte().keySet())
+    	for(String s : DBAdmin.getAdmin().getCarte())
     		carte.add(s);
     	carte.sort(null);
     	

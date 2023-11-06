@@ -14,6 +14,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import model.DBAdmin;
 
 public class PlayerAreaController {
 
@@ -62,7 +63,7 @@ public class PlayerAreaController {
     @FXML
     void initialize() {
     	ObservableList<String> giocatori = FXCollections.observableArrayList();
-    	for(String s : WelcomeController.admin.getGiocatori().keySet())
+    	for(String s : DBAdmin.getAdmin().getGiocatori())
     		giocatori.add(s);
     	giocatori.sort(null);
     	listaGiocatori.setItems(giocatori);   	

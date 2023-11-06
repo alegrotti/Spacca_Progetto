@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import model.DBPartite;
 
 public class LoginPartitaController {
 
@@ -26,7 +29,31 @@ public class LoginPartitaController {
 
     @FXML
     void giocaPartita(ActionEvent event) {
-    	
+    	try {
+    		String codice = codicePartita.getText();
+    		if(codice.equals(""))
+    			throw new IllegalArgumentException("Nessun codice inserito");
+    		if(DBPartite.esistePartita(codice)) {
+    			try {
+    		    	FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/CampoGioco.fxml"));
+    				Parent root = loader.load();
+    				CampoGiocoController controller = loader.getController();
+    				if(controller.impostaPartita(DBPartite.getPartita(codice)))
+    					throw new IllegalArgumentException("Errore caricamento partita");
+    				Scene scenaHomepage = new Scene(root);
+    		        scenaHomepage.getStylesheets().add("/view/campogioco.css");
+    		        Main.setScene(scenaHomepage,false);
+    	    	}catch(IllegalArgumentException e) {
+    	    		throw e;
+    	    	}catch(IOException e) {
+    	    		throw new Exception("Errore apertura finestra");
+    	    	}
+    		}else {
+    			throw new Exception("Partita inesistente");
+    		}
+    	}catch(Exception e) {
+    		Main.messaggioErrore(e.getMessage());
+    	}
     }
 
     @FXML

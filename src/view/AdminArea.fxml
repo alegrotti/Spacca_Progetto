@@ -139,7 +139,7 @@
                                        </VBox.margin>
                                        <children>
                                           <Label text="Scegli mazzo: " />
-                                          <ComboBox fx:id="listaMazziButton" onAction="#cartaSelezionata" prefHeight="32.0" prefWidth="154.0" />
+                                          <ComboBox fx:id="listaMazziButton" onAction="#modificaMazzo" prefHeight="32.0" prefWidth="154.0" />
                                           <Button fx:id="eliminaMazzoButton" mnemonicParsing="false" onAction="#eliminaMazzo" prefHeight="26.0" prefWidth="113.0" text="Elimina mazzo">
                                              <HBox.margin>
                                                 <Insets left="20.0" />
@@ -249,7 +249,7 @@
                                              </VBox.margin>
                                              <children>
                                                 <Label text="Scegli mazzo: " />
-                                                <ComboBox fx:id="scegliMazzoPartitaButton" onAction="#scegliMazzoPartita" prefHeight="30.0" prefWidth="205.0" />
+                                                <ComboBox fx:id="scegliMazzoPartitaButton" prefHeight="30.0" prefWidth="205.0" />
                                              </children>
                                           </HBox>
                                           <HBox alignment="CENTER">
@@ -274,6 +274,20 @@
                                                 </Slider>
                                                 <Label fx:id="numeroSliderPartitaLabel" />
                                              </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" layoutX="10.0" layoutY="124.0">
+                                             <children>
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="83.0" text="Crediti iniziali:" />
+                                                <Slider fx:id="sliderCreditiPartita" blockIncrement="500.0" majorTickUnit="500.0" max="10000.0" maxWidth="422.0" min="1000.0" minorTickCount="500" prefHeight="14.0" prefWidth="244.0">
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Slider>
+                                                <Label fx:id="creditiSliderLabel" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
                                           </HBox>
                                        </children>
                                     </VBox>
