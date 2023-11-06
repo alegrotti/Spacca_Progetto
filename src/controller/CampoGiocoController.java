@@ -18,7 +18,7 @@ public class CampoGiocoController {
 	
     @FXML
     void initialize() {
-    	
+    	Main.parentWindow.setTitle(partita.getCodice());
     }
 
 }

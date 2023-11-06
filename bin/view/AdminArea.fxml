@@ -275,10 +275,10 @@
                                                 <Label fx:id="numeroSliderPartitaLabel" />
                                              </children>
                                           </HBox>
-                                          <HBox fx:id="hBoxSliderPartita1" alignment="CENTER" layoutX="10.0" layoutY="124.0">
+                                          <HBox alignment="CENTER" layoutX="10.0" layoutY="124.0">
                                              <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="106.0" text="Crediti iniziali:" />
-                                                <Slider fx:id="sliderCreditiPartita" majorTickUnit="5.0" max="50.0" maxWidth="422.0" min="4.0" minorTickCount="5" prefHeight="6.0" prefWidth="188.0">
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="83.0" text="Crediti iniziali:" />
+                                                <Slider fx:id="sliderCreditiPartita" blockIncrement="500.0" majorTickUnit="500.0" max="10000.0" maxWidth="422.0" min="1000.0" minorTickCount="500" prefHeight="14.0" prefWidth="244.0">
                                                    <HBox.margin>
                                                       <Insets left="10.0" />
                                                    </HBox.margin>

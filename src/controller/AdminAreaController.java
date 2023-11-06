@@ -561,12 +561,13 @@ public class AdminAreaController {
             numeroSliderPartitaLabel.setText(String.valueOf(roundedValue));
         });
     	
+    	sliderCreditiPartita.setMin(1);
     	sliderCreditiPartita.setMax(100);
-    	sliderCreditiPartita.setMax(10000);
+    	sliderCreditiPartita.setValue(0);
     	creditiSliderLabel.setText(String.valueOf((int) sliderCreditiPartita.getValue()));
     	sliderCreditiPartita.valueProperty().addListener((observable, oldValue, newValue) -> {
             int roundedValue = (int) Math.round(newValue.doubleValue());
-            creditiSliderLabel.setText(String.valueOf(roundedValue));
+            creditiSliderLabel.setText(String.valueOf(roundedValue*1000));
         });
     }
     

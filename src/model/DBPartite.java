@@ -16,9 +16,9 @@ public class DBPartite {
 			partite = (HashMap<String,Partita>)GestioneFile.caricaDB(DATABASE_PATH);
 			return partite.containsKey(codice);
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore caricamento partita");
+			return false;
 		}
-		return false;
+		
 	}
 	
 	@SuppressWarnings("unchecked")
