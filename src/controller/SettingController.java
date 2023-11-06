@@ -81,12 +81,14 @@ public class SettingController {
     	
     	Carta c = DBCarte.getCarta(carta);
     	
-    	nome.setText(c.getNome());
-		descrizione.setText(c.getDescrizione());
-		sliderRe.setValue(c.getResidenziale());
-		sliderCo.setValue(c.getCommerciale());
-		sliderPu.setValue(c.getPubblico());
-		sliderCu.setValue(c.getCulturale());
+    	if(c!=null) {
+	    	nome.setText(c.getNome());
+			descrizione.setText(c.getDescrizione());
+			sliderRe.setValue(c.getResidenziale());
+			sliderCo.setValue(c.getCommerciale());
+			sliderPu.setValue(c.getPubblico());
+			sliderCu.setValue(c.getCulturale());
+    	}
 
     }
 
@@ -150,8 +152,6 @@ public class SettingController {
 
     	String nomeCarta = listaCarte.getValue();
     	
-    	WelcomeController.admin.eliminaCarta(nomeCarta);
-    	
     	DBAdmin.getAdmin().eliminaCarta(nomeCarta);
     	DBCarte.eliminaCarta(nomeCarta);
     	
@@ -188,6 +188,7 @@ public class SettingController {
     		carte.add(s);
     	carte.sort(null);
     	
+    	listaCarte.setValue(null);
     	listaCarte.setItems(carte);
     	
     	inizializzaSlider(labelCo,sliderCo);
