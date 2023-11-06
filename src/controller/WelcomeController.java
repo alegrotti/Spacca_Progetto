@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.HashMap;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,19 +11,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import model.Admin;
-import model.Carta;
-import model.GestoreFile;
-import model.Mazzo;
-import model.Partita;
-import model.Torneo;
+import model.DBAdmin;
 
 public class WelcomeController {
 	
 	public static Admin admin;
-	public static HashMap <String,Partita> partite;
-	public static HashMap <String,Torneo> tornei;
-	public static HashMap <String,Carta> carte;
-	public static HashMap <String,Mazzo> mazzi;
 	
     @FXML
     private Button adminLogin;
@@ -62,7 +53,7 @@ public class WelcomeController {
     @FXML
     void closeProgram(ActionEvent event) {
     	Platform.exit();
-    	GestoreFile.salvaAdmin(admin);
+    	DBAdmin.salvaAdmin(admin);
     }
 
     @FXML
@@ -154,11 +145,14 @@ public class WelcomeController {
     @FXML
     void initialize(){
     	
-    	Admin a = GestoreFile.importaAdmin();
+    	//Admin a = DBAdmin.importaAdmin();
+    	
+    	Admin a = new Admin("","");
     	
     	admin = a;
-    	partite = a.getPartite();
-    	tornei = a.getTornei();
+
     }
+    
+    
 
 }

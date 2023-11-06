@@ -1,6 +1,5 @@
 package controller;
 
-import model.GestoreFile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import model.Carta;
+import model.DBCarte;
 import model.Building;
 import model.Special;
 import javafx.scene.control.Button;
@@ -78,7 +78,7 @@ public class SettingController {
     	
     	String carta = listaCarte.getValue();
     	
-    	Carta c = WelcomeController.admin.getCarta(carta);
+    	Carta c = DBCarte.getCarta(carta);
     	
     	nome.setText(c.getNome());
 		descrizione.setText(c.getDescrizione());

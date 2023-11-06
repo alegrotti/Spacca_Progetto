@@ -1,7 +1,9 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Admin implements Serializable{
 	
@@ -9,20 +11,20 @@ public class Admin implements Serializable{
 	
 	private String password;
 	private String username;
-	private HashMap <String,Mazzo> mazzi;
-	private HashMap <String,Carta> carte;
-	private HashMap <String,Giocatore> giocatori;
-	private HashMap <String,Partita> partite;
-	private HashMap <String,Torneo> tornei;
+	private List <String> mazzi;
+	private List <String> carte;
+	private List <String> giocatori;
+	private List <String> partite;
+	private List <String> tornei;
 	
 	public Admin(String username,String password) {
 		this.password = password;
 		this.username = username;
-		this.giocatori = new HashMap <String,Giocatore>();
-		this.partite = new HashMap <String,Partita>();
-		this.tornei = new HashMap <String,Torneo>();
-		this.mazzi = new HashMap <String,Mazzo>();
-		this.carte = new HashMap <String,Carta>();
+		this.giocatori = new ArrayList <String>();
+		this.mazzi = new ArrayList <String>();
+		this.carte = new ArrayList <String>();
+		this.partite = new ArrayList <String>();
+		this.tornei = new ArrayList <String>();
 	}
 	
 	public String getUsername() {
@@ -41,48 +43,44 @@ public class Admin implements Serializable{
 		this.password = password;
 	}
 	
-	public HashMap <String,Partita> getPartite(){
+	public List <String> getPartite(){
 		return partite;
 	}
 	
-	public HashMap <String,Torneo> getTornei(){
+	public List <String> getTornei(){
 		return tornei;
 	}
 	
-	public HashMap <String,Giocatore> getGiocatori(){
+	public List <String> getGiocatori(){
 		return giocatori;
 	}
 	
-	public HashMap<String, Mazzo> getMazzi(){
+	public List <String> getMazzi(){
 		return mazzi;
 	}
 	
-	public HashMap<String, Carta> getCarte(){
+	public List <String> getCarte(){
 		return carte;
 	}
 	
 	public void aggiungiGiocatore(Giocatore g) {
-		giocatori.put(g.getUsername(),g);
+		giocatori.add(g.getUsername());
 	}
 	
 	public void aggiungiCarta(Carta c) {
-		carte.put(c.getNome(),c);
+		carte.add(c.getNome());
+	}
+	
+	public void aggiungiMazzo(Mazzo m) {
+		mazzi.add(m.getNome());
 	}
 	
 	public void eliminaGiocatore(String g) {
 		giocatori.remove(g);
 	}
 	
-	public Giocatore getGiocatore(String s) {
-		return giocatori.get(s);
-	}
-	
 	public void eliminaCarta(String c) {
 		carte.remove(c);
-	}
-	
-	public Carta getCarta(String c) {
-		return carte.get(c);
 	}
 	
 	public void eliminaMazzo(String m) {

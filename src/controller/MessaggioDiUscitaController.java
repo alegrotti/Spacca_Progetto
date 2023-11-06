@@ -7,9 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import model.GestoreFile;
+import model.DBAdmin;
 import javafx.scene.layout.HBox;
 
 public class MessaggioDiUscitaController {
@@ -26,7 +25,6 @@ public class MessaggioDiUscitaController {
     @FXML
     private HBox sfondoBianco;
 
-
     @FXML
     private Button yesButton;
     
@@ -41,7 +39,7 @@ public class MessaggioDiUscitaController {
 
     @FXML
     void ButtonYesClicked(ActionEvent event) {
-    	GestoreFile.salvaAdmin(WelcomeController.admin);
+    	DBAdmin.salvaAdmin(WelcomeController.admin);
     	Platform.exit();
     }
 

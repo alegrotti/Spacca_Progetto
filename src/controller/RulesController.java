@@ -18,6 +18,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.Carta;
+import model.DBCarte;
 
 public class RulesController {
 
@@ -104,7 +105,7 @@ public class RulesController {
     void initialize() {
     	
     	ObservableList<String> carteCreate = FXCollections.observableArrayList();
-    	for(String s : WelcomeController.admin.getCarte().keySet())
+    	for(String s : WelcomeController.admin.getCarte())
     		carteCreate.add(s);
     	carteCreate.sort(null);
     	listaCarte.setItems(carteCreate);   
@@ -114,7 +115,7 @@ public class RulesController {
     @FXML
     void cartaScelta(ActionEvent event) {
     	String s = listaCarte.getValue();
-    	Carta c = WelcomeController.admin.getCarta(s);
+    	Carta c = DBCarte.getCarta(s);
     	stampaCarta(c);
     	
     }
