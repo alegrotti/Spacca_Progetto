@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import model.DBPartite;
 
 public class LoginPartitaController {
 
@@ -32,12 +33,12 @@ public class LoginPartitaController {
     		String codice = codicePartita.getText();
     		if(codice.equals(""))
     			throw new IllegalArgumentException("Nessun codice inserito");
-    		if(WelcomeController.partite.containsKey(codice)) {
+    		if(DBPartite.esistePartita(codice)) {
     			try {
     		    	FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/CampoGioco.fxml"));
     				Parent root = loader.load();
     				CampoGiocoController controller = loader.getController();
-    				if(controller.impostaPartita(WelcomeController.partite.get(codice)))
+    				if(controller.impostaPartita(DBPartite.getPartita(codice)))
     					throw new IllegalArgumentException("Errore caricamento partita");
     				Scene scenaHomepage = new Scene(root);
     		        scenaHomepage.getStylesheets().add("/view/campogioco.css");

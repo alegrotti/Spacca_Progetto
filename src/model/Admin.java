@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Admin implements Serializable{
@@ -37,10 +36,12 @@ public class Admin implements Serializable{
 	
 	public void setUsername(String username) {
 		this.username = username;
+		DBAdmin.salvaAdmin(this);
 	}
 	
 	public void setPassword(String password) {
 		this.password = password;
+		DBAdmin.salvaAdmin(this);
 	}
 	
 	public List <String> getPartite(){
@@ -65,26 +66,32 @@ public class Admin implements Serializable{
 	
 	public void aggiungiGiocatore(Giocatore g) {
 		giocatori.add(g.getUsername());
+		DBAdmin.salvaAdmin(this);
 	}
 	
 	public void aggiungiCarta(Carta c) {
 		carte.add(c.getNome());
+		DBAdmin.salvaAdmin(this);
 	}
 	
 	public void aggiungiMazzo(Mazzo m) {
 		mazzi.add(m.getNome());
+		DBAdmin.salvaAdmin(this);
 	}
 	
 	public void eliminaGiocatore(String g) {
 		giocatori.remove(g);
+		DBAdmin.salvaAdmin(this);
 	}
 	
 	public void eliminaCarta(String c) {
 		carte.remove(c);
+		DBAdmin.salvaAdmin(this);
 	}
 	
 	public void eliminaMazzo(String m) {
 		mazzi.remove(m);
+		DBAdmin.salvaAdmin(this);
 	}
 	
 }

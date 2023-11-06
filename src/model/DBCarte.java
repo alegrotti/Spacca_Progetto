@@ -21,4 +21,29 @@ public class DBCarte {
 		return null;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public static void aggiungiCarta(Carta c) {
+		try {
+			carte = (HashMap<String,Carta>)GestioneFile.caricaDB(DATABASE_PATH);
+			System.out.println("Lettura file ok");
+			carte.put(c.getNome(),c);
+			System.out.println("Aggiunta carta");
+			GestioneFile.salvaDB(carte,DATABASE_PATH);
+			System.out.println("Salvataggio db ok");
+		} catch (Exception e) {
+			Main.messaggioErrore("Errore aggiunta carta");
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static void eliminaCarta(String c) {
+		try {
+			carte = (HashMap<String,Carta>)GestioneFile.caricaDB(DATABASE_PATH);
+			carte.remove(c);
+			GestioneFile.salvaDB(carte,DATABASE_PATH);
+		} catch (Exception e) {
+			Main.messaggioErrore("Errore aggiunta carta");
+		}
+	}
+	
 }

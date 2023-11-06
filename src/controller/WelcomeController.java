@@ -145,14 +145,10 @@ public class WelcomeController {
     @FXML
     void initialize(){
     	
-    	//Admin a = DBAdmin.importaAdmin();
-    	
-    	Admin a = new Admin("","");
+    	Admin a = DBAdmin.getAdmin();
     	
     	admin = a;
 
     }
-    
-    
 
 }
