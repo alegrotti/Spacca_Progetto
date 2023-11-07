@@ -446,15 +446,25 @@ public class AdminAreaController {
     	}
     }
     
+	@FXML
+    void aggiungiPartita(ActionEvent event) {
+		Mazzo m = DBMazzi.getMazzo(scegliMazzoPartitaButton.getValue());
+		ArrayList<String> g = new ArrayList<String>();
+		for(String s : giocatoriAggiunti.keySet())
+			g.add(s);
+		String codice = codicePartitaField.getText();
+		int n = Integer.parseInt(creditiSliderLabel.getText());
+		if(tipoPartitaButton.getValue().equals("A turni")) {
+			
+		}
+    }
+    
     
     //Torneo
     
 
 
-	@FXML
-    void aggiungiPartita(ActionEvent event) {
 
-    }
 
     @FXML
     void scegliGiocatorePartita(ActionEvent event) {
@@ -564,8 +574,8 @@ public class AdminAreaController {
     	sliderCreditiPartita.setValue(0);
     	creditiSliderLabel.setText(String.valueOf((int) sliderCreditiPartita.getValue()));
     	sliderCreditiPartita.valueProperty().addListener((observable, oldValue, newValue) -> {
-            int roundedValue = (int) (Math.round(newValue.doubleValue()*1000));
-            creditiSliderLabel.setText(String.valueOf(roundedValue));
+            int roundedValue = (int) (Math.round(newValue.doubleValue()));
+            creditiSliderLabel.setText(String.valueOf(roundedValue*1000));
         });
     }
     
