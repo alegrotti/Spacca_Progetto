@@ -10,14 +10,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import model.Admin;
-import model.DBAdmin;
 
 public class WelcomeController {
 	
-	public static Admin admin;
-	
-    @FXML
+	@FXML
     private Button adminLogin;
 
     @FXML
@@ -53,7 +49,6 @@ public class WelcomeController {
     @FXML
     void closeProgram(ActionEvent event) {
     	Platform.exit();
-    	DBAdmin.salvaAdmin(admin);
     }
 
     @FXML
@@ -142,13 +137,4 @@ public class WelcomeController {
     	}
     }
     
-    @FXML
-    void initialize(){
-    	
-    	Admin a = DBAdmin.getAdmin();
-    	
-    	admin = a;
-
-    }
-
 }

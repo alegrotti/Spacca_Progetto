@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import model.DBAdmin;
 import javafx.scene.layout.HBox;
 
 public class MessaggioDiUscitaController {
@@ -34,12 +33,10 @@ public class MessaggioDiUscitaController {
     @FXML
     void ButtonNoClicked(ActionEvent event) {
     	noButton.getScene().getWindow().hide();
-    	Main.uscita = false;
     }
 
     @FXML
     void ButtonYesClicked(ActionEvent event) {
-    	DBAdmin.salvaAdmin(WelcomeController.admin);
     	Platform.exit();
     }
 

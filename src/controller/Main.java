@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 public class Main extends Application {
 	
 	public static Stage parentWindow;
-	public static boolean uscita;
 	
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -50,7 +49,6 @@ public class Main extends Application {
 	}
 	
 	public static void messaggioErrore(String s) {
-		
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/MessaggioErrore.fxml"));
 			Parent root = loader.load();
@@ -72,11 +70,9 @@ public class Main extends Application {
 			
 			errorStage.show();
 		} catch (Exception e) {
-			
-		}
-		
+			messaggioDiUscita("Errore, salva ed esci");
+		}		
 	}
-	
 	
 	public static void messaggioDiUscita(String s) {
 			

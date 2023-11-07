@@ -11,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import model.DBAdmin;
 
 public class AdminLoginController {
 
@@ -38,8 +39,8 @@ public class AdminLoginController {
     @FXML
     void checkLogin(ActionEvent event) {
     	try {
-	    	if(usernameButton.getText().equals(WelcomeController.admin.getUsername()))
-	    		if(passwordButton.getText().equals(WelcomeController.admin.getPassword())) {
+	    	if(usernameButton.getText().equals(DBAdmin.getAdmin().getUsername()))
+	    		if(passwordButton.getText().equals(DBAdmin.getAdmin().getPassword())) {
 	    			try {
 	    		    	Parent root = FXMLLoader.load(getClass().getResource("/view/AdminArea.fxml"));
 	    		        Scene scenaHomepage = new Scene(root);
@@ -75,8 +76,8 @@ public class AdminLoginController {
 
     @FXML
     void initialize() {
-    	usernameButton.setText(WelcomeController.admin.getUsername());
-    	passwordButton.setText(WelcomeController.admin.getPassword());
+    	usernameButton.setText(DBAdmin.getAdmin().getUsername());
+    	passwordButton.setText(DBAdmin.getAdmin().getPassword());
     }
 
 }

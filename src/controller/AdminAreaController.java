@@ -172,8 +172,8 @@ public class AdminAreaController {
     @FXML
     void saveNewInfo(ActionEvent event) {
     	
-    	WelcomeController.admin.setPassword(passwordField.getText());
-    	WelcomeController.admin.setUsername(usernameField.getText());
+    	DBAdmin.getAdmin().setPassword(passwordField.getText());
+    	DBAdmin.getAdmin().setUsername(usernameField.getText());
     	
     	inizializzaSchermata();
     	
@@ -188,7 +188,7 @@ public class AdminAreaController {
     		if(!username.equals("")) {
     			Giocatore g = new GiocatoreFisico(username);
     			DBGiocatori.aggiungiGiocatore(g);
-				WelcomeController.admin.aggiungiGiocatore(g);
+    			DBAdmin.getAdmin().aggiungiGiocatore(g);
     		}
     	}else{
     		String difficolta = selezionaDifficoltaButton.getValue();
@@ -197,14 +197,14 @@ public class AdminAreaController {
 	    		if(!username.equals("")) {
 	    			Giocatore g = new GiocatoreCPUFacile(username);
 	    			DBGiocatori.aggiungiGiocatore(g);
-					WelcomeController.admin.aggiungiGiocatore(g);
+	    			DBAdmin.getAdmin().aggiungiGiocatore(g);
 	    		}
     		}else if("Difficile".equals(difficolta)){
     			String username = nuovoGiocatoreField.getText();
 	    		if(!username.equals("")) {
 	    			Giocatore g = new GiocatoreCPUDifficile(username);
 	    			DBGiocatori.aggiungiGiocatore(g);
-					WelcomeController.admin.aggiungiGiocatore(g);
+	    			DBAdmin.getAdmin().aggiungiGiocatore(g);
 	    		}
     		}else {
     			
@@ -217,9 +217,9 @@ public class AdminAreaController {
     void eliminaGiocatore(ActionEvent event) {
     	String username = listaGiocatoriButton.getValue();
     	
-    	WelcomeController.admin.eliminaGiocatore(username);
+    	DBAdmin.getAdmin().eliminaGiocatore(username);
     	
-    	DBAdmin.salvaAdmin(WelcomeController.admin);
+    	DBAdmin.salvaAdmin(DBAdmin.getAdmin());
     	
     	inizializzaSchermata();
     }
@@ -260,7 +260,7 @@ public class AdminAreaController {
     		if(!nomeMazzo.equals("")) {
     			if(carteMazzo.size()!=0) {
     				Mazzo m = new Mazzo(nomeMazzo,carteMazzo);
-    				WelcomeController.admin.aggiungiMazzo(m);
+    				DBAdmin.getAdmin().aggiungiMazzo(m);
     				DBMazzi.aggiungiMazzo(m);
 	    		}else {
 	    			throw new Exception("Mazzo vuoto");
@@ -280,7 +280,7 @@ public class AdminAreaController {
     	
     	DBMazzi.eliminaMazzo(mazzo);
     	
-    	WelcomeController.admin.eliminaMazzo(mazzo);
+    	DBAdmin.getAdmin().eliminaMazzo(mazzo);
     	
     	inizializzaSchermata();
     }
@@ -338,8 +338,6 @@ public class AdminAreaController {
     	
     	carteMazzo.remove(c);
     	carteMazzo.trimToSize();
-    	
-    	DBAdmin.salvaAdmin(WelcomeController.admin);
     	
     	inizializzaGestioneMazzi();
     	
@@ -501,8 +499,8 @@ public class AdminAreaController {
     }
     
     private void inizializzaProfilo() {
-    	usernameField.setText(WelcomeController.admin.getUsername());
-    	passwordField.setText(WelcomeController.admin.getPassword());
+    	usernameField.setText(DBAdmin.getAdmin().getUsername());
+    	passwordField.setText(DBAdmin.getAdmin().getPassword());
     }
     
     private void inizializzaNuovoGiocatore() {
@@ -518,7 +516,7 @@ public class AdminAreaController {
     	tipoDiGiocatoreButton.setItems(tipoGiocatore);
     	
     	ObservableList<String> giocatori = FXCollections.observableArrayList();
-    	for(String s : WelcomeController.admin.getGiocatori())
+    	for(String s : DBAdmin.getAdmin().getGiocatori())
     		giocatori.add(s);
     	giocatori.sort(null);
     	listaGiocatoriButton.setItems(giocatori);
@@ -533,7 +531,7 @@ public class AdminAreaController {
     	giocatoriDaAggiungere.setValue(null);
     	
     	ObservableList<String> mazzi = FXCollections.observableArrayList();
-    	for(String s : WelcomeController.admin.getMazzi())
+    	for(String s : DBAdmin.getAdmin().getMazzi())
     		mazzi.add(s);
     	mazzi.sort(null);
     	scegliMazzoPartitaButton.setItems(mazzi);
@@ -542,7 +540,7 @@ public class AdminAreaController {
     	tipoPartitaButton.setItems(tipoPartita);
     	
     	ObservableList<String> giocatori1 = FXCollections.observableArrayList();
-    	for(String s : WelcomeController.admin.getGiocatori())
+    	for(String s : DBAdmin.getAdmin().getGiocatori())
     		giocatori1.add(s);
     	giocatori1.sort(null);
     	giocatoriDaAggiungere.setItems(giocatori1);
@@ -566,8 +564,8 @@ public class AdminAreaController {
     	sliderCreditiPartita.setValue(0);
     	creditiSliderLabel.setText(String.valueOf((int) sliderCreditiPartita.getValue()));
     	sliderCreditiPartita.valueProperty().addListener((observable, oldValue, newValue) -> {
-            int roundedValue = (int) Math.round(newValue.doubleValue());
-            creditiSliderLabel.setText(String.valueOf(roundedValue*1000));
+            int roundedValue = (int) (Math.round(newValue.doubleValue()*1000));
+            creditiSliderLabel.setText(String.valueOf(roundedValue));
         });
     }
     
@@ -582,7 +580,7 @@ public class AdminAreaController {
     	infoCartaDaAggiungere.setText(null);
     	
     	ObservableList<String> mazzi = FXCollections.observableArrayList();
-    	for(String s : WelcomeController.admin.getMazzi())
+    	for(String s : DBAdmin.getAdmin().getMazzi())
     		mazzi.add(s);
     	mazzi.sort(null);
     	listaMazziButton.setItems(mazzi);
@@ -594,7 +592,7 @@ public class AdminAreaController {
     	listaCarteMazzo.setItems(carteAggiunte);
 
     	ObservableList<String> carteCreate = FXCollections.observableArrayList();
-    	for(String s : WelcomeController.admin.getCarte())
+    	for(String s : DBAdmin.getAdmin().getCarte())
     		carteCreate.add(s);
     	carteCreate.sort(null);
     	listaCarteDaAggiungere.setItems(carteCreate);   
