@@ -456,6 +456,10 @@ public class AdminAreaController {
 		int n = Integer.parseInt(creditiSliderLabel.getText());
 		if(tipoPartitaButton.getValue().equals("A turni")) {
 			
+		}else if(tipoPartitaButton.getValue().equals("A turni")) {
+			
+		}else {
+			
 		}
     }
     
