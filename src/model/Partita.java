@@ -15,7 +15,7 @@ public class Partita implements Serializable{
 	private String codice;
 	
 	
-	public Partita(Mazzo mazzo, ArrayList<String> giocatori, String codice, int nTurni) {
+	public Partita(Mazzo mazzo, ArrayList<String> giocatori, String codice, int nTurni, int creditiIniziali) {
 		this.mazzo = mazzo;
 		this.giocatori = giocatori;
 		this.codice = codice;

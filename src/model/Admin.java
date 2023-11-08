@@ -36,12 +36,10 @@ public class Admin implements Serializable{
 	
 	public void setUsername(String username) {
 		this.username = username;
-		DBAdmin.salvaAdmin(this);
 	}
 	
 	public void setPassword(String password) {
 		this.password = password;
-		DBAdmin.salvaAdmin(this);
 	}
 	
 	public List <String> getPartite(){
@@ -66,7 +64,6 @@ public class Admin implements Serializable{
 	
 	public void aggiungiGiocatore(Giocatore g) {
 		giocatori.add(g.getUsername());
-		DBAdmin.salvaAdmin(this);
 	}
 	
 	public void aggiungiCarta(Carta c) {
@@ -76,12 +73,14 @@ public class Admin implements Serializable{
 	
 	public void aggiungiMazzo(Mazzo m) {
 		mazzi.add(m.getNome());
-		DBAdmin.salvaAdmin(this);
+	}
+	
+	public void aggiungiPartita(Partita p) {
+		mazzi.add(p.getCodice());
 	}
 	
 	public void eliminaGiocatore(String g) {
 		giocatori.remove(g);
-		DBAdmin.salvaAdmin(this);
 	}
 	
 	public void eliminaCarta(String c) {
@@ -91,7 +90,6 @@ public class Admin implements Serializable{
 	
 	public void eliminaMazzo(String m) {
 		mazzi.remove(m);
-		DBAdmin.salvaAdmin(this);
 	}
 	
 }

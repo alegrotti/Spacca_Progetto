@@ -18,6 +18,10 @@ import model.DBAdmin;
 import model.DBCarte;
 import model.DBGiocatori;
 import model.DBMazzi;
+import model.DBPartite;
+import model.Partita;
+import model.PartitaAPalazzi;
+import model.PartitaATurni;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -172,8 +176,8 @@ public class AdminAreaController {
     @FXML
     void saveNewInfo(ActionEvent event) {
     	
-    	DBAdmin.getAdmin().setPassword(passwordField.getText());
-    	DBAdmin.getAdmin().setUsername(usernameField.getText());
+    	DBAdmin.setPassword(passwordField.getText());
+    	DBAdmin.setUsername(usernameField.getText());
     	
     	inizializzaSchermata();
     	
@@ -188,7 +192,7 @@ public class AdminAreaController {
     		if(!username.equals("")) {
     			Giocatore g = new GiocatoreFisico(username);
     			DBGiocatori.aggiungiGiocatore(g);
-    			DBAdmin.getAdmin().aggiungiGiocatore(g);
+    			DBAdmin.aggiungiGiocatore(g);
     		}
     	}else{
     		String difficolta = selezionaDifficoltaButton.getValue();
@@ -197,14 +201,14 @@ public class AdminAreaController {
 	    		if(!username.equals("")) {
 	    			Giocatore g = new GiocatoreCPUFacile(username);
 	    			DBGiocatori.aggiungiGiocatore(g);
-	    			DBAdmin.getAdmin().aggiungiGiocatore(g);
+	    			DBAdmin.aggiungiGiocatore(g);
 	    		}
     		}else if("Difficile".equals(difficolta)){
     			String username = nuovoGiocatoreField.getText();
 	    		if(!username.equals("")) {
 	    			Giocatore g = new GiocatoreCPUDifficile(username);
 	    			DBGiocatori.aggiungiGiocatore(g);
-	    			DBAdmin.getAdmin().aggiungiGiocatore(g);
+	    			DBAdmin).aggiungiGiocatore(g);
 	    		}
     		}else {
     			
@@ -217,9 +221,7 @@ public class AdminAreaController {
     void eliminaGiocatore(ActionEvent event) {
     	String username = listaGiocatoriButton.getValue();
     	
-    	DBAdmin.getAdmin().eliminaGiocatore(username);
-    	
-    	DBAdmin.salvaAdmin(DBAdmin.getAdmin());
+    	DBAdmin.eliminaGiocatore(username);
     	
     	inizializzaSchermata();
     }
@@ -260,7 +262,7 @@ public class AdminAreaController {
     		if(!nomeMazzo.equals("")) {
     			if(carteMazzo.size()!=0) {
     				Mazzo m = new Mazzo(nomeMazzo,carteMazzo);
-    				DBAdmin.getAdmin().aggiungiMazzo(m);
+    				DBAdmin.aggiungiMazzo(m);
     				DBMazzi.aggiungiMazzo(m);
 	    		}else {
 	    			throw new Exception("Mazzo vuoto");
@@ -280,7 +282,7 @@ public class AdminAreaController {
     	
     	DBMazzi.eliminaMazzo(mazzo);
     	
-    	DBAdmin.getAdmin().eliminaMazzo(mazzo);
+    	DBAdmin.eliminaMazzo(mazzo);
     	
     	inizializzaSchermata();
     }
@@ -448,18 +450,28 @@ public class AdminAreaController {
     
 	@FXML
     void aggiungiPartita(ActionEvent event) {
-		Mazzo m = DBMazzi.getMazzo(scegliMazzoPartitaButton.getValue());
-		ArrayList<String> g = new ArrayList<String>();
-		for(String s : giocatoriAggiunti.keySet())
-			g.add(s);
-		String codice = codicePartitaField.getText();
-		int n = Integer.parseInt(creditiSliderLabel.getText());
-		if(tipoPartitaButton.getValue().equals("A turni")) {
-			
-		}else if(tipoPartitaButton.getValue().equals("A turni")) {
-			
-		}else {
-			
+		try {
+			Mazzo m = DBMazzi.getMazzo(scegliMazzoPartitaButton.getValue());
+			ArrayList<String> g = new ArrayList<String>();
+			for(String s : giocatoriAggiunti.keySet())
+				g.add(s);
+			String codice = codicePartitaField.getText();
+			int n = Integer.parseInt(creditiSliderLabel.getText());
+			if(tipoPartitaButton.getValue().equals("A turni")) {
+				int turni = Integer.parseInt(numeroSliderPartitaLabel.getText());
+				Partita p = new PartitaATurni(m,g,codice,turni,n);
+				DBPartite.aggiungiPartita(p);
+				DBAdmin.aggiungiPartita(p);
+			}else if(tipoPartitaButton.getValue().equals("A palazzi")) {
+				int palazzi = Integer.parseInt(numeroSliderPartitaLabel.getText());
+				Partita p = new PartitaATurni(m,g,codice,palazzi,n);
+				DBPartite.aggiungiPartita(p);
+				DBAdmin.aggiungiPartita(p);
+			}else {
+				throw new Exception();
+			}
+		}catch(Exception e) {
+			Main.messaggioErrore("Errore creazione partita");
 		}
     }
     

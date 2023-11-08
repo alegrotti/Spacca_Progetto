@@ -32,4 +32,15 @@ public class DBPartite {
 		return null;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public static void aggiungiPartita(Partita p) {
+		try {
+			partite = (HashMap<String,Partita>)GestioneFile.caricaDB(DATABASE_PATH);
+			partite.put(p.getCodice(),p);
+			GestioneFile.salvaDB(partite,DATABASE_PATH);
+		} catch (Exception e) {
+			Main.messaggioErrore("Errore aggiunta partita");
+		}
+	}
+	
 }
