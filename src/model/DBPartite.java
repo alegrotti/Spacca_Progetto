@@ -11,6 +11,11 @@ public class DBPartite {
 
 	private static HashMap<String,Partita> partite;
 	
+	public static void aggiornaDB() {
+		partite = new HashMap<String,Partita>();
+		GestioneFile.salvaDB(partite,DATABASE_PATH);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public static Set<String> getPartite(){
 		partite = (HashMap<String,Partita>)GestioneFile.caricaDB(DATABASE_PATH);

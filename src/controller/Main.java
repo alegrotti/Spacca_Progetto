@@ -20,7 +20,7 @@ public class Main extends Application {
 		Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
         Scene scenaHomepage = new Scene(root);
         scenaHomepage.getStylesheets().add("/view/welcome.css");
-        setScene(scenaHomepage,false);
+        setScene(scenaHomepage,false," - Homepage");
         
         //Gestione chiusura finestra
         parentWindow.setOnCloseRequest(event -> {
@@ -38,16 +38,17 @@ public class Main extends Application {
 		launch(args);
 	}
 	
-	public static void setScene (Scene scena, boolean t) {
+	public static void setScene (Scene scena, boolean t, String title) {
 		parentWindow.setScene(scena);
         parentWindow.setResizable(false);
-        parentWindow.setMaximized(t);
-        parentWindow.setTitle("SPACCA");
+        parentWindow.setMaximized(false);
+        parentWindow.setTitle("SPACCA"+title);
+        parentWindow.centerOnScreen();
         Image image = new Image("/immagini/icon.jpg");
         parentWindow.getIcons().add(image);
         parentWindow.show();
 	}
-	
+		
 	public static void messaggioErrore(String s) {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/MessaggioErrore.fxml"));

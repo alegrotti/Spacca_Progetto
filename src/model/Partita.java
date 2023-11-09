@@ -11,13 +11,14 @@ public class Partita implements Serializable{
 	private int turno;
 	private HashSet<String> giocatori;
 	private String codice;
-	
+	private int crediti;
 	
 	public Partita(Mazzo mazzo, HashSet<String> giocatori, String codice, int creditiIniziali) {
 		this.mazzo = mazzo;
 		this.giocatori = giocatori;
 		this.codice = codice;
-		this.setTurno(0);
+		this.turno = 0;
+		this.crediti = creditiIniziali;
 	}
 
 	public Mazzo getMazzo() {
@@ -48,4 +49,7 @@ public class Partita implements Serializable{
 		return giocatori;
 	}
 	
+	public int getCrediti() {
+		return crediti;
+	}
 }

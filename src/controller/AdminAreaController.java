@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
 import model.Giocatore;
@@ -29,6 +28,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -38,7 +39,7 @@ import javafx.scene.control.Slider;
 public class AdminAreaController {
 	
 	private ArrayList<Carta> carteMazzo;
-	private HashMap<String,Giocatore> giocatoriAggiunti;
+	private HashSet<String> giocatoriAggiunti;
 
     @FXML
     private Button aggiungiCartaButton;
@@ -179,6 +180,12 @@ public class AdminAreaController {
     private Label partitaInCorsoTitolo;
     
     @FXML
+    private VBox infoPartita1;
+
+    @FXML
+    private VBox infoPartita2;
+    
+    @FXML
     private Label codiceLabel;
 
     @FXML
@@ -189,12 +196,6 @@ public class AdminAreaController {
 
     @FXML
     private Label giocatoriLabelTitolo;
-    
-    @FXML
-    private VBox infoPartita1;
-
-    @FXML
-    private VBox infoPartita2;
     
     @FXML
     private Label statoPartitaLabel;
@@ -446,10 +447,10 @@ public class AdminAreaController {
     @FXML
     void aggiungiGiocatorePartita(ActionEvent event) {
     	String giocatore = giocatoriDaAggiungere.getValue();
-    	giocatoriAggiunti.put(giocatore,DBGiocatori.getGiocatore(giocatore));
+    	giocatoriAggiunti.add(giocatore);
 
     	ObservableList<String> giocatori2 = FXCollections.observableArrayList();
-    	for(String s : giocatoriAggiunti.keySet())
+    	for(String s : giocatoriAggiunti)
     		giocatori2.add(s);
     	giocatori2.sort(null);
     	giocatoriPartita.setItems(giocatori2);
@@ -481,7 +482,7 @@ public class AdminAreaController {
 			giocatoriAggiunti.remove(giocatore);
 		
 			ObservableList<String> giocatori2 = FXCollections.observableArrayList();
-			for(String s : giocatoriAggiunti.keySet())
+			for(String s : giocatoriAggiunti)
 				giocatori2.add(s);
 			giocatori2.sort(null);
 			giocatoriPartita.setItems(giocatori2);
@@ -497,31 +498,47 @@ public class AdminAreaController {
     void aggiungiPartita(ActionEvent event) {
 		try {
 			Mazzo m = DBMazzi.getMazzo(scegliMazzoPartitaButton.getValue());
-			HashSet<String> g = new HashSet<String>();
-			for(String s : giocatoriAggiunti.keySet())
-				g.add(s);
+			HashSet<String> g = giocatoriAggiunti;
 			String codice = codicePartitaField.getText();
-			int n = Integer.parseInt(creditiSliderLabel.getText());
-			if(tipoPartitaButton.getValue().equals("A turni")) {
-				int turni = Integer.parseInt(numeroSliderPartitaLabel.getText());
-				Partita p = new PartitaATurni(m,g,codice,turni,n);
-				DBPartite.aggiungiPartita(p);
-				DBAdmin.aggiungiPartita(p);
-			}else if(tipoPartitaButton.getValue().equals("A palazzi")) {
-				int palazzi = Integer.parseInt(numeroSliderPartitaLabel.getText());
-				Partita p = new PartitaAPalazzi(m,g,codice,palazzi,n);
-				DBPartite.aggiungiPartita(p);
-				DBAdmin.aggiungiPartita(p);
+			if(!DBAdmin.getAdmin().getPartite().contains(codice)) {
+				int n = Integer.parseInt(creditiSliderLabel.getText());
+				if(tipoPartitaButton.getValue().equals("A turni")) {
+					int turni = Integer.parseInt(numeroSliderPartitaLabel.getText());
+					Partita p = new PartitaATurni(m,g,codice,turni,n);
+					DBPartite.aggiungiPartita(p);
+					DBAdmin.aggiungiPartita(p);
+				}else if(tipoPartitaButton.getValue().equals("A palazzi")) {
+					int palazzi = Integer.parseInt(numeroSliderPartitaLabel.getText());
+					Partita p = new PartitaAPalazzi(m,g,codice,palazzi,n);
+					DBPartite.aggiungiPartita(p);
+					DBAdmin.aggiungiPartita(p);
+				}else {
+					throw new Exception();
+				}
+				inizializzaSchermata();
 			}else {
-				throw new Exception();
+				Main.messaggioErrore("Codice già esistente");
 			}
-			inizializzaSchermata();
 		}catch(Exception e) {
 			Main.messaggioErrore("Errore creazione partita");
 		}
     }
     
 	//Partita in corso
+	
+    @FXML
+    void copiaCodicePartita(ActionEvent event) {
+    	if(codicePartitaInCorso.getValue() != null) {
+    		 String testoDaCopiare = codiceLabel.getText();
+	         Clipboard clipboard = Clipboard.getSystemClipboard();
+	         ClipboardContent content = new ClipboardContent();
+	         content.putString(testoDaCopiare);
+	         clipboard.setContent(content);
+    	 }else {
+    		 Main.messaggioErrore("Seleziona partita");
+    	 }
+    }
+	
     @FXML
     void eliminaPartita(ActionEvent event) {
     	String partita = codicePartitaInCorso.getValue();
@@ -543,23 +560,28 @@ public class AdminAreaController {
     		for(String s : p.getGiocatori())
     			gioc+=(s+"\n");
     		giocatoriLabel.setText(gioc);
-    		
+    		if(p instanceof PartitaAPalazzi) {
+    			PartitaAPalazzi p1 = (PartitaAPalazzi) p;
+    			tipoPartitaLabel.setText("A palazzi - "+p1.getPalazzi()+" palazzi");
+    		}
+    		else {
+    			PartitaATurni p1 = (PartitaATurni) p;
+    			tipoPartitaLabel.setText("A turni - "+p1.getTurni()+" turni");
+    		}
+    		creditiInizialiLabel.setText(p.getCrediti()+" crediti");
+    		int turnoCorrente = p.getTurno();
+    		if (turnoCorrente==0)
+    			statoPartitaLabel.setText("Da iniziare - Turno "+turnoCorrente);
+    		else
+    			statoPartitaLabel.setText("In corso - Turno "+turnoCorrente);
     	}
     }
     
     //Torneo
     
 
-
-
-
-
-
-
-    @FXML
-    void scegliGiocatorePartita(ActionEvent event) {
-
-    }
+    
+    
     
     //Generale e inizializzazione
     @FXML
@@ -568,7 +590,7 @@ public class AdminAreaController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/welcome.css");
-	        Main.setScene(scenaHomepage,false);
+	        Main.setScene(scenaHomepage,false," - Homepage");
     	}catch(Exception e) {
     		
     	}
@@ -578,7 +600,7 @@ public class AdminAreaController {
     void initialize() {
     	
     	carteMazzo = new ArrayList<Carta>();
-    	giocatoriAggiunti = new HashMap<String,Giocatore>();
+    	giocatoriAggiunti = new HashSet<String>();
     	
     	inizializzaSchermata();
     	
@@ -650,7 +672,7 @@ public class AdminAreaController {
     	giocatoriDaAggiungere.setItems(giocatori1);
     	
     	ObservableList<String> giocatori2 = FXCollections.observableArrayList();
-    	for(String s : giocatoriAggiunti.keySet())
+    	for(String s : giocatoriAggiunti)
     		giocatori2.add(s);
     	giocatori2.sort(null);
     	giocatoriPartita.setItems(giocatori2);
@@ -709,6 +731,12 @@ public class AdminAreaController {
     		partite.add(s);
     	partite.sort(null);
     	codicePartitaInCorso.setItems(partite);
+    	
+    	codiceLabel.setText(null);
+        giocatoriLabel.setText(null);
+        statoPartitaLabel.setText(null);
+        creditiInizialiLabel.setText(null);
+        tipoPartitaLabel.setText(null);
     }
     
 }

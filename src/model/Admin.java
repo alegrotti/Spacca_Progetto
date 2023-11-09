@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 
 public class Admin implements Serializable{
 	
@@ -42,23 +41,23 @@ public class Admin implements Serializable{
 		this.password = password;
 	}
 	
-	public Set <String> getPartite(){
+	public HashSet <String> getPartite(){
 		return partite;
 	}
 	
-	public Set <String> getTornei(){
+	public HashSet <String> getTornei(){
 		return tornei;
 	}
 	
-	public Set <String> getGiocatori(){
+	public HashSet <String> getGiocatori(){
 		return giocatori;
 	}
 	
-	public Set <String> getMazzi(){
+	public HashSet <String> getMazzi(){
 		return mazzi;
 	}
 	
-	public Set <String> getCarte(){
+	public HashSet <String> getCarte(){
 		return carte;
 	}
 	

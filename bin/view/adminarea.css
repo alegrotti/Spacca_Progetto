@@ -73,35 +73,32 @@
 #statoPartitaLabel{
 	-fx-background-color: rgb(0, 64, 128, 0.5);
     -fx-font-family: "Georgia";
-    -fx-font-size: 12px;
+    -fx-font-size: 14px;
 }
 
 #creditiInizialiLabel{
 	-fx-background-color: rgb(0, 64, 128, 0.5);
     -fx-font-family: "Georgia";
-    -fx-font-size: 12px;
+    -fx-font-size: 14px;
 }
 
 #codiceLabel{
 	-fx-background-color: rgb(0, 64, 128, 0.5);
     -fx-font-family: "Georgia";
-    -fx-font-size: 12px;
+    -fx-font-size: 14px;
 }
 
 #giocatoriLabel{
 	-fx-background-color: rgb(0, 64, 128, 0.5);
     -fx-font-family: "Georgia";
-    -fx-font-size: 12px;
+    -fx-font-size: 14px;
 }
 
 #tipoPartitaLabel{
 	-fx-background-color: rgb(0, 64, 128, 0.5);
     -fx-font-family: "Georgia";
-    -fx-font-size: 12px;
+    -fx-font-size: 14px;
 }
-
-
-
 
 #infoPartita1{
 	-fx-border-width: 2px;

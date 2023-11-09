@@ -1,11 +1,15 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.layout.Pane;
 import model.Partita;
 
 public class CampoGiocoController {
 	
 	private Partita partita;
+	
+	@FXML
+    private Pane sfondo;
 	
 	public boolean impostaPartita(Partita p) {
 		try {
@@ -18,7 +22,7 @@ public class CampoGiocoController {
 	
     @FXML
     void initialize() {
-    	Main.parentWindow.setTitle(partita.getCodice());
+    	
     }
 
 }
