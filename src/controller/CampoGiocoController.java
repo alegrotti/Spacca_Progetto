@@ -8,9 +8,6 @@ public class CampoGiocoController {
 	
 	private Partita partita;
 	
-	@FXML
-    private Pane sfondo;
-	
 	public boolean impostaPartita(Partita p) {
 		try {
 			partita = p;
