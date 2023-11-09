@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminAreaController">
+<Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="950.0" stylesheets="@adminarea.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminAreaController">
    <children>
       <VBox fx:id="centralBox" alignment="CENTER" layoutX="50.0" layoutY="42.0" prefHeight="550.0" prefWidth="850.0">
          <children>
@@ -334,6 +334,63 @@
                         </VBox>
                      </content>
                   </Tab>
+                  <Tab text="Partite in corso">
+                     <content>
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label fx:id="partitaInCorsoTitolo" text="Partite in corso">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox alignment="CENTER">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <Label text="Codice partita: " />
+                                    <ComboBox fx:id="codicePartitaInCorso" onAction="#mostraPartitaInCorso" prefHeight="26.0" prefWidth="210.0" />
+                                    <Button mnemonicParsing="false" onAction="#eliminaPartita" text="Elimina">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="239.0" prefWidth="850.0">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <VBox fx:id="infoPartita1" alignment="CENTER" layoutX="385.0" layoutY="10.0" prefHeight="164.0" prefWidth="350.0">
+                                       <children>
+                                          <Label fx:id="codiceLabelTitolo" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="350.0" text="Codice" />
+                                          <Label fx:id="codiceLabel" alignment="CENTER" prefHeight="40.0" prefWidth="350.0" />
+                                          <Label fx:id="giocatoriLabelTitolo" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="109.0" prefHeight="30.0" prefWidth="350.0" text="Giocatori" />
+                                          <Label fx:id="giocatoriLabel" alignment="CENTER" layoutX="10.0" layoutY="123.0" prefHeight="158.0" prefWidth="350.0" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox fx:id="infoPartita2" alignment="CENTER" prefHeight="191.0" prefWidth="359.0">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                       <children>
+                                          <Label fx:id="tipoPartitaLabelTitolo" alignment="CENTER" prefHeight="30.0" prefWidth="359.0" text="Tipo partita - obiettivo" />
+                                          <Label fx:id="tipoPartitaLabel" alignment="CENTER" prefHeight="50.0" prefWidth="359.0" />
+                                          <Label fx:id="creditiInizialiLabelTitolo" alignment="CENTER" prefHeight="30.0" prefWidth="361.0" text="Crediti iniziali" />
+                                          <Label fx:id="creditiInizialiLabel" prefHeight="50.0" prefWidth="359.0" />
+                                          <Label fx:id="statoPartitaLabelTitolo" alignment="CENTER" prefHeight="30.0" prefWidth="359.0" text="Stato partita - turno corrente" />
+                                          <Label fx:id="statoPartitaLabel" prefHeight="50.0" prefWidth="359.0" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </content></Tab>
                </tabs>
                <VBox.margin>
                   <Insets />

@@ -1,6 +1,7 @@
 package model;
 
-import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import controller.Main;
 
@@ -9,6 +10,38 @@ public class DBAdmin {
 	public static final String DATABASE_PATH = "log/adminDatabase.dat";
 
 	private static Admin admin;
+	
+	public static void creaAdmin() {
+		try {
+			admin = (Admin)GestioneFile.caricaDB(DATABASE_PATH);
+
+			HashSet<String> carte = new HashSet<String>();
+			for(String s : DBCarte.getCarte())
+				carte.add(s);
+			
+			HashSet<String> mazzi = new HashSet<String>();
+			for(String s : DBMazzi.getMazzi())
+				mazzi.add(s);
+			
+			HashSet<String> partite = new HashSet<String>();
+			for(String s : DBPartite.getPartite())
+				partite.add(s);
+			
+			HashSet<String> giocatori = new HashSet<String>();
+			for(String s : DBGiocatori.getGiocatori())
+				giocatori.add(s);
+			
+			HashSet<String> tornei = new HashSet<String>();
+			for(String s : DBTornei.getTornei())
+				tornei.add(s);
+
+			admin.inizializzaAdmin(carte,mazzi,giocatori,partite,tornei);
+
+			GestioneFile.salvaDB(admin,DATABASE_PATH);
+		}catch(Exception e) {
+			Main.messaggioErrore(e.getMessage());
+		}
+	}
 	
 	public static Admin getAdmin() {
 		try {
@@ -73,7 +106,17 @@ public class DBAdmin {
 			admin.eliminaMazzo(m);
 			GestioneFile.salvaDB(admin,DATABASE_PATH);
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore eliminazione giocatore");
+			Main.messaggioErrore("Errore eliminazione mazzo");
+		}
+	}
+	
+	public static void eliminaPartita(String p) {
+		try {
+			admin = (Admin)GestioneFile.caricaDB(DATABASE_PATH);
+			admin.eliminaPartita(p);
+			GestioneFile.salvaDB(admin,DATABASE_PATH);
+		} catch (Exception e) {
+			Main.messaggioErrore("Errore eliminazione partita");
 		}
 	}
 	
@@ -83,7 +126,7 @@ public class DBAdmin {
 			admin.setPassword(password);
 			GestioneFile.salvaDB(admin,DATABASE_PATH);
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore eliminazione giocatore");
+			Main.messaggioErrore("Errore modifica password");
 		}
 	}
 	
@@ -93,7 +136,27 @@ public class DBAdmin {
 			admin.setUsername(username);
 			GestioneFile.salvaDB(admin,DATABASE_PATH);
 		} catch (Exception e) {
+			Main.messaggioErrore("Errore modifica username");
+		}
+	}
+	
+	public static String getPassword() {
+		try {
+			admin = (Admin)GestioneFile.caricaDB(DATABASE_PATH);
+			return admin.getPassword();
+		} catch (Exception e) {
 			Main.messaggioErrore("Errore eliminazione giocatore");
+			return null;
+		}
+	}
+	
+	public static String getUsername() {
+		try {
+			admin = (Admin)GestioneFile.caricaDB(DATABASE_PATH);
+			return admin.getUsername();
+		} catch (Exception e) {
+			Main.messaggioErrore("Errore eliminazione giocatore");
+			return null;
 		}
 	}
 	

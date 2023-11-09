@@ -1,6 +1,7 @@
 package model;
 
 import java.util.HashMap;
+import java.util.Set;
 
 import controller.Main;
 
@@ -11,6 +12,12 @@ public class DBPartite {
 	private static HashMap<String,Partita> partite;
 	
 	@SuppressWarnings("unchecked")
+	public static Set<String> getPartite(){
+		partite = (HashMap<String,Partita>)GestioneFile.caricaDB(DATABASE_PATH);
+		return partite.keySet();
+	}
+	
+	@SuppressWarnings("unchecked")
 	public static boolean esistePartita(String codice) {
 		try {
 			partite = (HashMap<String,Partita>)GestioneFile.caricaDB(DATABASE_PATH);
@@ -18,7 +25,6 @@ public class DBPartite {
 		} catch (Exception e) {
 			return false;
 		}
-		
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -37,6 +43,17 @@ public class DBPartite {
 		try {
 			partite = (HashMap<String,Partita>)GestioneFile.caricaDB(DATABASE_PATH);
 			partite.put(p.getCodice(),p);
+			GestioneFile.salvaDB(partite,DATABASE_PATH);
+		} catch (Exception e) {
+			Main.messaggioErrore("Errore aggiunta partita");
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static void eliminaPartita(String p) {
+		try {
+			partite = (HashMap<String,Partita>)GestioneFile.caricaDB(DATABASE_PATH);
+			partite.remove(p);
 			GestioneFile.salvaDB(partite,DATABASE_PATH);
 		} catch (Exception e) {
 			Main.messaggioErrore("Errore aggiunta partita");

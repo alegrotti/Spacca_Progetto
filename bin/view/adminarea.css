@@ -40,6 +40,80 @@
     -fx-background-color: rgb(209, 155, 0);
 }
 
+#codiceLabelTitolo{
+    -fx-background-color: rgb(209, 155, 0, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#giocatoriLabelTitolo{
+    -fx-background-color: rgb(209, 155, 0, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#tipoPartitaLabelTitolo{
+    -fx-background-color: rgb(209, 155, 0, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#creditiInizialiLabelTitolo{
+    -fx-background-color: rgb(209, 155, 0, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#statoPartitaLabelTitolo{
+    -fx-background-color: rgb(209, 155, 0, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#statoPartitaLabel{
+	-fx-background-color: rgb(0, 64, 128, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#creditiInizialiLabel{
+	-fx-background-color: rgb(0, 64, 128, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#codiceLabel{
+	-fx-background-color: rgb(0, 64, 128, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#giocatoriLabel{
+	-fx-background-color: rgb(0, 64, 128, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#tipoPartitaLabel{
+	-fx-background-color: rgb(0, 64, 128, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+
+
+
+#infoPartita1{
+	-fx-border-width: 2px;
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-text-fill: rgb(0, 64, 128);	
+}
+
+#infoPartita2{
+	-fx-border-width: 2px;
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-text-fill: rgb(0, 64, 128);	
+}
 
 #infoCartaDelMazzo{
 	-fx-background-color: rgba(255, 255, 255, 0.7);
@@ -85,6 +159,13 @@
 	-fx-border-width: 2px;
     -fx-border-color: rgb(0, 0, 0);
     -fx-font-family: "Georgia";
+}
+
+#partitaInCorsoTitolo{
+    -fx-color: rgb(0, 64, 128);
+    -fx-font: 25px "Felix Titling", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
 }
 
 #centralBox {
@@ -189,7 +270,9 @@
     -fx-font-size: 12px;
 }
 
-\\da riguardare tutto
+/*
+ * da riguardare tutto
+*/
 
 .table-view{
 	-fx-border-width: 2px;

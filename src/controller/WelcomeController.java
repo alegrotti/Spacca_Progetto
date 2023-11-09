@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import model.DBAdmin;
+import model.DBTornei;
 
 public class WelcomeController {
 	
@@ -48,6 +50,7 @@ public class WelcomeController {
 
     @FXML
     void closeProgram(ActionEvent event) {
+    	DBAdmin.salvaAdmin(DBAdmin.getAdmin());
     	Platform.exit();
     }
 
@@ -135,6 +138,11 @@ public class WelcomeController {
     	}catch(Exception e) {
     		Main.messaggioErrore("Errore apertura finestra");
     	}
+    }
+    
+    @FXML
+    void initialize() {
+    	DBAdmin.creaAdmin();
     }
     
 }

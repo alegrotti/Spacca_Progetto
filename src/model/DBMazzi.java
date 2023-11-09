@@ -1,6 +1,7 @@
 package model;
 
 import java.util.HashMap;
+import java.util.Set;
 
 import controller.Main;
 
@@ -9,6 +10,12 @@ public class DBMazzi {
 	public static final String DATABASE_PATH = "log/mazziDatabase.dat";
 
 	private static HashMap<String,Mazzo> mazzi;
+	
+	@SuppressWarnings("unchecked")
+	public static Set<String> getMazzi(){
+		mazzi = (HashMap<String,Mazzo>)GestioneFile.caricaDB(DATABASE_PATH);
+		return mazzi.keySet();
+	}
 	
 	@SuppressWarnings("unchecked")
 	public static Mazzo getMazzo(String mazzo) {

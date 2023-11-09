@@ -39,8 +39,8 @@ public class AdminLoginController {
     @FXML
     void checkLogin(ActionEvent event) {
     	try {
-	    	if(usernameButton.getText().equals(DBAdmin.getAdmin().getUsername()))
-	    		if(passwordButton.getText().equals(DBAdmin.getAdmin().getPassword())) {
+	    	if(usernameButton.getText().equals(DBAdmin.getUsername()))
+	    		if(passwordButton.getText().equals(DBAdmin.getPassword())) {
 	    			try {
 	    		    	Parent root = FXMLLoader.load(getClass().getResource("/view/AdminArea.fxml"));
 	    		        Scene scenaHomepage = new Scene(root);
@@ -49,12 +49,10 @@ public class AdminLoginController {
 	    	    	}catch(Exception e) {	
 	    	    		throw new Exception("Errore apertura finestra");
 	    	    	}
-	    		}else {
+	    		}else
 	    			throw new Exception("Password errata");
-	    		}
-	    	else{
+	    	else
 	    		throw new Exception("Username errato");
-			}
     	}
 	    catch(Exception e) {
 	    	Main.messaggioErrore(e.getMessage());

@@ -1,8 +1,8 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Admin implements Serializable{
 	
@@ -10,20 +10,20 @@ public class Admin implements Serializable{
 	
 	private String password;
 	private String username;
-	private List <String> mazzi;
-	private List <String> carte;
-	private List <String> giocatori;
-	private List <String> partite;
-	private List <String> tornei;
+	private HashSet <String> mazzi;
+	private HashSet <String> carte;
+	private HashSet <String> giocatori;
+	private HashSet <String> partite;
+	private HashSet <String> tornei;
 	
 	public Admin(String username,String password) {
 		this.password = password;
 		this.username = username;
-		this.giocatori = new ArrayList <String>();
-		this.mazzi = new ArrayList <String>();
-		this.carte = new ArrayList <String>();
-		this.partite = new ArrayList <String>();
-		this.tornei = new ArrayList <String>();
+		this.giocatori = new HashSet <String>();
+		this.mazzi = new HashSet <String>();
+		this.carte = new HashSet <String>();
+		this.partite = new HashSet <String>();
+		this.tornei = new HashSet <String>();
 	}
 	
 	public String getUsername() {
@@ -42,23 +42,23 @@ public class Admin implements Serializable{
 		this.password = password;
 	}
 	
-	public List <String> getPartite(){
+	public Set <String> getPartite(){
 		return partite;
 	}
 	
-	public List <String> getTornei(){
+	public Set <String> getTornei(){
 		return tornei;
 	}
 	
-	public List <String> getGiocatori(){
+	public Set <String> getGiocatori(){
 		return giocatori;
 	}
 	
-	public List <String> getMazzi(){
+	public Set <String> getMazzi(){
 		return mazzi;
 	}
 	
-	public List <String> getCarte(){
+	public Set <String> getCarte(){
 		return carte;
 	}
 	
@@ -76,7 +76,7 @@ public class Admin implements Serializable{
 	}
 	
 	public void aggiungiPartita(Partita p) {
-		mazzi.add(p.getCodice());
+		partite.add(p.getCodice());
 	}
 	
 	public void eliminaGiocatore(String g) {
@@ -92,4 +92,16 @@ public class Admin implements Serializable{
 		mazzi.remove(m);
 	}
 	
+	public void eliminaPartita(String p) {
+		partite.remove(p);
+	}
+	
+	public void inizializzaAdmin(HashSet<String> carte,HashSet<String> mazzi, HashSet<String> giocatori, HashSet<String> partite, HashSet<String> tornei){
+		this.giocatori = giocatori;
+		this.mazzi = mazzi;
+		this.carte = carte;
+		this.partite = partite;
+		this.tornei = tornei;
+	}
+
 }

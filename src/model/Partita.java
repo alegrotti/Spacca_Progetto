@@ -1,8 +1,7 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 
 public class Partita implements Serializable{
 	
@@ -10,18 +9,15 @@ public class Partita implements Serializable{
 
 	private Mazzo mazzo;
 	private int turno;
-	private int nTurni;
-	private ArrayList<String> giocatori;
+	private HashSet<String> giocatori;
 	private String codice;
 	
 	
-	public Partita(Mazzo mazzo, ArrayList<String> giocatori, String codice, int nTurni, int creditiIniziali) {
+	public Partita(Mazzo mazzo, HashSet<String> giocatori, String codice, int creditiIniziali) {
 		this.mazzo = mazzo;
 		this.giocatori = giocatori;
 		this.codice = codice;
 		this.setTurno(0);
-		this.nTurni = nTurni;
-		
 	}
 
 	public Mazzo getMazzo() {
@@ -46,6 +42,10 @@ public class Partita implements Serializable{
 
 	public void setCodice(String codice) {
 		this.codice = codice;
+	}
+
+	public HashSet<String> getGiocatori() {
+		return giocatori;
 	}
 	
 }
