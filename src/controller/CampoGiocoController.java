@@ -1,11 +1,11 @@
 package controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.layout.Pane;
 import model.Partita;
 
 public class CampoGiocoController {
 	
+	@SuppressWarnings("unused")
 	private Partita partita;
 	
 	public boolean impostaPartita(Partita p) {
