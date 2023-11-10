@@ -26,6 +26,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.Clipboard;
@@ -76,9 +77,6 @@ public class AdminAreaController {
 
     @FXML
     private ComboBox<String> giocatoriDaAggiungere;
-
-    @FXML
-    private ComboBox<String> giocatoriPartita;
 
     @FXML
     private HBox hBoxDifficolta;
@@ -214,6 +212,9 @@ public class AdminAreaController {
 
     @FXML
     private Label tipoPartitaLabelTitolo;
+    
+    @FXML
+    private ListView<String> listaGiocatoriPartita;
     
     
     //Admin
@@ -453,7 +454,7 @@ public class AdminAreaController {
     	for(String s : giocatoriAggiunti)
     		giocatori2.add(s);
     	giocatori2.sort(null);
-    	giocatoriPartita.setItems(giocatori2);
+    	listaGiocatoriPartita.setItems(giocatori2);
     	
     	giocatoriDaAggiungere.setValue(null);
     }
@@ -476,7 +477,7 @@ public class AdminAreaController {
     @FXML
     void eliminaGiocatoreNuovaPartita(ActionEvent event) {
     	try {
-			String giocatore = giocatoriPartita.getValue();
+			String giocatore = listaGiocatoriPartita.getSelectionModel().getSelectedItem();
 			if(giocatore.equalsIgnoreCase(""))
 				throw new Exception("Nessun giocatore selezionato");
 			giocatoriAggiunti.remove(giocatore);
@@ -485,9 +486,8 @@ public class AdminAreaController {
 			for(String s : giocatoriAggiunti)
 				giocatori2.add(s);
 			giocatori2.sort(null);
-			giocatoriPartita.setItems(giocatori2);
+			listaGiocatoriPartita.setItems(giocatori2);
 			
-			giocatoriPartita.setValue(null);
 			giocatoriDaAggiungere.setValue(null);
     	}catch(Exception e) {
     		Main.messaggioErrore(e.getMessage());
@@ -652,7 +652,6 @@ public class AdminAreaController {
     private void inizializzaNuovaPartita() {
     	tipoPartitaButton.setValue(null);
     	scegliMazzoPartitaButton.setValue(null);
-    	giocatoriPartita.setValue(null);
     	giocatoriDaAggiungere.setValue(null);
     	codicePartitaField.setText(null);
     	
@@ -675,7 +674,7 @@ public class AdminAreaController {
     	for(String s : giocatoriAggiunti)
     		giocatori2.add(s);
     	giocatori2.sort(null);
-    	giocatoriPartita.setItems(giocatori2);
+    	listaGiocatoriPartita.setItems(giocatori2);
     	
     	hBoxSliderPartita.setVisible(false);
     	
