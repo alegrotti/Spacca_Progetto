@@ -7,7 +7,7 @@ import controller.Main;
 
 public class DBCarte {
 
-	public static final String DATABASE_PATH = "log/carteDatabase.dat";
+	public static final String DATABASE_PATH = "src/log/carteDatabase.dat";
 
 	private static HashMap<String,Carta> carte;
 	

@@ -6,7 +6,7 @@ import controller.Main;
 
 public class DBAdmin {
 	
-	public static final String DATABASE_PATH = "log/adminDatabase.dat";
+	public static final String DATABASE_PATH = "src/log/adminDatabase.dat";
 
 	private static Admin admin;
 	

@@ -7,7 +7,7 @@ import controller.Main;
 
 public class DBTornei {
 
-	public static final String DATABASE_PATH = "log/torneiDatabase.dat";
+	public static final String DATABASE_PATH = "src/log/torneiDatabase.dat";
 
 	private static HashMap<String,Torneo> tornei;
 	
