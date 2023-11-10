@@ -7,7 +7,7 @@ import controller.Main;
 
 public class DBGiocatori {
 
-	public static final String DATABASE_PATH = "src/log/giocatoriDatabase.dat";
+	public static final String DATABASE_PATH = "log/giocatoriDatabase.dat";
 
 	private static HashMap<String,Giocatore> giocatori;
 	

@@ -1,12 +1,11 @@
 package model;
 
 import java.util.HashSet;
-
 import controller.Main;
 
 public class DBAdmin {
 	
-	public static final String DATABASE_PATH = "src/log/adminDatabase.dat";
+	public static final String DATABASE_PATH = "log/adminDatabase.dat";
 
 	private static Admin admin;
 	
@@ -38,7 +37,7 @@ public class DBAdmin {
 
 			GestioneFile.salvaDB(admin,DATABASE_PATH);
 		}catch(Exception e) {
-			Main.messaggioErrore(e.getMessage());
+			Main.messaggioErrore("Errore caricamento admin");
 		}
 	}
 	

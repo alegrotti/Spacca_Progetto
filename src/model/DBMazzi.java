@@ -7,7 +7,7 @@ import controller.Main;
 
 public class DBMazzi {
 
-	public static final String DATABASE_PATH = "src/log/mazziDatabase.dat";
+	public static final String DATABASE_PATH = "log/mazziDatabase.dat";
 
 	private static HashMap<String,Mazzo> mazzi;
 	

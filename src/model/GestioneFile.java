@@ -11,10 +11,14 @@ import java.io.ObjectOutputStream;
 public class GestioneFile {
 
 	public static Object caricaDB (String DATABASE_PATH) {
+		
 		try {
 			FileInputStream f = new FileInputStream(DATABASE_PATH);
+			System.out.println(DATABASE_PATH+" creato");
 			ObjectInputStream inputStream =	new ObjectInputStream(f);
+			System.out.println(DATABASE_PATH+" aperto");
 			Object database = (Object)inputStream.readObject();
+			System.out.println(DATABASE_PATH+" letto");
 			inputStream.close();
 			return database;
 		} catch(EOFException e) {
@@ -23,7 +27,8 @@ public class GestioneFile {
 			System.out.println("Il file "+DATABASE_PATH+" non esiste!");			
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
+		} catch 
+		(ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		return null;

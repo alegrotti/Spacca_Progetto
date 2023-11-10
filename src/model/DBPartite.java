@@ -7,7 +7,7 @@ import controller.Main;
 
 public class DBPartite {
 
-	public static final String DATABASE_PATH = "src/log/partiteDatabase.dat";
+	public static final String DATABASE_PATH = "log/partiteDatabase.dat";
 
 	private static HashMap<String,Partita> partite;
 	
