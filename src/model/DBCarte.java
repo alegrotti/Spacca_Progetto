@@ -10,6 +10,11 @@ public class DBCarte {
 
 	private static HashMap<String,Carta> carte;
 	
+	public static void aggiornaDB() {
+		carte = new HashMap<String,Carta>();
+		GestioneFile.salvaDB(carte,DATABASE_PATH);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public static Set<String> getCarte(){
 		carte = (HashMap<String,Carta>)GestioneFile.caricaDB(DATABASE_PATH);

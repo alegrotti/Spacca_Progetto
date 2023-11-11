@@ -14,11 +14,8 @@ public class GestioneFile {
 		
 		try {
 			FileInputStream f = new FileInputStream(DATABASE_PATH);
-			System.out.println(DATABASE_PATH+" creato");
 			ObjectInputStream inputStream =	new ObjectInputStream(f);
-			System.out.println(DATABASE_PATH+" aperto");
 			Object database = (Object)inputStream.readObject();
-			System.out.println(DATABASE_PATH+" letto");
 			inputStream.close();
 			return database;
 		} catch(EOFException e) {

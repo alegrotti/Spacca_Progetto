@@ -11,6 +11,11 @@ public class DBTornei {
 
 	private static HashMap<String,Torneo> tornei;
 	
+	public static void aggiornaDB() {
+		tornei = new HashMap<String,Torneo>();
+		GestioneFile.salvaDB(tornei,DATABASE_PATH);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public static Set<String> getTornei(){
 		tornei = (HashMap<String,Torneo>)GestioneFile.caricaDB(DATABASE_PATH);

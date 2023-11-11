@@ -11,6 +11,11 @@ public class DBGiocatori {
 
 	private static HashMap<String,Giocatore> giocatori;
 	
+	public static void aggiornaDB() {
+		giocatori = new HashMap<String,Giocatore>();
+		GestioneFile.salvaDB(giocatori,DATABASE_PATH);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public static Set<String> getGiocatori(){
 		giocatori = (HashMap<String,Giocatore>)GestioneFile.caricaDB(DATABASE_PATH);

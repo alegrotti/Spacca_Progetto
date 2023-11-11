@@ -498,18 +498,17 @@ public class AdminAreaController {
     void aggiungiPartita(ActionEvent event) {
 		try {
 			Mazzo m = DBMazzi.getMazzo(scegliMazzoPartitaButton.getValue());
-			HashSet<String> g = giocatoriAggiunti;
 			String codice = codicePartitaField.getText();
 			if(!DBAdmin.getAdmin().getPartite().contains(codice)) {
 				int n = Integer.parseInt(creditiSliderLabel.getText());
 				if(tipoPartitaButton.getValue().equals("A turni")) {
 					int turni = Integer.parseInt(numeroSliderPartitaLabel.getText());
-					Partita p = new PartitaATurni(m,g,codice,turni,n);
+					Partita p = new PartitaATurni(m,giocatoriAggiunti,codice,turni,n);
 					DBPartite.aggiungiPartita(p);
 					DBAdmin.aggiungiPartita(p);
 				}else if(tipoPartitaButton.getValue().equals("A palazzi")) {
 					int palazzi = Integer.parseInt(numeroSliderPartitaLabel.getText());
-					Partita p = new PartitaAPalazzi(m,g,codice,palazzi,n);
+					Partita p = new PartitaAPalazzi(m,giocatoriAggiunti,codice,palazzi,n);
 					DBPartite.aggiungiPartita(p);
 					DBAdmin.aggiungiPartita(p);
 				}else {
@@ -568,7 +567,7 @@ public class AdminAreaController {
     			PartitaATurni p1 = (PartitaATurni) p;
     			tipoPartitaLabel.setText("A turni - "+p1.getTurni()+" turni");
     		}
-    		creditiInizialiLabel.setText(p.getCrediti()+" crediti");
+    		creditiInizialiLabel.setText(p.getCreditiIniziali()+" crediti");
     		int turnoCorrente = p.getTurno();
     		if (turnoCorrente==0)
     			statoPartitaLabel.setText("Da iniziare - Turno "+turnoCorrente);

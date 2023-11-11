@@ -11,6 +11,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import model.DBAdmin;
+import model.DBCarte;
+import model.DBGiocatori;
+import model.DBMazzi;
+import model.DBPartite;
+import model.DBTornei;
 
 public class WelcomeController {
 	
@@ -141,6 +146,14 @@ public class WelcomeController {
     
     @FXML
     void initialize() {
+    	
+    	//DBAdmin.aggiornaDB();
+    	//DBCarte.aggiornaDB();
+    	//DBGiocatori.aggiornaDB();
+    	//DBMazzi.aggiornaDB();
+    	//DBPartite.aggiornaDB();
+    	//DBTornei.aggiornaDB();
+    	
     	DBAdmin.creaAdmin();
     }
     

@@ -9,6 +9,11 @@ public class DBAdmin {
 
 	private static Admin admin;
 	
+	public static void aggiornaDB() {
+		admin = new Admin("","");
+		GestioneFile.salvaDB(admin,DATABASE_PATH);
+	}
+	
 	public static void creaAdmin() {
 		try {
 			admin = (Admin)GestioneFile.caricaDB(DATABASE_PATH);

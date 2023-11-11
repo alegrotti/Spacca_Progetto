@@ -11,6 +11,11 @@ public class DBMazzi {
 
 	private static HashMap<String,Mazzo> mazzi;
 	
+	public static void aggiornaDB() {
+		mazzi = new HashMap<String,Mazzo>();
+		GestioneFile.salvaDB(mazzi,DATABASE_PATH);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public static Set<String> getMazzi(){
 		mazzi = (HashMap<String,Mazzo>)GestioneFile.caricaDB(DATABASE_PATH);

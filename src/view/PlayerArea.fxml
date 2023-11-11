@@ -33,7 +33,7 @@
                                  <columns>
                                     <TableColumn maxWidth="200.0" prefWidth="200.0" resizable="false" text="Codice partita" />
                                     <TableColumn minWidth="0.0" prefWidth="200.0" resizable="false" text="Punti" />
-                                    <TableColumn prefWidth="150.0" resizable="false" text="Numero palazzi" />
+                                    <TableColumn prefWidth="150.0" resizable="false" text="Posizione in classifica" />
                                     <TableColumn prefWidth="150.0" resizable="false" text="Crediti iniziali" />
                                     <TableColumn prefWidth="150.0" resizable="false" text="Crediti finali" />
                                  </columns>
