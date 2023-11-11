@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.DBAdmin;
 
 public class Main extends Application {
 	
@@ -35,6 +36,17 @@ public class Main extends Application {
 	}
 	
 	public static void main (String[] args) {
+		
+		/*
+    	DBAdmin.aggiornaDB();
+    	DBCarte.aggiornaDB();
+    	DBGiocatori.aggiornaDB();
+    	DBMazzi.aggiornaDB();
+    	DBPartite.aggiornaDB();
+    	DBTornei.aggiornaDB();
+    	*/
+		
+    	DBAdmin.creaAdmin();
 		launch(args);
 	}
 	

@@ -144,17 +144,4 @@ public class WelcomeController {
     	}
     }
     
-    @FXML
-    void initialize() {
-    	
-    	//DBAdmin.aggiornaDB();
-    	//DBCarte.aggiornaDB();
-    	//DBGiocatori.aggiornaDB();
-    	//DBMazzi.aggiornaDB();
-    	//DBPartite.aggiornaDB();
-    	//DBTornei.aggiornaDB();
-    	
-    	DBAdmin.creaAdmin();
-    }
-    
 }
