@@ -16,7 +16,6 @@ public class Partita implements Serializable{
 	private int creditiIniziali;
 	private HashMap<String, City> cittadine;
 	private HashMap<String, Integer> crediti;
-	private ArrayList<String> carteTavolo;
 	
 	public Partita(Mazzo mazzo, HashSet<String> giocatori, String codice, int creditiIniziali) {
 		this.mazzo = mazzo;
@@ -25,7 +24,6 @@ public class Partita implements Serializable{
 		this.turno = 0;
 		this.creditiIniziali = creditiIniziali;
 		this.crediti = creaCreditiIniziali(giocatori,creditiIniziali);
-		carteTavolo = new ArrayList<String>();
 		System.out.println("y");
 	}
 
@@ -67,10 +65,6 @@ public class Partita implements Serializable{
 	
 	public int getCrediti(String s) {
 		return crediti.get(s);
-	}
-
-	public ArrayList<String> getCarteTavolo() {
-		return carteTavolo;
 	}
 
 	public City getCittadina(String c) {
