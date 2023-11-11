@@ -10,14 +10,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import model.Admin;
 import model.DBAdmin;
+import model.DBCarte;
+import model.DBGiocatori;
+import model.DBMazzi;
+import model.DBPartite;
+import model.DBTornei;
 
 public class WelcomeController {
 	
-	public static Admin admin;
-	
-    @FXML
+	@FXML
     private Button adminLogin;
 
     @FXML
@@ -52,8 +54,8 @@ public class WelcomeController {
 
     @FXML
     void closeProgram(ActionEvent event) {
+    	DBAdmin.salvaAdmin(DBAdmin.getAdmin());
     	Platform.exit();
-    	DBAdmin.salvaAdmin(admin);
     }
 
     @FXML
@@ -62,7 +64,7 @@ public class WelcomeController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/AdminLogin.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/adminlogin.css");
-	        Main.setScene(scenaHomepage,false);
+	        Main.setScene(scenaHomepage,false," - Area admin login");
     	}catch(Exception e) {
     		Main.messaggioErrore("Errore apertura finestra");
     	}
@@ -74,7 +76,7 @@ public class WelcomeController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/PlayerArea.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/playerarea.css");
-	        Main.setScene(scenaHomepage,false);
+	        Main.setScene(scenaHomepage,false," - Player area");
     	}catch(Exception e) {
     		Main.messaggioErrore("Errore apertura finestra");
     	}
@@ -86,7 +88,7 @@ public class WelcomeController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Rules.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/rules.css");
-	        Main.setScene(scenaHomepage,false);
+	        Main.setScene(scenaHomepage,false," - Regole e catalogo carte");
     	}catch(Exception e) {
     		Main.messaggioErrore("Errore apertura finestra");
     	}
@@ -98,7 +100,7 @@ public class WelcomeController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Setting.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/setting.css");
-	        Main.setScene(scenaHomepage,false);
+	        Main.setScene(scenaHomepage,false," - Impostazioni");
     	}catch(Exception e) {
     		Main.messaggioErrore("Errore apertura finestra");
     	}
@@ -110,7 +112,7 @@ public class WelcomeController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Standing.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/standing.css");
-	        Main.setScene(scenaHomepage,false);
+	        Main.setScene(scenaHomepage,false," - Storico partite");
     	}catch(Exception e) {
     		Main.messaggioErrore("Errore apertura finestra");
     	}
@@ -123,7 +125,7 @@ public class WelcomeController {
     		Parent root = FXMLLoader.load(getClass().getResource("/view/LoginPartita.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/loginpartita.css");
-	        Main.setScene(scenaHomepage,false);
+	        Main.setScene(scenaHomepage,false," - Login partita");
     	}catch(Exception e) {
     		Main.messaggioErrore("Errore apertura finestra");
     	}
@@ -136,19 +138,23 @@ public class WelcomeController {
     		Parent root = FXMLLoader.load(getClass().getResource("/view/LoginTorneo.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/logintorneo.css");
-	        Main.setScene(scenaHomepage,false);
+	        Main.setScene(scenaHomepage,false," - Login tournament");
     	}catch(Exception e) {
     		Main.messaggioErrore("Errore apertura finestra");
     	}
     }
     
     @FXML
-    void initialize(){
+    void initialize() {
     	
-    	Admin a = DBAdmin.getAdmin();
+    	//DBAdmin.aggiornaDB();
+    	//DBCarte.aggiornaDB();
+    	//DBGiocatori.aggiornaDB();
+    	//DBMazzi.aggiornaDB();
+    	//DBPartite.aggiornaDB();
+    	//DBTornei.aggiornaDB();
     	
-    	admin = a;
-
+    	DBAdmin.creaAdmin();
     }
-
+    
 }

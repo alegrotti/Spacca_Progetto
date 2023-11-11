@@ -1,6 +1,7 @@
 package model;
 
 import java.util.HashMap;
+import java.util.Set;
 
 import controller.Main;
 
@@ -9,6 +10,17 @@ public class DBGiocatori {
 	public static final String DATABASE_PATH = "log/giocatoriDatabase.dat";
 
 	private static HashMap<String,Giocatore> giocatori;
+	
+	public static void aggiornaDB() {
+		giocatori = new HashMap<String,Giocatore>();
+		GestioneFile.salvaDB(giocatori,DATABASE_PATH);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static Set<String> getGiocatori(){
+		giocatori = (HashMap<String,Giocatore>)GestioneFile.caricaDB(DATABASE_PATH);
+		return giocatori.keySet();
+	}
 	
 	@SuppressWarnings("unchecked")
 	public static Giocatore getGiocatore(String username) {

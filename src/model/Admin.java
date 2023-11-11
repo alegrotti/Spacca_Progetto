@@ -1,8 +1,7 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 
 public class Admin implements Serializable{
 	
@@ -10,20 +9,20 @@ public class Admin implements Serializable{
 	
 	private String password;
 	private String username;
-	private List <String> mazzi;
-	private List <String> carte;
-	private List <String> giocatori;
-	private List <String> partite;
-	private List <String> tornei;
+	private HashSet <String> mazzi;
+	private HashSet <String> carte;
+	private HashSet <String> giocatori;
+	private HashSet <String> partite;
+	private HashSet <String> tornei;
 	
 	public Admin(String username,String password) {
 		this.password = password;
 		this.username = username;
-		this.giocatori = new ArrayList <String>();
-		this.mazzi = new ArrayList <String>();
-		this.carte = new ArrayList <String>();
-		this.partite = new ArrayList <String>();
-		this.tornei = new ArrayList <String>();
+		this.giocatori = new HashSet <String>();
+		this.mazzi = new HashSet <String>();
+		this.carte = new HashSet <String>();
+		this.partite = new HashSet <String>();
+		this.tornei = new HashSet <String>();
 	}
 	
 	public String getUsername() {
@@ -36,37 +35,34 @@ public class Admin implements Serializable{
 	
 	public void setUsername(String username) {
 		this.username = username;
-		DBAdmin.salvaAdmin(this);
 	}
 	
 	public void setPassword(String password) {
 		this.password = password;
-		DBAdmin.salvaAdmin(this);
 	}
 	
-	public List <String> getPartite(){
+	public HashSet <String> getPartite(){
 		return partite;
 	}
 	
-	public List <String> getTornei(){
+	public HashSet <String> getTornei(){
 		return tornei;
 	}
 	
-	public List <String> getGiocatori(){
+	public HashSet <String> getGiocatori(){
 		return giocatori;
 	}
 	
-	public List <String> getMazzi(){
+	public HashSet <String> getMazzi(){
 		return mazzi;
 	}
 	
-	public List <String> getCarte(){
+	public HashSet <String> getCarte(){
 		return carte;
 	}
 	
 	public void aggiungiGiocatore(Giocatore g) {
 		giocatori.add(g.getUsername());
-		DBAdmin.salvaAdmin(this);
 	}
 	
 	public void aggiungiCarta(Carta c) {
@@ -76,12 +72,14 @@ public class Admin implements Serializable{
 	
 	public void aggiungiMazzo(Mazzo m) {
 		mazzi.add(m.getNome());
-		DBAdmin.salvaAdmin(this);
+	}
+	
+	public void aggiungiPartita(Partita p) {
+		partite.add(p.getCodice());
 	}
 	
 	public void eliminaGiocatore(String g) {
 		giocatori.remove(g);
-		DBAdmin.salvaAdmin(this);
 	}
 	
 	public void eliminaCarta(String c) {
@@ -91,7 +89,18 @@ public class Admin implements Serializable{
 	
 	public void eliminaMazzo(String m) {
 		mazzi.remove(m);
-		DBAdmin.salvaAdmin(this);
 	}
 	
+	public void eliminaPartita(String p) {
+		partite.remove(p);
+	}
+	
+	public void inizializzaAdmin(HashSet<String> carte,HashSet<String> mazzi, HashSet<String> giocatori, HashSet<String> partite, HashSet<String> tornei){
+		this.giocatori = giocatori;
+		this.mazzi = mazzi;
+		this.carte = carte;
+		this.partite = partite;
+		this.tornei = tornei;
+	}
+
 }

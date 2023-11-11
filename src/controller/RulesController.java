@@ -18,6 +18,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.Carta;
+import model.DBAdmin;
 import model.DBCarte;
 
 public class RulesController {
@@ -79,33 +80,17 @@ public class RulesController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/welcome.css");
-	        Main.setScene(scenaHomepage,false);
+	        Main.setScene(scenaHomepage,false," - Homepage");
     	}catch(Exception e) {
     		
     	}
     }
     
-    /*
-    "Casa Familiare",
-    "Negozio di Abbigliamento",
-    "Scuola Elementare",
-    "Parco Giochi",
-    "Centro Commerciale",
-    "Teatro Municipale",
-    "Ospedale Cittadino",
-    "Piazza del Mercato",
-    "Università",
-    "Complesso Residenziale",
-    "Biblioteca Comunale",
-    "Parchi Urbani",
-    "Museo d'Arte"
-     */
-    
     @FXML
     void initialize() {
     	
     	ObservableList<String> carteCreate = FXCollections.observableArrayList();
-    	for(String s : WelcomeController.admin.getCarte())
+    	for(String s : DBAdmin.getAdmin().getCarte())
     		carteCreate.add(s);
     	carteCreate.sort(null);
     	listaCarte.setItems(carteCreate);   

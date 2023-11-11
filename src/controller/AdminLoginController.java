@@ -11,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import model.DBAdmin;
 
 public class AdminLoginController {
 
@@ -38,22 +39,20 @@ public class AdminLoginController {
     @FXML
     void checkLogin(ActionEvent event) {
     	try {
-	    	if(usernameButton.getText().equals(WelcomeController.admin.getUsername()))
-	    		if(passwordButton.getText().equals(WelcomeController.admin.getPassword())) {
+	    	if(usernameButton.getText().equals(DBAdmin.getUsername()))
+	    		if(passwordButton.getText().equals(DBAdmin.getPassword())) {
 	    			try {
 	    		    	Parent root = FXMLLoader.load(getClass().getResource("/view/AdminArea.fxml"));
 	    		        Scene scenaHomepage = new Scene(root);
 	    		        scenaHomepage.getStylesheets().add("/view/adminarea.css");
-	    		        Main.setScene(scenaHomepage,false);
+	    		        Main.setScene(scenaHomepage,false," - Area admin");
 	    	    	}catch(Exception e) {	
 	    	    		throw new Exception("Errore apertura finestra");
 	    	    	}
-	    		}else {
+	    		}else
 	    			throw new Exception("Password errata");
-	    		}
-	    	else{
+	    	else
 	    		throw new Exception("Username errato");
-			}
     	}
 	    catch(Exception e) {
 	    	Main.messaggioErrore(e.getMessage());
@@ -67,7 +66,7 @@ public class AdminLoginController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/welcome.css");
-	        Main.setScene(scenaHomepage,false);
+	        Main.setScene(scenaHomepage,false," - Homepage");
     	}catch(Exception e) {
     		
     	}
@@ -75,8 +74,8 @@ public class AdminLoginController {
 
     @FXML
     void initialize() {
-    	usernameButton.setText(WelcomeController.admin.getUsername());
-    	passwordButton.setText(WelcomeController.admin.getPassword());
+    	usernameButton.setText(DBAdmin.getAdmin().getUsername());
+    	passwordButton.setText(DBAdmin.getAdmin().getPassword());
     }
 
 }

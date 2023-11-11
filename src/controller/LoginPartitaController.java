@@ -38,11 +38,12 @@ public class LoginPartitaController {
     		    	FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/CampoGioco.fxml"));
     				Parent root = loader.load();
     				CampoGiocoController controller = loader.getController();
-    				if(controller.impostaPartita(DBPartite.getPartita(codice)))
+    				if(!controller.impostaPartita(DBPartite.getPartita(codice))) {
     					throw new IllegalArgumentException("Errore caricamento partita");
+    				}
     				Scene scenaHomepage = new Scene(root);
     		        scenaHomepage.getStylesheets().add("/view/campogioco.css");
-    		        Main.setScene(scenaHomepage,false);
+    		        Main.setScene(scenaHomepage,false,(" - Game "+codice));
     	    	}catch(IllegalArgumentException e) {
     	    		throw e;
     	    	}catch(IOException e) {
@@ -62,7 +63,7 @@ public class LoginPartitaController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/welcome.css");
-	        Main.setScene(scenaHomepage,false);
+	        Main.setScene(scenaHomepage,false," - Homepage");
     	}catch(Exception e) {
     		Main.messaggioErrore("Errore apertura finestra");
     	}

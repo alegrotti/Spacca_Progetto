@@ -1,7 +1,7 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class PartitaAPalazzi extends Partita implements Serializable{
 	
@@ -9,8 +9,8 @@ public class PartitaAPalazzi extends Partita implements Serializable{
 	
 	private int palazzi;
 
-	public PartitaAPalazzi(Mazzo mazzo, ArrayList<Giocatore> giocatori, String codice, int palazzi) {
-		super(mazzo, giocatori, codice);
+	public PartitaAPalazzi(Mazzo mazzo, HashSet<String> giocatori, String codice, int palazzi, int creditiIniziali) {
+		super(mazzo, giocatori, codice, creditiIniziali);
 		this.setPalazzi(palazzi);
 	}
 

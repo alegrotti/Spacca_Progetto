@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Random;
 import model.Giocatore;
 import model.GiocatoreFisico;
@@ -18,12 +18,19 @@ import model.DBAdmin;
 import model.DBCarte;
 import model.DBGiocatori;
 import model.DBMazzi;
+import model.DBPartite;
+import model.Partita;
+import model.PartitaAPalazzi;
+import model.PartitaATurni;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -33,7 +40,7 @@ import javafx.scene.control.Slider;
 public class AdminAreaController {
 	
 	private ArrayList<Carta> carteMazzo;
-	private HashMap<String,Giocatore> giocatoriAggiunti;
+	private HashSet<String> giocatoriAggiunti;
 
     @FXML
     private Button aggiungiCartaButton;
@@ -70,9 +77,6 @@ public class AdminAreaController {
 
     @FXML
     private ComboBox<String> giocatoriDaAggiungere;
-
-    @FXML
-    private ComboBox<String> giocatoriPartita;
 
     @FXML
     private HBox hBoxDifficolta;
@@ -167,13 +171,58 @@ public class AdminAreaController {
     @FXML
     private Label creditiSliderLabel;
     
+    @FXML
+    private ComboBox<String> codicePartitaInCorso;
+    
+    @FXML
+    private Label partitaInCorsoTitolo;
+    
+    @FXML
+    private VBox infoPartita1;
+
+    @FXML
+    private VBox infoPartita2;
+    
+    @FXML
+    private Label codiceLabel;
+
+    @FXML
+    private Label codiceLabelTitolo;
+    
+    @FXML
+    private Label giocatoriLabel;
+
+    @FXML
+    private Label giocatoriLabelTitolo;
+    
+    @FXML
+    private Label statoPartitaLabel;
+
+    @FXML
+    private Label statoPartitaLabelTitolo;
+
+    @FXML
+    private Label creditiInizialiLabel;
+
+    @FXML
+    private Label creditiInizialiLabelTitolo;
+    
+    @FXML
+    private Label tipoPartitaLabel;
+
+    @FXML
+    private Label tipoPartitaLabelTitolo;
+    
+    @FXML
+    private ListView<String> listaGiocatoriPartita;
+    
     
     //Admin
     @FXML
     void saveNewInfo(ActionEvent event) {
     	
-    	WelcomeController.admin.setPassword(passwordField.getText());
-    	WelcomeController.admin.setUsername(usernameField.getText());
+    	DBAdmin.setPassword(passwordField.getText());
+    	DBAdmin.setUsername(usernameField.getText());
     	
     	inizializzaSchermata();
     	
@@ -188,7 +237,7 @@ public class AdminAreaController {
     		if(!username.equals("")) {
     			Giocatore g = new GiocatoreFisico(username);
     			DBGiocatori.aggiungiGiocatore(g);
-				WelcomeController.admin.aggiungiGiocatore(g);
+    			DBAdmin.aggiungiGiocatore(g);
     		}
     	}else{
     		String difficolta = selezionaDifficoltaButton.getValue();
@@ -197,14 +246,14 @@ public class AdminAreaController {
 	    		if(!username.equals("")) {
 	    			Giocatore g = new GiocatoreCPUFacile(username);
 	    			DBGiocatori.aggiungiGiocatore(g);
-					WelcomeController.admin.aggiungiGiocatore(g);
+	    			DBAdmin.aggiungiGiocatore(g);
 	    		}
     		}else if("Difficile".equals(difficolta)){
     			String username = nuovoGiocatoreField.getText();
 	    		if(!username.equals("")) {
 	    			Giocatore g = new GiocatoreCPUDifficile(username);
 	    			DBGiocatori.aggiungiGiocatore(g);
-					WelcomeController.admin.aggiungiGiocatore(g);
+	    			DBAdmin.aggiungiGiocatore(g);
 	    		}
     		}else {
     			
@@ -217,9 +266,7 @@ public class AdminAreaController {
     void eliminaGiocatore(ActionEvent event) {
     	String username = listaGiocatoriButton.getValue();
     	
-    	WelcomeController.admin.eliminaGiocatore(username);
-    	
-    	DBAdmin.salvaAdmin(WelcomeController.admin);
+    	DBAdmin.eliminaGiocatore(username);
     	
     	inizializzaSchermata();
     }
@@ -260,7 +307,7 @@ public class AdminAreaController {
     		if(!nomeMazzo.equals("")) {
     			if(carteMazzo.size()!=0) {
     				Mazzo m = new Mazzo(nomeMazzo,carteMazzo);
-    				WelcomeController.admin.aggiungiMazzo(m);
+    				DBAdmin.aggiungiMazzo(m);
     				DBMazzi.aggiungiMazzo(m);
 	    		}else {
 	    			throw new Exception("Mazzo vuoto");
@@ -280,7 +327,7 @@ public class AdminAreaController {
     	
     	DBMazzi.eliminaMazzo(mazzo);
     	
-    	WelcomeController.admin.eliminaMazzo(mazzo);
+    	DBAdmin.eliminaMazzo(mazzo);
     	
     	inizializzaSchermata();
     }
@@ -339,9 +386,9 @@ public class AdminAreaController {
     	carteMazzo.remove(c);
     	carteMazzo.trimToSize();
     	
-    	DBAdmin.salvaAdmin(WelcomeController.admin);
-    	
+    	String s = nomeMazzo.getText();
     	inizializzaGestioneMazzi();
+    	nomeMazzo.setText(s);
     	
     }
     
@@ -366,21 +413,21 @@ public class AdminAreaController {
     
     @FXML
     void modificaMazzo(ActionEvent event){
-    	/*
     	String nome = listaMazziButton.getValue();
     	
     	Mazzo m = DBMazzi.getMazzo(nome);
     	
-    	System.out.println(m.getNome());
-    	
-    	
-    	carteMazzo.clear();
-    	carteMazzo.addAll(m.getCarte());
-    	
-    	inizializzaGestioneMazzi();
-    	
-    	nomeMazzo.setText(m.getNome());
-    	*/
+    	if(m!=null) {
+	    	nomeMazzo.setText(m.getNome());
+	    	
+	    	carteMazzo= m.getCarte();
+	    	
+	    	ObservableList<String> carteAggiunte = FXCollections.observableArrayList();
+	    	for(int i = 0; i<carteMazzo.size(); i++)
+	    		carteAggiunte.add(carteMazzo.get(i).getNome());
+	    	carteAggiunte.sort(null);
+	    	listaCarteMazzo.setItems(carteAggiunte);
+    	}
     }
     
     
@@ -401,13 +448,13 @@ public class AdminAreaController {
     @FXML
     void aggiungiGiocatorePartita(ActionEvent event) {
     	String giocatore = giocatoriDaAggiungere.getValue();
-    	giocatoriAggiunti.put(giocatore,DBGiocatori.getGiocatore(giocatore));
+    	giocatoriAggiunti.add(giocatore);
 
     	ObservableList<String> giocatori2 = FXCollections.observableArrayList();
-    	for(String s : giocatoriAggiunti.keySet())
+    	for(String s : giocatoriAggiunti)
     		giocatori2.add(s);
     	giocatori2.sort(null);
-    	giocatoriPartita.setItems(giocatori2);
+    	listaGiocatoriPartita.setItems(giocatori2);
     	
     	giocatoriDaAggiungere.setValue(null);
     }
@@ -430,38 +477,110 @@ public class AdminAreaController {
     @FXML
     void eliminaGiocatoreNuovaPartita(ActionEvent event) {
     	try {
-			String giocatore = giocatoriPartita.getValue();
+			String giocatore = listaGiocatoriPartita.getSelectionModel().getSelectedItem();
 			if(giocatore.equalsIgnoreCase(""))
 				throw new Exception("Nessun giocatore selezionato");
 			giocatoriAggiunti.remove(giocatore);
 		
 			ObservableList<String> giocatori2 = FXCollections.observableArrayList();
-			for(String s : giocatoriAggiunti.keySet())
+			for(String s : giocatoriAggiunti)
 				giocatori2.add(s);
 			giocatori2.sort(null);
-			giocatoriPartita.setItems(giocatori2);
+			listaGiocatoriPartita.setItems(giocatori2);
 			
-			giocatoriPartita.setValue(null);
 			giocatoriDaAggiungere.setValue(null);
     	}catch(Exception e) {
     		Main.messaggioErrore(e.getMessage());
     	}
     }
     
+	@FXML
+    void aggiungiPartita(ActionEvent event) {
+		try {
+			Mazzo m = DBMazzi.getMazzo(scegliMazzoPartitaButton.getValue());
+			String codice = codicePartitaField.getText();
+			if(!DBAdmin.getAdmin().getPartite().contains(codice)) {
+				int n = Integer.parseInt(creditiSliderLabel.getText());
+				if(tipoPartitaButton.getValue().equals("A turni")) {
+					int turni = Integer.parseInt(numeroSliderPartitaLabel.getText());
+					Partita p = new PartitaATurni(m,giocatoriAggiunti,codice,turni,n);
+					DBPartite.aggiungiPartita(p);
+					DBAdmin.aggiungiPartita(p);
+				}else if(tipoPartitaButton.getValue().equals("A palazzi")) {
+					int palazzi = Integer.parseInt(numeroSliderPartitaLabel.getText());
+					Partita p = new PartitaAPalazzi(m,giocatoriAggiunti,codice,palazzi,n);
+					DBPartite.aggiungiPartita(p);
+					DBAdmin.aggiungiPartita(p);
+				}else {
+					throw new Exception();
+				}
+				inizializzaSchermata();
+			}else {
+				Main.messaggioErrore("Codice già esistente");
+			}
+		}catch(Exception e) {
+			Main.messaggioErrore("Errore creazione partita");
+		}
+    }
+    
+	//Partita in corso
+	
+    @FXML
+    void copiaCodicePartita(ActionEvent event) {
+    	if(codicePartitaInCorso.getValue() != null) {
+    		 String testoDaCopiare = codiceLabel.getText();
+	         Clipboard clipboard = Clipboard.getSystemClipboard();
+	         ClipboardContent content = new ClipboardContent();
+	         content.putString(testoDaCopiare);
+	         clipboard.setContent(content);
+    	 }else {
+    		 Main.messaggioErrore("Seleziona partita");
+    	 }
+    }
+	
+    @FXML
+    void eliminaPartita(ActionEvent event) {
+    	String partita = codicePartitaInCorso.getValue();
+    	
+    	DBPartite.eliminaPartita(partita);
+    	
+    	DBAdmin.eliminaPartita(partita);
+    	
+    	inizializzaSchermata();
+    }
+	
+    @FXML
+    void mostraPartitaInCorso(ActionEvent event) {
+    	String partita = codicePartitaInCorso.getValue();
+    	Partita p = DBPartite.getPartita(partita);
+    	if (p!=null) {
+    		codiceLabel.setText(p.getCodice());
+    		String gioc="";
+    		for(String s : p.getGiocatori())
+    			gioc+=(s+"\n");
+    		giocatoriLabel.setText(gioc);
+    		if(p instanceof PartitaAPalazzi) {
+    			PartitaAPalazzi p1 = (PartitaAPalazzi) p;
+    			tipoPartitaLabel.setText("A palazzi - "+p1.getPalazzi()+" palazzi");
+    		}
+    		else {
+    			PartitaATurni p1 = (PartitaATurni) p;
+    			tipoPartitaLabel.setText("A turni - "+p1.getTurni()+" turni");
+    		}
+    		creditiInizialiLabel.setText(p.getCreditiIniziali()+" crediti");
+    		int turnoCorrente = p.getTurno();
+    		if (turnoCorrente==0)
+    			statoPartitaLabel.setText("Da iniziare - Turno "+turnoCorrente);
+    		else
+    			statoPartitaLabel.setText("In corso - Turno "+turnoCorrente);
+    	}
+    }
     
     //Torneo
     
 
-
-	@FXML
-    void aggiungiPartita(ActionEvent event) {
-
-    }
-
-    @FXML
-    void scegliGiocatorePartita(ActionEvent event) {
-
-    }
+    
+    
     
     //Generale e inizializzazione
     @FXML
@@ -470,7 +589,7 @@ public class AdminAreaController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/welcome.css");
-	        Main.setScene(scenaHomepage,false);
+	        Main.setScene(scenaHomepage,false," - Homepage");
     	}catch(Exception e) {
     		
     	}
@@ -480,7 +599,7 @@ public class AdminAreaController {
     void initialize() {
     	
     	carteMazzo = new ArrayList<Carta>();
-    	giocatoriAggiunti = new HashMap<String,Giocatore>();
+    	giocatoriAggiunti = new HashSet<String>();
     	
     	inizializzaSchermata();
     	
@@ -498,11 +617,14 @@ public class AdminAreaController {
     	
     	//Gestione Mazzi
     	inizializzaGestioneMazzi();
+    	
+    	//Partite in corso
+    	inizializzaPartiteInCorso();
     }
     
     private void inizializzaProfilo() {
-    	usernameField.setText(WelcomeController.admin.getUsername());
-    	passwordField.setText(WelcomeController.admin.getPassword());
+    	usernameField.setText(DBAdmin.getAdmin().getUsername());
+    	passwordField.setText(DBAdmin.getAdmin().getPassword());
     }
     
     private void inizializzaNuovoGiocatore() {
@@ -518,7 +640,7 @@ public class AdminAreaController {
     	tipoDiGiocatoreButton.setItems(tipoGiocatore);
     	
     	ObservableList<String> giocatori = FXCollections.observableArrayList();
-    	for(String s : WelcomeController.admin.getGiocatori())
+    	for(String s : DBAdmin.getAdmin().getGiocatori())
     		giocatori.add(s);
     	giocatori.sort(null);
     	listaGiocatoriButton.setItems(giocatori);
@@ -529,11 +651,11 @@ public class AdminAreaController {
     private void inizializzaNuovaPartita() {
     	tipoPartitaButton.setValue(null);
     	scegliMazzoPartitaButton.setValue(null);
-    	giocatoriPartita.setValue(null);
     	giocatoriDaAggiungere.setValue(null);
+    	codicePartitaField.setText(null);
     	
     	ObservableList<String> mazzi = FXCollections.observableArrayList();
-    	for(String s : WelcomeController.admin.getMazzi())
+    	for(String s : DBAdmin.getAdmin().getMazzi())
     		mazzi.add(s);
     	mazzi.sort(null);
     	scegliMazzoPartitaButton.setItems(mazzi);
@@ -542,16 +664,16 @@ public class AdminAreaController {
     	tipoPartitaButton.setItems(tipoPartita);
     	
     	ObservableList<String> giocatori1 = FXCollections.observableArrayList();
-    	for(String s : WelcomeController.admin.getGiocatori())
+    	for(String s : DBAdmin.getAdmin().getGiocatori())
     		giocatori1.add(s);
     	giocatori1.sort(null);
     	giocatoriDaAggiungere.setItems(giocatori1);
     	
     	ObservableList<String> giocatori2 = FXCollections.observableArrayList();
-    	for(String s : giocatoriAggiunti.keySet())
+    	for(String s : giocatoriAggiunti)
     		giocatori2.add(s);
     	giocatori2.sort(null);
-    	giocatoriPartita.setItems(giocatori2);
+    	listaGiocatoriPartita.setItems(giocatori2);
     	
     	hBoxSliderPartita.setVisible(false);
     	
@@ -566,7 +688,7 @@ public class AdminAreaController {
     	sliderCreditiPartita.setValue(0);
     	creditiSliderLabel.setText(String.valueOf((int) sliderCreditiPartita.getValue()));
     	sliderCreditiPartita.valueProperty().addListener((observable, oldValue, newValue) -> {
-            int roundedValue = (int) Math.round(newValue.doubleValue());
+            int roundedValue = (int) (Math.round(newValue.doubleValue()));
             creditiSliderLabel.setText(String.valueOf(roundedValue*1000));
         });
     }
@@ -582,7 +704,7 @@ public class AdminAreaController {
     	infoCartaDaAggiungere.setText(null);
     	
     	ObservableList<String> mazzi = FXCollections.observableArrayList();
-    	for(String s : WelcomeController.admin.getMazzi())
+    	for(String s : DBAdmin.getAdmin().getMazzi())
     		mazzi.add(s);
     	mazzi.sort(null);
     	listaMazziButton.setItems(mazzi);
@@ -594,11 +716,25 @@ public class AdminAreaController {
     	listaCarteMazzo.setItems(carteAggiunte);
 
     	ObservableList<String> carteCreate = FXCollections.observableArrayList();
-    	for(String s : WelcomeController.admin.getCarte())
+    	for(String s : DBAdmin.getAdmin().getCarte())
     		carteCreate.add(s);
     	carteCreate.sort(null);
     	listaCarteDaAggiungere.setItems(carteCreate);   
 
+    }
+    
+    private void inizializzaPartiteInCorso(){
+    	ObservableList<String> partite = FXCollections.observableArrayList();
+    	for(String s : DBAdmin.getAdmin().getPartite())
+    		partite.add(s);
+    	partite.sort(null);
+    	codicePartitaInCorso.setItems(partite);
+    	
+    	codiceLabel.setText(null);
+        giocatoriLabel.setText(null);
+        statoPartitaLabel.setText(null);
+        creditiInizialiLabel.setText(null);
+        tipoPartitaLabel.setText(null);
     }
     
 }

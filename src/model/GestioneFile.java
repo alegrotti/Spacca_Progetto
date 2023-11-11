@@ -11,6 +11,7 @@ import java.io.ObjectOutputStream;
 public class GestioneFile {
 
 	public static Object caricaDB (String DATABASE_PATH) {
+		
 		try {
 			FileInputStream f = new FileInputStream(DATABASE_PATH);
 			ObjectInputStream inputStream =	new ObjectInputStream(f);
@@ -23,7 +24,8 @@ public class GestioneFile {
 			System.out.println("Il file "+DATABASE_PATH+" non esiste!");			
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
+		} catch 
+		(ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		return null;

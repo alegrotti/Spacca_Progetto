@@ -5,6 +5,7 @@ import model.Partita;
 
 public class CampoGiocoController {
 	
+	@SuppressWarnings("unused")
 	private Partita partita;
 	
 	public boolean impostaPartita(Partita p) {
@@ -18,7 +19,7 @@ public class CampoGiocoController {
 	
     @FXML
     void initialize() {
-    	Main.parentWindow.setTitle(partita.getCodice());
+    	
     }
 
 }
