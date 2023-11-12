@@ -31,9 +31,6 @@ public class RulesController {
 
     @FXML
     private Button homeButton;
-
-    @FXML
-    private Label punteggiCarta;
     
     @FXML
     private Label descrizioneCarta;
@@ -72,9 +69,6 @@ public class RulesController {
     private Label titoloGenere;
 
     @FXML
-    private Label titoloPunteggio;
-
-    @FXML
     void backWelcome(ActionEvent event) {
     	try {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
@@ -107,13 +101,6 @@ public class RulesController {
     
     private void stampaCarta(Carta c) {
     	titoloCarta.setText(c.getNome());
-    	String s =
-    			"Residenziale : "+c.getResidenziale()+
-		    	"\nCommerciale : "+c.getCommerciale()+
-		    	"\nPubblico : "+c.getPubblico()+
-		    	"\nCulturale : "+c.getCulturale();
-    	
-    	punteggiCarta.setText(s);
 
     	descrizioneCarta.setText(c.getDescrizione());
     	

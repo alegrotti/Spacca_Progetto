@@ -11,11 +11,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import model.DBAdmin;
+/*
 import model.DBCarte;
 import model.DBGiocatori;
 import model.DBMazzi;
 import model.DBPartite;
 import model.DBTornei;
+*/
 
 public class WelcomeController {
 	
