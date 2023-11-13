@@ -24,7 +24,6 @@ public class Partita implements Serializable{
 		this.turno = 0;
 		this.creditiIniziali = creditiIniziali;
 		this.crediti = creaCreditiIniziali(giocatori,creditiIniziali);
-		System.out.println("y");
 	}
 
 	private HashMap<String,Integer> creaCreditiIniziali(HashSet<String> g, int c){
