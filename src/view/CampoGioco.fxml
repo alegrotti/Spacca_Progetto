@@ -10,58 +10,62 @@
 
 <Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CampoGiocoController">
    <children>
-      <HBox fx:id="hboxTavolo" alignment="CENTER" layoutX="241.0" layoutY="39.0" prefHeight="290.0" prefWidth="870.0">
+      <Pane fx:id="sfondoScuro" prefHeight="750.0" prefWidth="1350.0">
          <children>
-            <ImageView fx:id="iconTavolo1" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <HBox.margin>
-                  <Insets left="5.0" top="5.0" />
-               </HBox.margin>
-            </ImageView>
-            <ImageView fx:id="iconTavolo2" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <HBox.margin>
-                  <Insets left="10.0" top="5.0" />
-               </HBox.margin>
-            </ImageView>
-            <ImageView fx:id="iconTavolo3" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <HBox.margin>
-                  <Insets left="10.0" top="5.0" />
-               </HBox.margin>
-            </ImageView>
-            <ImageView fx:id="iconTavolo4" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <HBox.margin>
-                  <Insets left="10.0" top="5.0" />
-               </HBox.margin>
-            </ImageView>
+            <HBox fx:id="hboxTavolo" alignment="CENTER" prefHeight="290.0" prefWidth="870.0">
+               <children>
+                  <ImageView fx:id="iconTavolo1" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="5.0" top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="iconTavolo2" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="iconTavolo3" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="iconTavolo4" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox fx:id="hboxMano" alignment="CENTER" prefHeight="270.0" prefWidth="640.0">
+               <children>
+                  <ImageView fx:id="iconMano1" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="5.0" top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="iconMano2" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="iconMano3" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <ImageView fx:id="iconRetroCarta" fitHeight="260.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
          </children>
-      </HBox>
-      <ImageView fx:id="iconRetroCarta" fitHeight="260.0" fitWidth="200.0" layoutX="1134.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" />
-      <HBox fx:id="hboxMano" alignment="CENTER" layoutX="360.0" layoutY="452.0" prefHeight="270.0" prefWidth="640.0">
-         <children>
-            <ImageView fx:id="iconMano1" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <HBox.margin>
-                  <Insets left="5.0" top="5.0" />
-               </HBox.margin>
-            </ImageView>
-            <ImageView fx:id="iconMano2" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <HBox.margin>
-                  <Insets left="10.0" top="5.0" />
-               </HBox.margin>
-            </ImageView>
-            <ImageView fx:id="iconMano3" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <HBox.margin>
-                  <Insets left="10.0" top="5.0" />
-               </HBox.margin>
-            </ImageView>
-         </children>
-      </HBox>
-      <Button fx:id="buttonLasciare" layoutX="1061.0" layoutY="543.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="116.0" text="Lascia" />
-      <Button fx:id="buttonRilanciare" layoutX="1190.0" layoutY="543.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="110.0" text="Rilancia" />
-      <Label fx:id="textCrediti" layoutX="1061.0" layoutY="453.0" prefHeight="30.0" prefWidth="73.0" text="Crediti: ">
+      </Pane>
+      <Button fx:id="buttonLasciare" layoutX="1071.0" layoutY="553.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="116.0" text="Lascia" />
+      <Button fx:id="buttonRilanciare" layoutX="1200.0" layoutY="553.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="110.0" text="Rilancia" />
+      <Label fx:id="textCrediti" layoutX="1071.0" layoutY="463.0" prefHeight="30.0" prefWidth="73.0" text="Crediti: ">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="textMoney" layoutX="1155.0" layoutY="453.0" prefHeight="48.0" prefWidth="152.0">
+      <Label fx:id="textMoney" layoutX="1165.0" layoutY="463.0" prefHeight="48.0" prefWidth="152.0">
          <font>
             <Font size="20.0" />
          </font>
