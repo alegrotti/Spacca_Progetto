@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -67,7 +68,31 @@
                            </children>
                         </VBox>
                      </content></Tab>
-                  <Tab text="Regole" />
+                  <Tab text="Regole">
+                     <content>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Pane prefHeight="383.0" prefWidth="849.0">
+                                 <children>
+                                    <HBox layoutX="14.0" prefHeight="383.0" prefWidth="836.0">
+                                       <children>
+                                          <TextArea prefHeight="383.0" prefWidth="393.0" text="REGOLAMENTO PARTITA A TURNI &#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;end&#10;">
+                                             <HBox.margin>
+                                                <Insets left="20.0" right="10.0" />
+                                             </HBox.margin>
+                                          </TextArea>
+                                          <TextArea prefHeight="383.0" prefWidth="365.0" text="REGOLAMENTO PARTITA A PALAZZI&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;end">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </TextArea>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </HBox>
+                     </content></Tab>
               </tabs>
                <VBox.margin>
                   <Insets top="5.0" />
