@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import model.DBAdmin;
+import model.DBPartite;
 /*
 import model.DBCarte;
 import model.DBGiocatori;
@@ -66,9 +67,9 @@ public class WelcomeController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/AdminLogin.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/adminlogin.css");
-	        Main.setScene(scenaHomepage,false," - Area admin login");
+	        GestoreScene.setScene(scenaHomepage,false," - Area admin login");
     	}catch(Exception e) {
-    		Main.messaggioErrore("Errore apertura finestra");
+    		GestoreScene.messaggioErrore("Errore apertura finestra");
     	}
     }
 
@@ -78,9 +79,9 @@ public class WelcomeController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/PlayerArea.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/playerarea.css");
-	        Main.setScene(scenaHomepage,false," - Player area");
+	        GestoreScene.setScene(scenaHomepage,false," - Player area");
     	}catch(Exception e) {
-    		Main.messaggioErrore("Errore apertura finestra");
+    		GestoreScene.messaggioErrore("Errore apertura finestra");
     	}
     }
 
@@ -90,9 +91,9 @@ public class WelcomeController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Rules.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/rules.css");
-	        Main.setScene(scenaHomepage,false," - Regole e catalogo carte");
+	        GestoreScene.setScene(scenaHomepage,false," - Regole e catalogo carte");
     	}catch(Exception e) {
-    		Main.messaggioErrore("Errore apertura finestra");
+    		GestoreScene.messaggioErrore("Errore apertura finestra");
     	}
     }
 
@@ -102,9 +103,9 @@ public class WelcomeController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Setting.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/setting.css");
-	        Main.setScene(scenaHomepage,false," - Impostazioni");
+	        GestoreScene.setScene(scenaHomepage,false," - Impostazioni");
     	}catch(Exception e) {
-    		Main.messaggioErrore("Errore apertura finestra");
+    		GestoreScene.messaggioErrore("Errore apertura finestra");
     	}
     }
 
@@ -114,9 +115,9 @@ public class WelcomeController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Standing.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/standing.css");
-	        Main.setScene(scenaHomepage,false," - Storico partite");
+	        GestoreScene.setScene(scenaHomepage,false," - Storico partite");
     	}catch(Exception e) {
-    		Main.messaggioErrore("Errore apertura finestra");
+    		GestoreScene.messaggioErrore("Errore apertura finestra");
     	}
     }
 
@@ -127,9 +128,9 @@ public class WelcomeController {
     		Parent root = FXMLLoader.load(getClass().getResource("/view/LoginPartita.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/loginpartita.css");
-	        Main.setScene(scenaHomepage,false," - Login partita");
+	        GestoreScene.setScene(scenaHomepage,false," - Login partita");
     	}catch(Exception e) {
-    		Main.messaggioErrore("Errore apertura finestra");
+    		GestoreScene.messaggioErrore("Errore apertura finestra");
     	}
     	
     }
@@ -140,9 +141,9 @@ public class WelcomeController {
     		Parent root = FXMLLoader.load(getClass().getResource("/view/LoginTorneo.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/logintorneo.css");
-	        Main.setScene(scenaHomepage,false," - Login tournament");
+	        GestoreScene.setScene(scenaHomepage,false," - Login tournament");
     	}catch(Exception e) {
-    		Main.messaggioErrore("Errore apertura finestra");
+    		GestoreScene.messaggioErrore("Errore apertura finestra");
     	}
     }
     

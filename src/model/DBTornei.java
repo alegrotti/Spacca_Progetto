@@ -2,8 +2,7 @@ package model;
 
 import java.util.HashMap;
 import java.util.Set;
-
-import controller.Main;
+import controller.GestoreScene;
 
 public class DBTornei {
 
@@ -29,7 +28,7 @@ public class DBTornei {
 			tornei.put(t.getCodice(),t);
 			GestioneFile.salvaDB(tornei,DATABASE_PATH);
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore aggiunta giocatore");
+			GestoreScene.messaggioErrore("Errore aggiunta giocatore");
 		}
 	}
 	

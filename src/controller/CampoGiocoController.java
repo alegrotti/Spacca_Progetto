@@ -1,12 +1,14 @@
 package controller;
 
 import javafx.fxml.FXML;
+import model.Giocatore;
 import model.Partita;
 
 public class CampoGiocoController {
 	
-	@SuppressWarnings("unused")
 	private Partita partita;
+	
+	private Giocatore giocatore;
 	
 	public boolean impostaPartita(Partita p) {
 		try {
@@ -19,7 +21,7 @@ public class CampoGiocoController {
 	
     @FXML
     void initialize() {
-    	
+    	//GestoreScene.prossimoTurnoPopup(partita);
     }
 
 }

@@ -2,8 +2,7 @@ package model;
 
 import java.util.HashMap;
 import java.util.Set;
-
-import controller.Main;
+import controller.GestoreScene;
 
 public class DBPartite {
 
@@ -38,7 +37,7 @@ public class DBPartite {
 			partite = (HashMap<String,Partita>)GestioneFile.caricaDB(DATABASE_PATH);
 			return partite.get(codice);
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore caricamento partita");
+			GestoreScene.messaggioErrore("Errore caricamento partita");
 		}
 		return null;
 	}
@@ -50,7 +49,7 @@ public class DBPartite {
 			partite.put(p.getCodice(),p);
 			GestioneFile.salvaDB(partite,DATABASE_PATH);
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore aggiunta partita");
+			GestoreScene.messaggioErrore("Errore aggiunta partita");
 		}
 	}
 	
@@ -61,7 +60,7 @@ public class DBPartite {
 			partite.remove(p);
 			GestioneFile.salvaDB(partite,DATABASE_PATH);
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore aggiunta partita");
+			GestoreScene.messaggioErrore("Errore aggiunta partita");
 		}
 	}
 	

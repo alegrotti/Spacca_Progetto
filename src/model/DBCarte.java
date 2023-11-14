@@ -2,7 +2,7 @@ package model;
 
 import java.util.HashMap;
 import java.util.Set;
-import controller.Main;
+import controller.GestoreScene;
 
 public class DBCarte {
 
@@ -27,7 +27,7 @@ public class DBCarte {
 			carte = (HashMap<String,Carta>)GestioneFile.caricaDB(DATABASE_PATH);
 			return carte.get(carta);
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore caricamento carta");
+			GestoreScene.messaggioErrore("Errore caricamento carta");
 		}
 		return null;
 	}
@@ -42,7 +42,7 @@ public class DBCarte {
 			GestioneFile.salvaDB(carte,DATABASE_PATH);
 			System.out.println("Salvataggio db ok");
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore aggiunta carta");
+			GestoreScene.messaggioErrore("Errore aggiunta carta");
 		}
 	}
 	
@@ -53,7 +53,7 @@ public class DBCarte {
 			carte.remove(c);
 			GestioneFile.salvaDB(carte,DATABASE_PATH);
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore aggiunta carta");
+			GestoreScene.messaggioErrore("Errore aggiunta carta");
 		}
 	}
 	

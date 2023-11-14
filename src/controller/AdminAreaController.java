@@ -317,7 +317,7 @@ public class AdminAreaController {
     		}
     		inizializzaGestioneMazzi();
     	}catch(Exception e) {
-    		Main.messaggioErrore(e.getMessage());
+    		GestoreScene.messaggioErrore(e.getMessage());
     	}
     }
     
@@ -490,7 +490,7 @@ public class AdminAreaController {
 			
 			giocatoriDaAggiungere.setValue(null);
     	}catch(Exception e) {
-    		Main.messaggioErrore(e.getMessage());
+    		GestoreScene.messaggioErrore(e.getMessage());
     	}
     }
     
@@ -516,10 +516,10 @@ public class AdminAreaController {
 				}
 				inizializzaSchermata();
 			}else {
-				Main.messaggioErrore("Codice già esistente");
+				GestoreScene.messaggioErrore("Codice già esistente");
 			}
 		}catch(Exception e) {
-			Main.messaggioErrore("Errore creazione partita");
+			GestoreScene.messaggioErrore("Errore creazione partita");
 		}
     }
     
@@ -534,7 +534,7 @@ public class AdminAreaController {
 	         content.putString(testoDaCopiare);
 	         clipboard.setContent(content);
     	 }else {
-    		 Main.messaggioErrore("Seleziona partita");
+    		 GestoreScene.messaggioErrore("Seleziona partita");
     	 }
     }
 	
@@ -589,9 +589,9 @@ public class AdminAreaController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/welcome.css");
-	        Main.setScene(scenaHomepage,false," - Homepage");
+	        GestoreScene.setScene(scenaHomepage,false," - Homepage");
     	}catch(Exception e) {
-    		
+    		GestoreScene.messaggioErrore("Errore apertura finestra");
     	}
     }
     

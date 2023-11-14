@@ -45,7 +45,7 @@ public class AdminLoginController {
 	    		    	Parent root = FXMLLoader.load(getClass().getResource("/view/AdminArea.fxml"));
 	    		        Scene scenaHomepage = new Scene(root);
 	    		        scenaHomepage.getStylesheets().add("/view/adminarea.css");
-	    		        Main.setScene(scenaHomepage,false," - Area admin");
+	    		        GestoreScene.setScene(scenaHomepage,false," - Area admin");
 	    	    	}catch(Exception e) {	
 	    	    		throw new Exception("Errore apertura finestra");
 	    	    	}
@@ -55,7 +55,7 @@ public class AdminLoginController {
 	    		throw new Exception("Username errato");
     	}
 	    catch(Exception e) {
-	    	Main.messaggioErrore(e.getMessage());
+	    	GestoreScene.messaggioErrore(e.getMessage());
 	    }
     	initialize();
     }
@@ -66,7 +66,7 @@ public class AdminLoginController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/welcome.css");
-	        Main.setScene(scenaHomepage,false," - Homepage");
+	        GestoreScene.setScene(scenaHomepage,false," - Homepage");
     	}catch(Exception e) {
     		
     	}

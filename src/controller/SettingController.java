@@ -170,9 +170,9 @@ public class SettingController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/welcome.css");
-	        Main.setScene(scenaHomepage,false," - Homepage");
+	        GestoreScene.setScene(scenaHomepage,false," - Homepage");
     	}catch(Exception e) {
-    		
+    		GestoreScene.messaggioErrore("Errore apertura finestra");
     	}
     }
     

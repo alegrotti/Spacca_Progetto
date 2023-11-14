@@ -1,7 +1,8 @@
 package model;
 
 import java.util.HashSet;
-import controller.Main;
+
+import controller.GestoreScene;
 
 public class DBAdmin {
 	
@@ -42,7 +43,7 @@ public class DBAdmin {
 
 			GestioneFile.salvaDB(admin,DATABASE_PATH);
 		}catch(Exception e) {
-			Main.messaggioErrore("Errore caricamento admin");
+			GestoreScene.messaggioErrore("Errore caricamento admin");
 		}
 	}
 	
@@ -50,7 +51,7 @@ public class DBAdmin {
 		try {
 			return (Admin)GestioneFile.caricaDB(DATABASE_PATH);
 		}catch(Exception e) {
-			Main.messaggioErrore("Impossibile caricare Admin");
+			GestoreScene.messaggioErrore("Impossibile caricare Admin");
 		}
 		return null;
 	}
@@ -59,7 +60,7 @@ public class DBAdmin {
 		try {
 			GestioneFile.salvaDB(admin,DATABASE_PATH);
 		}catch(Exception e) {
-			Main.messaggioErrore("Impossibile salvare Admin");
+			GestoreScene.messaggioErrore("Impossibile salvare Admin");
 		}
 	}
 	
@@ -69,7 +70,7 @@ public class DBAdmin {
 			admin.aggiungiGiocatore(g);
 			GestioneFile.salvaDB(admin,DATABASE_PATH);
 		}catch(Exception e) {
-			Main.messaggioErrore("Impossibile aggiungere mazzo");
+			GestoreScene.messaggioErrore("Impossibile aggiungere mazzo");
 		}
 	}
 	
@@ -79,7 +80,7 @@ public class DBAdmin {
 			admin.aggiungiMazzo(m);
 			GestioneFile.salvaDB(admin,DATABASE_PATH);
 		}catch(Exception e) {
-			Main.messaggioErrore("Impossibile aggiungere mazzo");
+			GestoreScene.messaggioErrore("Impossibile aggiungere mazzo");
 		}
 	}
 	
@@ -89,7 +90,7 @@ public class DBAdmin {
 			admin.aggiungiPartita(p);
 			GestioneFile.salvaDB(admin,DATABASE_PATH);
 		}catch(Exception e) {
-			Main.messaggioErrore("Impossibile aggiungere partita");
+			GestoreScene.messaggioErrore("Impossibile aggiungere partita");
 		}
 	}
 	
@@ -99,7 +100,7 @@ public class DBAdmin {
 			admin.eliminaGiocatore(g);
 			GestioneFile.salvaDB(admin,DATABASE_PATH);
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore eliminazione giocatore");
+			GestoreScene.messaggioErrore("Errore eliminazione giocatore");
 		}
 	}
 	
@@ -109,7 +110,7 @@ public class DBAdmin {
 			admin.eliminaMazzo(m);
 			GestioneFile.salvaDB(admin,DATABASE_PATH);
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore eliminazione mazzo");
+			GestoreScene.messaggioErrore("Errore eliminazione mazzo");
 		}
 	}
 	
@@ -119,7 +120,7 @@ public class DBAdmin {
 			admin.eliminaPartita(p);
 			GestioneFile.salvaDB(admin,DATABASE_PATH);
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore eliminazione partita");
+			GestoreScene.messaggioErrore("Errore eliminazione partita");
 		}
 	}
 	
@@ -129,7 +130,7 @@ public class DBAdmin {
 			admin.setPassword(password);
 			GestioneFile.salvaDB(admin,DATABASE_PATH);
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore modifica password");
+			GestoreScene.messaggioErrore("Errore modifica password");
 		}
 	}
 	
@@ -139,7 +140,7 @@ public class DBAdmin {
 			admin.setUsername(username);
 			GestioneFile.salvaDB(admin,DATABASE_PATH);
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore modifica username");
+			GestoreScene.messaggioErrore("Errore modifica username");
 		}
 	}
 	
@@ -148,7 +149,7 @@ public class DBAdmin {
 			admin = (Admin)GestioneFile.caricaDB(DATABASE_PATH);
 			return admin.getPassword();
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore eliminazione giocatore");
+			GestoreScene.messaggioErrore("Errore eliminazione giocatore");
 			return null;
 		}
 	}
@@ -158,7 +159,7 @@ public class DBAdmin {
 			admin = (Admin)GestioneFile.caricaDB(DATABASE_PATH);
 			return admin.getUsername();
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore eliminazione giocatore");
+			GestoreScene.messaggioErrore("Errore eliminazione giocatore");
 			return null;
 		}
 	}

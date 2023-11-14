@@ -17,20 +17,19 @@
                </VBox.margin>
             </Label>
             <Label fx:id="obiettivoPartita" alignment="CENTER" layoutX="144.0" layoutY="20.0" prefHeight="30.0" prefWidth="324.0" textAlignment="CENTER" />
-            <Label fx:id="titoloPartita1" alignment="CENTER" layoutX="112.0" layoutY="44.0" prefHeight="48.0" prefWidth="388.0" textAlignment="CENTER" />
-            <Label alignment="CENTER" prefHeight="175.0" prefWidth="432.0" text="Label">
+            <Label fx:id="infoGiocatori" alignment="CENTER" prefHeight="175.0" prefWidth="432.0">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
             <HBox alignment="CENTER" prefHeight="62.0" prefWidth="591.0">
                <children>
-                  <Button layoutX="284.0" layoutY="40.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="106.0" text="Gioca turno">
+                  <Button fx:id="backHomeButton" layoutX="284.0" layoutY="40.0" mnemonicParsing="false" onAction="#backHome" prefHeight="37.0" prefWidth="106.0" text="Schermata home">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="106.0" text="Gioca turno">
+                  <Button fx:id="giocaTurnoButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#giocaTurno" prefHeight="37.0" prefWidth="106.0" text="Gioca turno">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
