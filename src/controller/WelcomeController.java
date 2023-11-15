@@ -10,7 +10,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import model.City;
 import model.DBAdmin;
+import model.DBCarte;
 import model.DBPartite;
 /*
 import model.DBCarte;
@@ -138,10 +140,20 @@ public class WelcomeController {
     @FXML
     void playTournament(ActionEvent event) {
     	try {
+    		/*
     		Parent root = FXMLLoader.load(getClass().getResource("/view/LoginTorneo.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/logintorneo.css");
 	        GestoreScene.setScene(scenaHomepage,false," - Login tournament");
+	        */
+    		
+    		City c = new City("ale");
+    		
+    		c.aggiungiCarta(DBCarte.getCarta("Museo"));
+    		c.aggiungiCarta(DBCarte.getCarta("Teatro"));
+    		
+    		GestoreScene.mostraCittadina(c);
+    		
     	}catch(Exception e) {
     		GestoreScene.messaggioErrore("Errore apertura finestra");
     	}

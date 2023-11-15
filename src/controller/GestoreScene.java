@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.City;
 import model.Partita;
 
 public class GestoreScene {
@@ -95,6 +96,28 @@ public class GestoreScene {
 	        });
 	        
 	        popupStage.show();
+		} catch (Exception e) {
+			messaggioErrore("Errore apertura finestra");
+		}
+	}
+	
+	public static void mostraCittadina(City c) {
+		try {
+			MostraCittadinaController.città = c;
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/MostraCittadina.fxml"));
+			Parent root = loader.load();
+			
+			Scene scene= new Scene(root);
+			scene.getStylesheets().add("/view/mostracittadina.css");
+			
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.initOwner(Main.parentWindow);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setTitle("SPACCA - Mostra cittadina");
+	        Image image = new Image("/immagini/icon.jpg");
+	        stage.getIcons().add(image);
+	        stage.show();
 		} catch (Exception e) {
 			messaggioErrore("Errore apertura finestra");
 		}

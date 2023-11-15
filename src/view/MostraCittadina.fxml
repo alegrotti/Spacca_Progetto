@@ -21,7 +21,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <Pagination fx:id="carteCittà" maxPageIndicatorCount="0" pageCount="0" prefHeight="210.0" prefWidth="698.0">
+            <Pagination fx:id="stampaCarte" maxPageIndicatorCount="0" pageCount="0" prefHeight="210.0" prefWidth="698.0">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
