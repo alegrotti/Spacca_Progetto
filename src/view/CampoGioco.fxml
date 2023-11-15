@@ -72,6 +72,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
+            <ImageView fx:id="homepageIcon" fitHeight="40.0" fitWidth="40.0" layoutX="1275.0" layoutY="14.0" onMouseClicked="#homepageIconClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </children>

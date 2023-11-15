@@ -73,7 +73,7 @@ public class ProssimoTurnoController {
 
     @FXML
     void giocaTurno(ActionEvent event) {
-
+    	giocaTurnoButton.getScene().getWindow().hide();
     }
     
     @FXML
