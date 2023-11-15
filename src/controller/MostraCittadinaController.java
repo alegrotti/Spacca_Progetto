@@ -8,11 +8,8 @@ import javafx.scene.control.Pagination;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import model.Carta;
 import model.City;
-import model.DBCarte;
 
 public class MostraCittadinaController {
 
