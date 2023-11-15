@@ -10,6 +10,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import model.Partita;
+import model.DBCarte;
+import model.City;
 
 public class CampoGiocoController {
 
@@ -83,14 +85,15 @@ public class CampoGiocoController {
 
     @FXML
     void mostracittaButtonClicked(ActionEvent event) {
-    	/*try {
-	    	Parent root = FXMLLoader.load(getClass().getResource("/view/MostraCittadina.fxml"));
-	        Scene scenaHomepage = new Scene(root);
-	        scenaHomepage.getStylesheets().add("/view/mostracittadina.css");
-	        Main.setScene(scenaHomepage,false," - Mostra cittadina");
+    	try {
+    		City c = new City("alegrotti");
+    		c.aggiungiCarta(DBCarte.getCarta("Museo"));
+    		c.aggiungiCarta(DBCarte.getCarta("Teatro"));
+    		MostraCittadinaController.città = c;
+	    	GestoreScene.mostraCittadina(null);
     	}catch(Exception e) {
-    		Main.messaggioErrore("Errore apertura finestra");
-    	}*/
+    		GestoreScene.messaggioErrore("Errore apertura finestra");
+    	}
     }
 	
 	public boolean impostaPartita(Partita p) {
