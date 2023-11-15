@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -12,7 +13,7 @@
    <children>
       <Pane fx:id="sfondoScuro" prefHeight="750.0" prefWidth="1350.0">
          <children>
-            <HBox fx:id="hboxTavolo" alignment="CENTER" prefHeight="290.0" prefWidth="870.0">
+            <HBox fx:id="hboxTavolo" alignment="CENTER" layoutX="241.0" layoutY="39.0" prefHeight="290.0" prefWidth="870.0">
                <children>
                   <ImageView fx:id="iconTavolo1" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
@@ -36,7 +37,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <HBox fx:id="hboxMano" alignment="CENTER" prefHeight="270.0" prefWidth="640.0">
+            <HBox fx:id="hboxMano" alignment="CENTER" layoutX="360.0" layoutY="452.0" prefHeight="270.0" prefWidth="640.0">
                <children>
                   <ImageView fx:id="iconMano1" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
@@ -55,20 +56,23 @@
                   </ImageView>
                </children>
             </HBox>
-            <ImageView fx:id="iconRetroCarta" fitHeight="260.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="iconRetroCarta" fitHeight="260.0" fitWidth="200.0" layoutX="1136.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="mostracittaButton" layoutX="92.0" layoutY="546.0" mnemonicParsing="false" onAction="#mostracittaButtonClicked" prefHeight="88.0" prefWidth="181.0" text="Mostra cittadina" />
+            <Button fx:id="buttonLasciare" layoutX="1053.0" layoutY="517.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="116.0" text="Lascia turno" />
+            <Button fx:id="buttonPuntare" layoutX="1195.0" layoutY="517.0" mnemonicParsing="false" onAction="#buttonPuntareClicked" prefHeight="88.0" prefWidth="110.0" text="Punta" />
+            <Slider layoutX="1053.0" layoutY="636.0" prefHeight="14.0" prefWidth="250.0" />
+            <Button fx:id="confermaButton" layoutX="1133.0" layoutY="658.0" mnemonicParsing="false" onAction="#confermaButtonClicked" prefHeight="30.0" prefWidth="91.0" text="Conferma" />
+            <Label fx:id="textCrediti" layoutX="1053.0" layoutY="460.0" prefHeight="30.0" prefWidth="110.0" text="Crediti: ">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="textMoney" layoutX="1179.0" layoutY="451.0" prefHeight="48.0" prefWidth="152.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
-      <Button fx:id="buttonLasciare" layoutX="1071.0" layoutY="553.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="116.0" text="Lascia" />
-      <Button fx:id="buttonRilanciare" layoutX="1200.0" layoutY="553.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="110.0" text="Rilancia" />
-      <Label fx:id="textCrediti" layoutX="1071.0" layoutY="463.0" prefHeight="30.0" prefWidth="73.0" text="Crediti: ">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="textMoney" layoutX="1165.0" layoutY="463.0" prefHeight="48.0" prefWidth="152.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
    </children>
 </Pane>

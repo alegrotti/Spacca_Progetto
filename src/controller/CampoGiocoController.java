@@ -1,6 +1,10 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.event.ActionEvent;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -46,6 +50,9 @@ public class CampoGiocoController {
 
     @FXML
     private ImageView iconTavolo4;
+    
+    @FXML
+    private Button mostracittaButton;
 
     @FXML
     private Pane sfondo;
@@ -58,6 +65,31 @@ public class CampoGiocoController {
 
     @FXML
     private Label textMoney;
+    
+    @FXML
+    private Button confermaButton;
+    
+    @FXML
+    void confermaButtonClicked(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void buttonPuntareClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void mostracittaButtonClicked(ActionEvent event) {
+    	/*try {
+	    	Parent root = FXMLLoader.load(getClass().getResource("/view/MostraCittadina.fxml"));
+	        Scene scenaHomepage = new Scene(root);
+	        scenaHomepage.getStylesheets().add("/view/mostracittadina.css");
+	        Main.setScene(scenaHomepage,false," - Mostra cittadina");
+    	}catch(Exception e) {
+    		Main.messaggioErrore("Errore apertura finestra");
+    	}*/
+    }
 	
 	@SuppressWarnings("unused")
 	private Partita partita;
@@ -73,6 +105,20 @@ public class CampoGiocoController {
 	
     @FXML
     void initialize() {
+    	Image retro = new Image("/immagini/retrocarta.png");
+    	String creditiRimanenti = "-- --";
+    	
+    	iconRetroCarta.setImage(retro);
+    	iconMano1.setImage(retro);
+    	iconMano2.setImage(retro);
+    	iconMano3.setImage(retro);
+    	iconTavolo1.setImage(retro);
+    	iconTavolo1.setImage(retro);
+    	iconTavolo2.setImage(retro);
+    	iconTavolo3.setImage(retro);
+    	iconTavolo4.setImage(retro);
+    	
+    	textMoney.setText(creditiRimanenti);
     	
     }
 
