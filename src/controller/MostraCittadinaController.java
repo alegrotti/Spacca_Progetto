@@ -65,6 +65,9 @@ public class MostraCittadinaController {
     		percorsi[i] = città.getCarte().get(i).getPercorso();
     	
     	stampaCarte = createPhotoPagination(percorsi, 1);
+    	
+    	//carteCittà = createPhotoPagination(percorsi, 1);
+        centralBox.getChildren().add(stampaCarte);
     }
     
     private Pagination createPhotoPagination(String[] imageUrls, int imagesPerPage) {
