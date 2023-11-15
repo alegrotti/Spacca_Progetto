@@ -23,6 +23,7 @@ public class Partita implements Serializable{
 		this.turno = 0;
 		this.creditiIniziali = creditiIniziali;
 		this.crediti = creaCreditiIniziali(giocatori,creditiIniziali);
+		this.cittadine = creaCittadineIniziali(giocatori);
 	}
 
 	private HashMap<String,Integer> creaCreditiIniziali(HashSet<String> g, int c){
@@ -31,6 +32,14 @@ public class Partita implements Serializable{
 			cre.put(s, creditiIniziali);
 		}
 		return cre;
+	}
+	
+	private HashMap<String,City> creaCittadineIniziali(HashSet<String> g){
+		HashMap<String,City> cit = new HashMap<String,City>();
+		for(String s : giocatori) {
+			cit.put(s, new City(s));
+		}
+		return cit;
 	}
 	
 	public Mazzo getMazzo() {

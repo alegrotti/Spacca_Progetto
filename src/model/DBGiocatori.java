@@ -2,8 +2,7 @@ package model;
 
 import java.util.HashMap;
 import java.util.Set;
-
-import controller.Main;
+import controller.GestoreScene;
 
 public class DBGiocatori {
 
@@ -28,7 +27,7 @@ public class DBGiocatori {
 			giocatori = (HashMap<String,Giocatore>)GestioneFile.caricaDB(DATABASE_PATH);
 			return giocatori.get(username);
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore caricamento giocatore");
+			GestoreScene.messaggioErrore("Errore caricamento giocatore");
 		}
 		return null;
 	}
@@ -40,7 +39,7 @@ public class DBGiocatori {
 			giocatori.put(g.getUsername(),g);
 			GestioneFile.salvaDB(giocatori,DATABASE_PATH);
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore aggiunta giocatore");
+			GestoreScene.messaggioErrore("Errore aggiunta giocatore");
 		}
 	}
 	
@@ -51,7 +50,7 @@ public class DBGiocatori {
 			giocatori.remove(g);
 			GestioneFile.salvaDB(giocatori,DATABASE_PATH);
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore eliminazione giocatore");
+			GestoreScene.messaggioErrore("Errore eliminazione giocatore");
 		}
 	}
 	

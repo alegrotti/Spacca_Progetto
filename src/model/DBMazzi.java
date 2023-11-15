@@ -2,8 +2,7 @@ package model;
 
 import java.util.HashMap;
 import java.util.Set;
-
-import controller.Main;
+import controller.GestoreScene;
 
 public class DBMazzi {
 
@@ -28,7 +27,7 @@ public class DBMazzi {
 			mazzi = (HashMap<String,Mazzo>)GestioneFile.caricaDB(DATABASE_PATH);
 			return mazzi.get(mazzo);
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore caricamento mazzo");
+			GestoreScene.messaggioErrore("Errore caricamento mazzo");
 		}
 		return null;
 	}
@@ -40,7 +39,7 @@ public class DBMazzi {
 			mazzi.put(m.getNome(),m);
 			GestioneFile.salvaDB(mazzi,DATABASE_PATH);
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore aggiunta mazzo");
+			GestoreScene.messaggioErrore("Errore aggiunta mazzo");
 		}
 	}
 	
@@ -51,7 +50,7 @@ public class DBMazzi {
 			mazzi.remove(m);
 			GestioneFile.salvaDB(mazzi,DATABASE_PATH);
 		} catch (Exception e) {
-			Main.messaggioErrore("Errore eliminazione mazzo");
+			GestoreScene.messaggioErrore("Errore eliminazione mazzo");
 		}
 	}
 	

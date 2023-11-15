@@ -43,7 +43,8 @@ public class LoginPartitaController {
     				}
     				Scene scenaHomepage = new Scene(root);
     		        scenaHomepage.getStylesheets().add("/view/campogioco.css");
-    		        Main.setScene(scenaHomepage,false,(" - Game "+codice));
+    		        GestoreScene.setScene(scenaHomepage,false,(" - Game "+codice));
+    		        GestoreScene.prossimoTurnoPopup(DBPartite.getPartita(codice));
     	    	}catch(IllegalArgumentException e) {
     	    		throw e;
     	    	}catch(IOException e) {
@@ -53,7 +54,7 @@ public class LoginPartitaController {
     			throw new Exception("Partita inesistente");
     		}
     	}catch(Exception e) {
-    		Main.messaggioErrore(e.getMessage());
+    		GestoreScene.messaggioErrore(e.getMessage());
     	}
     }
 
@@ -63,9 +64,9 @@ public class LoginPartitaController {
 	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/welcome.css");
-	        Main.setScene(scenaHomepage,false," - Homepage");
+	        GestoreScene.setScene(scenaHomepage,false," - Homepage");
     	}catch(Exception e) {
-    		Main.messaggioErrore("Errore apertura finestra");
+    		GestoreScene.messaggioErrore("Errore apertura finestra");
     	}
     }
 

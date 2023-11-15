@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.fxml.FXML;
+import model.Giocatore;
 import javafx.fxml.FXMLLoader;
 import javafx.event.ActionEvent;
 import javafx.scene.Parent;
@@ -15,6 +16,10 @@ import model.Partita;
 
 public class CampoGiocoController {
 
+	private Partita partita;
+	
+	private Giocatore giocatore;
+	
     @FXML
     private Button buttonLasciare;
 
@@ -90,9 +95,6 @@ public class CampoGiocoController {
     		Main.messaggioErrore("Errore apertura finestra");
     	}*/
     }
-	
-	@SuppressWarnings("unused")
-	private Partita partita;
 	
 	public boolean impostaPartita(Partita p) {
 		try {
