@@ -21,7 +21,7 @@ public class CampoGiocoController {
 	
     @FXML
     void initialize() {
-    	//GestoreScene.prossimoTurnoPopup(partita);
+    	
     }
 
 }

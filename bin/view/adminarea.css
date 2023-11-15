@@ -186,6 +186,8 @@
 
 #sfondo {
 	-fx-background-image: url("/immagini/sfondoWelcome.jpg");
+	-fx-background-size: cover;
+    -fx-background-position: center center;
 	-fx-border-width: 2px;
     -fx-border-color: rgb(0, 0, 0);
     -fx-font-family: "Georgia";

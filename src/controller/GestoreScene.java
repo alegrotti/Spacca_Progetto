@@ -76,13 +76,12 @@ public class GestoreScene {
 	public static void prossimoTurnoPopup(Partita p) {
 		try {
 			ProssimoTurnoController.partita = p;
-			System.out.println(0);
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/ProssimoTurno.fxml"));
 			Parent root = loader.load();
-			System.out.println(1);
+			
 			Scene prossimoTurno= new Scene(root);
 			prossimoTurno.getStylesheets().add("/view/prossimoturno.css");
-			System.out.println(2);
+			
 			Stage popupStage = new Stage();
 			popupStage.setScene(prossimoTurno);
 			popupStage.initOwner(Main.parentWindow);
@@ -90,6 +89,10 @@ public class GestoreScene {
 			popupStage.setTitle("SPACCA - Prossimo turno partita");
 	        Image image = new Image("/immagini/icon.jpg");
 	        popupStage.getIcons().add(image);
+	        
+	        popupStage.setOnCloseRequest(event -> {
+				event.consume();
+	        });
 	        
 	        popupStage.show();
 		} catch (Exception e) {

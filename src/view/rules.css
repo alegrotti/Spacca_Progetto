@@ -113,18 +113,6 @@
     -fx-font-size: 12px;
 }
 
-#titoloPunteggio{
-    -fx-background-color: rgb(209, 155, 0, 0.5);
-    -fx-font-family: "Georgia";
-    -fx-font-size: 12px;
-}
-
-#punteggiCarta{
-    -fx-background-color: rgb(0, 64, 128, 0.5);
-    -fx-font-family: "Georgia";
-    -fx-font-size: 12px;
-}
-
 #titoloGenere{
     -fx-background-color: rgb(209, 155, 0, 0.5);
     -fx-font-family: "Georgia";
