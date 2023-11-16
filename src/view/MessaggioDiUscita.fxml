@@ -26,12 +26,12 @@
                   </Label>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="yesButton" mnemonicParsing="false" onAction="#ButtonYesClicked" text="Sì">
+                        <Button fx:id="yesButton" mnemonicParsing="false" onAction="#ButtonYesClicked" prefHeight="35.0" prefWidth="45.0" text="Sì">
                            <HBox.margin>
                               <Insets left="30.0" top="50.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="noButton" mnemonicParsing="false" onAction="#ButtonNoClicked" text="No">
+                        <Button fx:id="noButton" mnemonicParsing="false" onAction="#ButtonNoClicked" prefHeight="35.0" prefWidth="45.0" text="No">
                            <HBox.margin>
                               <Insets left="100.0" top="50.0" />
                            </HBox.margin>
