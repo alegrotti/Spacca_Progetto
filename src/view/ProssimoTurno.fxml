@@ -19,7 +19,7 @@
             <Label fx:id="obiettivoPartita" alignment="CENTER" layoutX="144.0" layoutY="20.0" prefHeight="30.0" prefWidth="324.0" textAlignment="CENTER" />
             <Label fx:id="prossimoTurnoLabel" alignment="CENTER" prefHeight="30.0" prefWidth="446.0">
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
             </Label>
             <HBox fx:id="giocatoriPartitaLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="178.0" prefWidth="320.0">

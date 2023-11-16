@@ -16,6 +16,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Pane;
 import model.Partita;
+import model.DBCarte;
+import model.City;
 
 public class CampoGiocoController {
 
@@ -101,10 +103,10 @@ public class CampoGiocoController {
     @FXML
     void mostracittaButtonClicked(ActionEvent event) {
     	try {
-	    	Parent root = FXMLLoader.load(getClass().getResource("/view/MostraCittadina.fxml"));
-	        Scene scenaHomepage = new Scene(root);
-	        scenaHomepage.getStylesheets().add("/view/mostracittadina.css");
-	        GestoreScene.setScene(scenaHomepage,false," - Mostra cittadina");
+    		City c = new City("alegrotti");
+    		c.aggiungiCarta(DBCarte.getCarta("Museo"));
+    		c.aggiungiCarta(DBCarte.getCarta("Teatro"));
+	    	GestoreScene.mostraCittadina(c);
     	}catch(Exception e) {
     		GestoreScene.messaggioErrore("Errore apertura finestra");
     	}

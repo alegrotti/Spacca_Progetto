@@ -7,29 +7,44 @@
     -fx-font-size: 12px;
 }
 
+#infoCarte{
+	-fx-background-color: rgb(209, 155, 0);
+	-fx-text-fill: rgb(0, 64, 128);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 14px;
+    -fx-border-width: 2px;
+    -fx-border-color: rgb(0, 0, 0);
+}
+
+#punteggioTotale{
+	
+}
+
 .button:hover {
     -fx-border-color: rgb(0, 64, 128);
     -fx-background-color: rgb(209, 155, 0);
     -fx-text-fill: rgb(0, 64, 128);
-    -fx-transition: background-color 0.3s ease;
+    -fx-transition: background-color 1s ease;
 }
 
 #titolo {
-    -fx-color: rgb(0, 64, 128);
-    -fx-font: 50px "Felix Titling", sans-serif;
+    -fx-text-fill: rgb(0, 0, 0);
+    -fx-font: 35px "Felix Titling", sans-serif;
     -fx-font-weight: bold;
     -fx-font-style: italic;
 }
 
 #sfondo {
-	-fx-background-image: url("/immagini/sfondoWelcome.jpg");
+	-fx-background-image: url("/immagini/mostracittadinasfondo.png");
+	-fx-background-size: cover;
+    -fx-background-position: center center;
 	-fx-border-width: 2px;
     -fx-border-color: rgb(0, 0, 0);
     -fx-font-family: "Georgia";
 }
 
 #centralBox {
-	-fx-background-color: rgba(255, 255, 255, 0.5);
+	-fx-background-color: rgba(255,255,255,0.7);
 	-fx-border-width: 2px;
     -fx-border-color: rgb(0, 0, 0);
 }

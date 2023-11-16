@@ -16,6 +16,8 @@ public class GestoreScene {
 		Main.parentWindow.setResizable(false);
 		Main.parentWindow.setMaximized(false);
 		Main.parentWindow.setTitle("SPACCA"+title);
+		Main.parentWindow.setResizable(false);
+		Main.parentWindow.setMaximized(false);
 		Main.parentWindow.centerOnScreen();
         Image image = new Image("/immagini/icon.jpg");
         Main.parentWindow.getIcons().add(image);
@@ -34,6 +36,8 @@ public class GestoreScene {
 			errorScene.getStylesheets().add("/view/messaggioerrore.css");
 			
 			Stage errorStage = new Stage();
+			errorStage.setMaximized(false);
+			errorStage.centerOnScreen();
 			errorStage.setResizable(false);
 			errorStage.setScene(errorScene);
 			errorStage.initOwner(Main.parentWindow);
@@ -61,6 +65,8 @@ public class GestoreScene {
 			exitScene.getStylesheets().add("/view/messaggiodiuscita.css");
 			
 			Stage exitStage = new Stage();
+			exitStage.setMaximized(false);
+			exitStage.centerOnScreen();
 			exitStage.setResizable(false);
 			exitStage.setScene(exitScene);
 			exitStage.initOwner(Main.parentWindow);
@@ -112,6 +118,9 @@ public class GestoreScene {
 			prossimoTurno.getStylesheets().add("/view/prossimoturno.css");
 			
 			Stage popupStage = new Stage();
+			popupStage.setMaximized(false);
+			popupStage.centerOnScreen();
+			popupStage.setResizable(false);
 			popupStage.setScene(prossimoTurno);
 			popupStage.initOwner(Main.parentWindow);
 			popupStage.initModality(Modality.APPLICATION_MODAL);
@@ -135,10 +144,15 @@ public class GestoreScene {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/MostraCittadina.fxml"));
 			Parent root = loader.load();
 			
+			System.out.println(1);
+			
 			Scene scene= new Scene(root);
 			scene.getStylesheets().add("/view/mostracittadina.css");
-			
+			System.out.println(2);
 			Stage stage = new Stage();
+			stage.setMaximized(false);
+			stage.centerOnScreen();
+			stage.setResizable(false);
 			stage.setScene(scene);
 			stage.initOwner(Main.parentWindow);
 			stage.initModality(Modality.APPLICATION_MODAL);

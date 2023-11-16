@@ -18,35 +18,35 @@ public class ProssimoTurnoController {
 
 	public static Partita partita;
 	
-	 @FXML
-	    private Button backHomeButton;
+	@FXML
+    private Button backHomeButton;
 
-	    @FXML
-	    private Button giocaTurnoButton;
-	    
-	    @FXML
-	    private HBox giocatoriPartitaLabel;
+    @FXML
+    private Button giocaTurnoButton;
+    
+    @FXML
+    private HBox giocatoriPartitaLabel;
 
-	    @FXML
-	    private Label infoGiocatori;
+    @FXML
+    private Label infoGiocatori;
 
-	    @FXML
-	    private Label listaGiocatori;
-	    
-	    @FXML
-	    private Label prossimoTurnoLabel;
+    @FXML
+    private Label listaGiocatori;
+    
+    @FXML
+    private Label prossimoTurnoLabel;
 
-	    @FXML
-	    private Label obiettivoPartita;
+    @FXML
+    private Label obiettivoPartita;
 
-	    @FXML
-	    private Pane sfondo;
-	    
-	    @FXML
-	    private VBox sfondoBianco;
+    @FXML
+    private Pane sfondo;
+    
+    @FXML
+    private VBox sfondoBianco;
 
-	    @FXML
-	    private Label titoloPartita;
+    @FXML
+    private Label titoloPartita;
 
 
     public boolean impostaPartita(Partita p) {
