@@ -53,15 +53,20 @@ public class MostraCittadinaController {
     	s+="\nPunteggio commerciale : "+città.getCommerciale();
     	punteggiVariCittà.setText(s);
     	
-    	inizializzaPagination();
+    	//inizializzaPagination();
+    	
+    	stampaCarte.setPageCount(5);
+    	stampaCarte.setCurrentPageIndex(3);
+    	
     }
     
+    /*
     private void inizializzaPagination() {
     	String[] percorsi = new String[città.getCarte().size()];
     	for(int i = 0 ; i < percorsi.length ; i++)
     		percorsi[i] = città.getCarte().get(i).getPercorso();
     	
-    	stampaCarte = createPhotoPagination(percorsi, 1);
+    	//stampaCarte = createPhotoPagination(percorsi, 1);
     	
     	//carteCittà = createPhotoPagination(percorsi, 1);
         //centralBox.getChildren().add(stampaCarte);
@@ -89,6 +94,6 @@ public class MostraCittadinaController {
         return imageView;
     }
     
- 
+ 	*/
     
 }
