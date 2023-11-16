@@ -8,14 +8,10 @@
 }
 
 #textCrediti{
-	-fx-color: rgb(255, 255, 255);
+	-fx-text-fill: rgb(255, 255, 255);
 	-fx-font: 20px "Georgia", sans-serif;
   	-fx-font-weight: bold;
   	-fx-font-style: italic;
-}
-
-#textMoney{
-		
 }
 
 .button:hover {
@@ -23,6 +19,13 @@
     -fx-background-color: rgb(209, 155, 0);
     -fx-text-fill: rgb(0, 64, 128);
     -fx-transition: background-color 0.3s ease;
+}
+
+#textTurno{
+	-fx-color: rgb(0,0,0);
+	-fx-font: 20px "Georgia", sans-serif;
+  	-fx-font-weight: bold;
+  	-fx-font-style: italic;
 }
 
 #sfondo {
@@ -35,10 +38,10 @@
 
 
 #sfondoScuro {
-	-fx-background-color: rgb(255,255,255,0.2);
+	-fx-background-color: rgb(0, 0, 0, 0.2);
 }
 
-#vboxScuro{
-	-fx-background-color: rgb(0, 0 ,0, 0.6);
+#vbox{
+	-fx-background-color: rgb(255, 255, 255,  0.6);
 }
 

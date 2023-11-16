@@ -30,6 +30,9 @@ public class CampoGiocoController {
 
     @FXML
     private Button buttonRilanciare;
+    
+    @FXML
+    private Button playButton;
 
     @FXML
     private HBox hboxMano;
@@ -75,15 +78,15 @@ public class CampoGiocoController {
 
     @FXML
     private Label textCrediti;
-
-    @FXML
-    private Label textMoney;
     
+    @FXML
+    private Label textTurno;
+
     @FXML
     private Button confermaButton;
     
     @FXML
-    private VBox vboxScuro;
+    private VBox vbox;
     
     @FXML
     void confermaButtonClicked(ActionEvent event) {
@@ -122,10 +125,14 @@ public class CampoGiocoController {
 	}
 	
     @FXML
+    void playButtonClicked(ActionEvent event) {
+
+    }
+	
+    @FXML
     void initialize() {
     	Image retro = new Image("/immagini/retrocarta.png");
     	Image homePage = new Image("/immagini/homepageIcon.png");
-    	String creditiRimanenti = "-- --";
     	
     	iconRetroCarta.setImage(retro);
     	iconMano1.setImage(retro);
@@ -139,7 +146,6 @@ public class CampoGiocoController {
     	
     	homepageIcon.setImage(homePage);
     	
-    	textMoney.setText(creditiRimanenti);
     	
     }
 

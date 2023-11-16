@@ -63,27 +63,22 @@
             <Button fx:id="buttonPuntare" layoutX="1195.0" layoutY="517.0" mnemonicParsing="false" onAction="#buttonPuntareClicked" prefHeight="88.0" prefWidth="110.0" text="Punta" />
             <Slider layoutX="1053.0" layoutY="636.0" prefHeight="14.0" prefWidth="250.0" />
             <Button fx:id="confermaButton" layoutX="1133.0" layoutY="658.0" mnemonicParsing="false" onAction="#confermaButtonClicked" prefHeight="30.0" prefWidth="91.0" text="Conferma" />
-            <Label fx:id="textCrediti" layoutX="1053.0" layoutY="460.0" prefHeight="30.0" prefWidth="110.0" text="Crediti: ">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="textMoney" layoutX="1179.0" layoutY="451.0" prefHeight="48.0" prefWidth="152.0">
+            <Label fx:id="textCrediti" layoutX="1053.0" layoutY="460.0" prefHeight="30.0" prefWidth="250.0" text="Crediti: ">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
             <ImageView fx:id="homepageIcon" fitHeight="40.0" fitWidth="40.0" layoutX="1275.0" layoutY="14.0" onMouseClicked="#homepageIconClicked" pickOnBounds="true" preserveRatio="true" />
-            <VBox fx:id="vboxScuro" layoutX="516.0" layoutY="332.0" prefHeight="110.0" prefWidth="360.0">
+            <VBox fx:id="vbox" alignment="CENTER" layoutX="516.0" layoutY="332.0" prefHeight="110.0" prefWidth="360.0">
                <children>
-                  <Label contentDisplay="TOP" prefHeight="38.0" prefWidth="164.0" text="É il turno di: ">
+                  <Label fx:id="textTurno" alignment="CENTER" contentDisplay="TOP" prefHeight="38.0" prefWidth="146.0" text="É il turno di: ">
                      <VBox.margin>
-                        <Insets left="120.0" top="15.0" />
+                        <Insets top="-5.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="playButton" mnemonicParsing="false" prefHeight="37.0" prefWidth="78.0" text="Gioca!">
+                  <Button fx:id="playButton" alignment="CENTER" mnemonicParsing="false" onAction="#playButtonClicked" prefHeight="37.0" prefWidth="78.0" text="Gioca!">
                      <VBox.margin>
-                        <Insets left="160.0" top="10.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </Button>
                </children>
