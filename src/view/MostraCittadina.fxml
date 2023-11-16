@@ -4,29 +4,37 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Pagination?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="777.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MostraCittadinaController">
+<Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="651.0" stylesheets="@mostracittadina.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MostraCittadinaController">
    <children>
-      <VBox fx:id="centralBox" alignment="TOP_CENTER" layoutX="40.0" layoutY="26.0" prefHeight="486.0" prefWidth="697.0">
+      <VBox fx:id="centralBox" alignment="CENTER" layoutX="1.0" prefHeight="424.0" prefWidth="651.0">
          <children>
             <Label fx:id="titolo" alignment="CENTER" prefHeight="43.0" prefWidth="849.0">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin></Label>
-            <Label fx:id="punteggioCittà" alignment="CENTER" prefHeight="39.0" prefWidth="582.0" textAlignment="CENTER" />
-            <Label fx:id="punteggiVariCittà" alignment="CENTER" layoutX="28.0" layoutY="58.0" prefHeight="116.0" prefWidth="582.0" textAlignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="278.0" prefWidth="646.0">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
-            </Label>
-            <Pagination fx:id="stampaCarte" maxPageIndicatorCount="0" pageCount="0" prefHeight="210.0" prefWidth="698.0">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </Pagination>
-            <Button fx:id="riprendiPartita" mnemonicParsing="false" onAction="#closeWindow" prefHeight="43.0" prefWidth="133.0" text="Riprendi partita">
+               <children>
+                  <VBox fx:id="infoCarte" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="163.0" prefWidth="242.0">
+                     <children>
+                        <Label fx:id="punteggioTotale" alignment="CENTER" prefHeight="64.0" prefWidth="420.0" textAlignment="CENTER" />
+                        <Label fx:id="punteggiVariCittà" alignment="CENTER" prefHeight="133.0" prefWidth="238.0" textAlignment="CENTER">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <Pagination fx:id="stampaCarte" maxHeight="-Infinity" maxPageIndicatorCount="0" maxWidth="-Infinity" pageCount="0" prefHeight="321.0" prefWidth="363.0" />
+               </children>
+            </HBox>
+            <Button fx:id="riprendiPartita" mnemonicParsing="false" onAction="#closeWindow" prefHeight="29.0" prefWidth="134.0" text="Riprendi partita">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>

@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import model.Carta;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,8 +18,13 @@ public class MostraCittadinaController {
 
 	public static City città;
 	
+	private List<Image> listaImmagini;
+	
     @FXML
     private Pagination stampaCarte;
+    
+    @FXML
+    private VBox infoCarte;
 
     @FXML
     private VBox centralBox;
@@ -25,7 +33,7 @@ public class MostraCittadinaController {
     private Label punteggiVariCittà;
 
     @FXML
-    private Label punteggioCittà;
+    private Label punteggioTotale;
 
     @FXML
     private Button riprendiPartita;
@@ -44,7 +52,7 @@ public class MostraCittadinaController {
     @FXML
     void initialize() {
     	titolo.setText("Cittadina di "+città.getNome());
-    	punteggioCittà.setText("Punteggio cittadina: " + città.getPunteggio());
+    	punteggioTotale.setText("Punteggio cittadina: " + città.getPunteggio());
     	
     	String s = "";
     	s+="Punteggio residenziale : "+città.getResidenziale();
@@ -55,45 +63,26 @@ public class MostraCittadinaController {
     	
     	//inizializzaPagination();
     	
-    	stampaCarte.setPageCount(5);
-    	stampaCarte.setCurrentPageIndex(3);
+    	listaImmagini = new ArrayList<Image>();
     	
+    	for(int i =0 ; i<città.getCarte().size() ; i++)
+        	listaImmagini.add(new Image(città.getCarte().get(i).getPercorso()));
+    	
+    	stampaCarte.setPageCount(listaImmagini.size());
+    	//stampaCarte.setCurrentPageIndex(3);
+    	
+    	stampaCarte.setPageFactory(this::creaPagina);
     }
     
-    /*
-    private void inizializzaPagination() {
-    	String[] percorsi = new String[città.getCarte().size()];
-    	for(int i = 0 ; i < percorsi.length ; i++)
-    		percorsi[i] = città.getCarte().get(i).getPercorso();
-    	
-    	//stampaCarte = createPhotoPagination(percorsi, 1);
-    	
-    	//carteCittà = createPhotoPagination(percorsi, 1);
-        //centralBox.getChildren().add(stampaCarte);
-    }
-    
-    private Pagination createPhotoPagination(String[] imageUrls, int imagesPerPage) {
-        Pagination pagination = new Pagination((imageUrls.length + imagesPerPage - 1) / imagesPerPage, 0);
-        pagination.setPageFactory(pageIndex -> createPage(imageUrls, imagesPerPage, pageIndex));
-        return pagination;
-    }
-
-    private ImageView createPage(String[] imageUrls, int imagesPerPage, int pageIndex) {
-        int fromIndex = pageIndex * imagesPerPage;
-        int toIndex = Math.min(fromIndex + imagesPerPage, imageUrls.length);
-
+    private ImageView creaPagina(int indicePagina) {
         ImageView imageView = new ImageView();
-        imageView.setFitWidth(400);
-        imageView.setFitHeight(300);
+        
+        imageView.setImage(listaImmagini.get(indicePagina));
 
-        for (int i = fromIndex; i < toIndex; i++) {
-            Image image = new Image(imageUrls[i]);
-            imageView.setImage(image);
-        }
+        imageView.setFitWidth(200);
+        imageView.setFitHeight(260);
 
         return imageView;
     }
-    
- 	*/
     
 }

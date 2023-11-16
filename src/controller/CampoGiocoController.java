@@ -89,8 +89,7 @@ public class CampoGiocoController {
     		City c = new City("alegrotti");
     		c.aggiungiCarta(DBCarte.getCarta("Museo"));
     		c.aggiungiCarta(DBCarte.getCarta("Teatro"));
-    		MostraCittadinaController.città = c;
-	    	GestoreScene.mostraCittadina(null);
+	    	GestoreScene.mostraCittadina(c);
     	}catch(Exception e) {
     		GestoreScene.messaggioErrore("Errore apertura finestra");
     	}
