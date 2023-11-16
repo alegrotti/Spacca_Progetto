@@ -7,6 +7,13 @@
     -fx-font-size: 12px;
 }
 
+.button:hover {
+    -fx-border-color: rgb(0, 64, 128);
+    -fx-background-color: rgb(209, 155, 0);
+    -fx-text-fill: rgb(0, 64, 128);
+    -fx-transition: background-color 0.3s ease;
+}
+
 #infoCarte{
 	-fx-background-color: rgb(209, 155, 0);
 	-fx-text-fill: rgb(0, 64, 128);
@@ -16,15 +23,37 @@
     -fx-border-color: rgb(0, 0, 0);
 }
 
-#punteggioTotale{
-	
+.pagination .left-arrow,
+.pagination .right-arrow {
+    -fx-background-color: rgb(0, 64, 128);
+    -fx-text-fill: rgb(209, 155, 0);
+    -fx-font-size: 14px;
 }
 
-.button:hover {
-    -fx-border-color: rgb(0, 64, 128);
-    -fx-background-color: rgb(209, 155, 0);
-    -fx-text-fill: rgb(0, 64, 128);
-    -fx-transition: background-color 1s ease;
+.pagination .page {
+    -fx-border-width: 2px;
+    -fx-border-color: rgb(0, 0, 0);
+}
+
+.pagination .pager {
+    -fx-border-width: 2px;
+    -fx-border-color: rgb(0, 0, 0);
+}
+
+#punteggioTotale{
+	-fx-background-color: rgb(0, 64, 128);
+	-fx-text-fill: rgb(209, 155, 0);
+	-fx-font-family: "Georgia";
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+#punteggiVari{
+	-fx-text-fill: rgb(0, 64, 128);
+	-fx-font-family: "Georgia";
+    -fx-font-size: 15px;
+
 }
 
 #titolo {
