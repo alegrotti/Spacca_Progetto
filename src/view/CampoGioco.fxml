@@ -7,6 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CampoGiocoController">
@@ -72,6 +73,21 @@
                   <Font size="20.0" />
                </font>
             </Label>
+            <ImageView fx:id="homepageIcon" fitHeight="40.0" fitWidth="40.0" layoutX="1275.0" layoutY="14.0" onMouseClicked="#homepageIconClicked" pickOnBounds="true" preserveRatio="true" />
+            <VBox fx:id="vboxScuro" layoutX="516.0" layoutY="332.0" prefHeight="110.0" prefWidth="360.0">
+               <children>
+                  <Label contentDisplay="TOP" prefHeight="38.0" prefWidth="164.0" text="É il turno di: ">
+                     <VBox.margin>
+                        <Insets left="120.0" top="15.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Button fx:id="playButton" mnemonicParsing="false" prefHeight="37.0" prefWidth="78.0" text="Gioca!">
+                     <VBox.margin>
+                        <Insets left="160.0" top="10.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
          </children>
       </Pane>
    </children>

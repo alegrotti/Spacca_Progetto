@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="178.0" prefWidth="381.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MessaggioDiUscitaController">
+<AnchorPane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="178.0" prefWidth="381.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MessaggioRitornoHomepageController">
    <children>
       <HBox fx:id="sfondoBianco" layoutX="5.0" layoutY="6.0" prefHeight="165.0" prefWidth="372.0">
          <children>
@@ -19,21 +19,21 @@
             </ImageView>
             <VBox prefHeight="166.0" prefWidth="274.0">
                <children>
-                  <Label fx:id="text" prefHeight="44.0" prefWidth="230.0">
+                  <Label fx:id="text" alignment="TOP_CENTER" prefHeight="75.0" prefWidth="235.0">
                      <VBox.margin>
-                        <Insets left="20.0" top="25.0" />
+                        <Insets left="10.0" top="25.0" />
                      </VBox.margin>
                   </Label>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <Button fx:id="yesButton" mnemonicParsing="false" onAction="#ButtonYesClicked" prefHeight="35.0" prefWidth="45.0" text="Sì">
                            <HBox.margin>
-                              <Insets left="30.0" top="50.0" />
+                              <Insets left="30.0" top="35.0" />
                            </HBox.margin>
                         </Button>
                         <Button fx:id="noButton" mnemonicParsing="false" onAction="#ButtonNoClicked" prefHeight="35.0" prefWidth="45.0" text="No">
                            <HBox.margin>
-                              <Insets left="100.0" top="50.0" />
+                              <Insets left="100.0" top="35.0" />
                            </HBox.margin>
                         </Button>
                      </children>

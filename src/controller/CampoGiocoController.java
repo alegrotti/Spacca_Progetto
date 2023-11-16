@@ -3,11 +3,17 @@ package controller;
 import javafx.fxml.FXML;
 import model.Giocatore;
 import javafx.event.ActionEvent;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.layout.Pane;
 import model.Partita;
 import model.DBCarte;
@@ -16,7 +22,7 @@ import model.City;
 public class CampoGiocoController {
 
 	private Partita partita;
-	
+
 	private Giocatore giocatore;
 	
     @FXML
@@ -30,6 +36,9 @@ public class CampoGiocoController {
 
     @FXML
     private HBox hboxTavolo;
+    
+    @FXML
+    private ImageView homepageIcon;
 
     @FXML
     private ImageView iconMano1;
@@ -74,6 +83,9 @@ public class CampoGiocoController {
     private Button confermaButton;
     
     @FXML
+    private VBox vboxScuro;
+    
+    @FXML
     void confermaButtonClicked(ActionEvent event) {
 
     }
@@ -81,6 +93,11 @@ public class CampoGiocoController {
     @FXML
     void buttonPuntareClicked(ActionEvent event) {
 
+    }
+    
+    @FXML
+    void homepageIconClicked(MouseEvent event) {
+    	GestoreScene.messaggioRitornoHomepage("Tornando alla homepage \nperderai il turno corrente, \ncontinuare?");    	
     }
 
     @FXML
@@ -107,6 +124,7 @@ public class CampoGiocoController {
     @FXML
     void initialize() {
     	Image retro = new Image("/immagini/retrocarta.png");
+    	Image homePage = new Image("/immagini/homepageIcon.png");
     	String creditiRimanenti = "-- --";
     	
     	iconRetroCarta.setImage(retro);
@@ -118,6 +136,8 @@ public class CampoGiocoController {
     	iconTavolo2.setImage(retro);
     	iconTavolo3.setImage(retro);
     	iconTavolo4.setImage(retro);
+    	
+    	homepageIcon.setImage(homePage);
     	
     	textMoney.setText(creditiRimanenti);
     	
