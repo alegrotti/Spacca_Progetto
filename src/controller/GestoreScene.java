@@ -61,6 +61,7 @@ public class GestoreScene {
 			exitScene.getStylesheets().add("/view/messaggiodiuscita.css");
 			
 			Stage exitStage = new Stage();
+			exitStage.setResizable(false);
 			exitStage.setScene(exitScene);
 			exitStage.initOwner(Main.parentWindow);
 			exitStage.initModality(Modality.APPLICATION_MODAL);
@@ -77,19 +78,17 @@ public class GestoreScene {
 	public static void messaggioRitornoHomepage(String s) {
 		
 		try {
-			System.out.println('A');
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/MessaggioRitornoHomepage.fxml"));
 			Parent root = loader.load();
-			
-			System.out.println('B');
+
 			MessaggioRitornoHomepageController controller = loader.getController();
 			controller.impostaTesto(s);
 			
-			System.out.println('C');
 			Scene returnScene = new Scene(root);
 			returnScene.getStylesheets().add("/view/messaggioritornohomepage.css");
 			
 			Stage returnStage = new Stage();
+			returnStage.setResizable(false);
 			returnStage.setScene(returnScene);
 			returnStage.initOwner(Main.parentWindow);
 			returnStage.initModality(Modality.APPLICATION_MODAL);
@@ -99,8 +98,7 @@ public class GestoreScene {
 			
 	        returnStage.show();
 		} catch (Exception e) {
-			//messaggioErrore("Errore apertura finestra");
-			System.out.println(e);
+			messaggioErrore("Errore apertura finestra");
 		}	
 	}
 

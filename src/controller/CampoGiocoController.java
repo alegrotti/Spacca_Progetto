@@ -20,7 +20,7 @@ import model.Partita;
 public class CampoGiocoController {
 
 	private Partita partita;
-	
+
 	private Giocatore giocatore;
 	
     @FXML
@@ -95,10 +95,7 @@ public class CampoGiocoController {
     
     @FXML
     void homepageIconClicked(MouseEvent event) {
-    	System.out.println(0);
-    	GestoreScene.messaggioRitornoHomepage("Homepage");
-    	System.out.println(1);
-    	
+    	GestoreScene.messaggioRitornoHomepage("Tornando alla homepage \nperderai il turno corrente, \ncontinuare?");    	
     }
 
     @FXML

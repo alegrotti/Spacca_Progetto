@@ -45,9 +45,9 @@ public class MessaggioRitornoHomepageController {
 	        scenaHomepage.getStylesheets().add("/view/welcome.css");
 	        GestoreScene.setScene(scenaHomepage,false," - Homepage");
     	}catch(Exception e) {
-    		//GestoreScene.messaggioErrore("Errore apertura finestra");
-    		System.out.println(e);
+    		GestoreScene.messaggioErrore("Errore apertura finestra");
     	}
+    	yesButton.getScene().getWindow().hide();
     }
     
     public void impostaTesto(String testo) {
@@ -56,7 +56,7 @@ public class MessaggioRitornoHomepageController {
     
     @FXML
     void initialize() {
-    	Image foto = new Image("/immagini/errorefoto.png");
+    	Image foto = new Image("/immagini/errorefoto.jpg");
     	ImageIcon.setImage(foto);
     }
     
