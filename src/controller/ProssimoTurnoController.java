@@ -73,7 +73,7 @@ public class ProssimoTurnoController {
 
     @FXML
     void giocaTurno(ActionEvent event) {
-
+    	giocaTurnoButton.getScene().getWindow().hide();
     }
     
     @FXML
@@ -87,16 +87,13 @@ public class ProssimoTurnoController {
 			PartitaATurni p1 = (PartitaATurni) partita;
 			obiettivoPartita.setText("Partita a turni - Obiettivo "+p1.getTurni()+" turni");
 		}
-    	System.out.println(1);
     	prossimoTurnoLabel.setText("Prossimo turno - "+partita.getTurno());
-    	System.out.println(2);
     	String giocatori = "";
     	String palazzi = "";
     	for(String s : partita.getGiocatori()) {
     		giocatori+=s+"\n";
     		palazzi+=" - "+partita.getCittadina(s).getCarte().size()+" palazzi\n";
     	}
-    	System.out.println(3);
     	listaGiocatori.setText(giocatori);
     	infoGiocatori.setText(palazzi);
     }

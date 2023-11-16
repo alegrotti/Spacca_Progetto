@@ -61,6 +61,7 @@ public class GestoreScene {
 			exitScene.getStylesheets().add("/view/messaggiodiuscita.css");
 			
 			Stage exitStage = new Stage();
+			exitStage.setResizable(false);
 			exitStage.setScene(exitScene);
 			exitStage.initOwner(Main.parentWindow);
 			exitStage.initModality(Modality.APPLICATION_MODAL);
@@ -69,6 +70,33 @@ public class GestoreScene {
 	        exitStage.getIcons().add(image);
 			
 	        exitStage.show();
+		} catch (Exception e) {
+			messaggioErrore("Errore apertura finestra");
+		}	
+	}
+	
+	public static void messaggioRitornoHomepage(String s) {
+		
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/MessaggioRitornoHomepage.fxml"));
+			Parent root = loader.load();
+
+			MessaggioRitornoHomepageController controller = loader.getController();
+			controller.impostaTesto(s);
+			
+			Scene returnScene = new Scene(root);
+			returnScene.getStylesheets().add("/view/messaggioritornohomepage.css");
+			
+			Stage returnStage = new Stage();
+			returnStage.setResizable(false);
+			returnStage.setScene(returnScene);
+			returnStage.initOwner(Main.parentWindow);
+			returnStage.initModality(Modality.APPLICATION_MODAL);
+			returnStage.setTitle("SPACCA - Ritorno homepage senza salvataggio");
+	        Image image = new Image("/immagini/icon.jpg");
+	        returnStage.getIcons().add(image);
+			
+	        returnStage.show();
 		} catch (Exception e) {
 			messaggioErrore("Errore apertura finestra");
 		}	
