@@ -5,6 +5,7 @@ import java.util.List;
 import model.Carta;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
@@ -30,7 +31,7 @@ public class MostraCittadinaController {
     private VBox centralBox;
 
     @FXML
-    private Label punteggiVariCittà;
+    private Label punteggiVari;
 
     @FXML
     private Label punteggioTotale;
@@ -59,7 +60,7 @@ public class MostraCittadinaController {
     	s+="\nPunteggio culturale : "+città.getCulturale();
     	s+="\nPunteggio pubblico : "+città.getPubblico();
     	s+="\nPunteggio commerciale : "+città.getCommerciale();
-    	punteggiVariCittà.setText(s);
+    	punteggiVari.setText(s);
     	
     	//inizializzaPagination();
     	
@@ -69,9 +70,9 @@ public class MostraCittadinaController {
         	listaImmagini.add(new Image(città.getCarte().get(i).getPercorso()));
     	
     	stampaCarte.setPageCount(listaImmagini.size());
-    	//stampaCarte.setCurrentPageIndex(3);
     	
     	stampaCarte.setPageFactory(this::creaPagina);
+    	
     }
     
     private ImageView creaPagina(int indicePagina) {
