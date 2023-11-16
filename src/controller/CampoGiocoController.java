@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.layout.Pane;
 import model.Partita;
 
@@ -80,6 +81,9 @@ public class CampoGiocoController {
     private Button confermaButton;
     
     @FXML
+    private VBox vboxScuro;
+    
+    @FXML
     void confermaButtonClicked(ActionEvent event) {
 
     }
@@ -91,15 +95,10 @@ public class CampoGiocoController {
     
     @FXML
     void homepageIconClicked(MouseEvent event) {
-    	try {
-	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
-	        Scene scenaHomepage = new Scene(root);
-	        scenaHomepage.getStylesheets().add("/view/welcome.css");
-	        GestoreScene.setScene(scenaHomepage,false," - Homepage");
-    	}catch(Exception e) {
-    		GestoreScene.messaggioErrore("Errore apertura finestra");
-    	}
-
+    	System.out.println(0);
+    	GestoreScene.messaggioRitornoHomepage("Homepage");
+    	System.out.println(1);
+    	
     }
 
     @FXML

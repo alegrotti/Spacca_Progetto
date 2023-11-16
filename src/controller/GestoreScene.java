@@ -73,6 +73,36 @@ public class GestoreScene {
 			messaggioErrore("Errore apertura finestra");
 		}	
 	}
+	
+	public static void messaggioRitornoHomepage(String s) {
+		
+		try {
+			System.out.println('A');
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/MessaggioRitornoHomepage.fxml"));
+			Parent root = loader.load();
+			
+			System.out.println('B');
+			MessaggioRitornoHomepageController controller = loader.getController();
+			controller.impostaTesto(s);
+			
+			System.out.println('C');
+			Scene returnScene = new Scene(root);
+			returnScene.getStylesheets().add("/view/messaggioritornohomepage.css");
+			
+			Stage returnStage = new Stage();
+			returnStage.setScene(returnScene);
+			returnStage.initOwner(Main.parentWindow);
+			returnStage.initModality(Modality.APPLICATION_MODAL);
+			returnStage.setTitle("SPACCA - Ritorno homepage senza salvataggio");
+	        Image image = new Image("/immagini/icon.jpg");
+	        returnStage.getIcons().add(image);
+			
+	        returnStage.show();
+		} catch (Exception e) {
+			//messaggioErrore("Errore apertura finestra");
+			System.out.println(e);
+		}	
+	}
 
 	public static void prossimoTurnoPopup(Partita p) {
 		try {

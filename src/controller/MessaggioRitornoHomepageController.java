@@ -1,0 +1,64 @@
+package controller;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+
+public class MessaggioRitornoHomepageController {
+
+    @FXML
+    private ImageView ImageIcon;
+
+    @FXML
+    private Button noButton;
+
+    @FXML
+    private AnchorPane sfondo;
+
+    @FXML
+    private HBox sfondoBianco;
+
+    @FXML
+    private Label text;
+
+    @FXML
+    private Button yesButton;
+
+    @FXML
+    void ButtonNoClicked(ActionEvent event) {
+    	noButton.getScene().getWindow().hide();
+    }
+
+    @FXML
+    void ButtonYesClicked(ActionEvent event) {
+    	try {
+	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
+	        Scene scenaHomepage = new Scene(root);
+	        scenaHomepage.getStylesheets().add("/view/welcome.css");
+	        GestoreScene.setScene(scenaHomepage,false," - Homepage");
+    	}catch(Exception e) {
+    		//GestoreScene.messaggioErrore("Errore apertura finestra");
+    		System.out.println(e);
+    	}
+    }
+    
+    public void impostaTesto(String testo) {
+        text.setText(testo);
+    }
+    
+    @FXML
+    void initialize() {
+    	Image foto = new Image("/immagini/errorefoto.png");
+    	ImageIcon.setImage(foto);
+    }
+    
+
+}
