@@ -7,32 +7,43 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 
 <Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="651.0" stylesheets="@mostracittadina.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MostraCittadinaController">
    <children>
       <VBox fx:id="centralBox" alignment="CENTER" prefHeight="424.0" prefWidth="651.0">
          <children>
-            <Label fx:id="titolo" alignment="CENTER" prefHeight="43.0" prefWidth="849.0">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin></Label>
-            <HBox alignment="CENTER" prefHeight="278.0" prefWidth="646.0">
+            <HBox alignment="CENTER" prefHeight="298.0" prefWidth="646.0">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
                <children>
-                  <VBox fx:id="infoCarte" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="163.0" prefWidth="242.0">
+                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="302.0" prefWidth="336.0">
+                     <HBox.margin>
+                        <Insets right="30.0" />
+                     </HBox.margin>
                      <children>
-                        <Label fx:id="punteggioTotale" alignment="CENTER" prefHeight="64.0" prefWidth="420.0" textAlignment="CENTER" />
-                        <Label fx:id="punteggiVari" alignment="CENTER" prefHeight="133.0" prefWidth="238.0" textAlignment="CENTER">
+                        <Label fx:id="titolo" alignment="CENTER" prefHeight="43.0" prefWidth="849.0">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
                         </Label>
+                        <Line endX="100.0" startX="-100.0">
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Line>
+                        <VBox fx:id="infoCarte" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="163.0" prefWidth="242.0">
+                           <children>
+                              <Label fx:id="punteggioTotale" alignment="CENTER" prefHeight="64.0" prefWidth="420.0" textAlignment="CENTER" />
+                              <Label fx:id="punteggiVari" alignment="CENTER" prefHeight="133.0" prefWidth="238.0" textAlignment="CENTER">
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
                      </children>
-                     <HBox.margin>
-                        <Insets right="30.0" />
-                     </HBox.margin>
                   </VBox>
                   <Pagination fx:id="stampaCarte" currentPageIndex="1" maxHeight="-Infinity" maxPageIndicatorCount="0" maxWidth="-Infinity" pageCount="1" prefHeight="260.0" prefWidth="200.0">
                      <HBox.margin>

@@ -28,6 +28,11 @@ public class City implements Serializable{
 	public void aggiungiCarta(Carta carta) {
 		carte.add(carta);
 
+		residenziale=0;
+		commerciale=0;
+		pubblico=0;
+		culturale=0;
+		
 		for(Carta c : carte)
 			if(c instanceof Building) {
 				residenziale+=c.getResidenziale();

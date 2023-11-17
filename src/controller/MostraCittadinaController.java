@@ -62,8 +62,6 @@ public class MostraCittadinaController {
     	s+="\nPunteggio commerciale : "+città.getCommerciale();
     	punteggiVari.setText(s);
     	
-    	//inizializzaPagination();
-    	
     	listaImmagini = new ArrayList<Image>();
     	
     	for(int i =0 ; i<città.getCarte().size() ; i++)
