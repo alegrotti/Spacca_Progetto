@@ -23,7 +23,7 @@
                         <Insets right="30.0" />
                      </HBox.margin>
                      <children>
-                        <Label fx:id="titolo" alignment="CENTER" prefHeight="43.0" prefWidth="849.0">
+                        <Label fx:id="titolo" alignment="CENTER" prefHeight="98.0" prefWidth="336.0" textAlignment="CENTER">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
@@ -33,7 +33,7 @@
                               <Insets bottom="10.0" top="10.0" />
                            </VBox.margin>
                         </Line>
-                        <VBox fx:id="infoCarte" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="163.0" prefWidth="242.0">
+                        <VBox fx:id="infoCarte" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="163.0" prefWidth="321.0">
                            <children>
                               <Label fx:id="punteggioTotale" alignment="CENTER" prefHeight="64.0" prefWidth="420.0" textAlignment="CENTER" />
                               <Label fx:id="punteggiVari" alignment="CENTER" prefHeight="133.0" prefWidth="238.0" textAlignment="CENTER">

@@ -144,11 +144,9 @@ public class GestoreScene {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/MostraCittadina.fxml"));
 			Parent root = loader.load();
 			
-			System.out.println(1);
-			
 			Scene scene= new Scene(root);
 			scene.getStylesheets().add("/view/mostracittadina.css");
-			System.out.println(2);
+			
 			Stage stage = new Stage();
 			stage.setMaximized(false);
 			stage.centerOnScreen();

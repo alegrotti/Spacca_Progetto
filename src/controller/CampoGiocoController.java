@@ -3,10 +3,6 @@ package controller;
 import javafx.fxml.FXML;
 import model.Giocatore;
 import javafx.event.ActionEvent;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -109,6 +105,9 @@ public class CampoGiocoController {
     		City c = new City("alegrotti");
     		c.aggiungiCarta(DBCarte.getCarta("Museo"));
     		c.aggiungiCarta(DBCarte.getCarta("Teatro"));
+    		c.aggiungiCarta(DBCarte.getCarta("Casa familiare"));
+    		c.aggiungiCarta(DBCarte.getCarta("Negozio di abbigliamento"));
+    		//c.aggiungiCarta(DBCarte.getCarta("Teatro"));
 	    	GestoreScene.mostraCittadina(c);
     	}catch(Exception e) {
     		GestoreScene.messaggioErrore("Errore apertura finestra");
