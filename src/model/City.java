@@ -10,6 +10,7 @@ public class City implements Serializable{
 	private ArrayList<Carta> carte;
 	private int punteggio;
 	private String nome;
+
 	private int re;
 	private int co;
 	private int pu;
@@ -61,6 +62,20 @@ public class City implements Serializable{
 		
 		punteggio = (int)((5/2)*(re+cu+pu+co));
 		punteggio += carte.size()*3;
+		
+		if (re<=1) {
+			malus++;
+		}
+		if (cu<=1) {
+			malus++;
+		}
+		if (co<=1) {
+			malus++;
+		}
+		if (pu<=1) {
+			malus++;
+		}
+			
 		
 	}
 	
