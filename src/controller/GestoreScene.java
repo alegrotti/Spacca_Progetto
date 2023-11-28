@@ -163,4 +163,32 @@ public class GestoreScene {
 		}
 	}
 	
+	public static void schermataPuntata(Partita p) {
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/PuntataPartita.fxml"));
+			Parent root = loader.load();
+			
+			PuntataPartitaController c = loader.getController();
+			
+			c.inizializzaSchermata(p.getPuntata(),p.getGiocatoriTurno());
+			
+			Scene scene= new Scene(root);
+			scene.getStylesheets().add("/view/puntatapartita.css");
+			
+			Stage stage = new Stage();
+			stage.setMaximized(false);
+			stage.centerOnScreen();
+			stage.setResizable(false);
+			stage.setScene(scene);
+			stage.initOwner(Main.parentWindow);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setTitle("SPACCA - Punta");
+	        Image image = new Image("/immagini/icon.jpg");
+	        stage.getIcons().add(image);
+	        stage.show();
+		} catch (Exception e) {
+			messaggioErrore("Errore apertura finestra");
+		}
+	}
+	
 }

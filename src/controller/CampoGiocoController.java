@@ -102,6 +102,7 @@ public class CampoGiocoController {
     @FXML
     void mostracittaButtonClicked(ActionEvent event) {
     	try {
+    		/*
     		City c = new City("alegrotti");
     		c.aggiungiCarta(DBCarte.getCarta("Museo"));
     		c.aggiungiCarta(DBCarte.getCarta("Teatro"));
@@ -109,6 +110,8 @@ public class CampoGiocoController {
     		c.aggiungiCarta(DBCarte.getCarta("Negozio di abbigliamento"));
     		//c.aggiungiCarta(DBCarte.getCarta("Teatro"));
 	    	GestoreScene.mostraCittadina(c);
+	    	*/
+    		GestoreScene.schermataPuntata(partita);
     	}catch(Exception e) {
     		GestoreScene.messaggioErrore("Errore apertura finestra");
     	}
