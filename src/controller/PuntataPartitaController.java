@@ -1,8 +1,11 @@
 package controller;
 
+import java.io.IOException;
 import java.util.HashSet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -12,6 +15,7 @@ import javafx.scene.layout.VBox;
 public class PuntataPartitaController {
 
 	private HashSet<String> players;
+	private int crediti;
 	
     @FXML
     private VBox giocatoriPuntate;
@@ -33,7 +37,10 @@ public class PuntataPartitaController {
 
     @FXML
     void confermaPuntata(ActionEvent event) {
+    	CampoGiocoController.partita.aggiornaCrediti(players,crediti);
+    	
     	puntaButton.getScene().getWindow().hide();
+    	
     }
     
     @FXML
@@ -43,7 +50,7 @@ public class PuntataPartitaController {
     
     public void inizializzaSchermata(int punti,HashSet<String> g) {
     	valorePuntata.setText("Per giocare bisogna puntare : "+punti);
-    	
+    	crediti = punti;
     	for(String s : g)
     		creaRadioButton(s);
     }

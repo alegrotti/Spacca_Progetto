@@ -90,7 +90,7 @@ public class Partita implements Serializable{
 		return giocatoriTurno;
 	}
 
-	public void aggiornaPuntata(HashSet<Giocatore> g, int puntata) {
+	public void aggiornaCrediti(HashSet<String> g, int puntata) {
 		
 	}
 

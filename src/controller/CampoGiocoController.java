@@ -12,14 +12,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Pane;
 import model.Partita;
-import model.DBCarte;
-import model.City;
 
 public class CampoGiocoController {
 
-	private Partita partita;
+	public static Partita partita;
 
-	private Giocatore giocatore;
+	//public static Giocatore giocatore;
 	
     @FXML
     private Button buttonLasciare;
@@ -117,20 +115,11 @@ public class CampoGiocoController {
     	}
     }
 	
-	public boolean impostaPartita(Partita p) {
-		try {
-			partita = p;
-			return true;
-		}catch(Exception e) {
-			return false;
-		}
-	}
-	
     @FXML
     void playButtonClicked(ActionEvent event) {
 
     }
-	
+    
     @FXML
     void initialize() {
     	Image retro = new Image("/immagini/retrocarta.png");
