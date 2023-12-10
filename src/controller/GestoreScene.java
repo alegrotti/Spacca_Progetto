@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -183,6 +185,34 @@ public class GestoreScene {
 			stage.initOwner(Main.parentWindow);
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("SPACCA - Punta");
+	        Image image = new Image("/immagini/icon.jpg");
+	        stage.getIcons().add(image);
+	        stage.show();
+		} catch (Exception e) {
+			messaggioErrore("Errore apertura finestra");
+		}
+	}
+	
+	public static void scegliCartaSchermata(ArrayList<String> carte,Partita partita) {
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/ScegliCarta.fxml"));
+			Parent root = loader.load();
+			
+			ScegliCartaController c = loader.getController();
+			
+			c.inizializzaSchermata(carte,partita);
+			
+			Scene scene= new Scene(root);
+			scene.getStylesheets().add("/view/sceglicarta.css");
+			
+			Stage stage = new Stage();
+			stage.setMaximized(false);
+			stage.centerOnScreen();
+			stage.setResizable(false);
+			stage.setScene(scene);
+			stage.initOwner(Main.parentWindow);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setTitle("SPACCA - Scegli carta fine turno");
 	        Image image = new Image("/immagini/icon.jpg");
 	        stage.getIcons().add(image);
 	        stage.show();
