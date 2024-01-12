@@ -1,10 +1,6 @@
 package controller;
 
 import javafx.fxml.FXML;
-import model.Giocatore;
-
-import java.util.ArrayList;
-
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -112,11 +108,15 @@ public class CampoGiocoController {
     		//c.aggiungiCarta(DBCarte.getCarta("Teatro"));
 	    	GestoreScene.mostraCittadina(c);
 	    	*/
+    		
     		//GestoreScene.schermataPuntata(partita);
+    		
+    		/*
     		ArrayList<String> s = new ArrayList<String>();
     		s.add("casa");
     		s.add("museo");
-    		GestoreScene.scegliCartaSchermata(s,partita);
+    		GestoreScene.scegliCartaSchermata(s);
+    		*/
     	}catch(Exception e) {
     		GestoreScene.messaggioErrore("Errore apertura finestra");
     	}
@@ -125,6 +125,14 @@ public class CampoGiocoController {
     @FXML
     void playButtonClicked(ActionEvent event) {
 
+    }
+    
+    public void caricaSchermataDefault() {
+    	
+    }
+    
+    public void caricaSchermataPlayer() {
+    	
     }
     
     @FXML

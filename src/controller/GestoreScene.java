@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -172,7 +173,8 @@ public class GestoreScene {
 			
 			PuntataPartitaController c = loader.getController();
 			
-			c.inizializzaSchermata(p.getPuntata(),p.getGiocatoriTurno());
+			//c.inizializzaSchermata(p.getPuntata(),p.getGiocatoriTurno());
+			c.inizializzaSchermata(23,new HashSet<String>());
 			
 			Scene scene= new Scene(root);
 			scene.getStylesheets().add("/view/puntatapartita.css");
@@ -193,14 +195,14 @@ public class GestoreScene {
 		}
 	}
 	
-	public static void scegliCartaSchermata(ArrayList<String> carte,Partita partita) {
+	public static void scegliCartaSchermata(ArrayList<String> carte) {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/ScegliCarta.fxml"));
 			Parent root = loader.load();
 			
 			ScegliCartaController c = loader.getController();
 			
-			c.inizializzaSchermata(carte,partita);
+			c.inizializzaSchermata(carte);
 			
 			Scene scene= new Scene(root);
 			scene.getStylesheets().add("/view/sceglicarta.css");

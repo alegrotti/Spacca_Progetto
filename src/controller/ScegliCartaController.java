@@ -8,14 +8,12 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import model.Partita;
 
 import java.util.ArrayList;
 
 public class ScegliCartaController {
 
-	private Partita partita;
-    private ToggleGroup scelte;
+	private ToggleGroup scelte;
 
     @FXML
     private VBox carteDaScegliere;
@@ -39,20 +37,17 @@ public class ScegliCartaController {
             System.out.println(selectedRadioButton.getText());
         }
         confermaButton.getScene().getWindow().hide();
-        
     }
 
     @FXML
     void initialize() {
         scelte = new ToggleGroup();
-        partita = new Partita(null, null, null, 0);
     }
 
-    public void inizializzaSchermata(ArrayList<String> c, Partita p) {
+    public void inizializzaSchermata(ArrayList<String> c) {
         for (String s : c) {
             creaRadioButton(s);
         }
-        partita = p;
     }
 
     private void creaRadioButton(String s) {

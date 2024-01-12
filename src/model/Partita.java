@@ -11,23 +11,21 @@ public class Partita implements Serializable{
 	private Mazzo mazzo;
 	private int turno;
 	private HashSet<String> giocatori;
-	private HashSet<String> giocatoriTurno;
 	private String codice;
 	private int creditiIniziali;
-	private int puntata;
+	private int tavolo;
 	private HashMap<String, City> cittadine;
 	private HashMap<String, Integer> crediti;
 	
 	public Partita(Mazzo mazzo, HashSet<String> giocatori, String codice, int creditiIniziali) {
 		this.mazzo = mazzo;
 		this.giocatori = giocatori;
-		giocatoriTurno = giocatori;
 		this.codice = codice;
 		this.turno = 0;
+		this.tavolo = 0;
 		this.creditiIniziali = creditiIniziali;
 		this.crediti = creaCreditiIniziali(giocatori,creditiIniziali);
 		this.cittadine = creaCittadineIniziali(giocatori);
-		this.puntata = 0;
 	}
 
 	private HashMap<String,Integer> creaCreditiIniziali(HashSet<String> g, int c){
@@ -85,16 +83,22 @@ public class Partita implements Serializable{
 	public int getCreditiIniziali() {
 		return creditiIniziali;
 	}
-
-	public HashSet<String> getGiocatoriTurno() {
-		return giocatoriTurno;
+	
+	public void aggiornaCrediti(HashSet<String> players, int puntata) {
+		for(String p : players) {
+			int x = crediti.get(p);
+			if(x<puntata) {
+				tavolo+=x;
+				crediti.put(p, 0);
+			}else {
+				tavolo+=x;
+				crediti.put(p, x-puntata);
+			}
+		}
 	}
-
-	public void aggiornaCrediti(HashSet<String> g, int puntata) {
-		
+	
+	public int getTavolo() {
+		return tavolo;
 	}
-
-	public int getPuntata() {
-		return puntata;
-	}
+	
 }
