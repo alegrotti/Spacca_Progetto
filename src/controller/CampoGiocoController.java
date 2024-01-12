@@ -2,6 +2,11 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -18,11 +23,14 @@ public class CampoGiocoController {
 
 	//public static Giocatore giocatore;
 	
+	@FXML
+	private TextField CreditiPuntatiField;
+	
     @FXML
     private Button buttonLasciare;
 
     @FXML
-    private Button buttonRilanciare;
+    private Button buttonPuntare;
     
     @FXML
     private Button playButton;
@@ -74,6 +82,15 @@ public class CampoGiocoController {
     
     @FXML
     private Label textTurno;
+    
+    @FXML
+    private Label textGiocatoreCorrente;
+
+    @FXML
+    private Label textNumTurno;
+
+    @FXML
+    private Label textProssGiocatori;
 
     @FXML
     private Button confermaButton;
@@ -82,13 +99,21 @@ public class CampoGiocoController {
     private VBox vbox;
     
     @FXML
+    private VBox vboxNumTurno;
+
+    @FXML
+    private VBox vboxProssimiGiocatori;
+
+    
+    @FXML
     void confermaButtonClicked(ActionEvent event) {
 
     }
     
     @FXML
     void buttonPuntareClicked(ActionEvent event) {
-
+    	CreditiPuntatiField.setVisible(true);
+    	confermaButton.setVisible(true);
     }
     
     @FXML
@@ -152,7 +177,35 @@ public class CampoGiocoController {
     	
     	homepageIcon.setImage(homePage);
     	
+    	//mostracittaButton.setVisible(false);
+    	buttonLasciare.setVisible(false);
+    	buttonPuntare.setVisible(false);
+    	CreditiPuntatiField.setVisible(false);
+    	confermaButton.setVisible(false);
+    	//textTurno.setVisible(false);
+    	//textGiocatoreCorrente.setVisible(false);
+    	//textProssGiocatori.setVisible(false);
+    	//vboxNumTurno.setVisible(false);
+    	//vboxProssimiGiocatori.setVisible(false);
     	
+    	//textCrediti.setText("Crediti: " +  giocatore.getCrediti() );
+    	//textTurno.setText("E' il turno di: " + partita.getGiocatori() );
+    	
+    	
+    }
+    
+    public boolean inizializzaGiocatore(Giocatore g) {
+    	try {
+			giocatore = g;
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+    }
+    
+    public void inizializzaSchermata() {
+    	giocatore.getUsername();
     }
 
 }
