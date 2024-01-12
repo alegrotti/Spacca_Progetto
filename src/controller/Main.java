@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.DBAdmin;
+//import model.DBPartite;
 
 public class Main extends Application {
 	
@@ -35,14 +36,12 @@ public class Main extends Application {
 	
 	public static void main (String[] args) {
 		
-		/*
-    	DBAdmin.aggiornaDB();
-    	DBCarte.aggiornaDB();
-    	DBGiocatori.aggiornaDB();
-    	DBMazzi.aggiornaDB();
-    	DBPartite.aggiornaDB();
-    	DBTornei.aggiornaDB();
-    	*/
+    	//DBAdmin.aggiornaDB();
+    	//DBCarte.aggiornaDB();
+    	//DBGiocatori.aggiornaDB();
+    	//DBMazzi.aggiornaDB();
+    	//DBPartite.aggiornaDB();
+    	//DBTornei.aggiornaDB();
 		
     	DBAdmin.creaAdmin();
 		launch(args);

@@ -10,44 +10,57 @@ public class City implements Serializable{
 	private ArrayList<Carta> carte;
 	private int punteggio;
 	private String nome;
-	private double residenziale;
-	private double commerciale;
-	private double pubblico;
-	private double culturale;
+	private int re;
+	private int co;
+	private int pu;
+	private int cu;
 	
 	public City(String nome) {
 		this.nome = nome;
 		carte = new ArrayList<Carta>();
 		punteggio = 0;
-		residenziale = 0;
-		commerciale = 0;
-		pubblico = 0;
-		culturale = 0;
+		re = 0;
+		co = 0;
+		pu = 0;
+		cu = 0;
 	}
 	
 	public void aggiungiCarta(Carta carta) {
 		carte.add(carta);
 
+		re=0;
+		co=0;
+		pu=0;
+		cu=0;
+		
 		for(Carta c : carte)
 			if(c instanceof Building) {
-				residenziale+=c.getResidenziale();
-				commerciale+=c.getCommerciale();
-				pubblico+=c.getPubblico();
-				culturale+=c.getCulturale();
+				re+=c.getResidenziale();
+				co+=c.getCommerciale();
+				pu+=c.getPubblico();
+				cu+=c.getCulturale();
 			}
 		
-		residenziale/=carte.size();
-		commerciale/=carte.size();
-		pubblico/=carte.size();
-		culturale/=carte.size();
+		re=(int)(re/carte.size());
+		co=(int)(co/carte.size());
+		pu = (int)(pu/carte.size());
+		cu = (int)(cu/carte.size());
 		
 		for(Carta c : carte)
 			if(c instanceof Special) {
-				residenziale+=c.getResidenziale();
-				commerciale+=c.getCommerciale();
-				pubblico+=c.getPubblico();
-				culturale+=c.getCulturale();
+				re+=c.getResidenziale();
+				co+=c.getCommerciale();
+				pu+=c.getPubblico();
+				cu+=c.getCulturale();
 			}
+		
+		calcolaPunteggio();
+	}
+	
+	public void calcolaPunteggio() {
+		
+		punteggio = (int)((5/2)*(re+cu+pu+co));
+		punteggio += carte.size()*3;
 		
 	}
 	
@@ -63,20 +76,20 @@ public class City implements Serializable{
 		return nome;
 	}
 
-	public double getResidenziale() {
-		return residenziale;
+	public int getResidenziale() {
+		return re;
 	}
 
-	public double getCommerciale() {
-		return commerciale;
+	public int getCommerciale() {
+		return co;
 	}
 
-	public double getPubblico() {
-		return pubblico;
+	public int getPubblico() {
+		return pu;
 	}
 
-	public double getCulturale() {
-		return culturale;
+	public int getCulturale() {
+		return cu;
 	}
 	
 }
