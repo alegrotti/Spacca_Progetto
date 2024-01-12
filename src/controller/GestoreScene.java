@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -144,11 +147,9 @@ public class GestoreScene {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/MostraCittadina.fxml"));
 			Parent root = loader.load();
 			
-			System.out.println(1);
-			
 			Scene scene= new Scene(root);
 			scene.getStylesheets().add("/view/mostracittadina.css");
-			System.out.println(2);
+			
 			Stage stage = new Stage();
 			stage.setMaximized(false);
 			stage.centerOnScreen();
@@ -157,6 +158,63 @@ public class GestoreScene {
 			stage.initOwner(Main.parentWindow);
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("SPACCA - Mostra cittadina");
+	        Image image = new Image("/immagini/icon.jpg");
+	        stage.getIcons().add(image);
+	        stage.show();
+		} catch (Exception e) {
+			messaggioErrore("Errore apertura finestra");
+		}
+	}
+	
+	public static void schermataPuntata(Partita p) {
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/PuntataPartita.fxml"));
+			Parent root = loader.load();
+			
+			PuntataPartitaController c = loader.getController();
+			
+			//c.inizializzaSchermata(p.getPuntata(),p.getGiocatoriTurno());
+			c.inizializzaSchermata(23,new HashSet<String>());
+			
+			Scene scene= new Scene(root);
+			scene.getStylesheets().add("/view/puntatapartita.css");
+			
+			Stage stage = new Stage();
+			stage.setMaximized(false);
+			stage.centerOnScreen();
+			stage.setResizable(false);
+			stage.setScene(scene);
+			stage.initOwner(Main.parentWindow);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setTitle("SPACCA - Punta");
+	        Image image = new Image("/immagini/icon.jpg");
+	        stage.getIcons().add(image);
+	        stage.show();
+		} catch (Exception e) {
+			messaggioErrore("Errore apertura finestra");
+		}
+	}
+	
+	public static void scegliCartaSchermata(ArrayList<String> carte) {
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/ScegliCarta.fxml"));
+			Parent root = loader.load();
+			
+			ScegliCartaController c = loader.getController();
+			
+			c.inizializzaSchermata(carte);
+			
+			Scene scene= new Scene(root);
+			scene.getStylesheets().add("/view/sceglicarta.css");
+			
+			Stage stage = new Stage();
+			stage.setMaximized(false);
+			stage.centerOnScreen();
+			stage.setResizable(false);
+			stage.setScene(scene);
+			stage.initOwner(Main.parentWindow);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setTitle("SPACCA - Scegli carta fine turno");
 	        Image image = new Image("/immagini/icon.jpg");
 	        stage.getIcons().add(image);
 	        stage.show();

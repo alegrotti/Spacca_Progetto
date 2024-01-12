@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+<Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="393.0" stylesheets="@puntatapartita.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PuntataPartitaController">
+   <children>
+      <VBox fx:id="sfondoBianco" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="385.0" prefWidth="393.0">
+         <children>
+            <Label fx:id="titolo" alignment="CENTER" prefHeight="40.0" prefWidth="336.0" text="Chi rimane in gioco?" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Line endX="100.0" startX="-100.0">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </Line>
+            <Label fx:id="valorePuntata" alignment="CENTER" layoutX="39.0" layoutY="15.0" prefHeight="24.0" prefWidth="278.0" textAlignment="CENTER" />
+            <Line endX="100.0" layoutX="207.0" layoutY="66.0" startX="-100.0">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </Line>
+            <VBox fx:id="giocatoriPuntate" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="206.0" prefWidth="322.0" />
+            <Button fx:id="puntaButton" mnemonicParsing="false" onAction="#confermaPuntata" prefHeight="32.0" prefWidth="134.0" text="Punta">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</Pane>

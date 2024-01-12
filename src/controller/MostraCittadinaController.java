@@ -2,10 +2,8 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.Carta;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
@@ -52,7 +50,7 @@ public class MostraCittadinaController {
 
     @FXML
     void initialize() {
-    	titolo.setText("Cittadina di "+città.getNome());
+    	titolo.setText("Cittadina di \n"+città.getNome());
     	punteggioTotale.setText("Punteggio cittadina: " + città.getPunteggio());
     	
     	String s = "";
@@ -61,8 +59,6 @@ public class MostraCittadinaController {
     	s+="\nPunteggio pubblico : "+città.getPubblico();
     	s+="\nPunteggio commerciale : "+città.getCommerciale();
     	punteggiVari.setText(s);
-    	
-    	//inizializzaPagination();
     	
     	listaImmagini = new ArrayList<Image>();
     	

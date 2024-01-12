@@ -1,0 +1,68 @@
+#sfondo {
+	-fx-background-image: url("/immagini/mostracittadinasfondo.png");
+	-fx-background-size: cover;
+    -fx-background-position: center center;
+	-fx-border-width: 2px;
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-font-family: "Georgia";
+}
+
+#titolo {
+	-fx-color: rgb(0, 64, 128);
+    -fx-font: 25px "Felix Titling", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+.button{
+	-fx-border-color: rgb(209, 155, 0); 
+	-fx-text-fill: rgb(209, 155, 0);
+	-fx-prompt-text-fill: rgb(209, 155, 0);
+	-fx-background-color: rgb(0, 64, 128);
+	-fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+.radio-button:selected {
+    -fx-text-fill: rgb(0, 0, 0);
+    -fx-font: 14px "Georgia";
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+.radio-button {
+    -fx-text-fill: rgb(0, 0, 0);
+    -fx-font: 14px "Georgia";
+}
+
+.radio-button:selected .radio {
+    -fx-background-color: rgb(209, 155, 0);
+}
+
+.radio-button .radio {
+    -fx-background-color: rgb(0, 64, 128);
+}
+
+.button:hover {
+    -fx-border-color: rgb(0, 64, 128);
+    -fx-background-color: rgb(209, 155, 0);
+    -fx-text-fill: rgb(0, 64, 128);
+    -fx-transition: background-color 0.3s ease;
+}
+
+#sfondoBianco {
+	-fx-background-color: rgb(255, 255, 255, 0.7);
+	-fx-border-width: 2px;
+    -fx-border-color: rgb(0, 0, 0);
+}
+
+#valorePuntata{
+	-fx-color: rgb(0, 0, 0);
+    -fx-font: 15px "Georgia";
+}
+
+#giocatoriPuntate {
+	-fx-background-color: rgb(255, 255, 255, 0.7);
+	-fx-border-width: 2px;
+    -fx-border-color: rgb(0, 0, 0);
+}

@@ -1,7 +1,6 @@
 package controller;
 
 import javafx.fxml.FXML;
-import model.Giocatore;
 import javafx.event.ActionEvent;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,14 +16,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Pane;
 import model.Partita;
-import model.DBCarte;
-import model.City;
 
 public class CampoGiocoController {
 
-	private Partita partita;
+	public static Partita partita;
 
-	private Giocatore giocatore;
+	//public static Giocatore giocatore;
 	
 	@FXML
 	private TextField CreditiPuntatiField;
@@ -127,29 +124,42 @@ public class CampoGiocoController {
     @FXML
     void mostracittaButtonClicked(ActionEvent event) {
     	try {
+    		/*
     		City c = new City("alegrotti");
     		c.aggiungiCarta(DBCarte.getCarta("Museo"));
     		c.aggiungiCarta(DBCarte.getCarta("Teatro"));
+    		c.aggiungiCarta(DBCarte.getCarta("Casa familiare"));
+    		c.aggiungiCarta(DBCarte.getCarta("Negozio di abbigliamento"));
+    		//c.aggiungiCarta(DBCarte.getCarta("Teatro"));
 	    	GestoreScene.mostraCittadina(c);
+	    	*/
+    		
+    		//GestoreScene.schermataPuntata(partita);
+    		
+    		/*
+    		ArrayList<String> s = new ArrayList<String>();
+    		s.add("casa");
+    		s.add("museo");
+    		GestoreScene.scegliCartaSchermata(s);
+    		*/
     	}catch(Exception e) {
     		GestoreScene.messaggioErrore("Errore apertura finestra");
     	}
     }
 	
-	public boolean impostaPartita(Partita p) {
-		try {
-			partita = p;
-			return true;
-		}catch(Exception e) {
-			return false;
-		}
-	}
-	
     @FXML
     void playButtonClicked(ActionEvent event) {
 
     }
-	
+    
+    public void caricaSchermataDefault() {
+    	
+    }
+    
+    public void caricaSchermataPlayer() {
+    	
+    }
+    
     @FXML
     void initialize() {
     	Image retro = new Image("/immagini/retrocarta.png");
