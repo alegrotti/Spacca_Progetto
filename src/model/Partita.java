@@ -13,7 +13,6 @@ public class Partita implements Serializable{
 	private HashSet<String> giocatori;
 	private String codice;
 	private int creditiIniziali;
-	private int tavolo;
 	private HashMap<String, City> cittadine;
 	private HashMap<String, Integer> crediti;
 	
@@ -95,10 +94,6 @@ public class Partita implements Serializable{
 				crediti.put(p, x-puntata);
 			}
 		}
-	}
-	
-	public int getTavolo() {
-		return tavolo;
 	}
 	
 }

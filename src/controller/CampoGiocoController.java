@@ -2,10 +2,6 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,13 +11,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Pane;
+import model.Giocatore;
 import model.Partita;
 
 public class CampoGiocoController {
 
 	public static Partita partita;
 
-	//public static Giocatore giocatore;
+	public static Giocatore giocatore;
 	
 	@FXML
 	private TextField CreditiPuntatiField;
