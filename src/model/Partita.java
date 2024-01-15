@@ -1,8 +1,10 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+
+import controller.CampoGiocoController;
 
 public class Partita implements Serializable{
 	
@@ -11,8 +13,8 @@ public class Partita implements Serializable{
 	private Mazzo mazzoTurno;
 	private Mazzo mazzo;
 	private int turno;
-	private HashSet<String> giocatori;
-	private HashSet<String> giocatoriTurno;
+	private ArrayList<String> giocatori;
+	private ArrayList<String> giocatoriTurno;
 	private String codice;
 	private int creditiIniziali;
 	private int tavolo;
@@ -21,7 +23,7 @@ public class Partita implements Serializable{
 	private HashMap<String, City> cittadine;
 	private HashMap<String, Integer> crediti;
 	
-	public Partita(Mazzo mazzo, HashSet<String> giocatori, String codice, int creditiIniziali) {
+	public Partita(Mazzo mazzo, ArrayList<String> giocatori, String codice, int creditiIniziali) {
 		this.mazzo = mazzo;
 		this.giocatori = giocatori;
 		this.codice = codice;
@@ -35,7 +37,7 @@ public class Partita implements Serializable{
 		this.cittadine = creaCittadineIniziali(giocatori);
 	}
 
-	private HashMap<String,Integer> creaCreditiIniziali(HashSet<String> g, int c){
+	private HashMap<String,Integer> creaCreditiIniziali(ArrayList<String> g, int c){
 		HashMap<String,Integer> cre = new HashMap<String,Integer>();
 		for(String s : giocatori) {
 			cre.put(s, creditiIniziali);
@@ -43,7 +45,7 @@ public class Partita implements Serializable{
 		return cre;
 	}
 	
-	private HashMap<String,City> creaCittadineIniziali(HashSet<String> g){
+	private HashMap<String,City> creaCittadineIniziali(ArrayList<String> g){
 		HashMap<String,City> cit = new HashMap<String,City>();
 		for(String s : giocatori) {
 			cit.put(s, new City(s));
@@ -75,7 +77,7 @@ public class Partita implements Serializable{
 		this.codice = codice;
 	}
 
-	public HashSet<String> getGiocatori() {
+	public ArrayList<String> getGiocatori() {
 		return giocatori;
 	}
 	
@@ -91,7 +93,7 @@ public class Partita implements Serializable{
 		return creditiIniziali;
 	}
 	
-	public void aggiornaCrediti(HashSet<String> players, int puntata) {
+	public void aggiornaCrediti(ArrayList<String> players, int puntata) {
 		for(String p : players) {
 			int x = crediti.get(p);
 			if(x<puntata) {
@@ -107,18 +109,18 @@ public class Partita implements Serializable{
 	public int getTavolo() {
 		return tavolo;
 	}
-	/*
+	
 	public void inizializzaTurno() {
 		tavolo = 0;
 		giocatoriTurno = giocatori;
 		mazzoTurno = mazzo;
-		creaTavolo();
-		mani = empty();
-		for(Giocatore)
-		creaMano();
+		carteTavolo = creaTavolo();
+		CampoGiocoController.giocatore = giocatoriTurno.get(0);
+		for(String g : giocatori)
+			mani.put(g,creaMano());
 	}
-	*/
-	public HashSet<String> getGiocatoriTurno() {
+	
+	public ArrayList<String> getGiocatoriTurno() {
 		return giocatoriTurno;
 	}
 	
@@ -126,21 +128,28 @@ public class Partita implements Serializable{
 		return mani.get(n);
 	}
 	
-	public void creaTavolo() {
+	public Carta[] creaTavolo() {
 		Carta[] carte = new Carta[3];
 		mazzoTurno.mix();
 		for (int i = 0 ; i < carte.length ; i++) {
-			
+			carte[i] = mazzoTurno.getCarte().getFirst();
+			mazzoTurno.getCarte().remove(0);
 		}
-		
+		return carte;
 	}
 	
-	public void creaMano() {
+	public Carta[] creaMano() {
 		Carta[] carte = new Carta[3];
 		mazzoTurno.mix();
 		for (int i = 0 ; i < carte.length ; i++) {
-			
+			carte[i] = mazzoTurno.getCarte().getFirst();
+			mazzoTurno.getCarte().remove(0);
 		}
+		return carte;
+	}
+
+	public Carta[] getCarteTavolo() {
+		return carteTavolo;
 	}
 	
 }

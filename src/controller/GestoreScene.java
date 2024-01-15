@@ -1,8 +1,6 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.City;
+import model.DBPartite;
 import model.Partita;
 
 public class GestoreScene {
@@ -174,7 +173,7 @@ public class GestoreScene {
 			PuntataPartitaController c = loader.getController();
 			
 			//c.inizializzaSchermata(p.getPuntata(),p.getGiocatoriTurno());
-			c.inizializzaSchermata(23,new HashSet<String>());
+			c.inizializzaSchermata(23,new ArrayList<String>());
 			
 			Scene scene= new Scene(root);
 			scene.getStylesheets().add("/view/puntatapartita.css");
@@ -218,6 +217,21 @@ public class GestoreScene {
 	        Image image = new Image("/immagini/icon.jpg");
 	        stage.getIcons().add(image);
 	        stage.show();
+		} catch (Exception e) {
+			messaggioErrore("Errore apertura finestra");
+		}
+	}
+	
+	public static void campoDaGioco(String codice,String g,Partita p) {
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/CampoGioco.fxml"));
+			Parent root = loader.load();
+			CampoGiocoController controller = loader.getController();
+			controller.caricaSchermataDefault(g);
+			CampoGiocoController.partita = DBPartite.getPartita(codice);
+			Scene scenaHomepage = new Scene(root);
+	        scenaHomepage.getStylesheets().add("/view/campogioco.css");
+	        setScene(scenaHomepage,false,(" - Game "+codice));
 		} catch (Exception e) {
 			messaggioErrore("Errore apertura finestra");
 		}

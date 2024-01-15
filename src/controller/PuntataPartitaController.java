@@ -1,6 +1,6 @@
 package controller;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 
 public class PuntataPartitaController {
 
-	private HashSet<String> players;
+	private ArrayList<String> players;
 	private int crediti;
 	
     @FXML
@@ -42,10 +42,10 @@ public class PuntataPartitaController {
     
     @FXML
     void initialize() {
-    	players = new HashSet<String>();
+    	players = new ArrayList<String>();
     }
     
-    public void inizializzaSchermata(int punti,HashSet<String> g) {
+    public void inizializzaSchermata(int punti,ArrayList<String> g) {
     	valorePuntata.setText("Per giocare bisogna puntare : "+punti);
     	crediti = punti;
     	for(String s : g)

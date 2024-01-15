@@ -11,14 +11,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Pane;
-import model.Giocatore;
 import model.Partita;
 
 public class CampoGiocoController {
 
 	public static Partita partita;
 
-	public static Giocatore giocatore;
+	public static String giocatore;
 	
 	@FXML
 	private TextField CreditiPuntatiField;
@@ -146,15 +145,74 @@ public class CampoGiocoController {
 	
     @FXML
     void playButtonClicked(ActionEvent event) {
-
-    }
-    
-    public void caricaSchermataDefault() {
-    	
+    	caricaSchermataPlayer();
     }
     
     public void caricaSchermataPlayer() {
     	
+    	Image retro = new Image("/immagini/retrocarta.png");
+    	Image homePage = new Image("/immagini/homepageIcon.png");
+    	
+    	iconRetroCarta.setImage(retro);
+    	iconMano1.setImage(retro);
+    	iconMano2.setImage(retro);
+    	iconMano3.setImage(retro);
+    	iconTavolo1.setImage(retro);
+    	iconTavolo1.setImage(retro);
+    	iconTavolo2.setImage(retro);
+    	iconTavolo3.setImage(retro);
+    	iconTavolo4.setImage(retro);
+    	
+    	homepageIcon.setImage(homePage);
+    	
+    	/*
+    	mostracittaButton.setVisible(true);
+    	buttonLasciare.setVisible(true);
+    	buttonPuntare.setVisible(true);
+    	CreditiPuntatiField.setVisible(true);
+    	confermaButton.setVisible(true);
+    	textTurno.setVisible(true);
+    	textGiocatoreCorrente.setVisible(true);
+    	textProssGiocatori.setVisible(true);
+    	vboxNumTurno.setVisible(true);
+    	vboxProssimiGiocatori.setVisible(true);
+    	*/
+    	textCrediti.setText("Crediti: " +  2222 );
+    	textTurno.setText("E' il turno di: " + giocatore );
+    	//partita.inizializzaTurno();
+    	
+    }
+    
+    public void caricaSchermataDefault(String g){
+    	Image retro = new Image("/immagini/retrocarta.png");
+    	Image homePage = new Image("/immagini/homepageIcon.png");
+    	
+    	iconRetroCarta.setImage(retro);
+    	iconMano1.setImage(retro);
+    	iconMano2.setImage(retro);
+    	iconMano3.setImage(retro);
+    	iconTavolo1.setImage(retro);
+    	iconTavolo1.setImage(retro);
+    	iconTavolo2.setImage(retro);
+    	iconTavolo3.setImage(retro);
+    	iconTavolo4.setImage(retro);
+    	
+    	homepageIcon.setImage(homePage);
+    	
+    	//mostracittaButton.setVisible(false);
+    	//buttonLasciare.setVisible(false);
+    	//buttonPuntare.setVisible(false);
+    	//CreditiPuntatiField.setVisible(false);
+    	//confermaButton.setVisible(false);
+    	//textTurno.setVisible(false);
+    	//textGiocatoreCorrente.setVisible(false);
+    	//textProssGiocatori.setVisible(false);
+    	//vboxNumTurno.setVisible(false);
+    	//vboxProssimiGiocatori.setVisible(false);
+    	
+    	//textCrediti.setText("Crediti: " +  giocatore.getCrediti() );
+    	textTurno.setText("E' il turno di: " + giocatore);
+    	//partita.inizializzaTurno();
     }
     
     @FXML
@@ -174,35 +232,12 @@ public class CampoGiocoController {
     	
     	homepageIcon.setImage(homePage);
     	
-    	//mostracittaButton.setVisible(false);
+    	mostracittaButton.setVisible(false);
     	buttonLasciare.setVisible(false);
     	buttonPuntare.setVisible(false);
     	CreditiPuntatiField.setVisible(false);
     	confermaButton.setVisible(false);
-    	//textTurno.setVisible(false);
-    	//textGiocatoreCorrente.setVisible(false);
-    	//textProssGiocatori.setVisible(false);
-    	//vboxNumTurno.setVisible(false);
-    	//vboxProssimiGiocatori.setVisible(false);
     	
-    	//textCrediti.setText("Crediti: " +  giocatore.getCrediti() );
-    	//textTurno.setText("E' il turno di: " + partita.getGiocatori() );
-    	
-    	
-    }
-    
-    public boolean inizializzaGiocatore(Giocatore g) {
-    	try {
-			giocatore = g;
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-    }
-    
-    public void inizializzaSchermata() {
-    	giocatore.getUsername();
     }
 
 }

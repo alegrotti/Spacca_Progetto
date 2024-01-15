@@ -74,6 +74,7 @@ public class ProssimoTurnoController {
     @FXML
     void giocaTurno(ActionEvent event) {
     	giocaTurnoButton.getScene().getWindow().hide();
+    	GestoreScene.campoDaGioco(CampoGiocoController.partita.getCodice(), CampoGiocoController.giocatore, partita);
     }
     
     @FXML

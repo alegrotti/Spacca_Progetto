@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Random;
 import model.Giocatore;
 import model.GiocatoreFisico;
@@ -40,7 +39,7 @@ import javafx.scene.control.Slider;
 public class AdminAreaController {
 	
 	private ArrayList<Carta> carteMazzo;
-	private HashSet<String> giocatoriAggiunti;
+	private ArrayList<String> giocatoriAggiunti;
 
     @FXML
     private Button aggiungiCartaButton;
@@ -609,7 +608,7 @@ public class AdminAreaController {
     void initialize() {
     	
     	carteMazzo = new ArrayList<Carta>();
-    	giocatoriAggiunti = new HashSet<String>();
+    	giocatoriAggiunti = new ArrayList<String>();
     	
     	inizializzaSchermata();
     	

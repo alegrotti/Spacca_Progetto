@@ -6,9 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.DBAdmin;
-import model.DBGiocatori;
-import model.DBMazzi;
-import model.DBPartite;
+//import model.DBGiocatori;
+//import model.DBMazzi;
+//import model.DBPartite;
 //import model.DBPartite;
 
 public class Main extends Application {
