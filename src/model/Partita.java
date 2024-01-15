@@ -8,11 +8,16 @@ public class Partita implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
+	private Mazzo mazzoTurno;
 	private Mazzo mazzo;
 	private int turno;
 	private HashSet<String> giocatori;
+	private HashSet<String> giocatoriTurno;
 	private String codice;
 	private int creditiIniziali;
+	private int tavolo;
+	private Carta[] carteTavolo;
+	private HashMap<String, Carta[]> mani;
 	private HashMap<String, City> cittadine;
 	private HashMap<String, Integer> crediti;
 	
@@ -23,6 +28,9 @@ public class Partita implements Serializable{
 		this.turno = 0;
 		this.tavolo = 0;
 		this.creditiIniziali = creditiIniziali;
+		this.mani = null;
+		this.mazzoTurno = null;
+		this.carteTavolo = null;
 		this.crediti = creaCreditiIniziali(giocatori,creditiIniziali);
 		this.cittadine = creaCittadineIniziali(giocatori);
 	}
@@ -93,6 +101,45 @@ public class Partita implements Serializable{
 				tavolo+=x;
 				crediti.put(p, x-puntata);
 			}
+		}
+	}
+	
+	public int getTavolo() {
+		return tavolo;
+	}
+	/*
+	public void inizializzaTurno() {
+		tavolo = 0;
+		giocatoriTurno = giocatori;
+		mazzoTurno = mazzo;
+		creaTavolo();
+		mani = empty();
+		for(Giocatore)
+		creaMano();
+	}
+	*/
+	public HashSet<String> getGiocatoriTurno() {
+		return giocatoriTurno;
+	}
+	
+	public Carta[] getMano(String n) {
+		return mani.get(n);
+	}
+	
+	public void creaTavolo() {
+		Carta[] carte = new Carta[3];
+		mazzoTurno.mix();
+		for (int i = 0 ; i < carte.length ; i++) {
+			
+		}
+		
+	}
+	
+	public void creaMano() {
+		Carta[] carte = new Carta[3];
+		mazzoTurno.mix();
+		for (int i = 0 ; i < carte.length ; i++) {
+			
 		}
 	}
 	

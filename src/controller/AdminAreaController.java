@@ -383,13 +383,23 @@ public class AdminAreaController {
     	
     	Carta c = DBCarte.getCarta(carta);
     	
-    	carteMazzo.remove(c);
-    	carteMazzo.trimToSize();
+    	rimuoviDaMazzo(c);
     	
     	String s = nomeMazzo.getText();
     	inizializzaGestioneMazzi();
     	nomeMazzo.setText(s);
     	
+    }
+    
+    private void rimuoviDaMazzo(Carta carta) {
+    	int x = 0;
+    	for(Carta c : carteMazzo)
+    		if(c.getNome().equals(carta.getNome()))
+    			break;
+    		else
+    			x++;
+    	carteMazzo.remove(x);
+    	carteMazzo.trimToSize();
     }
     
     @FXML

@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Mazzo implements Serializable{
 	
@@ -21,6 +22,10 @@ public class Mazzo implements Serializable{
 	
 	public ArrayList<Carta> getCarte(){
 		return carte;
+	}
+	
+	public void mix() {
+		Collections.shuffle(carte);
 	}
 	
 }
