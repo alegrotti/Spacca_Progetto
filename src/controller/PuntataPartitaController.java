@@ -8,11 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import model.Partita;
 
 public class PuntataPartitaController {
 
 	private ArrayList<String> players;
 	private int crediti;
+	private Partita partita;
 	
     @FXML
     private VBox giocatoriPuntate;
@@ -34,7 +36,7 @@ public class PuntataPartitaController {
 
     @FXML
     void confermaPuntata(ActionEvent event) {
-    	CampoGiocoController.partita.aggiornaCrediti(players,crediti);
+    	partita.aggiornaCrediti(players, crediti);
     	
     	puntaButton.getScene().getWindow().hide();
     	
@@ -45,11 +47,13 @@ public class PuntataPartitaController {
     	players = new ArrayList<String>();
     }
     
-    public void inizializzaSchermata(int punti,ArrayList<String> g) {
+    public void inizializzaSchermata(int punti,ArrayList<String> g,Partita p) {
     	valorePuntata.setText("Per giocare bisogna puntare : "+punti);
     	crediti = punti;
     	for(String s : g)
     		creaRadioButton(s);
+    	
+    	partita = p;
     }
     
     private void creaRadioButton(String s) {

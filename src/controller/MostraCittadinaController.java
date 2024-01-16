@@ -15,7 +15,7 @@ import model.City;
 
 public class MostraCittadinaController {
 
-	public static City città;
+	private City città;
 	
 	private List<Image> listaImmagini;
 	
@@ -48,8 +48,7 @@ public class MostraCittadinaController {
     	riprendiPartita.getScene().getWindow().hide();
     }
 
-    @FXML
-    void initialize() {
+    public void creaSchermata() {
     	titolo.setText("Cittadina di \n"+città.getNome());
     	punteggioTotale.setText("Punteggio cittadina: " + città.getPunteggio());
     	
@@ -62,13 +61,20 @@ public class MostraCittadinaController {
     	
     	listaImmagini = new ArrayList<Image>();
     	
-    	for(int i =0 ; i<città.getCarte().size() ; i++)
-        	listaImmagini.add(new Image(città.getCarte().get(i).getPercorso()));
+    	System.out.println(città.getCarte().size());
     	
-    	stampaCarte.setPageCount(listaImmagini.size());
-    	
-    	stampaCarte.setPageFactory(this::creaPagina);
-    	
+    	if(città.getCarte().size()>0) {
+	    	for(int i =0 ; i<città.getCarte().size() ; i++)
+	        	listaImmagini.add(new Image(città.getCarte().get(i).getPercorso()));
+	    	
+	    	stampaCarte.setPageCount(listaImmagini.size());
+	    	
+	    	stampaCarte.setPageFactory(this::creaPagina);
+    	}
+    }
+    
+    public void importaCitta(City c) {
+    	città = c;
     }
     
     private ImageView creaPagina(int indicePagina) {
