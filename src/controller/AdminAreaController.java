@@ -520,25 +520,39 @@ public class AdminAreaController {
 		try {
 			Mazzo m = DBMazzi.getMazzo(scegliMazzoPartitaButton.getValue());
 			String codice = codicePartitaField.getText();
-			if(!DBAdmin.getAdmin().getPartite().contains(codice)) {
-				int n = Integer.parseInt(creditiSliderLabel.getText());
-				if(tipoPartitaButton.getValue().equals("A turni")) {
-					int turni = Integer.parseInt(numeroSliderPartitaLabel.getText());
-					Partita p = new PartitaATurni(m,giocatoriAggiunti,codice,turni,n);
-					DBPartite.aggiungiPartita(p);
-					DBAdmin.aggiungiPartita(p);
-				}else if(tipoPartitaButton.getValue().equals("A palazzi")) {
-					int palazzi = Integer.parseInt(numeroSliderPartitaLabel.getText());
-					Partita p = new PartitaAPalazzi(m,giocatoriAggiunti,codice,palazzi,n);
-					DBPartite.aggiungiPartita(p);
-					DBAdmin.aggiungiPartita(p);
+			int n = Integer.parseInt(creditiSliderLabel.getText());
+			if(n<1000)
+				GestoreScene.messaggioErrore("Scegliere numero crediti");
+			else if(!codice.equals(""))
+				if(!DBAdmin.getAdmin().getPartite().contains(codice)) {
+					if(tipoPartitaButton.getValue().equals("A turni")) {
+						int turni = Integer.parseInt(numeroSliderPartitaLabel.getText());
+						if(giocatoriAggiunti.size()>1) {
+							Partita p = new PartitaATurni(m,giocatoriAggiunti,codice,turni,n);
+							DBPartite.aggiungiPartita(p);
+							DBAdmin.aggiungiPartita(p);
+							inizializzaSchermata();
+						}else {
+							GestoreScene.messaggioErrore("Aggiungi almeno 2 giocatori");
+						}
+					}else if(tipoPartitaButton.getValue().equals("A palazzi")) {
+						int palazzi = Integer.parseInt(numeroSliderPartitaLabel.getText());
+						if(giocatoriAggiunti.size()>1) {	
+							Partita p = new PartitaAPalazzi(m,giocatoriAggiunti,codice,palazzi,n);
+							DBPartite.aggiungiPartita(p);
+							DBAdmin.aggiungiPartita(p);
+							inizializzaSchermata();
+						}else 
+							GestoreScene.messaggioErrore("Aggiungi almeno 2 giocatori");
+
+					}else {
+						GestoreScene.messaggioErrore("");
+					}
 				}else {
-					throw new Exception();
+					GestoreScene.messaggioErrore("Codice già esistente");
 				}
-				inizializzaSchermata();
-			}else {
-				GestoreScene.messaggioErrore("Codice già esistente");
-			}
+			else
+				GestoreScene.messaggioErrore("Inserisci codice non nullo");
 		}catch(Exception e) {
 			GestoreScene.messaggioErrore("Errore creazione partita");
 		}
@@ -706,7 +720,7 @@ public class AdminAreaController {
     	
     	sliderCreditiPartita.setMin(1);
     	sliderCreditiPartita.setMax(100);
-    	sliderCreditiPartita.setValue(0);
+    	sliderCreditiPartita.setValue(50*1000);
     	creditiSliderLabel.setText(String.valueOf((int) sliderCreditiPartita.getValue()));
     	sliderCreditiPartita.valueProperty().addListener((observable, oldValue, newValue) -> {
             int roundedValue = (int) (Math.round(newValue.doubleValue()));
