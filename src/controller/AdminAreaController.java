@@ -230,35 +230,47 @@ public class AdminAreaController {
     //Giocatore
     @FXML
     void aggiungiGiocatore(ActionEvent event) {
-    	String tipoGiocatore = tipoDiGiocatoreButton.getValue();
-    	if("Reale".equals(tipoGiocatore)) {
-    		String username = nuovoGiocatoreField.getText();
-    		if(!username.equals("")) {
-    			Giocatore g = new GiocatoreFisico(username);
-    			DBGiocatori.aggiungiGiocatore(g);
-    			DBAdmin.aggiungiGiocatore(g);
-    		}
-    	}else{
-    		String difficolta = selezionaDifficoltaButton.getValue();
-    		if("Facile".equals(difficolta)) {
+    	try {
+	    	String tipoGiocatore = tipoDiGiocatoreButton.getValue();
+	    	if("Reale".equals(tipoGiocatore)) {
 	    		String username = nuovoGiocatoreField.getText();
 	    		if(!username.equals("")) {
-	    			Giocatore g = new GiocatoreCPUFacile(username);
+	    			Giocatore g = new GiocatoreFisico(username);
 	    			DBGiocatori.aggiungiGiocatore(g);
 	    			DBAdmin.aggiungiGiocatore(g);
+	    		} else {
+	    			GestoreScene.messaggioErrore("Inserisci nome");
 	    		}
-    		}else if("Difficile".equals(difficolta)){
-    			String username = nuovoGiocatoreField.getText();
-	    		if(!username.equals("")) {
-	    			Giocatore g = new GiocatoreCPUDifficile(username);
-	    			DBGiocatori.aggiungiGiocatore(g);
-	    			DBAdmin.aggiungiGiocatore(g);
-	    		}
-    		}else {
-    			
-    		}
-    	}
-    	inizializzaSchermata();
+	    	}else if("CPU".equals(tipoGiocatore)){
+	    		String difficolta = selezionaDifficoltaButton.getValue();
+	    		if("Facile".equals(difficolta)) {
+		    		String username = nuovoGiocatoreField.getText();
+		    		if(!username.equals("")) {
+		    			Giocatore g = new GiocatoreCPUFacile(username);
+		    			DBGiocatori.aggiungiGiocatore(g);
+		    			DBAdmin.aggiungiGiocatore(g);
+		    		}else {
+		    			GestoreScene.messaggioErrore("Inserisci nome");
+		    		}
+	    		}else if("Difficile".equals(difficolta)){
+	    			String username = nuovoGiocatoreField.getText();
+		    		if(!username.equals("")) {
+		    			Giocatore g = new GiocatoreCPUDifficile(username);
+		    			DBGiocatori.aggiungiGiocatore(g);
+		    			DBAdmin.aggiungiGiocatore(g);
+		    		}else {
+		    			GestoreScene.messaggioErrore("Inserisci nome");
+		    		}
+	    		}else {
+	    			GestoreScene.messaggioErrore("Seleziona difficoltà");	
+    			}
+	    	}else {
+    			GestoreScene.messaggioErrore("Seleziona tipo");	
+			}
+	    	inizializzaSchermata();
+    	}catch(Exception e) {
+    		GestoreScene.messaggioErrore("Errore creazione giocatore");
+		}
     }
     
     @FXML
