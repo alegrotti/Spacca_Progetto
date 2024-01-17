@@ -59,7 +59,7 @@
             </HBox>
             <ImageView fx:id="iconRetroCarta" fitHeight="260.0" fitWidth="200.0" layoutX="1136.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" />
             <Button fx:id="mostracittaButton" layoutX="92.0" layoutY="596.0" mnemonicParsing="false" onAction="#mostracittaButtonClicked" prefHeight="38.0" prefWidth="181.0" text="Mostra cittadina" />
-            <Button fx:id="buttonLasciare" layoutX="1053.0" layoutY="517.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="116.0" text="Lascia turno" />
+            <Button fx:id="buttonLasciare" layoutX="1053.0" layoutY="517.0" mnemonicParsing="false" onAction="#lasciaTurno" prefHeight="38.0" prefWidth="116.0" text="Lascia turno" />
             <Button fx:id="buttonPuntare" layoutX="1189.0" layoutY="517.0" mnemonicParsing="false" onAction="#buttonPuntareClicked" prefHeight="40.0" prefWidth="116.0" text="Punta" />
             <Button fx:id="confermaButton" layoutX="1133.0" layoutY="619.0" mnemonicParsing="false" onAction="#confermaButtonClicked" prefHeight="30.0" prefWidth="91.0" text="Conferma" />
             <Label fx:id="textCrediti" layoutX="1053.0" layoutY="460.0" prefHeight="30.0" prefWidth="250.0">

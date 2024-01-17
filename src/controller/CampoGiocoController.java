@@ -107,7 +107,23 @@ public class CampoGiocoController {
     
     @FXML
     void confermaButtonClicked(ActionEvent event) {
-
+    	int a = 0;
+    	try {
+    		String s = CreditiPuntatiField.getText();
+    		a = Integer.parseInt(s); 
+    		if(a>0)
+    			GestoreScene.messaggioConfermaMossa(true, a);
+    		else
+    			throw new Exception();
+    	}catch(Exception e) {
+    		GestoreScene.messaggioErrore("Inserire un numero intero non nullo");
+    	}
+    	
+    }
+    
+    @FXML
+    void lasciaTurno(ActionEvent event) {
+    	GestoreScene.messaggioConfermaMossa(false, 0);
     }
     
     @FXML

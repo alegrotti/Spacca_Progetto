@@ -61,8 +61,6 @@ public class MostraCittadinaController {
     	
     	listaImmagini = new ArrayList<Image>();
     	
-    	System.out.println(città.getCarte().size());
-    	
     	if(città.getCarte().size()>0) {
 	    	for(int i =0 ; i<città.getCarte().size() ; i++)
 	        	listaImmagini.add(new Image(città.getCarte().get(i).getPercorso()));
