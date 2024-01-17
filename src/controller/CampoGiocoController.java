@@ -12,7 +12,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Pane;
 import model.Carta;
-import model.City;
 import model.Partita;
 
 public class CampoGiocoController {
