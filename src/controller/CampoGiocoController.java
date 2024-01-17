@@ -12,6 +12,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Pane;
 import model.Carta;
+import model.DBGiocatori;
+import model.GiocatoreCPUDifficile;
+import model.GiocatoreCPUFacile;
+import model.GiocatoreFisico;
 import model.Partita;
 
 public class CampoGiocoController {
@@ -111,7 +115,12 @@ public class CampoGiocoController {
     		String s = CreditiPuntatiField.getText();
     		a = Integer.parseInt(s); 
     		if(a>0)
-    			GestoreScene.messaggioConfermaMossa(true, a);
+    			if(a<=partita.getCrediti(giocatore))
+    				GestoreScene.messaggioConfermaMossa(true, a);
+    			else {
+    				GestoreScene.messaggioErrore("Puntata massima raggiunta: all in!");
+    				CreditiPuntatiField.setText(partita.getCrediti(giocatore)+"");
+    			}
     		else
     			throw new Exception();
     	}catch(Exception e) {
@@ -147,11 +156,45 @@ public class CampoGiocoController {
 	
     @FXML
     void playButtonClicked(ActionEvent event) {
-    	caricaSchermataPlayer();
+    	if(DBGiocatori.getGiocatore(giocatore) instanceof GiocatoreFisico)
+    		caricaSchermataPlayerFisico();
+    	else if(DBGiocatori.getGiocatore(giocatore) instanceof GiocatoreCPUFacile)
+    		caricaSchermataPlayerCPUFacile();
+    	else if(DBGiocatori.getGiocatore(giocatore) instanceof GiocatoreCPUDifficile)
+    		caricaSchermataPlayerCPUDifficile();
+    	
     	vboxPlay.setVisible(false);
     }
     
-    public void caricaSchermataPlayer() {
+    public void caricaSchermataPlayerCPUFacile() {
+    	
+    	stampaCarte(partita.getCarteTavolo(),partita.getMano(giocatore));
+    	
+    	mostracittaButton.setVisible(true);
+    	vboxPlay.setVisible(true);
+    	textGiocatoreCorrente.setVisible(true);
+    	vboxProssimiGiocatori.setVisible(true);
+    	
+    	vboxProssimiGiocatori.setVisible(true);
+    	
+    	textCrediti.setText("Crediti: " + partita.getCrediti(giocatore));
+    }
+    
+    public void caricaSchermataPlayerCPUDifficile() {
+    	
+    	stampaCarte(partita.getCarteTavolo(),partita.getMano(giocatore));
+    	
+    	mostracittaButton.setVisible(true);
+    	vboxPlay.setVisible(true);
+    	textGiocatoreCorrente.setVisible(true);
+    	vboxProssimiGiocatori.setVisible(true);
+    	
+    	vboxProssimiGiocatori.setVisible(true);
+    	
+    	textCrediti.setText("Crediti: " + partita.getCrediti(giocatore));
+    }
+    
+    public void caricaSchermataPlayerFisico() {
     	
     	stampaCarte(partita.getCarteTavolo(),partita.getMano(giocatore));
     	
@@ -164,8 +207,7 @@ public class CampoGiocoController {
     	
     	vboxProssimiGiocatori.setVisible(true);
     	
-    	textCrediti.setText("Crediti: " +  2222 );
-    	textNome.setText("E' il turno di: " + giocatore );
+    	textCrediti.setText("Crediti: " + partita.getCrediti(giocatore));
     }
     
     public void caricaSchermataDefault(){
