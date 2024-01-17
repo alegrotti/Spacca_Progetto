@@ -116,7 +116,7 @@ public class CampoGiocoController {
     		a = Integer.parseInt(s); 
     		if(a>0)
     			if(a<=partita.getCrediti(giocatore))
-    				GestoreScene.messaggioConfermaMossa(true, a);
+    				GestoreScene.messaggioConfermaMossa(true, a, partita, giocatore);
     			else {
     				GestoreScene.messaggioErrore("Puntata massima raggiunta: all in!");
     				CreditiPuntatiField.setText(partita.getCrediti(giocatore)+"");

@@ -238,13 +238,13 @@ public class GestoreScene {
 		}
 	}
 	
-	public static void messaggioConfermaMossa(boolean x , int puntata) {
+	public static void messaggioConfermaMossa(boolean x , int puntata, Partita partita ,String giocatore) {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/ConfermaMossa.fxml"));
 			Parent root = loader.load();
 			
 			ConfermaMossaController controller = loader.getController();
-			controller.impostaTesto(x,puntata);
+			controller.impostaTesto(x,puntata,partita,giocatore);
 			
 			Scene exitScene = new Scene(root);
 			exitScene.getStylesheets().add("/view/confermamossa.css");

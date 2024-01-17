@@ -11,6 +11,7 @@ public class Partita implements Serializable{
 	private Mazzo mazzoTurno;
 	private Mazzo mazzo;
 	private int turno;
+	private int puntata;
 	private ArrayList<String> giocatori;
 	private ArrayList<String> giocatoriTurno;
 	private String codice;
@@ -20,6 +21,7 @@ public class Partita implements Serializable{
 	private HashMap<String, Carta[]> mani;
 	private HashMap<String, City> cittadine;
 	private HashMap<String, Integer> crediti;
+	private HashMap<String, Integer> creditiTurno;
 	
 	public Partita() {
 		this.mazzo = null;
@@ -34,6 +36,7 @@ public class Partita implements Serializable{
 		this.mani = null;
 		this.cittadine = null;
 		this.crediti = null;
+		this.setPuntata(0);
 	}
 
 	public Partita(Mazzo mazzo, ArrayList<String> giocatori, String codice, int creditiIniziali) {
@@ -42,11 +45,13 @@ public class Partita implements Serializable{
 		this.codice = codice;
 		this.turno = 0;
 		this.tavolo = 0;
+		this.setPuntata(0);
 		this.creditiIniziali = creditiIniziali;
 		this.mani = creaManiIniziali(giocatori);
 		this.mazzoTurno = null;
 		this.carteTavolo = null;
 		this.crediti = creaCreditiIniziali(giocatori,creditiIniziali);
+		this.creditiTurno = crediti;
 		this.cittadine = creaCittadineIniziali(giocatori);
 	}
 
@@ -127,6 +132,11 @@ public class Partita implements Serializable{
 		}
 	}
 	
+	public void aggiornaCreditiTurno(String player, int puntata) {
+		int x = crediti.get(player);
+		crediti.put(player, x-puntata);
+	}
+	
 	public int getTavolo() {
 		return tavolo;
 	}
@@ -134,6 +144,7 @@ public class Partita implements Serializable{
 	public String inizializzaTurno() {
 		tavolo = 0;
 		giocatoriTurno = giocatori;
+		creditiTurno = crediti;
 		mazzoTurno = mazzo;
 		mazzoTurno.mix();
 		carteTavolo = creaTavolo();
@@ -174,6 +185,14 @@ public class Partita implements Serializable{
 
 	public Carta[] getCarteTavolo() {
 		return carteTavolo;
+	}
+
+	public int getPuntata() {
+		return puntata;
+	}
+
+	public void setPuntata(int puntata) {
+		this.puntata = puntata;
 	}
 	
 }
