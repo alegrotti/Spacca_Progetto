@@ -173,8 +173,7 @@ public class GestoreScene {
 			
 			PuntataPartitaController c = loader.getController();
 			
-			//c.inizializzaSchermata(p.getPuntata(),p.getGiocatoriTurno());
-			c.inizializzaSchermata(23,new ArrayList<String>(),p);
+			c.inizializzaSchermata(p);
 			
 			Scene scene= new Scene(root);
 			scene.getStylesheets().add("/view/puntatapartita.css");
@@ -223,18 +222,20 @@ public class GestoreScene {
 		}
 	}
 	
-	public static void campoDaGioco(String g,Partita p) {
+	public static void campoDaGioco(String g,Partita p, int y) {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/CampoGioco.fxml"));
 			Parent root = loader.load();
-			CampoGiocoController controller = loader.getController();
-			controller.setInfo(p,g);
-			controller.caricaSchermataDefault();
+			if(y>0) {
+				CampoGiocoController controller = loader.getController();
+				controller.setInfo(p,g);
+				controller.caricaSchermataDefault();
+			}
 			Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/campogioco.css");
 	        setScene(scenaHomepage,false,(" - Game "+p.getCodice()));
 		} catch (Exception e) {
-			messaggioErrore("Errore apertura finestra");
+	    	messaggioErrore("Errore apertura finestra");
 		}
 	}
 	

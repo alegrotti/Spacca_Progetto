@@ -13,6 +13,7 @@ public class ConfermaMossaController {
 	private Partita partita;
 	private String giocatore;
 	private int puntata;
+	private boolean bool;
 	
     @FXML
     private Button noButton;
@@ -36,15 +37,26 @@ public class ConfermaMossaController {
 
     @FXML
     void ButtonYesClicked(ActionEvent event) {
-    	partita.aggiornaCreditiTurno(giocatore,puntata);
-    	
-    	GestoreScene.campoDaGioco(, partita);
+    	yesButton.getScene().getWindow().hide();
+    	String next = partita.nextPlayer(giocatore);
+    	if(bool) {
+	    	partita.aggiornaCreditiTurno(giocatore,puntata);
+    	} else {
+	    	partita.eliminaGiocatoreTurno(giocatore);
+    	}
+    	if(next == null) {
+    		GestoreScene.campoDaGioco(next, partita, 0);
+    		GestoreScene.schermataPuntata(partita);
+    	}
+    	else
+    		GestoreScene.campoDaGioco(next, partita, 1);
     }
     
     public void impostaTesto(boolean x , int pun, Partita p, String g) {
     	partita = p;
     	giocatore = g;
     	puntata = pun;
+    	bool = x;
     	if(x) {
     		text.setText(g + " confermi di puntare "+pun+" crediti questa mano?");
     	}else {

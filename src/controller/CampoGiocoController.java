@@ -131,7 +131,7 @@ public class CampoGiocoController {
     
     @FXML
     void lasciaTurno(ActionEvent event) {
-    	GestoreScene.messaggioConfermaMossa(false, 0);
+    	GestoreScene.messaggioConfermaMossa(false, 0, partita, giocatore);
     }
     
     @FXML
@@ -229,16 +229,18 @@ public class CampoGiocoController {
     	vboxPlay.setVisible(true);
     	vboxProssimiGiocatori.setVisible(true);
     	
+
     	textNumTurno.setText("Turno "+ partita.getTurno());
     	
     	textGiocatoreCorrente.setText(giocatore);
     	String x = "";
-    	for(String gioc : partita.getGiocatori())
+    	for(String gioc : partita.getGiocatoriTurno())
     		if(!gioc.equals(giocatore))
     			x+=gioc;
-    	
+
     	textProssGiocatori.setText(x);
     	textNome.setText("E' il turno di: " + giocatore);
+    	
     }
     
     private void stampaCarte(Carta[] carteTavolo, Carta[] carteMano) {
@@ -269,7 +271,7 @@ public class CampoGiocoController {
     
     public void setInfo(Partita p, String g) {
     	partita = p;
-    	giocatore = partita.inizializzaTurno();
+    	giocatore = g;
     }
     
     @FXML

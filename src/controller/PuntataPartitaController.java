@@ -47,10 +47,10 @@ public class PuntataPartitaController {
     	players = new ArrayList<String>();
     }
     
-    public void inizializzaSchermata(int punti,ArrayList<String> g,Partita p) {
-    	valorePuntata.setText("Per giocare bisogna puntare : "+punti);
-    	crediti = punti;
-    	for(String s : g)
+    public void inizializzaSchermata(Partita p) {
+    	valorePuntata.setText("Per giocare bisogna puntare : "+p.getPuntata());
+    	crediti = p.getPuntata();
+    	for(String s : p.getGiocatoriTurno())
     		creaRadioButton(s);
     	
     	partita = p;

@@ -15,6 +15,7 @@ public class Partita implements Serializable{
 	private ArrayList<String> giocatori;
 	private ArrayList<String> giocatoriTurno;
 	private String codice;
+	private String giocatorePuntata;
 	private int creditiIniziali;
 	private int tavolo;
 	private Carta[] carteTavolo;
@@ -36,6 +37,7 @@ public class Partita implements Serializable{
 		this.mani = null;
 		this.cittadine = null;
 		this.crediti = null;
+		this.giocatorePuntata = null;
 		this.setPuntata(0);
 	}
 
@@ -50,6 +52,7 @@ public class Partita implements Serializable{
 		this.mani = creaManiIniziali(giocatori);
 		this.mazzoTurno = null;
 		this.carteTavolo = null;
+		this.giocatorePuntata = null;
 		this.crediti = creaCreditiIniziali(giocatori,creditiIniziali);
 		this.creditiTurno = crediti;
 		this.cittadine = creaCittadineIniziali(giocatori);
@@ -132,9 +135,11 @@ public class Partita implements Serializable{
 		}
 	}
 	
-	public void aggiornaCreditiTurno(String player, int puntata) {
-		int x = crediti.get(player);
-		crediti.put(player, x-puntata);
+	public void aggiornaCreditiTurno(String player, int p) {
+		if(puntata<p) {
+			puntata = p;
+			giocatorePuntata = player;
+		}
 	}
 	
 	public int getTavolo() {
@@ -147,6 +152,7 @@ public class Partita implements Serializable{
 		creditiTurno = crediti;
 		mazzoTurno = mazzo;
 		mazzoTurno.mix();
+		giocatorePuntata = null;
 		carteTavolo = creaTavolo();
 		mani = creaMani();
 		
@@ -193,6 +199,32 @@ public class Partita implements Serializable{
 
 	public void setPuntata(int puntata) {
 		this.puntata = puntata;
+	}
+
+	public String getGiocatorePuntata() {
+		return giocatorePuntata;
+	}
+
+	public HashMap<String, Integer> getCreditiTurno() {
+		return creditiTurno;
+	}
+	
+	public String nextPlayer(String s) {
+		boolean trovato = false;
+
+        for (String str : giocatoriTurno) {
+            if (trovato)
+                return str;
+
+            if (str.equals(s))
+                trovato = true;
+        }
+        
+        return null;
+	}
+	
+	public void eliminaGiocatoreTurno(String g) {
+		giocatoriTurno.remove(g);
 	}
 	
 }

@@ -75,9 +75,9 @@
                         <Insets />
                      </VBox.margin>
                      <children>
-                        <Label fx:id="textNome" alignment="CENTER" contentDisplay="TOP" prefHeight="38.0" prefWidth="154.0" text="Prossimo turno di: ">
+                        <Label fx:id="textNome" alignment="CENTER" contentDisplay="TOP" prefHeight="38.0" prefWidth="359.0" text="Prossimo turno di: ">
                            <HBox.margin>
-                              <Insets right="30.0" />
+                              <Insets />
                            </HBox.margin>
                         </Label>
                      </children>
