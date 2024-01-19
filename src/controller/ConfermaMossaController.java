@@ -44,12 +44,16 @@ public class ConfermaMossaController {
     	} else {
 	    	partita.eliminaGiocatoreTurno(giocatore);
     	}
+    	/*
     	if(next == null) {
     		GestoreScene.campoDaGioco(next, partita, 0);
-    		GestoreScene.schermataPuntata(partita);
+    		if(partita.getGiocatoriTurno().size() <2 )
+    			GestoreScene.vincitoreTurno(partita);
+    		//GestoreScene.schermataPuntata(partita);
     	}
     	else
     		GestoreScene.campoDaGioco(next, partita, 1);
+		*/
     }
     
     public void impostaTesto(boolean x , int pun, Partita p, String g) {

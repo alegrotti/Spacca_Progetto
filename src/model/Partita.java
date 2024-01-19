@@ -8,6 +8,7 @@ public class Partita implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
+	private String vincitore;
 	private Mazzo mazzoTurno;
 	private Mazzo mazzo;
 	private int turno;
@@ -38,6 +39,7 @@ public class Partita implements Serializable{
 		this.cittadine = null;
 		this.crediti = null;
 		this.giocatorePuntata = null;
+		this.vincitore = null;
 		this.setPuntata(0);
 	}
 
@@ -53,6 +55,7 @@ public class Partita implements Serializable{
 		this.mazzoTurno = null;
 		this.carteTavolo = null;
 		this.giocatorePuntata = null;
+		this.vincitore = null;
 		this.crediti = creaCreditiIniziali(giocatori,creditiIniziali);
 		this.creditiTurno = crediti;
 		this.cittadine = creaCittadineIniziali(giocatori);
@@ -148,6 +151,7 @@ public class Partita implements Serializable{
 	
 	public String inizializzaTurno() {
 		tavolo = 0;
+		vincitore = "";
 		giocatoriTurno = giocatori;
 		creditiTurno = crediti;
 		mazzoTurno = mazzo;
@@ -220,7 +224,13 @@ public class Partita implements Serializable{
                 trovato = true;
         }
         
+        if (giocatoriTurno.size() == 1)
+        	vincitore = giocatoriTurno.getFirst();
         return null;
+	}
+	
+	public String getWinner() {
+		return vincitore;
 	}
 	
 	public void eliminaGiocatoreTurno(String g) {

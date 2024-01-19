@@ -267,4 +267,32 @@ public class GestoreScene {
 		}	
 	}
 	
+	public static void vincitoreTurno(Partita p) {
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/VincitoreTurno.fxml"));
+			Parent root = loader.load();
+			
+			VincitoreTurnoController controller = loader.getController();
+			controller.importaPartita(p);
+			
+			Scene exitScene = new Scene(root);
+			exitScene.getStylesheets().add("/view/VincitoreTurno.css");
+			
+			Stage exitStage = new Stage();
+			exitStage.setMaximized(false);
+			exitStage.centerOnScreen();
+			exitStage.setResizable(false);
+			exitStage.setScene(exitScene);
+			exitStage.initOwner(Main.parentWindow);
+			exitStage.initModality(Modality.APPLICATION_MODAL);
+			exitStage.setTitle("SPACCA - Vincitore Turno");
+	        Image image = new Image("/immagini/icon.jpg");
+	        exitStage.getIcons().add(image);
+			
+	        exitStage.show();
+		} catch (Exception e) {
+			messaggioErrore("Errore apertura finestra");
+		}	
+	}
+	
 }
