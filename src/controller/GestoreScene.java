@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Carta;
 import model.City;
 import model.Partita;
 
@@ -194,14 +195,22 @@ public class GestoreScene {
 		}
 	}
 	
-	public static void scegliCartaSchermata(ArrayList<String> carte) {
+	public static void scegliCartaSchermata(Partita partita, String g) {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/ScegliCarta.fxml"));
 			Parent root = loader.load();
 			
 			ScegliCartaController c = loader.getController();
 			
-			c.inizializzaSchermata(carte);
+			ArrayList<String> s = new ArrayList<String>();
+			
+			for(Carta carta : partita.getCarteTavolo())
+				s.add(carta.getNome());
+			
+			for(Carta carta : partita.getMano(g))
+				s.add(carta.getNome());
+			
+			c.inizializzaSchermata(s,partita);
 			
 			Scene scene= new Scene(root);
 			scene.getStylesheets().add("/view/sceglicarta.css");
@@ -267,13 +276,18 @@ public class GestoreScene {
 		}	
 	}
 	
-	public static void vincitoreTurno(Partita p) {
+	public static void vincitoreTurno(Partita p, boolean b) {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/VincitoreTurno.fxml"));
 			Parent root = loader.load();
 			
 			VincitoreTurnoController controller = loader.getController();
 			controller.importaPartita(p);
+			if(b) {
+				controller.caricaConVincitore();
+			}else {
+				controller.caricaSenzaVincitore();
+			}
 			
 			Scene exitScene = new Scene(root);
 			exitScene.getStylesheets().add("/view/VincitoreTurno.css");

@@ -37,9 +37,19 @@ public class PuntataPartitaController {
     @FXML
     void confermaPuntata(ActionEvent event) {
     	partita.aggiornaCrediti(players, crediti);
-    	
+    	String g = partita.aggiornaTurno();
     	puntaButton.getScene().getWindow().hide();
-    	
+    	if(g!=null) {
+    		GestoreScene.campoDaGioco(g, partita, crediti);
+    	}else {
+    		partita.confrontaCittadine();
+    		String w = partita.getWinner();
+    		if(w != null) {
+    			GestoreScene.vincitoreTurno(partita,true);
+    		}else {
+    			GestoreScene.vincitoreTurno(partita,false);
+    		}
+    	}
     }
     
     @FXML

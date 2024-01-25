@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import controller.GestoreScene;
+
 public class Partita implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -12,6 +14,7 @@ public class Partita implements Serializable{
 	private Mazzo mazzoTurno;
 	private Mazzo mazzo;
 	private int turno;
+	private int mano;
 	private int puntata;
 	private ArrayList<String> giocatori;
 	private ArrayList<String> giocatoriTurno;
@@ -23,13 +26,12 @@ public class Partita implements Serializable{
 	private HashMap<String, Carta[]> mani;
 	private HashMap<String, City> cittadine;
 	private HashMap<String, Integer> crediti;
-	private HashMap<String, Integer> creditiTurno;
 	
 	public Partita() {
 		this.mazzo = null;
 		this.turno = 0;
+		this.mano = 0;
 		this.giocatori = null;
-		this.giocatoriTurno = null;
 		this.codice = null;
 		this.creditiIniziali = 0;
 		this.tavolo = 0;
@@ -48,6 +50,7 @@ public class Partita implements Serializable{
 		this.giocatori = giocatori;
 		this.codice = codice;
 		this.turno = 0;
+		this.mano = 0;
 		this.tavolo = 0;
 		this.setPuntata(0);
 		this.creditiIniziali = creditiIniziali;
@@ -57,7 +60,6 @@ public class Partita implements Serializable{
 		this.giocatorePuntata = null;
 		this.vincitore = null;
 		this.crediti = creaCreditiIniziali(giocatori,creditiIniziali);
-		this.creditiTurno = crediti;
 		this.cittadine = creaCittadineIniziali(giocatori);
 	}
 
@@ -82,6 +84,7 @@ public class Partita implements Serializable{
 		for(String s : giocatori) {
 			cit.put(s, new City(s));
 		}
+		System.out.println(cit);
 		return cit;
 	}
 	
@@ -153,14 +156,27 @@ public class Partita implements Serializable{
 		tavolo = 0;
 		vincitore = "";
 		giocatoriTurno = giocatori;
-		creditiTurno = crediti;
 		mazzoTurno = mazzo;
+		mano = 0;
 		mazzoTurno.mix();
 		giocatorePuntata = null;
 		carteTavolo = creaTavolo();
 		mani = creaMani();
 		
 		return giocatoriTurno.get(0);
+	}
+	
+	public String aggiornaTurno() {
+		if(mano<2) {
+			mano++;
+			return giocatoriTurno.get(0);
+		}else {
+			return null;
+		}
+	}
+	
+	public void nextTurn() {
+		turno++;
 	}
 	
 	public ArrayList<String> getGiocatoriTurno() {
@@ -208,25 +224,24 @@ public class Partita implements Serializable{
 	public String getGiocatorePuntata() {
 		return giocatorePuntata;
 	}
-
-	public HashMap<String, Integer> getCreditiTurno() {
-		return creditiTurno;
-	}
 	
 	public String nextPlayer(String s) {
 		boolean trovato = false;
-
-        for (String str : giocatoriTurno) {
+		for (String str : giocatoriTurno) {
             if (trovato)
                 return str;
-
             if (str.equals(s))
                 trovato = true;
         }
-        
-        if (giocatoriTurno.size() == 1)
-        	vincitore = giocatoriTurno.getFirst();
-        return null;
+		
+		giocatoriTurno.trimToSize();
+		
+		if (giocatoriTurno.size() == 1)
+			vincitore = giocatoriTurno.getFirst();
+		else
+			vincitore = null;
+
+		return null;
 	}
 	
 	public String getWinner() {
@@ -235,6 +250,21 @@ public class Partita implements Serializable{
 	
 	public void eliminaGiocatoreTurno(String g) {
 		giocatoriTurno.remove(g);
+	}
+
+	public int getMano() {
+		return mano;
+	}
+	
+	public void confrontaCittadine() {
+		int p = 0;
+		for(String s : giocatoriTurno) {
+			if(cittadine.get(s).getPunteggio()>p)
+				vincitore = s;
+			else if (cittadine.get(s).getPunteggio() == p && p!=0){
+				GestoreScene.messaggioErrore("Punteggio uguale");
+			}
+		}
 	}
 	
 }

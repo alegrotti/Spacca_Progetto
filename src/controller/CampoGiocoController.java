@@ -249,10 +249,12 @@ public class CampoGiocoController {
     	
     	Image retro = new Image("/immagini/retrocarta.png");
     	
-    	for(int i = 0 ; i < tavolo ; i++)
+    	int j = tavolo+2;
+    	
+    	for(int i = 0 ; i < j ; i++)
     		carteT[i] = new Image(carteTavolo[i].getPercorso());
     	
-    	for(int i = tavolo ; i < carteT.length ; i++)
+    	for(int i = j ; i < carteT.length ; i++)
     		carteT[i] = retro;
     	
     	iconTavolo1.setImage(carteT[0]);
@@ -272,6 +274,7 @@ public class CampoGiocoController {
     public void setInfo(Partita p, String g) {
     	partita = p;
     	giocatore = g;
+    	tavolo = p.getMano();
     }
     
     @FXML
