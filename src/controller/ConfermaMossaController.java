@@ -50,14 +50,16 @@ public class ConfermaMossaController {
     		int j = partita.getGiocatoriTurno().size();
     		if(j >= 2 )
     			GestoreScene.schermataPuntata(partita);
-    		else if (j == 1)
-    			GestoreScene.vincitoreTurno(partita,true);
-    		else {
+    		else if (j == 1) {
+    			partita.getGiocatoriTurno().trimToSize();
+    			String x = partita.getGiocatoriTurno().getFirst();
+    			GestoreScene.vincitoreTurno(partita,true,x);
+    		}else {
     			int m = partita.getMano();
     			if(m==0)
-    				GestoreScene.vincitoreTurno(partita,false);
+    				GestoreScene.vincitoreTurno(partita,false,"");
     			else
-    				GestoreScene.vincitoreTurno(partita,false);
+    				GestoreScene.vincitoreTurno(partita,false,"");
 			}
     	}
     	else

@@ -11,6 +11,11 @@ public class Mazzo implements Serializable{
 	private ArrayList<Carta> carte;
 	private String nome;
 	
+	public Mazzo() {
+		carte = new ArrayList<>();
+		nome = "";
+	}
+	
 	public Mazzo(String nome, ArrayList<Carta> carte) {
 		this.carte = carte;
 		this.nome = nome;
@@ -26,6 +31,15 @@ public class Mazzo implements Serializable{
 	
 	public void mix() {
 		Collections.shuffle(carte);
+	}
+	
+	public void rimuoviCarta(Carta s) {
+		for(Carta x : carte) {
+			if(x.getNome().equals(s.getNome())) {
+				carte.remove(x);
+				break;
+			}
+		}
 	}
 	
 }

@@ -234,10 +234,9 @@ public class CampoGiocoController {
     	
     	textGiocatoreCorrente.setText(giocatore);
     	String x = "";
-    	for(String gioc : partita.getGiocatoriTurno())
-    		if(!gioc.equals(giocatore))
-    			x+=gioc;
-
+    	for(int i = partita.getGiocatoriTurno().indexOf(giocatore)+1; i<partita.getGiocatoriTurno().size(); i++ )
+    		x+=partita.getGiocatoriTurno().get(i)+"\n";
+    	
     	textProssGiocatori.setText(x);
     	textNome.setText("E' il turno di: " + giocatore);
     	

@@ -13,6 +13,7 @@ public class VincitoreTurnoController {
 
 	private Partita partita;
 	private boolean x ; 
+	private String winner;
 	
     @FXML
     private Button procediButton;
@@ -29,27 +30,29 @@ public class VincitoreTurnoController {
     @FXML
     void procedi(ActionEvent event) {
     	procediButton.getScene().getWindow().hide();
-    	if(x)
-    		GestoreScene.scegliCartaSchermata(partita, partita.getWinner());
-    	else {
+    	if(x) {
+    		partita.assegnaTavolo(winner);
+    		GestoreScene.scegliCartaSchermata(partita,winner);
+    	}else {
     		partita.nextTurn();
     		DBPartite.aggiungiPartita(partita);
-    		GestoreScene.scegliCartaSchermata(partita, partita.getWinner());
+    		GestoreScene.prossimoTurnoPopup(partita);
     	}
     }
 
-    public void caricaConVincitore( ){
-    	text.setText("Vincitore : "+partita.getWinner());
+    public void caricaConVincitore(String winner){
+    	this.winner = winner;
+    	text.setText("Vincitore : "+winner+"\nCrediti vinti : "+partita.getTavolo());
     	x = true;
     }
     
     public void caricaSenzaVincitore(){
-    	text.setText("Nessun vincitore questo turno");
+    	text.setText("Nessun vincitore questo turno"+"\nTavolo : "+partita.getTavolo());
     	x = false;
     }
     
     public void importaPartita(Partita p) {
-    	partita = p;	
+    	partita = p;
     }
     
 }

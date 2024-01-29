@@ -105,7 +105,7 @@
                         <Insets />
                      </VBox.margin></Label>
                   <Label fx:id="textGiocatoreCorrente" alignment="CENTER" prefHeight="46.0" prefWidth="200.0" />
-                  <Label fx:id="textProssGiocatori" alignment="TOP_CENTER" prefHeight="152.0" prefWidth="182.0">
+                  <Label fx:id="textProssGiocatori" alignment="TOP_CENTER" prefHeight="152.0" prefWidth="182.0" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>

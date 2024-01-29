@@ -9,7 +9,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.Carta;
-import model.City;
 import model.DBCarte;
 import model.DBPartite;
 import model.Partita;
@@ -20,6 +19,7 @@ public class ScegliCartaController {
 
 	private ToggleGroup scelte;
 	private Partita partita;
+	private String winner;
 
     @FXML
     private VBox carteDaScegliere;
@@ -42,9 +42,11 @@ public class ScegliCartaController {
         if (selectedRadioButton != null) {
         	String s = selectedRadioButton.getText();
         	Carta c = DBCarte.getCarta(s);
-        	City city = partita.getCittadina(s);
-        	city.aggiungiCarta(c);
-        	DBPartite.aggiungiPartita(partita);
+        	partita.getCittadina(winner).aggiungiCarta(c);
+        	partita.getMazzo().rimuoviCarta(c);
+        	partita.nextTurn();
+        	DBPartite.aggiungiPartita(partita);     	
+        	GestoreScene.prossimoTurnoPopup(partita);
         }else {
         	GestoreScene.messaggioErrore("Selezionare palazzo");
         }
@@ -56,7 +58,8 @@ public class ScegliCartaController {
         scelte = new ToggleGroup();
     }
 
-    public void inizializzaSchermata(ArrayList<String> c, Partita p) {
+    public void inizializzaSchermata(ArrayList<String> c, Partita p, String w) {
+    	winner = w;
     	partita = p;
         for (String s : c) {
             creaRadioButton(s);

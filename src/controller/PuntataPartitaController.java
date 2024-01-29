@@ -36,20 +36,54 @@ public class PuntataPartitaController {
 
     @FXML
     void confermaPuntata(ActionEvent event) {
+    	puntaButton.getScene().getWindow().hide();
+    	if(players.size() == 0) {
+    		GestoreScene.vincitoreTurno(partita,false,"");
+    		partita.rimuoviCrediti();
+    		GestoreScene.messaggio(partita.getGiocatorePuntata()+" ha proposto la puntata "
+    				+ "maggiore ma non ha partecipato quindi perde ugualmente "+partita.getPuntata()+" crediti");
+    	}else if(players.size() == 1) {
+    		players.trimToSize();
+    		String winner = players.getFirst();
+    		if(winner.equals(partita.getGiocatorePuntata())) {
+    			GestoreScene.vincitoreTurno(partita,true,winner);
+    		}else{
+    			GestoreScene.vincitoreTurno(partita,true,winner);
+        		partita.rimuoviCrediti();
+        		GestoreScene.messaggio(partita.getGiocatorePuntata()+" ha proposto la puntata "
+        				+ "maggiore ma non ha partecipato quindi perde ugualmente "+partita.getPuntata()+" crediti");
+    		}
+    	}else{
+    		players.trimToSize();
+    		String winner = players.getFirst();
+    		if(winner.equals(partita.getGiocatorePuntata())) {
+    			GestoreScene.vincitoreTurno(partita,true,winner);
+    		}else{
+    			GestoreScene.vincitoreTurno(partita,true,winner);
+        		partita.rimuoviCrediti();
+        		GestoreScene.messaggio(partita.getGiocatorePuntata()+" ha proposto la puntata "
+        				+ "maggiore ma non ha partecipato quindi perde ugualmente "+partita.getPuntata()+" crediti");
+    		}
+    	}
+    	
+    	
+    	/*
     	partita.aggiornaCrediti(players, crediti);
     	String g = partita.aggiornaTurno();
-    	puntaButton.getScene().getWindow().hide();
+    	
     	if(g!=null) {
     		GestoreScene.campoDaGioco(g, partita, crediti);
     	}else {
     		partita.confrontaCittadine();
     		String w = partita.getWinner();
     		if(w != null) {
-    			GestoreScene.vincitoreTurno(partita,true);
+    			GestoreScene.vincitoreTurno(partita,true,w);
     		}else {
-    			GestoreScene.vincitoreTurno(partita,false);
+    			GestoreScene.vincitoreTurno(partita,false,"");
     		}
     	}
+    	*/
+    	
     }
     
     @FXML

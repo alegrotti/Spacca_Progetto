@@ -49,7 +49,7 @@ public class Partita implements Serializable{
 		this.mazzo = mazzo;
 		this.giocatori = giocatori;
 		this.codice = codice;
-		this.turno = 0;
+		this.turno = 1;
 		this.mano = 0;
 		this.tavolo = 0;
 		this.setPuntata(0);
@@ -82,9 +82,10 @@ public class Partita implements Serializable{
 	private HashMap<String,City> creaCittadineIniziali(ArrayList<String> g){
 		HashMap<String,City> cit = new HashMap<String,City>();
 		for(String s : giocatori) {
-			cit.put(s, new City(s));
+			City c = new City(s);
+			cit.put(s,c);
 		}
-		System.out.println(cit);
+		
 		return cit;
 	}
 	
@@ -121,7 +122,8 @@ public class Partita implements Serializable{
 	}
 
 	public City getCittadina(String c) {
-		return cittadine.get(c);
+		City citt = cittadine.get(c);
+		return citt;
 	}
 
 	public int getCreditiIniziali() {
@@ -135,7 +137,7 @@ public class Partita implements Serializable{
 				tavolo+=x;
 				crediti.put(p, 0);
 			}else {
-				tavolo+=x;
+				tavolo+=puntata;
 				crediti.put(p, x-puntata);
 			}
 		}
@@ -155,8 +157,10 @@ public class Partita implements Serializable{
 	public String inizializzaTurno() {
 		tavolo = 0;
 		vincitore = "";
-		giocatoriTurno = giocatori;
-		mazzoTurno = mazzo;
+		giocatoriTurno = new ArrayList<String>();
+		giocatoriTurno.addAll(giocatori);
+		mazzoTurno = new Mazzo();
+		mazzoTurno.getCarte().addAll(mazzo.getCarte());
 		mano = 0;
 		mazzoTurno.mix();
 		giocatorePuntata = null;
@@ -169,6 +173,7 @@ public class Partita implements Serializable{
 	public String aggiornaTurno() {
 		if(mano<2) {
 			mano++;
+			puntata = 0;
 			return giocatoriTurno.get(0);
 		}else {
 			return null;
@@ -225,6 +230,11 @@ public class Partita implements Serializable{
 		return giocatorePuntata;
 	}
 	
+	public void assegnaTavolo(String winner) {
+		int x = crediti.get(winner);
+		crediti.put(winner,x+tavolo);
+	}
+	
 	public String nextPlayer(String s) {
 		boolean trovato = false;
 		for (String str : giocatoriTurno) {
@@ -254,6 +264,11 @@ public class Partita implements Serializable{
 
 	public int getMano() {
 		return mano;
+	}
+	
+	public void rimuoviCrediti() {
+		int x = crediti.get(giocatorePuntata);
+		crediti.put(giocatorePuntata, x-puntata);
 	}
 	
 	public void confrontaCittadine() {

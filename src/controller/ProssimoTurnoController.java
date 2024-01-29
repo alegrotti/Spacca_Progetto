@@ -16,7 +16,7 @@ import model.PartitaATurni;
 
 public class ProssimoTurnoController {
 
-	public static Partita partita;
+	private Partita partita;
 	
 	@FXML
     private Button backHomeButton;
@@ -78,8 +78,7 @@ public class ProssimoTurnoController {
     	GestoreScene.campoDaGioco(g, partita, 1);
     }
     
-    @FXML
-    void initialize() {
+    public void inizializzaSchermata() {
     	titoloPartita.setText("Partita "+partita.getCodice());
     	if(partita instanceof PartitaAPalazzi) {
 			PartitaAPalazzi p1 = (PartitaAPalazzi) partita;

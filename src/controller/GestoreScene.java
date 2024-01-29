@@ -48,6 +48,10 @@ public class GestoreScene {
 	        Image image = new Image("/immagini/icon.jpg");
 	        errorStage.getIcons().add(image);
 			
+	        errorStage.setOnCloseRequest(event -> {
+				event.consume();
+	        });
+	        
 			errorStage.show();
 		} catch (Exception e) {
 			messaggioDiUscita("Errore, salva ed esci");
@@ -77,6 +81,10 @@ public class GestoreScene {
 	        Image image = new Image("/immagini/icon.jpg");
 	        exitStage.getIcons().add(image);
 			
+	        exitStage.setOnCloseRequest(event -> {
+				event.consume();
+	        });
+	        
 	        exitStage.show();
 		} catch (Exception e) {
 			messaggioErrore("Errore apertura finestra");
@@ -104,6 +112,10 @@ public class GestoreScene {
 	        Image image = new Image("/immagini/icon.jpg");
 	        returnStage.getIcons().add(image);
 			
+	        returnStage.setOnCloseRequest(event -> {
+				event.consume();
+	        });
+	        
 	        returnStage.show();
 		} catch (Exception e) {
 			messaggioErrore("Errore apertura finestra");
@@ -112,9 +124,12 @@ public class GestoreScene {
 
 	public static void prossimoTurnoPopup(Partita p) {
 		try {
-			ProssimoTurnoController.partita = p;
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/ProssimoTurno.fxml"));
 			Parent root = loader.load();
+			
+			ProssimoTurnoController c = loader.getController();
+			c.impostaPartita(p);
+			c.inizializzaSchermata();
 			
 			Scene prossimoTurno= new Scene(root);
 			prossimoTurno.getStylesheets().add("/view/prossimoturno.css");
@@ -150,7 +165,7 @@ public class GestoreScene {
 			
 			Scene scene= new Scene(root);
 			scene.getStylesheets().add("/view/mostracittadina.css");
-			
+
 			Stage stage = new Stage();
 			stage.setMaximized(false);
 			stage.centerOnScreen();
@@ -162,6 +177,10 @@ public class GestoreScene {
 	        Image image = new Image("/immagini/icon.jpg");
 	        stage.getIcons().add(image);
 	        stage.show();
+	        
+	        stage.setOnCloseRequest(event -> {
+				event.consume();
+	        });
 		} catch (Exception e) {
 			messaggioErrore("Errore apertura finestra");
 		}
@@ -190,6 +209,10 @@ public class GestoreScene {
 	        Image image = new Image("/immagini/icon.jpg");
 	        stage.getIcons().add(image);
 	        stage.show();
+	        
+	        stage.setOnCloseRequest(event -> {
+				event.consume();
+	        });
 		} catch (Exception e) {
 			messaggioErrore("Errore apertura finestra");
 		}
@@ -210,7 +233,7 @@ public class GestoreScene {
 			for(Carta carta : partita.getMano(g))
 				s.add(carta.getNome());
 			
-			c.inizializzaSchermata(s,partita);
+			c.inizializzaSchermata(s,partita,g);
 			
 			Scene scene= new Scene(root);
 			scene.getStylesheets().add("/view/sceglicarta.css");
@@ -226,6 +249,10 @@ public class GestoreScene {
 	        Image image = new Image("/immagini/icon.jpg");
 	        stage.getIcons().add(image);
 	        stage.show();
+	        
+	        stage.setOnCloseRequest(event -> {
+				event.consume();
+	        });
 		} catch (Exception e) {
 			messaggioErrore("Errore apertura finestra");
 		}
@@ -271,12 +298,16 @@ public class GestoreScene {
 	        exitStage.getIcons().add(image);
 			
 	        exitStage.show();
+	        
+	        exitStage.setOnCloseRequest(event -> {
+				event.consume();
+	        });
 		} catch (Exception e) {
 			messaggioErrore("Errore apertura finestra");
 		}	
 	}
 	
-	public static void vincitoreTurno(Partita p, boolean b) {
+	public static void vincitoreTurno(Partita p, boolean b, String winner) {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/VincitoreTurno.fxml"));
 			Parent root = loader.load();
@@ -284,7 +315,7 @@ public class GestoreScene {
 			VincitoreTurnoController controller = loader.getController();
 			controller.importaPartita(p);
 			if(b) {
-				controller.caricaConVincitore();
+				controller.caricaConVincitore(winner);
 			}else {
 				controller.caricaSenzaVincitore();
 			}
@@ -304,6 +335,42 @@ public class GestoreScene {
 	        exitStage.getIcons().add(image);
 			
 	        exitStage.show();
+	        
+	        exitStage.setOnCloseRequest(event -> {
+				event.consume();
+	        });
+		} catch (Exception e) {
+			messaggioErrore("Errore apertura finestra");
+		}	
+	}
+	
+	public static void messaggio(String testo) {
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/Messaggio.fxml"));
+			Parent root = loader.load();
+			
+			MessaggioController controller = loader.getController();
+			controller.impostaTesto(testo);
+			
+			Scene exitScene = new Scene(root);
+			exitScene.getStylesheets().add("/view/messaggio.css");
+			
+			Stage stage = new Stage();
+			stage.setMaximized(false);
+			stage.centerOnScreen();
+			stage.setResizable(false);
+			stage.setScene(exitScene);
+			stage.initOwner(Main.parentWindow);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setTitle("SPACCA - Messaggio");
+	        Image image = new Image("/immagini/icon.jpg");
+	        stage.getIcons().add(image);
+			
+	        stage.show();
+	        
+	        stage.setOnCloseRequest(event -> {
+				event.consume();
+	        });
 		} catch (Exception e) {
 			messaggioErrore("Errore apertura finestra");
 		}	
