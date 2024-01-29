@@ -47,10 +47,10 @@ public class ScegliCartaController {
         	partita.nextTurn();
         	DBPartite.aggiungiPartita(partita);     	
         	GestoreScene.prossimoTurnoPopup(partita);
+        	confermaButton.getScene().getWindow().hide();
         }else {
         	GestoreScene.messaggioErrore("Selezionare palazzo");
         }
-        confermaButton.getScene().getWindow().hide();
     }
 
     @FXML

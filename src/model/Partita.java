@@ -19,7 +19,7 @@ public class Partita implements Serializable{
 	private ArrayList<String> giocatori;
 	private ArrayList<String> giocatoriTurno;
 	private String codice;
-	private String giocatorePuntata;
+	private ArrayList<String> giocatoriPuntata;
 	private int creditiIniziali;
 	private int tavolo;
 	private Carta[] carteTavolo;
@@ -40,7 +40,7 @@ public class Partita implements Serializable{
 		this.mani = null;
 		this.cittadine = null;
 		this.crediti = null;
-		this.giocatorePuntata = null;
+		this.giocatoriPuntata = null;
 		this.vincitore = null;
 		this.setPuntata(0);
 	}
@@ -57,7 +57,7 @@ public class Partita implements Serializable{
 		this.mani = creaManiIniziali(giocatori);
 		this.mazzoTurno = null;
 		this.carteTavolo = null;
-		this.giocatorePuntata = null;
+		this.giocatoriPuntata = null;
 		this.vincitore = null;
 		this.crediti = creaCreditiIniziali(giocatori,creditiIniziali);
 		this.cittadine = creaCittadineIniziali(giocatori);
@@ -146,7 +146,10 @@ public class Partita implements Serializable{
 	public void aggiornaCreditiTurno(String player, int p) {
 		if(puntata<p) {
 			puntata = p;
-			giocatorePuntata = player;
+			giocatoriPuntata.removeAll(giocatoriPuntata);
+			giocatoriPuntata.add(player);
+		}else if(puntata==p) {
+			giocatoriPuntata.add(player);
 		}
 	}
 	
@@ -157,13 +160,14 @@ public class Partita implements Serializable{
 	public String inizializzaTurno() {
 		tavolo = 0;
 		vincitore = "";
+		puntata = 0;		
 		giocatoriTurno = new ArrayList<String>();
 		giocatoriTurno.addAll(giocatori);
 		mazzoTurno = new Mazzo();
 		mazzoTurno.getCarte().addAll(mazzo.getCarte());
 		mano = 0;
 		mazzoTurno.mix();
-		giocatorePuntata = null;
+		giocatoriPuntata = new ArrayList<String>();
 		carteTavolo = creaTavolo();
 		mani = creaMani();
 		
@@ -174,6 +178,7 @@ public class Partita implements Serializable{
 		if(mano<2) {
 			mano++;
 			puntata = 0;
+			giocatoriPuntata.removeAll(giocatoriPuntata);
 			return giocatoriTurno.get(0);
 		}else {
 			return null;
@@ -226,8 +231,8 @@ public class Partita implements Serializable{
 		this.puntata = puntata;
 	}
 
-	public String getGiocatorePuntata() {
-		return giocatorePuntata;
+	public ArrayList<String> getGiocatoriPuntata() {
+		return giocatoriPuntata;
 	}
 	
 	public void assegnaTavolo(String winner) {
@@ -266,13 +271,15 @@ public class Partita implements Serializable{
 		return mano;
 	}
 	
-	public void rimuoviCrediti() {
-		int x = crediti.get(giocatorePuntata);
-		crediti.put(giocatorePuntata, x-puntata);
+	public void rimuoviCrediti(String s) {
+		int x = crediti.get(s);
+		crediti.put(s, x-puntata);
+		tavolo += puntata;
 	}
 	
-	public void confrontaCittadine() {
+	public String confrontaCittadine() {
 		int p = 0;
+		vincitore = null;
 		for(String s : giocatoriTurno) {
 			if(cittadine.get(s).getPunteggio()>p)
 				vincitore = s;
@@ -280,6 +287,7 @@ public class Partita implements Serializable{
 				GestoreScene.messaggioErrore("Punteggio uguale");
 			}
 		}
+		return vincitore;
 	}
 	
 }

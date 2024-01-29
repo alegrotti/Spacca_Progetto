@@ -39,51 +39,61 @@ public class PuntataPartitaController {
     	puntaButton.getScene().getWindow().hide();
     	if(players.size() == 0) {
     		GestoreScene.vincitoreTurno(partita,false,"");
-    		partita.rimuoviCrediti();
-    		GestoreScene.messaggio(partita.getGiocatorePuntata()+" ha proposto la puntata "
-    				+ "maggiore ma non ha partecipato quindi perde ugualmente "+partita.getPuntata()+" crediti");
+    		for(String x : partita.getGiocatoriPuntata()) {
+    			GestoreScene.messaggio(x+" ha proposto la puntata "
+        				+ "maggiore ma non ha partecipato quindi perde ugualmente "+partita.getPuntata()+" crediti");
+    			partita.rimuoviCrediti(x);
+    		}
     	}else if(players.size() == 1) {
     		players.trimToSize();
     		String winner = players.getFirst();
-    		if(winner.equals(partita.getGiocatorePuntata())) {
+    		if(partita.getGiocatoriPuntata().contains(winner)) {
     			GestoreScene.vincitoreTurno(partita,true,winner);
+    			for(String x : partita.getGiocatoriPuntata())
+    				if(!x.equals(winner)) {
+    					partita.rimuoviCrediti(x);
+    					GestoreScene.messaggio(x+" ha proposto la puntata "
+                				+ "maggiore ma non ha partecipato quindi perde ugualmente "+partita.getPuntata()+" crediti");
+    				}
     		}else{
     			GestoreScene.vincitoreTurno(partita,true,winner);
-        		partita.rimuoviCrediti();
-        		GestoreScene.messaggio(partita.getGiocatorePuntata()+" ha proposto la puntata "
-        				+ "maggiore ma non ha partecipato quindi perde ugualmente "+partita.getPuntata()+" crediti");
+    			for(String x : partita.getGiocatoriPuntata()) {
+    				if(!x.equals(winner)) {
+    					partita.rimuoviCrediti(x);
+    					GestoreScene.messaggio(x+" ha proposto la puntata "
+                				+ "maggiore ma non ha partecipato quindi perde ugualmente "+partita.getPuntata()+" crediti");
+    				}
+    			}
     		}
     	}else{
-    		players.trimToSize();
-    		String winner = players.getFirst();
-    		if(winner.equals(partita.getGiocatorePuntata())) {
-    			GestoreScene.vincitoreTurno(partita,true,winner);
-    		}else{
-    			GestoreScene.vincitoreTurno(partita,true,winner);
-        		partita.rimuoviCrediti();
-        		GestoreScene.messaggio(partita.getGiocatorePuntata()+" ha proposto la puntata "
-        				+ "maggiore ma non ha partecipato quindi perde ugualmente "+partita.getPuntata()+" crediti");
-    		}
+    		partita.aggiornaCrediti(players, crediti);
+        	String g = partita.aggiornaTurno();
+        	
+        	if(g!=null) {
+        		GestoreScene.campoDaGioco(g, partita, crediti);
+        	}else {
+        		String winner = partita.confrontaCittadine();
+        		if(partita.getGiocatoriPuntata().contains(winner)) {
+        			GestoreScene.vincitoreTurno(partita,true,winner);
+        			for(String x : partita.getGiocatoriPuntata())
+        				if(!x.equals(winner)) {
+        					GestoreScene.messaggio(x+" ha proposto la puntata "
+                    				+ "maggiore ma non ha partecipato quindi perde ugualmente "+partita.getPuntata()+" crediti");
+        					partita.rimuoviCrediti(x);
+        				}
+        		}else{
+        			GestoreScene.vincitoreTurno(partita,true,winner);
+        			for(String x : partita.getGiocatoriPuntata()) {
+        				if(!x.equals(winner)) {
+        					GestoreScene.messaggio(x+" ha proposto la puntata "
+                    				+ "maggiore ma non ha partecipato quindi perde ugualmente "+partita.getPuntata()+" crediti");
+        					partita.rimuoviCrediti(x);
+        				}
+        			}
+            		
+        		}
+        	}
     	}
-    	
-    	
-    	/*
-    	partita.aggiornaCrediti(players, crediti);
-    	String g = partita.aggiornaTurno();
-    	
-    	if(g!=null) {
-    		GestoreScene.campoDaGioco(g, partita, crediti);
-    	}else {
-    		partita.confrontaCittadine();
-    		String w = partita.getWinner();
-    		if(w != null) {
-    			GestoreScene.vincitoreTurno(partita,true,w);
-    		}else {
-    			GestoreScene.vincitoreTurno(partita,false,"");
-    		}
-    	}
-    	*/
-    	
     }
     
     @FXML
