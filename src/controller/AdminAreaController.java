@@ -278,6 +278,7 @@ public class AdminAreaController {
     	String username = listaGiocatoriButton.getValue();
     	
     	DBAdmin.eliminaGiocatore(username);
+    	DBGiocatori.eliminaGiocatore(username);
     	
     	inizializzaSchermata();
     }

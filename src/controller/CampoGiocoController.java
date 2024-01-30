@@ -168,7 +168,7 @@ public class CampoGiocoController {
     
     public void caricaSchermataPlayerCPUFacile() {
     	
-    	stampaCarte(partita.getCarteTavolo(),partita.getMano(giocatore));
+    	stampaCarteMano(partita.getMano(giocatore));
     	
     	mostracittaButton.setVisible(true);
     	vboxPlay.setVisible(true);
@@ -182,7 +182,7 @@ public class CampoGiocoController {
     
     public void caricaSchermataPlayerCPUDifficile() {
     	
-    	stampaCarte(partita.getCarteTavolo(),partita.getMano(giocatore));
+    	stampaCarteMano(partita.getMano(giocatore));
     	
     	mostracittaButton.setVisible(true);
     	vboxPlay.setVisible(true);
@@ -196,7 +196,7 @@ public class CampoGiocoController {
     
     public void caricaSchermataPlayerFisico() {
     	
-    	stampaCarte(partita.getCarteTavolo(),partita.getMano(giocatore));
+    	stampaCarteMano(partita.getMano(giocatore));
     	
     	mostracittaButton.setVisible(true);
     	buttonLasciare.setVisible(true);
@@ -219,17 +219,13 @@ public class CampoGiocoController {
     	iconMano2.setImage(retro);
     	iconMano3.setImage(retro);
     	
-    	iconTavolo1.setImage(retro);
-    	iconTavolo2.setImage(retro);
-    	iconTavolo3.setImage(retro);
-    	iconTavolo4.setImage(retro);
+    	stampaCarteTavolo(partita.getCarteTavolo());
     	
     	homepageIcon.setImage(homePage);
     	
     	vboxPlay.setVisible(true);
     	vboxProssimiGiocatori.setVisible(true);
     	
-
     	textNumTurno.setText("Turno "+ partita.getTurno());
     	
     	textGiocatoreCorrente.setText(giocatore);
@@ -242,9 +238,8 @@ public class CampoGiocoController {
     	
     }
     
-    private void stampaCarte(Carta[] carteTavolo, Carta[] carteMano) {
+    private void stampaCarteTavolo(Carta[] carteTavolo) {
     	Image[] carteT = new Image[4];
-    	Image[] carteM = new Image[3];
     	
     	Image retro = new Image("/immagini/retrocarta.png");
     	
@@ -260,6 +255,11 @@ public class CampoGiocoController {
     	iconTavolo2.setImage(carteT[1]);
     	iconTavolo3.setImage(carteT[2]);
     	iconTavolo4.setImage(carteT[3]);
+
+    }
+    
+    private void stampaCarteMano(Carta[] carteMano) {
+    	Image[] carteM = new Image[3];
     	
     	for(int i = 0 ; i < carteM.length ; i++)
     		carteM[i] = new Image(carteMano[i].getPercorso());

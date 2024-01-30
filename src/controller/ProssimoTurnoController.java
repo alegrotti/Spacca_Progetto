@@ -76,9 +76,9 @@ public class ProssimoTurnoController {
 
     @FXML
     void giocaTurno(ActionEvent event) {
-    	giocaTurnoButton.getScene().getWindow().hide();
     	String g = partita.inizializzaTurno();
     	GestoreScene.campoDaGioco(g, partita, 1);
+    	giocaTurnoButton.getScene().getWindow().hide();
     }
     
     public void inizializzaSchermata() {
@@ -123,12 +123,12 @@ public class ProssimoTurnoController {
     	listaGiocatori.setText(giocatori);
     	infoGiocatori.setText(palazzi);
     	giocaTurnoButton.setVisible(false);
-    	backHomeButton.setVisible(false);
     }
     
     @FXML
     void mostraVincitore(ActionEvent event) {
-
+    	GestoreScene.vincitorePartita(partita);
+    	mostraVincitore.getScene().getWindow().hide();
     }
 
 }

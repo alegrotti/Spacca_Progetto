@@ -391,4 +391,25 @@ public class GestoreScene {
 		}	
 	}
 	
+	public static void vincitorePartita(Partita partita) {
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/VincitorePartita.fxml"));
+			Parent root = loader.load();
+			
+			VincitorePartitaController controller = loader.getController();
+			controller.impostaPartita(partita);
+			
+			Scene exitScene = new Scene(root);
+			exitScene.getStylesheets().add("/view/messaggio.css");
+		
+			setScene(exitScene,false,(" - Vincitore partita "+partita.getCodice()));
+			
+			Main.parentWindow.setOnCloseRequest(event -> {
+				event.consume();
+	        });
+		} catch (Exception e) {
+			messaggioErrore("Errore apertura finestra");
+		}	
+	}
+	
 }
