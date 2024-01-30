@@ -7,8 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.Partita;
 import model.PartitaAPalazzi;
@@ -26,6 +26,9 @@ public class ProssimoTurnoController {
     
     @FXML
     private HBox giocatoriPartitaLabel;
+    
+    @FXML
+    private Button mostraVincitore;
 
     @FXML
     private Label infoGiocatori;
@@ -40,7 +43,7 @@ public class ProssimoTurnoController {
     private Label obiettivoPartita;
 
     @FXML
-    private Pane sfondo;
+    private AnchorPane sfondo;
     
     @FXML
     private VBox sfondoBianco;
@@ -97,6 +100,35 @@ public class ProssimoTurnoController {
     	}
     	listaGiocatori.setText(giocatori);
     	infoGiocatori.setText(palazzi);
+    	mostraVincitore.setVisible(false);
+    }
+    
+    public void inizializzaSchermataFinale() {
+    	titoloPartita.setText("Partita "+partita.getCodice());
+    	if(partita instanceof PartitaAPalazzi) {
+			PartitaAPalazzi p1 = (PartitaAPalazzi) partita;
+			obiettivoPartita.setText("Partita a palazzi - Obiettivo "+p1.getPalazzi()+" palazzi");
+		}
+		else {
+			PartitaATurni p1 = (PartitaATurni) partita;
+			obiettivoPartita.setText("Partita a turni - Obiettivo "+p1.getTurni()+" turni");
+		}
+    	prossimoTurnoLabel.setText("Obiettivo raggiunto! Partita finita!");
+    	String giocatori = "";
+    	String palazzi = "";
+    	for(String s : partita.getGiocatori()) {
+    		giocatori+=s+"\n";
+    		palazzi+=" - "+partita.getCittadina(s).getCarte().size()+" palazzi\n";
+    	}
+    	listaGiocatori.setText(giocatori);
+    	infoGiocatori.setText(palazzi);
+    	giocaTurnoButton.setVisible(false);
+    	backHomeButton.setVisible(false);
+    }
+    
+    @FXML
+    void mostraVincitore(ActionEvent event) {
+
     }
 
 }

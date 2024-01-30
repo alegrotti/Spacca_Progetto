@@ -290,4 +290,14 @@ public class Partita implements Serializable{
 		return vincitore;
 	}
 	
+	public int cityMaggiore() {
+		int x = 0;
+		for(String y : cittadine.keySet()) {
+			City c = cittadine.get(y);
+			if(c.getCarte().size()>x)
+				x = c.getCarte().size();
+		}
+		return x;
+	}
+	
 }
