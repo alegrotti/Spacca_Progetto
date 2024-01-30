@@ -19,7 +19,7 @@
             </ImageView>
             <VBox prefHeight="166.0" prefWidth="274.0">
                <children>
-                  <Label fx:id="text" alignment="TOP_CENTER" prefHeight="75.0" prefWidth="235.0">
+                  <Label fx:id="text" alignment="TOP_CENTER" prefHeight="75.0" prefWidth="235.0" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets left="10.0" top="25.0" />
                      </VBox.margin>

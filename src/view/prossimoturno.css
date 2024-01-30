@@ -16,7 +16,7 @@
 
 #titoloPartita {
     -fx-color: rgb(0, 64, 128);
-    -fx-font: 50px "Felix Titling", sans-serif;
+    -fx-font: 25px "Felix Titling", sans-serif;
     -fx-font-weight: bold;
     -fx-font-style: italic;
 }
@@ -30,8 +30,7 @@
 }
 
 #obiettivoPartita{
-	/*-fx-font-weight: bold;*/
-    -fx-font-style: italic;
+	-fx-font-style: italic;
     -fx-font-size: 16px;
 }
 

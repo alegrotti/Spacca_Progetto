@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -53,13 +55,13 @@ public class ConfermaMossaController {
     		else if (j == 1) {
     			partita.getGiocatoriTurno().trimToSize();
     			String x = partita.getGiocatoriTurno().getFirst();
-    			GestoreScene.vincitoreTurno(partita,true,x);
+    			GestoreScene.vincitoreTurno(partita,true,x,new ArrayList<String>());
     		}else {
     			int m = partita.getMano();
     			if(m==0)
-    				GestoreScene.vincitoreTurno(partita,false,"");
+    				GestoreScene.vincitoreTurno(partita,false,"",new ArrayList<String>());
     			else
-    				GestoreScene.vincitoreTurno(partita,false,"");
+    				GestoreScene.vincitoreTurno(partita,false,"",new ArrayList<String>());
 			}
     	}
     	else

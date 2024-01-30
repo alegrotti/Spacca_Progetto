@@ -307,13 +307,13 @@ public class GestoreScene {
 		}	
 	}
 	
-	public static void vincitoreTurno(Partita p, boolean b, String winner) {
+	public static void vincitoreTurno(Partita p, boolean b, String winner,ArrayList<String> g) {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/VincitoreTurno.fxml"));
 			Parent root = loader.load();
 			
 			VincitoreTurnoController controller = loader.getController();
-			controller.importaPartita(p);
+			controller.importaPartita(p,g);
 			if(b) {
 				controller.caricaConVincitore(winner);
 			}else {
@@ -321,7 +321,7 @@ public class GestoreScene {
 			}
 			
 			Scene exitScene = new Scene(root);
-			exitScene.getStylesheets().add("/view/VincitoreTurno.css");
+			exitScene.getStylesheets().add("/view/vincitoreturno.css");
 			
 			Stage exitStage = new Stage();
 			exitStage.setMaximized(false);

@@ -15,6 +15,7 @@ public class PuntataPartitaController {
 	private ArrayList<String> players;
 	private int crediti;
 	private Partita partita;
+	private ArrayList<String> playersPenalizzati;
 	
     @FXML
     private VBox giocatoriPuntate;
@@ -38,32 +39,29 @@ public class PuntataPartitaController {
     void confermaPuntata(ActionEvent event) {
     	puntaButton.getScene().getWindow().hide();
     	if(players.size() == 0) {
-    		GestoreScene.vincitoreTurno(partita,false,"");
     		for(String x : partita.getGiocatoriPuntata()) {
-    			GestoreScene.messaggio(x+" ha proposto la puntata "
-        				+ "maggiore ma non ha partecipato quindi perde ugualmente "+partita.getPuntata()+" crediti");
     			partita.rimuoviCrediti(x);
+    			playersPenalizzati.add(x);
     		}
+    		GestoreScene.vincitoreTurno(partita,false,"",playersPenalizzati);
     	}else if(players.size() == 1) {
     		players.trimToSize();
     		String winner = players.getFirst();
     		if(partita.getGiocatoriPuntata().contains(winner)) {
-    			GestoreScene.vincitoreTurno(partita,true,winner);
     			for(String x : partita.getGiocatoriPuntata())
     				if(!x.equals(winner)) {
     					partita.rimuoviCrediti(x);
-    					GestoreScene.messaggio(x+" ha proposto la puntata "
-                				+ "maggiore ma non ha partecipato quindi perde ugualmente "+partita.getPuntata()+" crediti");
+    					playersPenalizzati.add(x);
     				}
+    			GestoreScene.vincitoreTurno(partita,true,winner,playersPenalizzati);
     		}else{
-    			GestoreScene.vincitoreTurno(partita,true,winner);
     			for(String x : partita.getGiocatoriPuntata()) {
     				if(!x.equals(winner)) {
     					partita.rimuoviCrediti(x);
-    					GestoreScene.messaggio(x+" ha proposto la puntata "
-                				+ "maggiore ma non ha partecipato quindi perde ugualmente "+partita.getPuntata()+" crediti");
+    					playersPenalizzati.add(x);
     				}
     			}
+    			GestoreScene.vincitoreTurno(partita,true,winner,playersPenalizzati);
     		}
     	}else{
     		partita.aggiornaCrediti(players, crediti);
@@ -74,23 +72,20 @@ public class PuntataPartitaController {
         	}else {
         		String winner = partita.confrontaCittadine();
         		if(partita.getGiocatoriPuntata().contains(winner)) {
-        			GestoreScene.vincitoreTurno(partita,true,winner);
         			for(String x : partita.getGiocatoriPuntata())
         				if(!x.equals(winner)) {
-        					GestoreScene.messaggio(x+" ha proposto la puntata "
-                    				+ "maggiore ma non ha partecipato quindi perde ugualmente "+partita.getPuntata()+" crediti");
         					partita.rimuoviCrediti(x);
+        					playersPenalizzati.add(x);
         				}
+        			GestoreScene.vincitoreTurno(partita,true,winner,playersPenalizzati);
         		}else{
-        			GestoreScene.vincitoreTurno(partita,true,winner);
         			for(String x : partita.getGiocatoriPuntata()) {
         				if(!x.equals(winner)) {
-        					GestoreScene.messaggio(x+" ha proposto la puntata "
-                    				+ "maggiore ma non ha partecipato quindi perde ugualmente "+partita.getPuntata()+" crediti");
         					partita.rimuoviCrediti(x);
+        					playersPenalizzati.add(x);
         				}
         			}
-            		
+        			GestoreScene.vincitoreTurno(partita,true,winner,playersPenalizzati);
         		}
         	}
     	}
@@ -99,6 +94,7 @@ public class PuntataPartitaController {
     @FXML
     void initialize() {
     	players = new ArrayList<String>();
+    	playersPenalizzati = new ArrayList<String>();
     }
     
     public void inizializzaSchermata(Partita p) {

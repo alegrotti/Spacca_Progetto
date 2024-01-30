@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,21 +13,40 @@ import model.Partita;
 
 public class VincitoreTurnoController {
 
+	private ArrayList<String> playersPenalizzati;
 	private Partita partita;
 	private boolean x ; 
 	private String winner;
 	
     @FXML
-    private Button procediButton;
+    private VBox hboxWinner;
+	
+	@FXML
+    private VBox hboxPenalizzati;
+	
+	@FXML
+    private Label creditiTesto;
 
     @FXML
-    private AnchorPane sfondo;
+    private Label listaPenalizzazione;
+    
+    @FXML
+    private Label listaPenalizzazioneCrediti;
+
+    @FXML
+    private Button procediButton;
 
     @FXML
     private VBox sfondoBianco;
 
     @FXML
-    private Label text;
+    private Label titoloPartita;
+
+    @FXML
+    private Label vincitoreTesto;
+	
+    @FXML
+    private AnchorPane sfondo;
 
     @FXML
     void procedi(ActionEvent event) {
@@ -42,17 +63,33 @@ public class VincitoreTurnoController {
 
     public void caricaConVincitore(String winner){
     	this.winner = winner;
-    	text.setText("Vincitore : "+winner+"\nCrediti vinti : "+partita.getTavolo());
+    	procediButton.setText("Scegli carta");
+    	vincitoreTesto.setText("Vincitore : "+winner);
+    	creditiTesto.setText("Crediti vinti : "+partita.getTavolo());
     	x = true;
     }
     
     public void caricaSenzaVincitore(){
-    	text.setText("Nessun vincitore questo turno"+"\nTavolo : "+partita.getTavolo());
+    	vincitoreTesto.setText("Nessun vincitore questo turno");
+    	creditiTesto.setText("Tavolo : "+partita.getTavolo());
+    	procediButton.setText("Chiudi turno e salva");
     	x = false;
     }
     
-    public void importaPartita(Partita p) {
+    public void importaPartita(Partita p,ArrayList<String> g) {
+    	playersPenalizzati = g;
     	partita = p;
+    	
+    	if(playersPenalizzati.size()!=0) {
+	    	String x = "";
+	    	for(String s : playersPenalizzati) {
+	    		x+=s+"\n";
+	    	}
+	    	listaPenalizzazione.setText(x);
+	    	listaPenalizzazioneCrediti.setText("Crediti persi: "+partita.getPuntata()+"");
+    	}else {
+    		listaPenalizzazione.setText("- - - -");
+    	}	
     }
     
 }
