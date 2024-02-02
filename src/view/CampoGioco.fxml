@@ -58,11 +58,11 @@
                </children>
             </HBox>
             <ImageView fx:id="iconRetroCarta" fitHeight="260.0" fitWidth="200.0" layoutX="1136.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="mostracittaButton" layoutX="92.0" layoutY="596.0" mnemonicParsing="false" onAction="#mostracittaButtonClicked" prefHeight="38.0" prefWidth="181.0" text="Mostra cittadina" />
-            <Button fx:id="buttonLasciare" layoutX="1053.0" layoutY="517.0" mnemonicParsing="false" onAction="#lasciaTurno" prefHeight="38.0" prefWidth="116.0" text="Lascia turno" />
-            <Button fx:id="buttonPuntare" layoutX="1189.0" layoutY="517.0" mnemonicParsing="false" onAction="#buttonPuntareClicked" prefHeight="40.0" prefWidth="116.0" text="Punta" />
-            <Button fx:id="confermaButton" layoutX="1133.0" layoutY="619.0" mnemonicParsing="false" onAction="#confermaButtonClicked" prefHeight="30.0" prefWidth="91.0" text="Conferma" />
-            <Label fx:id="textCrediti" layoutX="1053.0" layoutY="460.0" prefHeight="30.0" prefWidth="250.0">
+            <Button fx:id="mostracittaButton" layoutX="80.0" layoutY="601.0" mnemonicParsing="false" onAction="#mostracittaButtonClicked" prefHeight="38.0" prefWidth="181.0" text="Mostra cittadina" />
+            <Button fx:id="buttonLasciare" layoutX="1047.0" layoutY="460.0" mnemonicParsing="false" onAction="#lasciaTurno" prefHeight="38.0" prefWidth="116.0" text="Lascia turno" />
+            <Button fx:id="buttonPuntare" layoutX="1186.0" layoutY="460.0" mnemonicParsing="false" onAction="#buttonPuntareClicked" prefHeight="38.0" prefWidth="116.0" text="Punta" />
+            <Button fx:id="confermaButton" layoutX="1224.0" layoutY="515.0" mnemonicParsing="false" onAction="#confermaButtonClicked" prefHeight="30.0" prefWidth="91.0" text="Conferma" />
+            <Label fx:id="textCrediti" alignment="CENTER" layoutX="1047.0" layoutY="406.0" prefHeight="46.0" prefWidth="255.0" textAlignment="CENTER">
                <font>
                   <Font size="20.0" />
                </font>
@@ -97,7 +97,7 @@
                   </HBox>
                </children>
             </VBox>
-            <TextField fx:id="CreditiPuntatiField" layoutX="1093.0" layoutY="570.0" prefHeight="40.0" prefWidth="170.0" />
+            <TextField fx:id="CreditiPuntatiField" layoutX="1028.0" layoutY="515.0" prefHeight="30.0" prefWidth="170.0" />
             <VBox fx:id="vboxProssimiGiocatori" alignment="TOP_CENTER" layoutX="37.0" layoutY="34.0" prefHeight="246.0" prefWidth="181.0">
                <children>
                   <Label fx:id="textNumTurno" alignment="CENTER" prefHeight="38.0" prefWidth="197.0">
@@ -112,6 +112,14 @@
                   </Label>
                </children>
             </VBox>
+            <Button fx:id="button1" layoutX="1061.0" layoutY="560.0" mnemonicParsing="false" onAction="#punta1" prefHeight="30.0" prefWidth="103.0" text="1" />
+            <Button fx:id="button100" layoutX="1186.0" layoutY="560.0" mnemonicParsing="false" onAction="#punta100" prefHeight="30.0" prefWidth="103.0" text="100" />
+            <Button fx:id="button1000" layoutX="1061.0" layoutY="605.0" mnemonicParsing="false" onAction="#punta1000" prefHeight="30.0" prefWidth="103.0" text="1000" />
+            <Button fx:id="button5000" layoutX="1186.0" layoutY="605.0" mnemonicParsing="false" onAction="#punta5000" prefHeight="30.0" prefWidth="103.0" text="5000" />
+            <Button fx:id="button10000" layoutX="1061.0" layoutY="652.0" mnemonicParsing="false" onAction="#punta10000" prefHeight="30.0" prefWidth="103.0" text="10000" />
+            <Button fx:id="buttonAllIn" layoutX="1186.0" layoutY="652.0" mnemonicParsing="false" onAction="#puntaTutto" prefHeight="30.0" prefWidth="103.0" text="All-in" />
+            <Button fx:id="resetCrediti" layoutX="1122.0" layoutY="694.0" mnemonicParsing="false" onAction="#resetCrediti" prefHeight="25.0" prefWidth="103.0" text="Reset" />
+            <Label fx:id="nomeGiocatore" alignment="CENTER" layoutX="64.0" layoutY="500.0" prefHeight="38.0" prefWidth="216.0" textAlignment="CENTER" />
          </children>
       </Pane>
    </children>

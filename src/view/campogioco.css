@@ -15,10 +15,12 @@
 }
 
 #textCrediti{
-	-fx-text-fill: rgb(255, 255, 255);
-	-fx-font: 20px "Georgia", sans-serif;
+	-fx-text-fill: rgb(0, 0, 0);
+	-fx-font: 24px "Georgia", sans-serif;
   	-fx-font-weight: bold;
-  	-fx-font-style: italic;
+  	-fx-border-width: 2px;
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-background-color:  rgb(255, 255, 255,0.7);
 }
 
 #textTurno{

@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Partita;
 import model.PartitaAPalazzi;
@@ -20,12 +19,15 @@ public class ProssimoTurnoController {
 	
 	@FXML
     private Button backHomeButton;
+	
+    @FXML
+    private Label giocatoriEliminatiLabel;
 
     @FXML
     private Button giocaTurnoButton;
     
     @FXML
-    private HBox giocatoriPartitaLabel;
+    private VBox giocatoriPartitaLabel;
     
     @FXML
     private Button mostraVincitore;
@@ -113,13 +115,20 @@ public class ProssimoTurnoController {
 			PartitaATurni p1 = (PartitaATurni) partita;
 			obiettivoPartita.setText("Partita a turni - Obiettivo "+p1.getTurni()+" turni");
 		}
-    	prossimoTurnoLabel.setText("Obiettivo raggiunto! Partita finita!");
+    	prossimoTurnoLabel.setText("Partita finita!");
     	String giocatori = "";
     	String palazzi = "";
     	for(String s : partita.getGiocatori()) {
     		giocatori+=s+"\n";
     		palazzi+=" - "+partita.getCittadina(s).getCarte().size()+" palazzi\n";
     	}
+    	
+    	String giocatoriEliminati = "";
+    	for(String s : partita.getGiocatoriEliminati()) {
+    		giocatoriEliminati+=s+"\n";
+    	}
+    	
+    	giocatoriEliminatiLabel.setText(giocatoriEliminati);
     	listaGiocatori.setText(giocatori);
     	infoGiocatori.setText(palazzi);
     	giocaTurnoButton.setVisible(false);

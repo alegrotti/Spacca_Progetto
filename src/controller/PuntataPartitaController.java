@@ -37,57 +37,59 @@ public class PuntataPartitaController {
 
     @FXML
     void confermaPuntata(ActionEvent event) {
-    	puntaButton.getScene().getWindow().hide();
-    	if(players.size() == 0) {
-    		for(String x : partita.getGiocatoriPuntata()) {
-    			partita.rimuoviCrediti(x);
-    			playersPenalizzati.add(x);
-    		}
-    		GestoreScene.vincitoreTurno(partita,false,"",playersPenalizzati);
-    	}else if(players.size() == 1) {
-    		players.trimToSize();
-    		String winner = players.getFirst();
-    		if(partita.getGiocatoriPuntata().contains(winner)) {
-    			for(String x : partita.getGiocatoriPuntata())
-    				if(!x.equals(winner)) {
-    					partita.rimuoviCrediti(x);
-    					playersPenalizzati.add(x);
-    				}
-    			GestoreScene.vincitoreTurno(partita,true,winner,playersPenalizzati);
-    		}else{
-    			for(String x : partita.getGiocatoriPuntata()) {
-    				if(!x.equals(winner)) {
-    					partita.rimuoviCrediti(x);
-    					playersPenalizzati.add(x);
-    				}
-    			}
-    			GestoreScene.vincitoreTurno(partita,true,winner,playersPenalizzati);
-    		}
-    	}else{
-    		partita.aggiornaCrediti(players, crediti);
-        	String g = partita.aggiornaTurno();
-        	
-        	if(g!=null) {
-        		GestoreScene.campoDaGioco(g, partita, crediti);
-        	}else {
-        		String winner = partita.confrontaCittadine();
-        		if(partita.getGiocatoriPuntata().contains(winner)) {
-        			for(String x : partita.getGiocatoriPuntata())
-        				if(!x.equals(winner)) {
-        					partita.rimuoviCrediti(x);
-        					playersPenalizzati.add(x);
-        				}
-        			GestoreScene.vincitoreTurno(partita,true,winner,playersPenalizzati);
-        		}else{
-        			for(String x : partita.getGiocatoriPuntata()) {
-        				if(!x.equals(winner)) {
-        					partita.rimuoviCrediti(x);
-        					playersPenalizzati.add(x);
-        				}
-        			}
-        			GestoreScene.vincitoreTurno(partita,true,winner,playersPenalizzati);
-        		}
-        	}
+    	try {
+	    	if(players.size() == 0) {
+	    		for(String x : partita.getGiocatoriPuntata()) {
+	    			partita.rimuoviCrediti(x);
+	    			playersPenalizzati.add(x);
+	    		}
+	    		GestoreScene.vincitoreTurno(partita,false,"",playersPenalizzati);
+	    	}else if(players.size() == 1) {
+	    		players.trimToSize();
+	    		String winner = players.getFirst();
+	    		if(partita.getGiocatoriPuntata().contains(winner)) {
+	    			for(String x : partita.getGiocatoriPuntata())
+	    				if(!x.equals(winner)) {
+	    					partita.rimuoviCrediti(x);
+	    					playersPenalizzati.add(x);
+	    				}
+	    			GestoreScene.vincitoreTurno(partita,true,winner,playersPenalizzati);
+	    		}else{
+	    			for(String x : partita.getGiocatoriPuntata()) {
+	    				if(!x.equals(winner)) {
+	    					partita.rimuoviCrediti(x);
+	    					playersPenalizzati.add(x);
+	    				}
+	    			}
+	    			GestoreScene.vincitoreTurno(partita,true,winner,playersPenalizzati);
+	    		}
+	    	}else{
+	    		partita.aggiornaCrediti(players, crediti);
+	        	String g = partita.aggiornaTurno();
+	        	if(g!=null) {
+	        		GestoreScene.campoDaGioco(g, partita, 1);
+	        	}else {
+	        		String winner = partita.confrontaCittadineTurno();
+	        		if(partita.getGiocatoriPuntata().contains(winner)) {
+	        			for(String x : partita.getGiocatoriPuntata())
+	        				if(!x.equals(winner)) {
+	        					partita.rimuoviCrediti(x);
+	        				}
+	        			GestoreScene.vincitoreTurno(partita,true,winner,playersPenalizzati);
+	        		}else{
+	        			for(String x : partita.getGiocatoriPuntata()) {
+	        				if(!x.equals(winner)) {
+	        					partita.rimuoviCrediti(x);
+	        					playersPenalizzati.add(x);
+	        				}
+	        			}
+	        			GestoreScene.vincitoreTurno(partita,true,winner,playersPenalizzati);
+	        		}
+	        	}
+	    	}
+	    	puntaButton.getScene().getWindow().hide();
+    	}catch(Exception e) {
+    		GestoreScene.messaggioErrore("Errore puntata");
     	}
     }
     

@@ -18,6 +18,7 @@ public class Partita implements Serializable{
 	private int puntata;
 	private ArrayList<String> giocatori;
 	private ArrayList<String> giocatoriTurno;
+	private ArrayList<String> giocatoriEliminati;
 	private String codice;
 	private ArrayList<String> giocatoriPuntata;
 	private int creditiIniziali;
@@ -55,6 +56,7 @@ public class Partita implements Serializable{
 		this.setPuntata(0);
 		this.creditiIniziali = creditiIniziali;
 		this.mani = creaManiIniziali(giocatori);
+		this.giocatoriEliminati = new ArrayList<>();
 		this.mazzoTurno = null;
 		this.carteTavolo = null;
 		this.giocatoriPuntata = null;
@@ -107,6 +109,10 @@ public class Partita implements Serializable{
 
 	public String getCodice() {
 		return codice;
+	}
+	
+	public ArrayList<String> getGiocatoriEliminati() {
+		return giocatoriEliminati;
 	}
 
 	public void setCodice(String codice) {
@@ -267,6 +273,14 @@ public class Partita implements Serializable{
 		giocatoriTurno.remove(g);
 	}
 
+	public void controllaCrediti() {
+		for(String s : giocatori)
+			if(crediti.get(s) <= 0) {
+				giocatori.remove(s);
+				giocatoriEliminati.add(s);
+			}
+	}
+	
 	public int getMano() {
 		return mano;
 	}
@@ -277,16 +291,41 @@ public class Partita implements Serializable{
 		tavolo += puntata;
 	}
 	
-	public String confrontaCittadine() {
+	public String confrontaCittadineTurno() {
 		int p = 0;
 		vincitore = null;
 		for(String s : giocatoriTurno) {
-			if(cittadine.get(s).getPunteggio()>p)
+			City c = new City(s);
+			for(int i = 0; i<mani.get(s).length; i++)
+				c.aggiungiCarta(mani.get(s)[i]);
+			for(int i = 0; i<carteTavolo.length; i++)
+				c.aggiungiCarta(carteTavolo[i]);
+			
+			if(c.getPunteggio()>p) {
 				vincitore = s;
-			else if (cittadine.get(s).getPunteggio() == p && p!=0){
+				p = cittadine.get(s).getPunteggio();
+			}else if (c.getPunteggio() == p && p!=0){
 				GestoreScene.messaggioErrore("Punteggio uguale");
 			}
 		}
+		return vincitore;
+	}
+	
+	public String confrontaCittadine() {
+		int p = 0;
+		vincitore = null;
+		System.out.println(giocatoriTurno);
+		for(String s : giocatoriTurno) {
+			System.out.println(cittadine.get(s).getPunteggio());
+			if(cittadine.get(s).getPunteggio()>p) {
+				vincitore = s;
+				p = cittadine.get(s).getPunteggio();
+				System.out.println(p);
+			}else if (cittadine.get(s).getPunteggio() == p && p!=0){
+				GestoreScene.messaggioErrore("Punteggio uguale");
+			}
+		}
+		System.out.println(p);
 		return vincitore;
 	}
 	
@@ -298,6 +337,35 @@ public class Partita implements Serializable{
 				x = c.getCarte().size();
 		}
 		return x;
+	}
+	
+	public boolean checkWinner() {
+		if(this instanceof PartitaATurni) {
+			PartitaATurni partita = (PartitaATurni)this;
+			if(getTurno()>partita.getTurni())
+				return true;
+			else
+				if(giocatori.size()==1)
+					return true;
+				else if(giocatori.size()==0)
+					return true;
+				else
+					return false;
+		}else if(this instanceof PartitaAPalazzi) {
+			PartitaAPalazzi partita = (PartitaAPalazzi)this;
+			if(cityMaggiore()==partita.getPalazzi())
+				return true;
+			else
+				if(giocatori.size()==1)
+					return true;
+				else if(giocatori.size()==0)
+					return true;
+				else
+					return false;
+		}else {
+			GestoreScene.messaggioErrore("Partita non caricata correttamente");
+			return false;
+		}
 	}
 	
 }

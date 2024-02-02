@@ -28,6 +28,24 @@ public class CampoGiocoController {
 	
 	@FXML
     private TextField CreditiPuntatiField;
+	
+	@FXML
+    private Button button1;
+
+    @FXML
+    private Button button100;
+
+    @FXML
+    private Button button1000;
+
+    @FXML
+    private Button button10000;
+
+    @FXML
+    private Button button5000;
+
+    @FXML
+    private Button buttonAllIn;
 
     @FXML
     private Button buttonLasciare;
@@ -58,6 +76,9 @@ public class CampoGiocoController {
 
     @FXML
     private ImageView iconRetroCarta;
+    
+    @FXML
+    private Label nomeGiocatore;
 
     @FXML
     private ImageView iconTavolo1;
@@ -73,6 +94,9 @@ public class CampoGiocoController {
 
     @FXML
     private Button mostracittaButton;
+    
+    @FXML
+    private Button resetCrediti;
 
     @FXML
     private Button playButton;
@@ -114,14 +138,14 @@ public class CampoGiocoController {
     	try {
     		String s = CreditiPuntatiField.getText();
     		a = Integer.parseInt(s); 
-    		if(a>0)
+    		if(a>0) {
     			if(a<=partita.getCrediti(giocatore))
     				GestoreScene.messaggioConfermaMossa(true, a, partita, giocatore);
     			else {
     				GestoreScene.messaggioErrore("Puntata massima raggiunta: all in!");
     				CreditiPuntatiField.setText(partita.getCrediti(giocatore)+"");
     			}
-    		else
+    		}else
     			throw new Exception();
     	}catch(Exception e) {
     		GestoreScene.messaggioErrore("Inserire un numero intero non nullo");
@@ -136,8 +160,21 @@ public class CampoGiocoController {
     
     @FXML
     void buttonPuntareClicked(ActionEvent event) {
-    	CreditiPuntatiField.setVisible(true);
-    	confermaButton.setVisible(true);
+    	if(partita.getCrediti(giocatore) > 0) {
+    		
+    		CreditiPuntatiField.setVisible(true);
+        	confermaButton.setVisible(true);
+        	button1.setVisible(true);
+        	button100.setVisible(true);
+        	button1000.setVisible(true);
+        	button5000.setVisible(true);
+        	button10000.setVisible(true);
+        	buttonAllIn.setVisible(true);
+        	resetCrediti.setVisible(true);
+
+    	}else {
+			GestoreScene.messaggioConfermaMossa(true, 0, partita, giocatore);
+    	}
     }
     
     @FXML
@@ -177,6 +214,7 @@ public class CampoGiocoController {
     	
     	vboxProssimiGiocatori.setVisible(true);
     	
+    	textCrediti.setVisible(true);
     	textCrediti.setText("Crediti: " + partita.getCrediti(giocatore));
     }
     
@@ -191,6 +229,7 @@ public class CampoGiocoController {
     	
     	vboxProssimiGiocatori.setVisible(true);
     	
+    	textCrediti.setVisible(true);
     	textCrediti.setText("Crediti: " + partita.getCrediti(giocatore));
     }
     
@@ -207,6 +246,7 @@ public class CampoGiocoController {
     	
     	vboxProssimiGiocatori.setVisible(true);
     	
+    	textCrediti.setVisible(true);
     	textCrediti.setText("Crediti: " + partita.getCrediti(giocatore));
     }
     
@@ -236,6 +276,7 @@ public class CampoGiocoController {
     	textProssGiocatori.setText(x);
     	textNome.setText("E' il turno di: " + giocatore);
     	
+    	textCrediti.setVisible(false);
     }
     
     private void stampaCarteTavolo(Carta[] carteTavolo) {
@@ -303,6 +344,127 @@ public class CampoGiocoController {
     	CreditiPuntatiField.setVisible(false);
     	confermaButton.setVisible(false);
     	vboxProssimiGiocatori.setVisible(false);
+    	textCrediti.setVisible(false);
+    	
+    	button1.setVisible(false);
+    	button100.setVisible(false);
+    	button1000.setVisible(false);
+    	button5000.setVisible(false);
+    	button10000.setVisible(false);
+    	buttonAllIn.setVisible(false);
+    	resetCrediti.setVisible(false);
+    	
+    	CreditiPuntatiField.setText("0");
+    }
+    
+    @FXML
+    void punta1(ActionEvent event) {
+    	int a = 0;
+    	try {
+    		String s = CreditiPuntatiField.getText();
+    		if(s.equals(""))
+    			a=0;
+    		else
+    			a = Integer.parseInt(s); 
+    		a+=1;
+    		if(a<=partita.getCrediti(giocatore))
+    			CreditiPuntatiField.setText(a+"");
+			else {
+				CreditiPuntatiField.setText(partita.getCrediti(giocatore)+"");
+			}
+    	}catch(Exception e) {
+    		CreditiPuntatiField.setText("1");
+    	}
+    }
+
+    @FXML
+    void punta100(ActionEvent event) {
+    	int a = 0;
+    	try {
+    		String s = CreditiPuntatiField.getText();
+    		if(s.equals(""))
+    			a=0;
+    		else
+    			a = Integer.parseInt(s); 
+    		a+=100;
+    		if(a<=partita.getCrediti(giocatore))
+    			CreditiPuntatiField.setText(a+"");
+			else {
+				CreditiPuntatiField.setText(partita.getCrediti(giocatore)+"");
+			}
+    	}catch(Exception e) {
+    		CreditiPuntatiField.setText("100");
+    	}
+    }
+
+    @FXML
+    void punta1000(ActionEvent event) {
+    	int a = 0;
+    	try {
+    		String s = CreditiPuntatiField.getText();
+    		if(s.equals(""))
+    			a=0;
+    		else
+    			a = Integer.parseInt(s); 
+    		a+=1000;
+    		if(a<=partita.getCrediti(giocatore))
+    			CreditiPuntatiField.setText(a+"");
+			else {
+				CreditiPuntatiField.setText(partita.getCrediti(giocatore)+"");
+			}
+    	}catch(Exception e) {
+    		CreditiPuntatiField.setText("1000");
+    	}
+    }
+
+    @FXML
+    void punta10000(ActionEvent event) {
+    	int a = 0;
+    	try {
+    		String s = CreditiPuntatiField.getText();
+    		if(s.equals(""))
+    			a=0;
+    		else
+    			a = Integer.parseInt(s); 
+    		a+=10000;
+    		if(a<=partita.getCrediti(giocatore))
+    			CreditiPuntatiField.setText(a+"");
+			else {
+				CreditiPuntatiField.setText(partita.getCrediti(giocatore)+"");
+			}
+    	}catch(Exception e) {
+    		CreditiPuntatiField.setText("10000");
+    	}
+    }
+
+    @FXML
+    void punta5000(ActionEvent event) {
+    	int a = 0;
+    	try {
+    		String s = CreditiPuntatiField.getText();
+    		if(s.equals(""))
+    			a=0;
+    		else
+    			a = Integer.parseInt(s); 
+    		a+=5000;
+    		if(a<=partita.getCrediti(giocatore))
+    			CreditiPuntatiField.setText(a+"");
+			else {
+				CreditiPuntatiField.setText(partita.getCrediti(giocatore)+"");
+			}
+    	}catch(Exception e) {
+    		CreditiPuntatiField.setText("5000");
+    	}
+    }
+    
+    @FXML
+    void puntaTutto(ActionEvent event) {
+    	CreditiPuntatiField.setText(partita.getCrediti(giocatore)+"");
+    }
+    
+    @FXML
+    void resetCrediti(ActionEvent event) {
+    	CreditiPuntatiField.setText("0");
     }
 
 }

@@ -469,16 +469,26 @@ public class AdminAreaController {
     
     @FXML
     void aggiungiGiocatorePartita(ActionEvent event) {
-    	String giocatore = giocatoriDaAggiungere.getValue();
-    	giocatoriAggiunti.add(giocatore);
-
-    	ObservableList<String> giocatori2 = FXCollections.observableArrayList();
-    	for(String s : giocatoriAggiunti)
-    		giocatori2.add(s);
-    	giocatori2.sort(null);
-    	listaGiocatoriPartita.setItems(giocatori2);
-    	
-    	giocatoriDaAggiungere.setValue(null);
+    	try {
+	    	
+    		String giocatore = giocatoriDaAggiungere.getValue();
+    		
+    		if (giocatore.equals(""))
+    			throw new Exception();
+    		else
+    			giocatoriAggiunti.add(giocatore);
+	    	
+	    	ObservableList<String> giocatori2 = FXCollections.observableArrayList();
+	    	for(String s : giocatoriAggiunti)
+	    		giocatori2.add(s);
+	    	giocatori2.sort(null);
+	    	listaGiocatoriPartita.setItems(giocatori2);
+	    	
+	    	giocatoriDaAggiungere.setValue(null);
+	    	
+    	}catch(Exception e) {
+    		GestoreScene.messaggioErrore("Errore aggiunta giocatore");
+    	}
     }
     
     @FXML

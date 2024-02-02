@@ -10,8 +10,6 @@ import javafx.stage.Stage;
 import model.Carta;
 import model.City;
 import model.Partita;
-import model.PartitaATurni;
-import model.PartitaAPalazzi;
 
 public class GestoreScene {
 
@@ -132,19 +130,10 @@ public class GestoreScene {
 			ProssimoTurnoController c = loader.getController();
 			c.impostaPartita(p);
 			
-			if(p instanceof PartitaATurni) {
-				PartitaATurni partita = (PartitaATurni)p;
-				if(p.getTurno()>partita.getTurni())
-					c.inizializzaSchermataFinale();
-				else
-					c.inizializzaSchermata();
-			}else if(p instanceof PartitaAPalazzi) {
-				PartitaAPalazzi partita = (PartitaAPalazzi)p;
-				if(p.cityMaggiore()==partita.getPalazzi())
-					c.inizializzaSchermataFinale();
-				else
-					c.inizializzaSchermata();
-			}
+			if(p.checkWinner())
+				c.inizializzaSchermataFinale();
+			else
+				c.inizializzaSchermata();
 				
 			Scene prossimoTurno= new Scene(root);
 			prossimoTurno.getStylesheets().add("/view/prossimoturno.css");

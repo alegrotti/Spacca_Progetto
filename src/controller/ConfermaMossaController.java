@@ -75,7 +75,13 @@ public class ConfermaMossaController {
     	puntata = pun;
     	bool = x;
     	if(x) {
-    		text.setText(g + " confermi di puntare "+pun+" crediti questa mano?");
+    		if (puntata == 0) {
+    			text.setText(g + " sei già andato all-in. Confermi di giocare il turno?");
+    		}else if(puntata == partita.getCrediti(giocatore)) {
+    			text.setText(g + " confermi di andare all-in e puntare "+pun+" crediti questa mano?");
+    		}else {
+    			text.setText(g + " confermi di puntare "+pun+" crediti questa mano?");
+    		}
     	}else {
     		text.setText(g + " confermi di lasciare la mano?");
     	}
