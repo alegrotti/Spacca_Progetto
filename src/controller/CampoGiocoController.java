@@ -2,45 +2,69 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.Pane;
+import model.Carta;
+import model.DBGiocatori;
+import model.GiocatoreCPUDifficile;
+import model.GiocatoreCPUFacile;
+import model.GiocatoreFisico;
 import model.Partita;
 
 public class CampoGiocoController {
 
-	public static Partita partita;
+	private Partita partita;
 
-	//public static Giocatore giocatore;
+	private String giocatore;
+	
+	private int tavolo;
+	
+    @FXML
+    private ImageView iconMano4;
 	
 	@FXML
-	private TextField CreditiPuntatiField;
+    private TextField CreditiPuntatiField;
 	
+	@FXML
+    private Button button1;
+
+    @FXML
+    private Button button100;
+
+    @FXML
+    private Button button1000;
+
+    @FXML
+    private Button button10000;
+
+    @FXML
+    private Button button5000;
+
+    @FXML
+    private Button buttonAllIn;
+
     @FXML
     private Button buttonLasciare;
 
     @FXML
     private Button buttonPuntare;
-    
+
     @FXML
-    private Button playButton;
+    private Button confermaButton;
 
     @FXML
     private HBox hboxMano;
 
     @FXML
     private HBox hboxTavolo;
-    
+
     @FXML
     private ImageView homepageIcon;
 
@@ -66,25 +90,28 @@ public class CampoGiocoController {
     private ImageView iconTavolo3;
 
     @FXML
-    private ImageView iconTavolo4;
+    private Button mostracittaButton;
     
     @FXML
-    private Button mostracittaButton;
+    private Button resetCrediti;
 
     @FXML
-    private Pane sfondo;
-    
+    private Button playButton;
+
     @FXML
-    private Pane sfondoScuro;
+    private AnchorPane sfondo;
+
+    @FXML
+    private HBox sfondoScuro;
 
     @FXML
     private Label textCrediti;
-    
-    @FXML
-    private Label textTurno;
-    
+
     @FXML
     private Label textGiocatoreCorrente;
+
+    @FXML
+    private Label textNome;
 
     @FXML
     private Label textNumTurno;
@@ -93,27 +120,58 @@ public class CampoGiocoController {
     private Label textProssGiocatori;
 
     @FXML
-    private Button confermaButton;
-    
-    @FXML
-    private VBox vbox;
-    
-    @FXML
-    private VBox vboxNumTurno;
+    private VBox vboxPlay;
 
     @FXML
     private VBox vboxProssimiGiocatori;
+    
+    @FXML
+    private Button passaTurnoButton;
 
     
     @FXML
     void confermaButtonClicked(ActionEvent event) {
-
+    	int a = 0;
+    	try {
+    		String s = CreditiPuntatiField.getText();
+    		a = Integer.parseInt(s); 
+    		if(a>0) {
+    			if(a<=partita.getCrediti(giocatore))
+    				GestoreScene.messaggioConfermaMossa(true, a, partita, giocatore);
+    			else {
+    				GestoreScene.messaggioErrore("Puntata massima raggiunta: all in!");
+    				CreditiPuntatiField.setText(partita.getCrediti(giocatore)+"");
+    			}
+    		}else
+    			throw new Exception();
+    	}catch(Exception e) {
+    		GestoreScene.messaggioErrore("Inserire un numero intero non nullo");
+    	}
+    	
+    }
+    
+    @FXML
+    void lasciaTurno(ActionEvent event) {
+    	GestoreScene.messaggioConfermaMossa(false, 0, partita, giocatore);
     }
     
     @FXML
     void buttonPuntareClicked(ActionEvent event) {
-    	CreditiPuntatiField.setVisible(true);
-    	confermaButton.setVisible(true);
+    	if(partita.getCrediti(giocatore) > 0) {
+    		
+    		CreditiPuntatiField.setVisible(true);
+        	confermaButton.setVisible(true);
+        	button1.setVisible(true);
+        	button100.setVisible(true);
+        	button1000.setVisible(true);
+        	button5000.setVisible(true);
+        	button10000.setVisible(true);
+        	buttonAllIn.setVisible(true);
+        	resetCrediti.setVisible(true);
+
+    	}else {
+			GestoreScene.messaggioConfermaMossa(true, 0, partita, giocatore);
+    	}
     }
     
     @FXML
@@ -124,24 +182,7 @@ public class CampoGiocoController {
     @FXML
     void mostracittaButtonClicked(ActionEvent event) {
     	try {
-    		/*
-    		City c = new City("alegrotti");
-    		c.aggiungiCarta(DBCarte.getCarta("Museo"));
-    		c.aggiungiCarta(DBCarte.getCarta("Teatro"));
-    		c.aggiungiCarta(DBCarte.getCarta("Casa familiare"));
-    		c.aggiungiCarta(DBCarte.getCarta("Negozio di abbigliamento"));
-    		//c.aggiungiCarta(DBCarte.getCarta("Teatro"));
-	    	GestoreScene.mostraCittadina(c);
-	    	*/
-    		
-    		//GestoreScene.schermataPuntata(partita);
-    		
-    		/*
-    		ArrayList<String> s = new ArrayList<String>();
-    		s.add("casa");
-    		s.add("museo");
-    		GestoreScene.scegliCartaSchermata(s);
-    		*/
+    		GestoreScene.mostraCittadina(partita.getCittadina(giocatore));
     	}catch(Exception e) {
     		GestoreScene.messaggioErrore("Errore apertura finestra");
     	}
@@ -149,63 +190,279 @@ public class CampoGiocoController {
 	
     @FXML
     void playButtonClicked(ActionEvent event) {
+    	if(DBGiocatori.getGiocatore(giocatore) instanceof GiocatoreFisico)
+    		caricaSchermataPlayerFisico();
+    	else if(DBGiocatori.getGiocatore(giocatore) instanceof GiocatoreCPUFacile)
+    		caricaSchermataPlayerCPUFacile();
+    	else if(DBGiocatori.getGiocatore(giocatore) instanceof GiocatoreCPUDifficile)
+    		caricaSchermataPlayerCPUDifficile();
+    	
+    	vboxPlay.setVisible(false);
+    }
+    
+    public void caricaSchermataPlayerCPUFacile() {
+    	
+    	stampaCarteMano(partita.getMano(giocatore));
+    	
+    	mostracittaButton.setVisible(true);
+    	vboxPlay.setVisible(true);
+    	textGiocatoreCorrente.setVisible(true);
+    	vboxProssimiGiocatori.setVisible(true);
+    	
+    	vboxProssimiGiocatori.setVisible(true);
+    	
+    	textCrediti.setVisible(true);
+    	textCrediti.setText("Crediti: " + partita.getCrediti(giocatore));
+    }
+    
+    public void caricaSchermataPlayerCPUDifficile() {
+    	
+    	stampaCarteMano(partita.getMano(giocatore));
+    	
+    	mostracittaButton.setVisible(true);
+    	vboxPlay.setVisible(true);
+    	textGiocatoreCorrente.setVisible(true);
+    	vboxProssimiGiocatori.setVisible(true);
+    	
+    	vboxProssimiGiocatori.setVisible(true);
+    	
+    	textCrediti.setVisible(true);
+    	textCrediti.setText("Crediti: " + partita.getCrediti(giocatore));
+    }
+    
+    public void caricaSchermataPlayerFisico() {
+    	
+    	stampaCarteMano(partita.getMano(giocatore));
+    	
+    	mostracittaButton.setVisible(true);
+    	buttonLasciare.setVisible(true);
+    	buttonPuntare.setVisible(true);
+    	vboxPlay.setVisible(true);
+    	textGiocatoreCorrente.setVisible(true);
+    	vboxProssimiGiocatori.setVisible(true);
+    	
+    	vboxProssimiGiocatori.setVisible(true);
+    	
+    	textCrediti.setVisible(true);
+    	textCrediti.setText("Crediti: " + partita.getCrediti(giocatore));
+    }
+    
+    public void caricaSchermataDefault(){
+    	Image retro = new Image("/immagini/retroCarta.png");
+    	Image homePage = new Image("/immagini/homepageIcon.png");
+    	
+    	iconMano1.setImage(retro);
+    	iconMano2.setImage(retro);
+    	iconMano3.setImage(retro);
+    	iconMano4.setImage(retro);
+    	
+    	stampaCarteTavolo(partita.getCarteTavolo());
+    	
+    	homepageIcon.setImage(homePage);
+    	
+    	vboxPlay.setVisible(true);
+    	vboxProssimiGiocatori.setVisible(true);
+    	
+    	textNumTurno.setText("Turno "+ partita.getTurno());
+    	
+    	textGiocatoreCorrente.setText(giocatore);
+    	String x = "";
+    	for(int i = partita.getGiocatoriTurno().indexOf(giocatore)+1; i<partita.getGiocatoriTurno().size(); i++ )
+    		x+=partita.getGiocatoriTurno().get(i)+"\n";
+    	
+    	textProssGiocatori.setText(x);
+    	textNome.setText("E' il turno di: " + giocatore);
+    	
+    	textCrediti.setVisible(false);
+    }
+    
+    private void stampaCarteTavolo(Carta[] carteTavolo) {
+    	Image[] carteT = new Image[4];
+    	
+    	Image retro = new Image("/immagini/retrocarta.png");
+    	
+    	int j = tavolo+1;
+    	
+    	for(int i = 0 ; i < j ; i++)
+    		carteT[i] = new Image(carteTavolo[i].getPercorso());
+    	
+    	for(int i = j ; i < carteT.length ; i++)
+    		carteT[i] = retro;
+    	
+    	iconTavolo1.setImage(carteT[0]);
+    	iconTavolo2.setImage(carteT[1]);
+    	iconTavolo3.setImage(carteT[2]);
 
     }
     
-    public void caricaSchermataDefault() {
+    private void stampaCarteMano(Carta[] carteMano) {
+    	Image[] carteM = new Image[3];
+    	
+    	for(int i = 0 ; i < carteM.length ; i++)
+    		carteM[i] = new Image(carteMano[i].getPercorso());
+    	
+    	iconMano1.setImage(carteM[0]);
+    	iconMano2.setImage(carteM[1]);
+    	iconMano3.setImage(carteM[2]);
     	
     }
     
-    public void caricaSchermataPlayer() {
-    	
+    public void setInfo(Partita p, String g) {
+    	partita = p;
+    	giocatore = g;
+    	tavolo = p.getMano();
     }
     
     @FXML
     void initialize() {
+    	partita = new Partita();
+    	giocatore = "";
+    	tavolo = 2;
     	Image retro = new Image("/immagini/retrocarta.png");
+    	Image retroruotato = new Image("/immagini/retrocartaruotata.png");
     	Image homePage = new Image("/immagini/homepageIcon.png");
     	
-    	iconRetroCarta.setImage(retro);
+    	iconRetroCarta.setImage(retroruotato);
     	iconMano1.setImage(retro);
     	iconMano2.setImage(retro);
     	iconMano3.setImage(retro);
+    	iconMano4.setImage(retro);
     	iconTavolo1.setImage(retro);
     	iconTavolo1.setImage(retro);
     	iconTavolo2.setImage(retro);
     	iconTavolo3.setImage(retro);
-    	iconTavolo4.setImage(retro);
     	
     	homepageIcon.setImage(homePage);
     	
-    	//mostracittaButton.setVisible(false);
+    	vboxPlay.setVisible(false);
+    	mostracittaButton.setVisible(false);
     	buttonLasciare.setVisible(false);
     	buttonPuntare.setVisible(false);
     	CreditiPuntatiField.setVisible(false);
     	confermaButton.setVisible(false);
-    	//textTurno.setVisible(false);
-    	//textGiocatoreCorrente.setVisible(false);
-    	//textProssGiocatori.setVisible(false);
-    	//vboxNumTurno.setVisible(false);
-    	//vboxProssimiGiocatori.setVisible(false);
+    	vboxProssimiGiocatori.setVisible(false);
+    	textCrediti.setVisible(false);
     	
-    	//textCrediti.setText("Crediti: " +  giocatore.getCrediti() );
-    	//textTurno.setText("E' il turno di: " + partita.getGiocatori() );
+    	button1.setVisible(false);
+    	button100.setVisible(false);
+    	button1000.setVisible(false);
+    	button5000.setVisible(false);
+    	button10000.setVisible(false);
+    	buttonAllIn.setVisible(false);
+    	resetCrediti.setVisible(false);
     	
-    	
+    	CreditiPuntatiField.setText("0");
+
     }
     
-    public boolean inizializzaGiocatore(Giocatore g) {
+    @FXML
+    void punta1(ActionEvent event) {
+    	int a = 0;
     	try {
-			giocatore = g;
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+    		String s = CreditiPuntatiField.getText();
+    		if(s.equals(""))
+    			a=0;
+    		else
+    			a = Integer.parseInt(s); 
+    		a+=1;
+    		if(a<=partita.getCrediti(giocatore))
+    			CreditiPuntatiField.setText(a+"");
+			else {
+				CreditiPuntatiField.setText(partita.getCrediti(giocatore)+"");
+			}
+    	}catch(Exception e) {
+    		CreditiPuntatiField.setText("1");
+    	}
+    }
+
+    @FXML
+    void punta100(ActionEvent event) {
+    	int a = 0;
+    	try {
+    		String s = CreditiPuntatiField.getText();
+    		if(s.equals(""))
+    			a=0;
+    		else
+    			a = Integer.parseInt(s); 
+    		a+=100;
+    		if(a<=partita.getCrediti(giocatore))
+    			CreditiPuntatiField.setText(a+"");
+			else {
+				CreditiPuntatiField.setText(partita.getCrediti(giocatore)+"");
+			}
+    	}catch(Exception e) {
+    		CreditiPuntatiField.setText("100");
+    	}
+    }
+
+    @FXML
+    void punta1000(ActionEvent event) {
+    	int a = 0;
+    	try {
+    		String s = CreditiPuntatiField.getText();
+    		if(s.equals(""))
+    			a=0;
+    		else
+    			a = Integer.parseInt(s); 
+    		a+=1000;
+    		if(a<=partita.getCrediti(giocatore))
+    			CreditiPuntatiField.setText(a+"");
+			else {
+				CreditiPuntatiField.setText(partita.getCrediti(giocatore)+"");
+			}
+    	}catch(Exception e) {
+    		CreditiPuntatiField.setText("1000");
+    	}
+    }
+
+    @FXML
+    void punta10000(ActionEvent event) {
+    	int a = 0;
+    	try {
+    		String s = CreditiPuntatiField.getText();
+    		if(s.equals(""))
+    			a=0;
+    		else
+    			a = Integer.parseInt(s); 
+    		a+=10000;
+    		if(a<=partita.getCrediti(giocatore))
+    			CreditiPuntatiField.setText(a+"");
+			else {
+				CreditiPuntatiField.setText(partita.getCrediti(giocatore)+"");
+			}
+    	}catch(Exception e) {
+    		CreditiPuntatiField.setText("10000");
+    	}
+    }
+
+    @FXML
+    void punta5000(ActionEvent event) {
+    	int a = 0;
+    	try {
+    		String s = CreditiPuntatiField.getText();
+    		if(s.equals(""))
+    			a=0;
+    		else
+    			a = Integer.parseInt(s); 
+    		a+=5000;
+    		if(a<=partita.getCrediti(giocatore))
+    			CreditiPuntatiField.setText(a+"");
+			else {
+				CreditiPuntatiField.setText(partita.getCrediti(giocatore)+"");
+			}
+    	}catch(Exception e) {
+    		CreditiPuntatiField.setText("5000");
+    	}
     }
     
-    public void inizializzaSchermata() {
-    	giocatore.getUsername();
+    @FXML
+    void puntaTutto(ActionEvent event) {
+    	CreditiPuntatiField.setText(partita.getCrediti(giocatore)+"");
+    }
+    
+    @FXML
+    void resetCrediti(ActionEvent event) {
+    	CreditiPuntatiField.setText("0");
     }
 
 }

@@ -21,35 +21,8 @@
     -fx-font-style: italic;
 }
 
-#giocatoriPartitaLabel{
-	-fx-background-color: rgb(209, 155, 0, 0.5);
-    -fx-font-family: "Georgia";
-    -fx-font-size: 14px;
-    -fx-border-width: 2px;
-    -fx-border-color: rgb(0, 0, 0);
-}
-
-#giocatoriEliminatiLabel{
-    -fx-font-family: "Georgia";
-    -fx-font-size: 14px;
-	-fx-text-fill: rgb(162,43,43);
-	-fx-font-style: italic;
-}
-
-#obiettivoPartita{
-	-fx-font-style: italic;
-    -fx-font-size: 16px;
-}
-
-#prossimoTurnoLabel{
-	-fx-color: rgb(0, 64, 128);
-    -fx-font: 25px "Felix Titling", sans-serif;
-    -fx-font-weight: bold;
-    -fx-font-style: italic;
-}
-
-#sfondo{
-	-fx-background-image: url("/immagini/sfondoprossimoturno.png");
+#sfondo {
+	-fx-background-image: url("/immagini/vittoriaTurno.jpg");
 	-fx-background-size: cover;
     -fx-background-position: center center;
 	-fx-border-width: 2px;

@@ -92,4 +92,9 @@ public class City implements Serializable{
 		return cu;
 	}
 	
+	public String toString() {
+		return "Nome : "+nome+
+			   "Carte : "+carte.size()+
+			   "Punteggio : "+punteggio;
+	}
 }
