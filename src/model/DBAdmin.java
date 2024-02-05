@@ -1,5 +1,6 @@
 package model;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 import controller.GestoreScene;
@@ -28,7 +29,8 @@ public class DBAdmin {
 				mazzi.add(s);
 			
 			HashSet<String> partite = new HashSet<String>();
-			for(String s : DBPartite.getPartite())
+			HashMap<String,Partita> p = DBPartite.getPartite();
+			for(String s : p.keySet())
 				partite.add(s);
 			
 			HashSet<String> giocatori = new HashSet<String>();
@@ -36,7 +38,8 @@ public class DBAdmin {
 				giocatori.add(s);
 			
 			HashSet<String> tornei = new HashSet<String>();
-			for(String s : DBTornei.getTornei())
+			HashMap<String,Torneo> t = DBTornei.getTornei();
+			for(String s : t.keySet())
 				tornei.add(s);
 
 			admin.inizializzaAdmin(carte,mazzi,giocatori,partite,tornei);

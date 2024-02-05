@@ -539,6 +539,7 @@ public class AdminAreaController {
 					if(tipoPartitaButton.getValue().equals("A turni")) {
 						int turni = Integer.parseInt(numeroSliderPartitaLabel.getText());
 						if(giocatoriAggiunti.size()>1) {
+							giocatoriAggiunti.sort(null);
 							Partita p = new PartitaATurni(m,giocatoriAggiunti,codice,turni,n);
 							DBPartite.aggiungiPartita(p);
 							DBAdmin.aggiungiPartita(p);

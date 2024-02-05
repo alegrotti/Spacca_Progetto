@@ -14,6 +14,7 @@ public class Partita implements Serializable{
 	private Mazzo mazzoTurno;
 	private Mazzo mazzo;
 	private int turno;
+	private boolean completata;
 	private int mano;
 	private int puntata;
 	private ArrayList<String> giocatori;
@@ -40,6 +41,7 @@ public class Partita implements Serializable{
 		this.carteTavolo = null;
 		this.mani = null;
 		this.cittadine = null;
+		this.completata = false;
 		this.crediti = null;
 		this.giocatoriPuntata = null;
 		this.vincitore = null;
@@ -61,6 +63,7 @@ public class Partita implements Serializable{
 		this.carteTavolo = null;
 		this.giocatoriPuntata = null;
 		this.vincitore = null;
+		this.completata = false;
 		this.crediti = creaCreditiIniziali(giocatori,creditiIniziali);
 		this.cittadine = creaCittadineIniziali(giocatori);
 	}
@@ -137,7 +140,9 @@ public class Partita implements Serializable{
 	}
 	
 	public void aggiornaCrediti(ArrayList<String> players, int puntata) {
-		for(String p : players) {
+		giocatoriTurno = players;
+		giocatoriTurno.sort(null);
+		for(String p : giocatoriTurno) {
 			int x = crediti.get(p);
 			if(x<puntata) {
 				tavolo+=x;
@@ -275,10 +280,10 @@ public class Partita implements Serializable{
 
 	public void controllaCrediti() {
 		for(String s : giocatori)
-			if(crediti.get(s) <= 0) {
-				giocatori.remove(s);
+			if(crediti.get(s) <= 0) 
 				giocatoriEliminati.add(s);
-			}
+		
+		giocatori.removeAll(giocatoriEliminati);
 	}
 	
 	public int getMano() {
@@ -339,6 +344,10 @@ public class Partita implements Serializable{
 		return x;
 	}
 	
+	public void chiudiPartita() {
+		completata = true;
+	}
+	
 	public boolean checkWinner() {
 		if(this instanceof PartitaATurni) {
 			PartitaATurni partita = (PartitaATurni)this;
@@ -366,6 +375,10 @@ public class Partita implements Serializable{
 			GestoreScene.messaggioErrore("Partita non caricata correttamente");
 			return false;
 		}
+	}
+
+	public boolean isCompletata() {
+		return completata;
 	}
 	
 }
