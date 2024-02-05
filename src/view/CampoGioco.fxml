@@ -37,7 +37,7 @@
                   </HBox>
                   <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="162.0" prefWidth="985.0">
                      <children>
-                        <VBox fx:id="vboxPlay" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="66.0" prefWidth="360.0">
+                        <VBox fx:id="vboxPlay" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="102.0" prefWidth="316.0">
                            <children>
                               <HBox alignment="CENTER">
                                  <VBox.margin>

@@ -282,7 +282,6 @@ public class Partita implements Serializable{
 		for(String s : giocatori)
 			if(crediti.get(s) <= 0) 
 				giocatoriEliminati.add(s);
-		
 		giocatori.removeAll(giocatoriEliminati);
 	}
 	

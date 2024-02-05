@@ -4,9 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import model.Carta;
 import model.DBAdmin;
 import model.DBCarte;
@@ -166,14 +163,7 @@ public class SettingController {
 
     @FXML
     void tornaWelcome(ActionEvent event) {
-    	try {
-	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
-	        Scene scenaHomepage = new Scene(root);
-	        scenaHomepage.getStylesheets().add("/view/welcome.css");
-	        GestoreScene.setScene(scenaHomepage,false," - Homepage");
-    	}catch(Exception e) {
-    		GestoreScene.messaggioErrore("Errore apertura finestra");
-    	}
+    	GestoreScene.welcome(false);
     }
     
     @FXML

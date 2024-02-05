@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import java.util.ArrayList;
 import java.util.Random;
 import model.Giocatore;
@@ -21,8 +20,6 @@ import model.DBPartite;
 import model.Partita;
 import model.PartitaAPalazzi;
 import model.PartitaATurni;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -632,14 +629,7 @@ public class AdminAreaController {
     //Generale e inizializzazione
     @FXML
     void backWelcome(ActionEvent event) {
-    	try {
-	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
-	        Scene scenaHomepage = new Scene(root);
-	        scenaHomepage.getStylesheets().add("/view/welcome.css");
-	        GestoreScene.setScene(scenaHomepage,false," - Homepage");
-    	}catch(Exception e) {
-    		GestoreScene.messaggioErrore("Errore apertura finestra");
-    	}
+    	GestoreScene.welcome(false);
     }
     
     @FXML

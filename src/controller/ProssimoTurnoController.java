@@ -2,9 +2,6 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -65,15 +62,8 @@ public class ProssimoTurnoController {
     
     @FXML
     void backHome(ActionEvent event) {
-    	try {
-	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
-	        Scene scenaHomepage = new Scene(root);
-	        scenaHomepage.getStylesheets().add("/view/welcome.css");
-	        GestoreScene.setScene(scenaHomepage,false," - Homepage");
-	        backHomeButton.getScene().getWindow().hide();
-    	}catch(Exception e) {
-    		GestoreScene.messaggioErrore("Errore apertura finestra");
-    	}
+    	GestoreScene.welcome(true);
+    	backHomeButton.getScene().getWindow().hide();
     }
 
     @FXML
