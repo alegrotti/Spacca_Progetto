@@ -209,7 +209,7 @@ public class Partita implements Serializable{
 	}
 	
 	public Carta[] creaTavolo() {
-		Carta[] carte = new Carta[4];
+		Carta[] carte = new Carta[3];
 		for (int i = 0 ; i < carte.length ; i++) {
 			carte[i] = mazzoTurno.getCarte().getFirst();
 			mazzoTurno.getCarte().remove(0);
@@ -220,7 +220,7 @@ public class Partita implements Serializable{
 	public HashMap<String,Carta[]> creaMani() {
 		HashMap<String,Carta[]> m = new HashMap<String,Carta[]>();
 		for(String g : giocatori) {
-			Carta[] carte = new Carta[3];
+			Carta[] carte = new Carta[4];
 			for (int i = 0 ; i < carte.length ; i++) {
 				carte[i] = mazzoTurno.getCarte().getFirst();
 				mazzoTurno.getCarte().remove(0);

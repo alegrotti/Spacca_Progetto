@@ -8,9 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.Pane;
 import model.Carta;
 import model.DBGiocatori;
 import model.GiocatoreCPUDifficile;
@@ -25,6 +25,9 @@ public class CampoGiocoController {
 	private String giocatore;
 	
 	private int tavolo;
+	
+    @FXML
+    private ImageView iconMano4;
 	
 	@FXML
     private TextField CreditiPuntatiField;
@@ -76,9 +79,6 @@ public class CampoGiocoController {
 
     @FXML
     private ImageView iconRetroCarta;
-    
-    @FXML
-    private Label nomeGiocatore;
 
     @FXML
     private ImageView iconTavolo1;
@@ -90,9 +90,6 @@ public class CampoGiocoController {
     private ImageView iconTavolo3;
 
     @FXML
-    private ImageView iconTavolo4;
-
-    @FXML
     private Button mostracittaButton;
     
     @FXML
@@ -102,10 +99,10 @@ public class CampoGiocoController {
     private Button playButton;
 
     @FXML
-    private Pane sfondo;
+    private AnchorPane sfondo;
 
     @FXML
-    private Pane sfondoScuro;
+    private HBox sfondoScuro;
 
     @FXML
     private Label textCrediti;
@@ -251,13 +248,13 @@ public class CampoGiocoController {
     }
     
     public void caricaSchermataDefault(){
-    	Image retro = new Image("/immagini/retrocarta.png");
+    	Image retro = new Image("/immagini/retroCarta.png");
     	Image homePage = new Image("/immagini/homepageIcon.png");
     	
-    	iconRetroCarta.setImage(retro);
     	iconMano1.setImage(retro);
     	iconMano2.setImage(retro);
     	iconMano3.setImage(retro);
+    	iconMano4.setImage(retro);
     	
     	stampaCarteTavolo(partita.getCarteTavolo());
     	
@@ -284,7 +281,7 @@ public class CampoGiocoController {
     	
     	Image retro = new Image("/immagini/retrocarta.png");
     	
-    	int j = tavolo+2;
+    	int j = tavolo+1;
     	
     	for(int i = 0 ; i < j ; i++)
     		carteT[i] = new Image(carteTavolo[i].getPercorso());
@@ -295,7 +292,6 @@ public class CampoGiocoController {
     	iconTavolo1.setImage(carteT[0]);
     	iconTavolo2.setImage(carteT[1]);
     	iconTavolo3.setImage(carteT[2]);
-    	iconTavolo4.setImage(carteT[3]);
 
     }
     
@@ -323,17 +319,18 @@ public class CampoGiocoController {
     	giocatore = "";
     	tavolo = 2;
     	Image retro = new Image("/immagini/retrocarta.png");
+    	Image retroruotato = new Image("/immagini/retrocartaruotata.png");
     	Image homePage = new Image("/immagini/homepageIcon.png");
     	
-    	iconRetroCarta.setImage(retro);
+    	iconRetroCarta.setImage(retroruotato);
     	iconMano1.setImage(retro);
     	iconMano2.setImage(retro);
     	iconMano3.setImage(retro);
+    	iconMano4.setImage(retro);
     	iconTavolo1.setImage(retro);
     	iconTavolo1.setImage(retro);
     	iconTavolo2.setImage(retro);
     	iconTavolo3.setImage(retro);
-    	iconTavolo4.setImage(retro);
     	
     	homepageIcon.setImage(homePage);
     	
@@ -355,6 +352,7 @@ public class CampoGiocoController {
     	resetCrediti.setVisible(false);
     	
     	CreditiPuntatiField.setText("0");
+
     }
     
     @FXML

@@ -15,11 +15,9 @@ public class GestoreScene {
 
 	public static void setScene (Scene scena, boolean t, String title) {
 		Main.parentWindow.setScene(scena);
-		Main.parentWindow.setResizable(false);
-		Main.parentWindow.setMaximized(false);
 		Main.parentWindow.setTitle("SPACCA"+title);
 		Main.parentWindow.setResizable(false);
-		Main.parentWindow.setMaximized(false);
+		Main.parentWindow.setMaximized(t);
 		Main.parentWindow.centerOnScreen();
         Image image = new Image("/immagini/icon.jpg");
         Main.parentWindow.getIcons().add(image);
@@ -273,7 +271,8 @@ public class GestoreScene {
 			}
 			Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/campogioco.css");
-	        setScene(scenaHomepage,false,(" - Game "+p.getCodice()));
+	        Main.parentWindow.hide();
+	        setScene(scenaHomepage,true,(" - Game "+p.getCodice()));
 		} catch (Exception e) {
 	    	messaggioErrore("Errore apertura finestra");
 		}

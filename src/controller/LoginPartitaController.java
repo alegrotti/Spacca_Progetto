@@ -39,7 +39,7 @@ public class LoginPartitaController {
     				Parent root = loader.load();
     				Scene scenaHomepage = new Scene(root);
     		        scenaHomepage.getStylesheets().add("/view/campogioco.css");
-    		        GestoreScene.setScene(scenaHomepage,false,(" - Game "+codice));
+    		        GestoreScene.setScene(scenaHomepage,true,(" - Game "+codice));
     		        GestoreScene.prossimoTurnoPopup(DBPartite.getPartita(codice));
     	    	}catch(IllegalArgumentException e) {
     	    		throw e;
