@@ -43,13 +43,13 @@
                                  <children>
                                     <BorderPane fx:id="bordoFoto" maxHeight="260.0" maxWidth="200.0">
                                        <center>
-                                          <ImageView fx:id="immagineCarta" fitHeight="260.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="immagineCarta" fitHeight="315.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true" />
                                        </center>
                                        <HBox.margin>
                                           <Insets right="30.0" />
                                        </HBox.margin>
                                     </BorderPane>
-                                    <VBox fx:id="infoCarta" alignment="CENTER" prefHeight="242.0" prefWidth="423.0">
+                                    <VBox fx:id="infoCarta" alignment="CENTER" prefHeight="261.0" prefWidth="423.0">
                                        <children>
                                           <Label fx:id="titoloGenere" alignment="CENTER" prefHeight="37.0" prefWidth="566.0" text="Genere: " />
                                           <Label fx:id="genereCarta" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="39.0" prefWidth="566.0" />

@@ -12,7 +12,6 @@ import model.Special;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -20,7 +19,7 @@ import javafx.scene.layout.VBox;
 
 public class SettingController {
 
-	@FXML
+    @FXML
     private Button backButton;
 
     @FXML
@@ -36,37 +35,25 @@ public class SettingController {
     private ComboBox<String> listaCarte;
     
     @FXML
-    private Label labelCo;
-    
-    @FXML
-    private Label labelCu;
-
-    @FXML
-    private Label labelPu;
-
-    @FXML
-    private Label labelRe;
-
-    @FXML
     private TextField nome;
+
+    @FXML
+    private TextField puntComm;
+
+    @FXML
+    private TextField puntCult;
+
+    @FXML
+    private TextField puntPubb;
+
+    @FXML
+    private TextField puntRes;
 
     @FXML
     private Button saveButton;
 
     @FXML
     private Pane sfondo;
-
-    @FXML
-    private Slider sliderCo;
-
-    @FXML
-    private Slider sliderCu;
-
-    @FXML
-    private Slider sliderPu;
-
-    @FXML
-    private Slider sliderRe;
 
     @FXML
     private Label titolo;
@@ -81,10 +68,10 @@ public class SettingController {
     	if(c!=null) {
 	    	nome.setText(c.getNome());
 			descrizione.setText(c.getDescrizione());
-			sliderRe.setValue(c.getResidenziale());
-			sliderCo.setValue(c.getCommerciale());
-			sliderPu.setValue(c.getPubblico());
-			sliderCu.setValue(c.getCulturale());
+			puntRes.setText(c.getResidenziale()+"");
+			puntComm.setText(c.getCommerciale()+"");
+			puntPubb.setText(c.getPubblico()+"");
+			puntCult.setText(c.getCulturale()+"");
     	}
 
     }
@@ -93,10 +80,10 @@ public class SettingController {
     void creaBonus(ActionEvent event) {
     	String nomeCarta = nome.getText();
 		String descrizioneCarta = descrizione.getText();
-		int resi = (int) sliderRe.getValue();
-    	int comm = (int) sliderCo.getValue();
-    	int pubb = (int) sliderPu.getValue();
-    	int cult = (int) sliderCu.getValue();
+		int resi = Integer.parseInt(puntRes.getText());
+    	int comm = Integer.parseInt(puntComm.getText());
+    	int pubb = Integer.parseInt(puntPubb.getText());
+    	int cult = Integer.parseInt(puntCult.getText());
     	String percorso = "/immagini/cartabonus.jpg";
     	
     	Carta c = new Special(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,true,percorso,"Bonus");
@@ -112,10 +99,10 @@ public class SettingController {
 
 		String nomeCarta = nome.getText();
 		String descrizioneCarta = descrizione.getText();
-		int resi = (int) sliderRe.getValue();
-    	int comm = (int) sliderCo.getValue();
-    	int pubb = (int) sliderPu.getValue();
-    	int cult = (int) sliderCu.getValue();
+		int resi = Integer.parseInt(puntRes.getText());
+    	int comm = Integer.parseInt(puntComm.getText());
+    	int pubb = Integer.parseInt(puntPubb.getText());
+    	int cult = Integer.parseInt(puntCult.getText());
     	String percorso = "/immagini/" + nomeCarta.replaceAll("\\s", "").toLowerCase() + ".png";
     	Carta c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,percorso,genere.getText());
     	
@@ -130,10 +117,10 @@ public class SettingController {
 
     	String nomeCarta = nome.getText();
 		String descrizioneCarta = descrizione.getText();
-		int resi = (int) sliderRe.getValue();
-    	int comm = (int) sliderCo.getValue();
-    	int pubb = (int) sliderPu.getValue();
-    	int cult = (int) sliderCu.getValue();
+		int resi = Integer.parseInt(puntRes.getText());
+    	int comm = Integer.parseInt(puntComm.getText());
+    	int pubb = Integer.parseInt(puntPubb.getText());
+    	int cult = Integer.parseInt(puntCult.getText());
     	String percorso = "/immagini/cartamalus.jpg";
     	
     	Carta c = new Special(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,false,percorso,"Malus");
@@ -180,22 +167,7 @@ public class SettingController {
     	
     	listaCarte.setValue(null);
     	listaCarte.setItems(carte);
-    	
-    	inizializzaSlider(labelCo,sliderCo);
-    	inizializzaSlider(labelRe,sliderRe);
-    	inizializzaSlider(labelCu,sliderCu);
-    	inizializzaSlider(labelPu,sliderPu);
-    }
-    
-    private void inizializzaSlider(Label label, Slider slider){
-    	slider.setValue(0);
-    	label.setText(String.valueOf((int) slider.getValue()));
-    	slider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            int roundedValue = (int) Math.round(newValue.doubleValue());
-            label.setText(String.valueOf(roundedValue));
-        });
-    	slider.setMin(0);
-    	slider.setMax(10);
+
     }
     
 }

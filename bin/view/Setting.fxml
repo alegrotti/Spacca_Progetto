@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
@@ -47,29 +46,25 @@
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="199.0" prefHeight="29.0" prefWidth="850.0">
                      <children>
                         <Label text="Residenziale" />
-                        <Slider fx:id="sliderRe" prefHeight="14.0" prefWidth="212.0" />
-                        <Label fx:id="labelRe" />
+                        <TextField fx:id="puntRes" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="234.0" prefHeight="26.0" prefWidth="850.0">
                      <children>
                         <Label text="Commerciale" />
-                        <Slider fx:id="sliderCo" prefHeight="14.0" prefWidth="215.0" />
-                        <Label fx:id="labelCo" />
+                        <TextField fx:id="puntComm" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="256.0" prefHeight="26.0" prefWidth="850.0">
                      <children>
                         <Label text="Pubblico" />
-                        <Slider fx:id="sliderPu" prefHeight="14.0" prefWidth="222.0" />
-                        <Label fx:id="labelPu" />
+                        <TextField fx:id="puntPubb" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="270.0" prefHeight="26.0" prefWidth="850.0">
                      <children>
                         <Label text="Culturale" />
-                        <Slider fx:id="sliderCu" prefHeight="14.0" prefWidth="220.0" />
-                        <Label fx:id="labelCu" />
+                        <TextField fx:id="puntCult" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="73.0" prefHeight="39.0" prefWidth="828.0">
