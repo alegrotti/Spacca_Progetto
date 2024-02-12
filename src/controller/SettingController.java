@@ -103,7 +103,10 @@ public class SettingController {
     	int comm = Integer.parseInt(puntComm.getText());
     	int pubb = Integer.parseInt(puntPubb.getText());
     	int cult = Integer.parseInt(puntCult.getText());
-    	String percorso = "/immagini/" + nomeCarta.replaceAll("\\s", "").toLowerCase() + ".png";
+    	String percorso = "/immagini/" + nomeCarta.replaceAll("[^a-zA-Z]", "").toLowerCase() + ".png";
+    	
+    	System.out.println(percorso);
+    	
     	Carta c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,percorso,genere.getText());
     	
     	DBAdmin.getAdmin().aggiungiCarta(c);
