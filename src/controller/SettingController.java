@@ -116,7 +116,7 @@ public class SettingController {
     	int comm = (int) sliderCo.getValue();
     	int pubb = (int) sliderPu.getValue();
     	int cult = (int) sliderCu.getValue();
-    	String percorso = "/immagini/" + nomeCarta.replaceAll("\\s", "").toLowerCase() + ".jpg";
+    	String percorso = "/immagini/" + nomeCarta.replaceAll("\\s", "").toLowerCase() + ".png";
     	Carta c = new Building(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,percorso,genere.getText());
     	
     	DBAdmin.getAdmin().aggiungiCarta(c);
