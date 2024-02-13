@@ -84,7 +84,8 @@ public class SettingController {
     	int comm = Integer.parseInt(puntComm.getText());
     	int pubb = Integer.parseInt(puntPubb.getText());
     	int cult = Integer.parseInt(puntCult.getText());
-    	String percorso = "/immagini/cartabonus.jpg";
+    	
+    	String percorso = "/immagini/" + nomeCarta.replaceAll("[^a-zA-Z]", "").toLowerCase() + ".png";
     	
     	Carta c = new Special(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,true,percorso,"Bonus");
     	
@@ -124,7 +125,8 @@ public class SettingController {
     	int comm = Integer.parseInt(puntComm.getText());
     	int pubb = Integer.parseInt(puntPubb.getText());
     	int cult = Integer.parseInt(puntCult.getText());
-    	String percorso = "/immagini/cartamalus.jpg";
+    	
+    	String percorso = "/immagini/" + nomeCarta.replaceAll("[^a-zA-Z]", "").toLowerCase() + ".png";
     	
     	Carta c = new Special(nomeCarta,descrizioneCarta,resi,comm,pubb,cult,false,percorso,"Malus");
     	
