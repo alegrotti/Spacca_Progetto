@@ -231,7 +231,7 @@ public class AdminAreaController {
 	    	String tipoGiocatore = tipoDiGiocatoreButton.getValue();
 	    	if("Reale".equals(tipoGiocatore)) {
 	    		String username = nuovoGiocatoreField.getText();
-	    		if(!username.equals("")) {
+	    		if(!username.isBlank()) {
 	    			Giocatore g = new GiocatoreFisico(username);
 	    			DBGiocatori.aggiungiGiocatore(g);
 	    			DBAdmin.aggiungiGiocatore(g);
@@ -242,7 +242,7 @@ public class AdminAreaController {
 	    		String difficolta = selezionaDifficoltaButton.getValue();
 	    		if("Facile".equals(difficolta)) {
 		    		String username = nuovoGiocatoreField.getText();
-		    		if(!username.equals("")) {
+		    		if(!username.isBlank()) {
 		    			Giocatore g = new GiocatoreCPUFacile(username);
 		    			DBGiocatori.aggiungiGiocatore(g);
 		    			DBAdmin.aggiungiGiocatore(g);
@@ -251,7 +251,7 @@ public class AdminAreaController {
 		    		}
 	    		}else if("Difficile".equals(difficolta)){
 	    			String username = nuovoGiocatoreField.getText();
-		    		if(!username.equals("")) {
+		    		if(!username.isBlank()) {
 		    			Giocatore g = new GiocatoreCPUDifficile(username);
 		    			DBGiocatori.aggiungiGiocatore(g);
 		    			DBAdmin.aggiungiGiocatore(g);
@@ -273,7 +273,8 @@ public class AdminAreaController {
     @FXML
     void eliminaGiocatore(ActionEvent event) {
     	String username = listaGiocatoriButton.getValue();
-    	
+    	if(username==null)
+    		GestoreScene.messaggioErrore("Seleziona giocatore");
     	DBAdmin.eliminaGiocatore(username);
     	DBGiocatori.eliminaGiocatore(username);
     	
@@ -361,11 +362,15 @@ public class AdminAreaController {
     
     @FXML
     void aggiungiCartaAlMazzo(ActionEvent event) {
-    	String carta = listaCarteDaAggiungere.getValue();
-    	carteMazzo.add(DBCarte.getCarta(carta));
-    	String s = nomeMazzo.getText();
-    	inizializzaGestioneMazzi();
-    	nomeMazzo.setText(s);
+    	try {
+    		String carta = listaCarteDaAggiungere.getValue();
+	    	carteMazzo.add(DBCarte.getCarta(carta));
+	    	String s = nomeMazzo.getText();
+	    	inizializzaGestioneMazzi();
+	    	nomeMazzo.setText(s);
+    	}catch(Exception e) {
+    		GestoreScene.messaggioErrore("Errore aggiunta");
+    	}
     }
     
     @FXML
@@ -387,16 +392,19 @@ public class AdminAreaController {
     
     @FXML
     void rimuoviCartaDalMazzo(ActionEvent event) {
-    	
-    	String carta = listaCarteMazzo.getValue();
-    	
-    	Carta c = DBCarte.getCarta(carta);
-    	
-    	rimuoviDaMazzo(c);
-    	
-    	String s = nomeMazzo.getText();
-    	inizializzaGestioneMazzi();
-    	nomeMazzo.setText(s);
+    	try {
+	    	String carta = listaCarteMazzo.getValue();
+	    	
+	    	Carta c = DBCarte.getCarta(carta);
+	    	
+	    	rimuoviDaMazzo(c);
+	    	
+	    	String s = nomeMazzo.getText();
+	    	inizializzaGestioneMazzi();
+	    	nomeMazzo.setText(s);
+    	}catch(Exception e) {
+    		GestoreScene.messaggioErrore("Errore eliminazione");
+    	}
     	
     }
     
