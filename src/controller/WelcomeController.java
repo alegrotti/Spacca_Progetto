@@ -99,10 +99,10 @@ public class WelcomeController {
     @FXML
     void openSettings(ActionEvent event) {
     	try {
-	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Setting.fxml"));
+	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Catalog.fxml"));
 	        Scene scenaHomepage = new Scene(root);
-	        scenaHomepage.getStylesheets().add("/view/setting.css");
-	        GestoreScene.setScene(scenaHomepage,false," - Impostazioni");
+	        scenaHomepage.getStylesheets().add("/view/catalog.css");
+	        GestoreScene.setScene(scenaHomepage,false," - Catalogo carte");
     	}catch(Exception e) {
     		GestoreScene.messaggioErrore("Errore apertura finestra");
     	}

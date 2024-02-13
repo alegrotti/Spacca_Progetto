@@ -3,71 +3,24 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 <Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RulesController">
    <children>
-      <VBox fx:id="centralBox" alignment="TOP_CENTER" layoutX="50.0" layoutY="42.0" prefHeight="582.0" prefWidth="850.0">
+      <VBox fx:id="centralBox" alignment="CENTER" layoutX="50.0" layoutY="42.0" prefHeight="552.0" prefWidth="850.0">
          <children>
             <Label fx:id="titolo" alignment="CENTER" prefHeight="43.0" prefWidth="849.0" text="Regole e catalogo carte" />
-            <TabPane fx:id="tabPane" maxWidth="854.0" prefHeight="478.0" prefWidth="850.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="tabPane" maxWidth="854.0" prefHeight="414.0" prefWidth="850.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Partita" />
                 <Tab text="Torneo" />
-                  <Tab text="Carte">
-                     <content>
-                        <VBox alignment="TOP_CENTER" prefHeight="457.0" prefWidth="822.0">
-                           <children>
-                              <ComboBox fx:id="listaCarte" onAction="#cartaScelta" prefHeight="26.0" prefWidth="241.0">
-                                 <VBox.margin>
-                                    <Insets top="15.0" />
-                                 </VBox.margin></ComboBox>
-                              <Label fx:id="titoloCarta" alignment="CENTER" prefHeight="28.0" prefWidth="718.0">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <HBox fx:id="sfondoCarta" alignment="CENTER" prefHeight="364.0" prefWidth="850.0">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                                 <children>
-                                    <BorderPane fx:id="bordoFoto" maxHeight="260.0" maxWidth="200.0">
-                                       <center>
-                                          <ImageView fx:id="immagineCarta" fitHeight="315.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true" />
-                                       </center>
-                                       <HBox.margin>
-                                          <Insets right="30.0" />
-                                       </HBox.margin>
-                                    </BorderPane>
-                                    <VBox fx:id="infoCarta" alignment="CENTER" prefHeight="261.0" prefWidth="423.0">
-                                       <children>
-                                          <Label fx:id="titoloGenere" alignment="CENTER" prefHeight="37.0" prefWidth="566.0" text="Genere: " />
-                                          <Label fx:id="genereCarta" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="39.0" prefWidth="566.0" />
-                                          <Label fx:id="titoloDescrizione" alignment="CENTER" prefHeight="39.0" prefWidth="566.0" text="Descrizione:" />
-                                          <Label fx:id="descrizioneCarta" alignment="CENTER" prefHeight="62.0" prefWidth="428.0" textAlignment="CENTER" wrapText="true">
-                                             <padding>
-                                                <Insets left="10.0" right="10.0" />
-                                             </padding></Label>
-                                       </children>
-                                       <HBox.margin>
-                                          <Insets left="30.0" />
-                                       </HBox.margin>
-                                    </VBox>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-                     </content></Tab>
+                  <Tab text="Tavolo" />
                   <Tab text="Regole">
                      <content>
                         <HBox prefHeight="100.0" prefWidth="200.0">
