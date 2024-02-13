@@ -1,10 +1,7 @@
 package controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -14,9 +11,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import model.Carta;
-import model.DBAdmin;
-import model.DBCarte;
 
 public class RulesController {
 
@@ -70,39 +64,7 @@ public class RulesController {
     	GestoreScene.welcome(false);
     }
     
-    @FXML
-    void initialize() {
-    	
-    	ObservableList<String> carteCreate = FXCollections.observableArrayList();
-    	for(String s : DBAdmin.getAdmin().getCarte())
-    		carteCreate.add(s);
-    	carteCreate.sort(null);
-    	listaCarte.setItems(carteCreate);   
-    	
-    }
     
-    @FXML
-    void cartaScelta(ActionEvent event) {
-    	String s = listaCarte.getValue();
-    	Carta c = DBCarte.getCarta(s);
-    	stampaCarta(c);
-    	
-    }
-    
-    private void stampaCarta(Carta c) {
-    	titoloCarta.setText(c.getNome());
-
-    	descrizioneCarta.setText(c.getDescrizione());
-    	
-    	genereCarta.setText(c.getGenere());
-    	
-    	String imageURL = c.getPercorso();
-        
-        Image image = new Image(imageURL);
-        immagineCarta.setImage(image);
-        immagineCarta.setPreserveRatio(true);
-        
-    }
 
 }
 

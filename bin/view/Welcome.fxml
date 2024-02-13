@@ -62,7 +62,7 @@
             </HBox>
             <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="216.0" prefHeight="40.0" prefWidth="459.0">
                <children>
-                  <Button fx:id="impostazioniButton" mnemonicParsing="false" onAction="#openSettings" prefHeight="40.0" prefWidth="170.0" text="Impostazioni">
+                  <Button fx:id="impostazioniButton" mnemonicParsing="false" onAction="#openSettings" prefHeight="40.0" prefWidth="170.0" text="Catalogo carte">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
