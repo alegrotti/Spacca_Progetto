@@ -97,4 +97,15 @@ public class City implements Serializable{
 			   "Carte : "+carte.size()+
 			   "Punteggio : "+punteggio;
 	}
+	
+	public City compareTo(City c) {
+		if (c == null)
+			return this;
+		else if (getPunteggio()>c.getPunteggio())
+			return this;
+		else if(getPunteggio()>c.getPunteggio())
+			return c;
+		else
+			return null;
+	}
 }

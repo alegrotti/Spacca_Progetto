@@ -296,8 +296,8 @@ public class Partita implements Serializable{
 	}
 	
 	public String confrontaCittadineTurno() {
-		int p = 0;
 		vincitore = null;
+		City w = null;
 		for(String s : giocatoriTurno) {
 			City c = new City(s);
 			for(int i = 0; i<mani.get(s).length; i++)
@@ -305,13 +305,10 @@ public class Partita implements Serializable{
 			for(int i = 0; i<carteTavolo.length; i++)
 				c.aggiungiCarta(carteTavolo[i]);
 			
-			if(c.getPunteggio()>p) {
-				vincitore = s;
-				p = cittadine.get(s).getPunteggio();
-			}else if (c.getPunteggio() == p && p!=0){
-				GestoreScene.messaggioErrore("Punteggio uguale");
-			}
+			w = c.compareTo(w);
+			
 		}
+		vincitore = w.getNome();
 		return vincitore;
 	}
 	
