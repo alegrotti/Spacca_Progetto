@@ -364,10 +364,13 @@ public class AdminAreaController {
     void aggiungiCartaAlMazzo(ActionEvent event) {
     	try {
     		String carta = listaCarteDaAggiungere.getValue();
-	    	carteMazzo.add(DBCarte.getCarta(carta));
-	    	String s = nomeMazzo.getText();
-	    	inizializzaGestioneMazzi();
-	    	nomeMazzo.setText(s);
+    		if(!carta.isEmpty()) {
+		    	carteMazzo.add(DBCarte.getCarta(carta));
+		    	String s = nomeMazzo.getText();
+		    	inizializzaGestioneMazzi();
+		    	nomeMazzo.setText(s);
+    		}else
+    			throw new Exception();
     	}catch(Exception e) {
     		GestoreScene.messaggioErrore("Errore aggiunta");
     	}
@@ -395,13 +398,16 @@ public class AdminAreaController {
     	try {
 	    	String carta = listaCarteMazzo.getValue();
 	    	
-	    	Carta c = DBCarte.getCarta(carta);
-	    	
-	    	rimuoviDaMazzo(c);
-	    	
-	    	String s = nomeMazzo.getText();
-	    	inizializzaGestioneMazzi();
-	    	nomeMazzo.setText(s);
+	    	if(!carta.isBlank()) {
+		    	Carta c = DBCarte.getCarta(carta);
+		    	
+		    	rimuoviDaMazzo(c);
+		    	
+		    	String s = nomeMazzo.getText();
+		    	inizializzaGestioneMazzi();
+		    	nomeMazzo.setText(s);
+	    	}else
+	    		throw new Exception();
     	}catch(Exception e) {
     		GestoreScene.messaggioErrore("Errore eliminazione");
     	}
@@ -622,9 +628,11 @@ public class AdminAreaController {
     		creditiInizialiLabel.setText(p.getCreditiIniziali()+" crediti");
     		int turnoCorrente = p.getTurno();
     		if (turnoCorrente==0)
-    			statoPartitaLabel.setText("Da iniziare - Turno "+turnoCorrente);
-    		else
+    			statoPartitaLabel.setText("Da iniziare");
+    		else if(!p.isCompletata())
     			statoPartitaLabel.setText("In corso - Turno "+turnoCorrente);
+    		else
+    			statoPartitaLabel.setText("Terminata");
     	}
     }
     
