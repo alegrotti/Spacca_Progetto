@@ -300,11 +300,11 @@ public class Partita implements Serializable{
 		City w = null;
 		for(String s : giocatoriTurno) {
 			City c = new City(s);
-			for(int i = 0; i<mani.get(s).length; i++)
-				c.aggiungiCarta(mani.get(s)[i]);
-			for(int i = 0; i<carteTavolo.length; i++)
-				c.aggiungiCarta(carteTavolo[i]);
-			
+	    	for(int i = 0; i<this.getMano(s).length ; i++)
+	    		c.aggiungiCarta(this.getMano(s)[i]);
+	    	
+	    	for(int i = 0; i<this.getCarteTavolo().length ; i++)
+	    		c.aggiungiCarta(this.getCarteTavolo()[i]);
 			w = c.compareTo(w);
 			
 		}
@@ -313,20 +313,13 @@ public class Partita implements Serializable{
 	}
 	
 	public String confrontaCittadine() {
-		int p = 0;
 		vincitore = null;
-		System.out.println(giocatoriTurno);
+		City w = null;
 		for(String s : giocatoriTurno) {
-			System.out.println(cittadine.get(s).getPunteggio());
-			if(cittadine.get(s).getPunteggio()>p) {
-				vincitore = s;
-				p = cittadine.get(s).getPunteggio();
-				System.out.println(p);
-			}else if (cittadine.get(s).getPunteggio() == p && p!=0){
-				GestoreScene.messaggioErrore("Punteggio uguale");
-			}
+			City c = cittadine.get(s); 
+			w = c.compareTo(w);
 		}
-		System.out.println(p);
+		vincitore = w.getNome();
 		return vincitore;
 	}
 	
