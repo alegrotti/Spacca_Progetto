@@ -17,7 +17,7 @@
       <VBox fx:id="centralBox" alignment="CENTER" layoutX="50.0" layoutY="42.0" prefHeight="550.0" prefWidth="850.0">
          <children>
             <Label fx:id="titolo" alignment="CENTER" prefHeight="43.0" prefWidth="849.0" text="Area giocatore" />
-            <ComboBox fx:id="listaGiocatori" onAction="#cartaScelta" prefWidth="150.0" promptText="Seleziona giocatore">
+            <ComboBox fx:id="listaGiocatori" onAction="#giocatoreScelto" prefWidth="150.0" promptText="Seleziona giocatore">
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
@@ -29,20 +29,16 @@
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label fx:id="titoloPartite" text="Riassunto delle partite" />
-                              <TableView fx:id="tablePartite" prefHeight="260.0" prefWidth="822.0">
+                              <TableView fx:id="tablePartite" editable="true" prefHeight="260.0" prefWidth="822.0">
                                  <columns>
                                     <TableColumn maxWidth="200.0" prefWidth="200.0" resizable="false" text="Codice partita" />
-                                    <TableColumn minWidth="0.0" prefWidth="200.0" resizable="false" text="Punti" />
-                                    <TableColumn prefWidth="150.0" resizable="false" text="Posizione in classifica" />
-                                    <TableColumn prefWidth="150.0" resizable="false" text="Crediti iniziali" />
-                                    <TableColumn prefWidth="150.0" resizable="false" text="Crediti finali" />
+                                    <TableColumn minWidth="0.0" prefWidth="246.40003967285156" resizable="false" text="Punti" />
+                                    <TableColumn prefWidth="192.0" resizable="false" text="Posizione in classifica" />
+                                    <TableColumn prefWidth="210.39999999999998" resizable="false" text="Crediti finali" />
                                  </columns>
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
                               </TableView>
                            </children>
                         </VBox>
@@ -57,21 +53,20 @@
                                     <Insets />
                                  </VBox.margin>
                               </Label>
-                              <TableView fx:id="tablePartite1" prefHeight="260.0" prefWidth="822.0">
+                              <TableView fx:id="tablePartite1" fixedCellSize="20.0" prefHeight="260.0" prefWidth="800.0">
                                  <columns>
-                                    <TableColumn maxWidth="200.0" prefWidth="150.0" resizable="false" text="Codice torneo" />
-                                    <TableColumn minWidth="0.0" prefWidth="150.0" resizable="false" text="Punti totali" />
-                                    <TableColumn prefWidth="150.0" resizable="false" text="Partite vinte" />
-                                    <TableColumn minWidth="0.0" prefWidth="96.0" resizable="false" text="Posizione" />
-                                    <TableColumn prefWidth="150.0" resizable="false" text="Crediti iniziali" />
-                                    <TableColumn prefWidth="150.0" resizable="false" text="Crediti finali" />
+                                    <TableColumn maxWidth="200.0" prefWidth="160.0" resizable="false" text="Codice torneo" />
+                                    <TableColumn minWidth="0.0" prefWidth="160.0" resizable="false" text="Punti totali" />
+                                    <TableColumn prefWidth="160.0" resizable="false" text="Partite vinte" />
+                                    <TableColumn minWidth="0.0" prefWidth="160.0" resizable="false" text="Posizione" />
+                                    <TableColumn prefWidth="160.0" resizable="false" text="Crediti finali" />
                                  </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
                               </TableView>
                            </children>
                         </VBox>

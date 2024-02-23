@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Random;
 import model.Giocatore;
 import model.GiocatoreFisico;
@@ -40,7 +39,7 @@ import javafx.scene.control.Slider;
 public class AdminAreaController {
 	
 	private ArrayList<Carta> carteMazzo;
-	private HashSet<String> giocatoriAggiunti;
+	private ArrayList<String> giocatoriAggiunti;
 
     @FXML
     private Button aggiungiCartaButton;
@@ -231,35 +230,47 @@ public class AdminAreaController {
     //Giocatore
     @FXML
     void aggiungiGiocatore(ActionEvent event) {
-    	String tipoGiocatore = tipoDiGiocatoreButton.getValue();
-    	if("Reale".equals(tipoGiocatore)) {
-    		String username = nuovoGiocatoreField.getText();
-    		if(!username.equals("")) {
-    			Giocatore g = new GiocatoreFisico(username);
-    			DBGiocatori.aggiungiGiocatore(g);
-    			DBAdmin.aggiungiGiocatore(g);
-    		}
-    	}else{
-    		String difficolta = selezionaDifficoltaButton.getValue();
-    		if("Facile".equals(difficolta)) {
+    	try {
+	    	String tipoGiocatore = tipoDiGiocatoreButton.getValue();
+	    	if("Reale".equals(tipoGiocatore)) {
 	    		String username = nuovoGiocatoreField.getText();
 	    		if(!username.equals("")) {
-	    			Giocatore g = new GiocatoreCPUFacile(username);
+	    			Giocatore g = new GiocatoreFisico(username);
 	    			DBGiocatori.aggiungiGiocatore(g);
 	    			DBAdmin.aggiungiGiocatore(g);
+	    		} else {
+	    			GestoreScene.messaggioErrore("Inserisci nome");
 	    		}
-    		}else if("Difficile".equals(difficolta)){
-    			String username = nuovoGiocatoreField.getText();
-	    		if(!username.equals("")) {
-	    			Giocatore g = new GiocatoreCPUDifficile(username);
-	    			DBGiocatori.aggiungiGiocatore(g);
-	    			DBAdmin.aggiungiGiocatore(g);
-	    		}
-    		}else {
-    			
-    		}
-    	}
-    	inizializzaSchermata();
+	    	}else if("CPU".equals(tipoGiocatore)){
+	    		String difficolta = selezionaDifficoltaButton.getValue();
+	    		if("Facile".equals(difficolta)) {
+		    		String username = nuovoGiocatoreField.getText();
+		    		if(!username.equals("")) {
+		    			Giocatore g = new GiocatoreCPUFacile(username);
+		    			DBGiocatori.aggiungiGiocatore(g);
+		    			DBAdmin.aggiungiGiocatore(g);
+		    		}else {
+		    			GestoreScene.messaggioErrore("Inserisci nome");
+		    		}
+	    		}else if("Difficile".equals(difficolta)){
+	    			String username = nuovoGiocatoreField.getText();
+		    		if(!username.equals("")) {
+		    			Giocatore g = new GiocatoreCPUDifficile(username);
+		    			DBGiocatori.aggiungiGiocatore(g);
+		    			DBAdmin.aggiungiGiocatore(g);
+		    		}else {
+		    			GestoreScene.messaggioErrore("Inserisci nome");
+		    		}
+	    		}else {
+	    			GestoreScene.messaggioErrore("Seleziona difficoltà");	
+    			}
+	    	}else {
+    			GestoreScene.messaggioErrore("Seleziona tipo");	
+			}
+	    	inizializzaSchermata();
+    	}catch(Exception e) {
+    		GestoreScene.messaggioErrore("Errore creazione giocatore");
+		}
     }
     
     @FXML
@@ -267,6 +278,7 @@ public class AdminAreaController {
     	String username = listaGiocatoriButton.getValue();
     	
     	DBAdmin.eliminaGiocatore(username);
+    	DBGiocatori.eliminaGiocatore(username);
     	
     	inizializzaSchermata();
     }
@@ -383,13 +395,23 @@ public class AdminAreaController {
     	
     	Carta c = DBCarte.getCarta(carta);
     	
-    	carteMazzo.remove(c);
-    	carteMazzo.trimToSize();
+    	rimuoviDaMazzo(c);
     	
     	String s = nomeMazzo.getText();
     	inizializzaGestioneMazzi();
     	nomeMazzo.setText(s);
     	
+    }
+    
+    private void rimuoviDaMazzo(Carta carta) {
+    	int x = 0;
+    	for(Carta c : carteMazzo)
+    		if(c.getNome().equals(carta.getNome()))
+    			break;
+    		else
+    			x++;
+    	carteMazzo.remove(x);
+    	carteMazzo.trimToSize();
     }
     
     @FXML
@@ -447,16 +469,26 @@ public class AdminAreaController {
     
     @FXML
     void aggiungiGiocatorePartita(ActionEvent event) {
-    	String giocatore = giocatoriDaAggiungere.getValue();
-    	giocatoriAggiunti.add(giocatore);
-
-    	ObservableList<String> giocatori2 = FXCollections.observableArrayList();
-    	for(String s : giocatoriAggiunti)
-    		giocatori2.add(s);
-    	giocatori2.sort(null);
-    	listaGiocatoriPartita.setItems(giocatori2);
-    	
-    	giocatoriDaAggiungere.setValue(null);
+    	try {
+	    	
+    		String giocatore = giocatoriDaAggiungere.getValue();
+    		
+    		if (giocatore.equals(""))
+    			throw new Exception();
+    		else
+    			giocatoriAggiunti.add(giocatore);
+	    	
+	    	ObservableList<String> giocatori2 = FXCollections.observableArrayList();
+	    	for(String s : giocatoriAggiunti)
+	    		giocatori2.add(s);
+	    	giocatori2.sort(null);
+	    	listaGiocatoriPartita.setItems(giocatori2);
+	    	
+	    	giocatoriDaAggiungere.setValue(null);
+	    	
+    	}catch(Exception e) {
+    		GestoreScene.messaggioErrore("Errore aggiunta giocatore");
+    	}
     }
     
     @FXML
@@ -499,25 +531,40 @@ public class AdminAreaController {
 		try {
 			Mazzo m = DBMazzi.getMazzo(scegliMazzoPartitaButton.getValue());
 			String codice = codicePartitaField.getText();
-			if(!DBAdmin.getAdmin().getPartite().contains(codice)) {
-				int n = Integer.parseInt(creditiSliderLabel.getText());
-				if(tipoPartitaButton.getValue().equals("A turni")) {
-					int turni = Integer.parseInt(numeroSliderPartitaLabel.getText());
-					Partita p = new PartitaATurni(m,giocatoriAggiunti,codice,turni,n);
-					DBPartite.aggiungiPartita(p);
-					DBAdmin.aggiungiPartita(p);
-				}else if(tipoPartitaButton.getValue().equals("A palazzi")) {
-					int palazzi = Integer.parseInt(numeroSliderPartitaLabel.getText());
-					Partita p = new PartitaAPalazzi(m,giocatoriAggiunti,codice,palazzi,n);
-					DBPartite.aggiungiPartita(p);
-					DBAdmin.aggiungiPartita(p);
+			int n = Integer.parseInt(creditiSliderLabel.getText());
+			if(n<1000)
+				GestoreScene.messaggioErrore("Scegliere numero crediti");
+			else if(!codice.equals(""))
+				if(!DBAdmin.getAdmin().getPartite().contains(codice)) {
+					if(tipoPartitaButton.getValue().equals("A turni")) {
+						int turni = Integer.parseInt(numeroSliderPartitaLabel.getText());
+						if(giocatoriAggiunti.size()>1) {
+							giocatoriAggiunti.sort(null);
+							Partita p = new PartitaATurni(m,giocatoriAggiunti,codice,turni,n);
+							DBPartite.aggiungiPartita(p);
+							DBAdmin.aggiungiPartita(p);
+							inizializzaSchermata();
+						}else {
+							GestoreScene.messaggioErrore("Aggiungi almeno 2 giocatori");
+						}
+					}else if(tipoPartitaButton.getValue().equals("A palazzi")) {
+						int palazzi = Integer.parseInt(numeroSliderPartitaLabel.getText());
+						if(giocatoriAggiunti.size()>1) {	
+							Partita p = new PartitaAPalazzi(m,giocatoriAggiunti,codice,palazzi,n);
+							DBPartite.aggiungiPartita(p);
+							DBAdmin.aggiungiPartita(p);
+							inizializzaSchermata();
+						}else 
+							GestoreScene.messaggioErrore("Aggiungi almeno 2 giocatori");
+
+					}else {
+						GestoreScene.messaggioErrore("");
+					}
 				}else {
-					throw new Exception();
+					GestoreScene.messaggioErrore("Codice già esistente");
 				}
-				inizializzaSchermata();
-			}else {
-				GestoreScene.messaggioErrore("Codice già esistente");
-			}
+			else
+				GestoreScene.messaggioErrore("Inserisci codice non nullo");
 		}catch(Exception e) {
 			GestoreScene.messaggioErrore("Errore creazione partita");
 		}
@@ -599,7 +646,7 @@ public class AdminAreaController {
     void initialize() {
     	
     	carteMazzo = new ArrayList<Carta>();
-    	giocatoriAggiunti = new HashSet<String>();
+    	giocatoriAggiunti = new ArrayList<String>();
     	
     	inizializzaSchermata();
     	
@@ -685,7 +732,7 @@ public class AdminAreaController {
     	
     	sliderCreditiPartita.setMin(1);
     	sliderCreditiPartita.setMax(100);
-    	sliderCreditiPartita.setValue(0);
+    	sliderCreditiPartita.setValue(50*1000);
     	creditiSliderLabel.setText(String.valueOf((int) sliderCreditiPartita.getValue()));
     	sliderCreditiPartita.valueProperty().addListener((observable, oldValue, newValue) -> {
             int roundedValue = (int) (Math.round(newValue.doubleValue()));

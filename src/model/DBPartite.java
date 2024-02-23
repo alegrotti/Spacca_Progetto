@@ -1,7 +1,6 @@
 package model;
 
 import java.util.HashMap;
-import java.util.Set;
 import controller.GestoreScene;
 
 public class DBPartite {
@@ -16,9 +15,9 @@ public class DBPartite {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static Set<String> getPartite(){
+	public static HashMap<String,Partita> getPartite(){
 		partite = (HashMap<String,Partita>)GestioneFile.caricaDB(DATABASE_PATH);
-		return partite.keySet();
+		return partite;
 	}
 	
 	@SuppressWarnings("unchecked")

@@ -37,10 +37,9 @@ public class LoginPartitaController {
     			try {
     		    	FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/CampoGioco.fxml"));
     				Parent root = loader.load();
-    				CampoGiocoController.partita = DBPartite.getPartita(codice);
     				Scene scenaHomepage = new Scene(root);
     		        scenaHomepage.getStylesheets().add("/view/campogioco.css");
-    		        GestoreScene.setScene(scenaHomepage,false,(" - Game "+codice));
+    		        GestoreScene.setScene(scenaHomepage,true,(" - Game "+codice));
     		        GestoreScene.prossimoTurnoPopup(DBPartite.getPartita(codice));
     	    	}catch(IllegalArgumentException e) {
     	    		throw e;

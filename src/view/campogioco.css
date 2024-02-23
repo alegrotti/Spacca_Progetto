@@ -15,10 +15,12 @@
 }
 
 #textCrediti{
-	-fx-text-fill: rgb(255, 255, 255);
-	-fx-font: 20px "Georgia", sans-serif;
+	-fx-text-fill: rgb(0, 0, 0);
+	-fx-font: 24px "Georgia", sans-serif;
   	-fx-font-weight: bold;
-  	-fx-font-style: italic;
+  	-fx-border-width: 2px;
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-background-color:  rgb(255, 255, 255,0.7);
 }
 
 #textTurno{
@@ -39,19 +41,18 @@
 	-fx-background-color: rgb(209, 155, 0);
     -fx-text-fill: rgb(0, 64, 128);
 	-fx-font: 20px "Georgia", sans-serif;
-  	-fx-font-weight: bold;
-  	-fx-font-style: italic;
+	-fx-font-weight: bold;
+	-fx-border-color: rgb(0,0,0);
+	-fx-border-width: 2px;
 }
 
 #textProssGiocatori{
 	-fx-text-fill: rgb(0, 64, 128);
 	-fx-font: 20px "Georgia", sans-serif;
-  	-fx-font-weight: bold;
-  	-fx-font-style: italic;
 }
 
 #sfondo {
-	-fx-background-image: url("/immagini/campogioco.jpg");
+	-fx-background-image: url("/immagini/campogioco1.jpg");
 	-fx-background-size: cover;
 }
 
@@ -59,20 +60,17 @@
 	-fx-background-color: rgb(0, 0, 0, 0.2);
 }
 
-#vbox{
-	-fx-background-color: rgb(255, 255, 255,  0.6);
-}
-
-#vboxNumTurno{
+#vboxPlay{
 	-fx-background-color: rgb(255, 255, 255,  0.6);
 	-fx-border-color: rgb(0, 0, 0);
-	-fx-border-width: 4px;
+	-fx-border-width: 2px;
+	-fx-font: 20px "Georgia", sans-serif;
 }
 
 #vboxProssimiGiocatori{
 	-fx-background-color: rgb(255, 255, 255,  0.6);
 	-fx-border-color: rgb(0,0,0);
-	-fx-border-width: 4px;
+	-fx-border-width: 2px;
 }
 
 #CreditiPuntatiField{

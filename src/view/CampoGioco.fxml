@@ -5,100 +5,234 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CampoGiocoController">
+<AnchorPane fx:id="sfondo" prefHeight="941.0" prefWidth="1469.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CampoGiocoController">
    <children>
-      <Pane fx:id="sfondoScuro" prefHeight="750.0" prefWidth="1350.0">
+      <HBox fx:id="sfondoScuro" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox fx:id="hboxTavolo" alignment="CENTER" layoutX="241.0" layoutY="39.0" prefHeight="290.0" prefWidth="870.0">
+            <VBox alignment="CENTER" prefHeight="942.0" prefWidth="1095.0">
                <children>
-                  <ImageView fx:id="iconTavolo1" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <HBox.margin>
-                        <Insets left="5.0" top="5.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <ImageView fx:id="iconTavolo2" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <HBox.margin>
-                        <Insets left="10.0" top="5.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <ImageView fx:id="iconTavolo3" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <HBox.margin>
-                        <Insets left="10.0" top="5.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <ImageView fx:id="iconTavolo4" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <HBox.margin>
-                        <Insets left="10.0" top="5.0" />
-                     </HBox.margin>
-                  </ImageView>
+                  <HBox fx:id="hboxTavolo" alignment="CENTER_RIGHT">
+                     <children>
+                        <ImageView fx:id="iconTavolo1" fitHeight="315.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets right="30.0" top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="iconTavolo2" fitHeight="315.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="30.0" right="30.0" top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="iconTavolo3" fitHeight="315.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="30.0" right="100.0" top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="162.0" prefWidth="985.0">
+                     <children>
+                        <VBox fx:id="vboxPlay" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="66.0" prefWidth="360.0">
+                           <children>
+                              <HBox alignment="CENTER">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <children>
+                                    <Label fx:id="textNome" alignment="CENTER" contentDisplay="TOP" prefHeight="2.0" prefWidth="359.0" text="Prossimo turno di: ">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="68.0">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="TOP" prefHeight="38.0" prefWidth="154.0">
+                                       <HBox.margin>
+                                          <Insets right="30.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Button fx:id="playButton" alignment="CENTER" mnemonicParsing="false" onAction="#playButtonClicked" prefHeight="26.0" prefWidth="78.0" text="Gioca!" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="hboxMano" alignment="CENTER_RIGHT">
+                     <children>
+                        <ImageView fx:id="iconMano1" fitHeight="315.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="iconMano2" fitHeight="315.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="10.0" top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="iconMano3" fitHeight="315.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="10.0" top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="iconMano4" fitHeight="315.0" fitWidth="225.0" layoutX="443.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="10.0" top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
-            <HBox fx:id="hboxMano" alignment="CENTER" layoutX="360.0" layoutY="452.0" prefHeight="270.0" prefWidth="640.0">
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="942.0" prefWidth="585.0">
                <children>
-                  <ImageView fx:id="iconMano1" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <HBox.margin>
-                        <Insets left="5.0" top="5.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <ImageView fx:id="iconMano2" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <HBox.margin>
-                        <Insets left="10.0" top="5.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <ImageView fx:id="iconMano3" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <HBox.margin>
-                        <Insets left="10.0" top="5.0" />
-                     </HBox.margin>
-                  </ImageView>
-               </children>
-            </HBox>
-            <ImageView fx:id="iconRetroCarta" fitHeight="260.0" fitWidth="200.0" layoutX="1136.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="mostracittaButton" layoutX="92.0" layoutY="546.0" mnemonicParsing="false" onAction="#mostracittaButtonClicked" prefHeight="88.0" prefWidth="181.0" text="Mostra cittadina" />
-            <Button fx:id="buttonLasciare" layoutX="1053.0" layoutY="517.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="116.0" text="Lascia turno" />
-            <Button fx:id="buttonPuntare" layoutX="1195.0" layoutY="517.0" mnemonicParsing="false" onAction="#buttonPuntareClicked" prefHeight="88.0" prefWidth="110.0" text="Punta" />
-            <Button fx:id="confermaButton" layoutX="1133.0" layoutY="664.0" mnemonicParsing="false" onAction="#confermaButtonClicked" prefHeight="30.0" prefWidth="91.0" text="Conferma" />
-            <Label fx:id="textCrediti" layoutX="1053.0" layoutY="460.0" prefHeight="30.0" prefWidth="250.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="homepageIcon" fitHeight="40.0" fitWidth="40.0" layoutX="1275.0" layoutY="14.0" onMouseClicked="#homepageIconClicked" pickOnBounds="true" preserveRatio="true" />
-            <VBox fx:id="vbox" alignment="CENTER" layoutX="516.0" layoutY="332.0" prefHeight="110.0" prefWidth="360.0">
-               <children>
-                  <Label fx:id="textTurno" alignment="CENTER" contentDisplay="TOP" prefHeight="38.0" prefWidth="146.0">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="253.0" prefWidth="445.0">
                      <VBox.margin>
-                        <Insets top="-5.0" />
+                        <Insets right="30.0" top="10.0" />
                      </VBox.margin>
-                  </Label>
-                  <Button fx:id="playButton" alignment="CENTER" mnemonicParsing="false" onAction="#playButtonClicked" prefHeight="37.0" prefWidth="78.0" text="Gioca!">
+                     <children>
+                        <VBox fx:id="vboxProssimiGiocatori" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="219.0" prefWidth="239.0">
+                           <children>
+                              <Label fx:id="textNumTurno" alignment="CENTER" prefHeight="34.0" prefWidth="527.0">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Label fx:id="textGiocatoreCorrente" alignment="CENTER" prefHeight="37.0" prefWidth="510.0" />
+                              <Label fx:id="textProssGiocatori" alignment="TOP_CENTER" prefHeight="164.0" prefWidth="272.0" textAlignment="CENTER">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="TOP_RIGHT" prefHeight="219.0" prefWidth="125.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <children>
+                              <ImageView fx:id="homepageIcon" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#homepageIconClicked" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <ImageView fx:id="iconRetroCarta" fitHeight="225.0" fitWidth="315.0" pickOnBounds="true" preserveRatio="true">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
-                  </Button>
-               </children>
-            </VBox>
-            <TextField fx:id="CreditiPuntatiField" layoutX="1094.0" layoutY="614.0" prefHeight="40.0" prefWidth="170.0" />
-            <VBox fx:id="vboxNumTurno" alignment="CENTER" layoutX="30.0" layoutY="35.0" prefHeight="45.0" prefWidth="170.0">
-               <children>
-                  <Label fx:id="textNumTurno" alignment="CENTER" text="Turno: 1 di 12" />
-               </children>
-            </VBox>
-            <VBox fx:id="vboxProssimiGiocatori" alignment="TOP_CENTER" layoutX="30.0" layoutY="104.0" prefHeight="200.0" prefWidth="170.0">
-               <children>
-                  <Label fx:id="textGiocatoreCorrente" alignment="CENTER" prefHeight="27.0" prefWidth="187.0" text="1.  Pippo" />
-                  <Label fx:id="textProssGiocatori" alignment="CENTER" prefHeight="14.0" prefWidth="167.0" text="2. Paperino">
+                  </ImageView>
+                  <VBox alignment="TOP_CENTER" prefHeight="466.0" prefWidth="421.0">
+                     <children>
+                        <Button fx:id="mostracittaButton" mnemonicParsing="false" onAction="#mostracittaButtonClicked" prefHeight="59.0" prefWidth="182.0" text="Mostra cittadina" />
+                        <Label fx:id="textCrediti" alignment="CENTER" prefHeight="56.0" prefWidth="246.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="47.0" prefWidth="246.0">
+                           <children>
+                              <Button fx:id="buttonLasciare" mnemonicParsing="false" onAction="#lasciaTurno" prefHeight="38.0" prefWidth="116.0" text="Lascia turno">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="buttonPuntare" mnemonicParsing="false" onAction="#buttonPuntareClicked" prefHeight="38.0" prefWidth="116.0" text="Punta">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="36.0" prefWidth="246.0">
+                           <children>
+                              <TextField fx:id="CreditiPuntatiField" prefHeight="30.0" prefWidth="170.0">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <Button fx:id="confermaButton" mnemonicParsing="false" onAction="#confermaButtonClicked" prefHeight="30.0" prefWidth="91.0" text="Conferma">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="41.0" prefWidth="246.0">
+                           <children>
+                              <Button fx:id="button1" mnemonicParsing="false" onAction="#punta1" prefHeight="30.0" prefWidth="103.0" text="1">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="button100" mnemonicParsing="false" onAction="#punta100" prefHeight="30.0" prefWidth="103.0" text="100">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="167.0" prefHeight="41.0" prefWidth="246.0">
+                           <children>
+                              <Button fx:id="button1000" mnemonicParsing="false" onAction="#punta1000" prefHeight="30.0" prefWidth="103.0" text="1000">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="button5000" mnemonicParsing="false" onAction="#punta5000" prefHeight="30.0" prefWidth="103.0" text="5000">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="208.0" prefHeight="41.0" prefWidth="246.0">
+                           <children>
+                              <Button fx:id="button10000" mnemonicParsing="false" onAction="#punta10000" prefHeight="30.0" prefWidth="103.0" text="10000">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="buttonAllIn" mnemonicParsing="false" onAction="#puntaTutto" prefHeight="30.0" prefWidth="103.0" text="All-in">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Button fx:id="resetCrediti" mnemonicParsing="false" onAction="#resetCrediti" prefHeight="25.0" prefWidth="103.0" text="Reset" />
+                     </children>
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
-                  </Label>
+                  </VBox>
                </children>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
             </VBox>
          </children>
-      </Pane>
+      </HBox>
    </children>
-</Pane>
+</AnchorPane>

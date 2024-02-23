@@ -1,7 +1,6 @@
 package model;
 
 import java.util.HashMap;
-import java.util.Set;
 import controller.GestoreScene;
 
 public class DBTornei {
@@ -16,9 +15,9 @@ public class DBTornei {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static Set<String> getTornei(){
+	public static HashMap<String,Torneo> getTornei(){
 		tornei = (HashMap<String,Torneo>)GestioneFile.caricaDB(DATABASE_PATH);
-		return tornei.keySet();
+		return tornei;
 	}
 	
 	@SuppressWarnings("unchecked")
