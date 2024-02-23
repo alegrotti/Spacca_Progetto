@@ -62,14 +62,7 @@ public class AdminLoginController {
 
     @FXML
     void tornaWelcome(ActionEvent event) {
-    	try {
-	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
-	        Scene scenaHomepage = new Scene(root);
-	        scenaHomepage.getStylesheets().add("/view/welcome.css");
-	        GestoreScene.setScene(scenaHomepage,false," - Homepage");
-    	}catch(Exception e) {
-    		
-    	}
+    	GestoreScene.welcome(false);
     }
 
     @FXML

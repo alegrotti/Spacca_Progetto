@@ -13,10 +13,10 @@
 
 <Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RulesController">
    <children>
-      <VBox fx:id="centralBox" alignment="CENTER" layoutX="50.0" layoutY="42.0" prefHeight="550.0" prefWidth="850.0">
+      <VBox fx:id="centralBox" alignment="CENTER" layoutX="50.0" layoutY="42.0" prefHeight="552.0" prefWidth="850.0">
          <children>
             <Label fx:id="titolo" alignment="CENTER" prefHeight="43.0" prefWidth="849.0" text="Regole e catalogo carte" />
-            <TabPane fx:id="tabPane" maxWidth="854.0" prefHeight="412.0" prefWidth="850.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="tabPane" maxWidth="854.0" prefHeight="414.0" prefWidth="850.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                   <Tab text="Setup">
                      <content>

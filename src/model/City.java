@@ -97,4 +97,51 @@ public class City implements Serializable{
 			   "Carte : "+carte.size()+
 			   "Punteggio : "+punteggio;
 	}
+	
+	public City compareTo(City c) {
+		if (c == null)
+			return this;
+		else if (getPunteggio()>c.getPunteggio())
+			return this;
+		else if(getPunteggio()>c.getPunteggio())
+			return c;
+		else {
+			int nc=0;
+			int nthis=0;
+			int bc=0;
+			int bthis=0;
+			for(Carta carta : c.getCarte())
+				if(carta instanceof Building)
+					nc++;
+				else if(carta.getGenere().equals("Bonus"))
+					bc++;
+				else
+					bc--;
+			for(Carta carta : this.getCarte())
+				if(carta instanceof Building)
+					nthis++;
+				else if(carta.getGenere().equals("Bonus"))
+					bthis++;
+				else
+					bthis--;
+			if(nc>nthis)
+				return c;
+			else if(nc<nthis)
+				return this;
+			else {
+				if(bc>bthis)
+					return c;
+				else if(bc<bthis)
+					return this;
+				else {
+					int n = (int)(Math.random()*2);
+					if(n>0)
+						return c;
+					else
+						return this;
+				}
+			}
+		}
+			
+	}
 }

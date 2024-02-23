@@ -10,6 +10,7 @@ import model.DBAdmin;
 //import model.DBMazzi;
 //import model.DBPartite;
 //import model.DBPartite;
+//import model.DBCarte;
 
 public class Main extends Application {
 	

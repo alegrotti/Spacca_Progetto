@@ -278,6 +278,21 @@ public class GestoreScene {
 		}
 	}
 	
+	public static void welcome(boolean b) {
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/Welcome.fxml"));
+			Parent root = loader.load();
+
+			Scene scenaHomepage = new Scene(root);
+	        scenaHomepage.getStylesheets().add("/view/welcome.css");
+	        if(b)
+	        	Main.parentWindow.hide();
+	        setScene(scenaHomepage,false,(" - Welcome"));
+		} catch (Exception e) {
+	    	messaggioErrore("Errore apertura finestra");
+		}
+	}
+	
 	public static void messaggioConfermaMossa(boolean x , int puntata, Partita partita ,String giocatore) {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/ConfermaMossa.fxml"));

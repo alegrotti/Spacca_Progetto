@@ -15,7 +15,6 @@ public class Special extends Carta implements Serializable{
 	}
 	
 	private static Color assegnaColore(boolean specialType) {
-		
 		return Color.white;
 	}
 	

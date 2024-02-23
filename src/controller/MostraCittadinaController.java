@@ -78,7 +78,7 @@ public class MostraCittadinaController {
     private ImageView creaPagina(int indicePagina) {
         ImageView imageView = new ImageView();
         
-        imageView.setImage(listaImmagini.get(indicePagina-1));
+        imageView.setImage(listaImmagini.get(indicePagina));
 
         imageView.setFitWidth(200);
         imageView.setFitHeight(260);

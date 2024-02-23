@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import java.util.ArrayList;
 import java.util.Random;
 import model.Giocatore;
@@ -21,8 +20,6 @@ import model.DBPartite;
 import model.Partita;
 import model.PartitaAPalazzi;
 import model.PartitaATurni;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -234,7 +231,7 @@ public class AdminAreaController {
 	    	String tipoGiocatore = tipoDiGiocatoreButton.getValue();
 	    	if("Reale".equals(tipoGiocatore)) {
 	    		String username = nuovoGiocatoreField.getText();
-	    		if(!username.equals("")) {
+	    		if(!username.isBlank()) {
 	    			Giocatore g = new GiocatoreFisico(username);
 	    			DBGiocatori.aggiungiGiocatore(g);
 	    			DBAdmin.aggiungiGiocatore(g);
@@ -245,7 +242,7 @@ public class AdminAreaController {
 	    		String difficolta = selezionaDifficoltaButton.getValue();
 	    		if("Facile".equals(difficolta)) {
 		    		String username = nuovoGiocatoreField.getText();
-		    		if(!username.equals("")) {
+		    		if(!username.isBlank()) {
 		    			Giocatore g = new GiocatoreCPUFacile(username);
 		    			DBGiocatori.aggiungiGiocatore(g);
 		    			DBAdmin.aggiungiGiocatore(g);
@@ -254,7 +251,7 @@ public class AdminAreaController {
 		    		}
 	    		}else if("Difficile".equals(difficolta)){
 	    			String username = nuovoGiocatoreField.getText();
-		    		if(!username.equals("")) {
+		    		if(!username.isBlank()) {
 		    			Giocatore g = new GiocatoreCPUDifficile(username);
 		    			DBGiocatori.aggiungiGiocatore(g);
 		    			DBAdmin.aggiungiGiocatore(g);
@@ -276,7 +273,8 @@ public class AdminAreaController {
     @FXML
     void eliminaGiocatore(ActionEvent event) {
     	String username = listaGiocatoriButton.getValue();
-    	
+    	if(username==null)
+    		GestoreScene.messaggioErrore("Seleziona giocatore");
     	DBAdmin.eliminaGiocatore(username);
     	DBGiocatori.eliminaGiocatore(username);
     	
@@ -364,11 +362,18 @@ public class AdminAreaController {
     
     @FXML
     void aggiungiCartaAlMazzo(ActionEvent event) {
-    	String carta = listaCarteDaAggiungere.getValue();
-    	carteMazzo.add(DBCarte.getCarta(carta));
-    	String s = nomeMazzo.getText();
-    	inizializzaGestioneMazzi();
-    	nomeMazzo.setText(s);
+    	try {
+    		String carta = listaCarteDaAggiungere.getValue();
+    		if(!carta.isEmpty()) {
+		    	carteMazzo.add(DBCarte.getCarta(carta));
+		    	String s = nomeMazzo.getText();
+		    	inizializzaGestioneMazzi();
+		    	nomeMazzo.setText(s);
+    		}else
+    			throw new Exception();
+    	}catch(Exception e) {
+    		GestoreScene.messaggioErrore("Errore aggiunta");
+    	}
     }
     
     @FXML
@@ -390,16 +395,22 @@ public class AdminAreaController {
     
     @FXML
     void rimuoviCartaDalMazzo(ActionEvent event) {
-    	
-    	String carta = listaCarteMazzo.getValue();
-    	
-    	Carta c = DBCarte.getCarta(carta);
-    	
-    	rimuoviDaMazzo(c);
-    	
-    	String s = nomeMazzo.getText();
-    	inizializzaGestioneMazzi();
-    	nomeMazzo.setText(s);
+    	try {
+	    	String carta = listaCarteMazzo.getValue();
+	    	
+	    	if(!carta.isBlank()) {
+		    	Carta c = DBCarte.getCarta(carta);
+		    	
+		    	rimuoviDaMazzo(c);
+		    	
+		    	String s = nomeMazzo.getText();
+		    	inizializzaGestioneMazzi();
+		    	nomeMazzo.setText(s);
+	    	}else
+	    		throw new Exception();
+    	}catch(Exception e) {
+    		GestoreScene.messaggioErrore("Errore eliminazione");
+    	}
     	
     }
     
@@ -617,9 +628,11 @@ public class AdminAreaController {
     		creditiInizialiLabel.setText(p.getCreditiIniziali()+" crediti");
     		int turnoCorrente = p.getTurno();
     		if (turnoCorrente==0)
-    			statoPartitaLabel.setText("Da iniziare - Turno "+turnoCorrente);
-    		else
+    			statoPartitaLabel.setText("Da iniziare");
+    		else if(!p.isCompletata())
     			statoPartitaLabel.setText("In corso - Turno "+turnoCorrente);
+    		else
+    			statoPartitaLabel.setText("Terminata");
     	}
     }
     
@@ -632,14 +645,7 @@ public class AdminAreaController {
     //Generale e inizializzazione
     @FXML
     void backWelcome(ActionEvent event) {
-    	try {
-	    	Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
-	        Scene scenaHomepage = new Scene(root);
-	        scenaHomepage.getStylesheets().add("/view/welcome.css");
-	        GestoreScene.setScene(scenaHomepage,false," - Homepage");
-    	}catch(Exception e) {
-    		GestoreScene.messaggioErrore("Errore apertura finestra");
-    	}
+    	GestoreScene.welcome(false);
     }
     
     @FXML

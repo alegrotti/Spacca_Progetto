@@ -26,6 +26,9 @@ public class CampoGiocoController {
 	
 	private int tavolo;
 	
+	@FXML
+    private Button giocaButtonCPU;
+	
     @FXML
     private ImageView iconMano4;
 	
@@ -76,9 +79,6 @@ public class CampoGiocoController {
 
     @FXML
     private ImageView iconMano3;
-
-    @FXML
-    private ImageView iconRetroCarta;
 
     @FXML
     private ImageView iconTavolo1;
@@ -187,6 +187,11 @@ public class CampoGiocoController {
     		GestoreScene.messaggioErrore("Errore apertura finestra");
     	}
     }
+    
+    @FXML
+    void giocaCPU(ActionEvent event) {
+
+    }
 	
     @FXML
     void playButtonClicked(ActionEvent event) {
@@ -202,6 +207,8 @@ public class CampoGiocoController {
     
     public void caricaSchermataPlayerCPUFacile() {
     	
+    	giocaButtonCPU.setVisible(true);
+    	
     	stampaCarteMano(partita.getMano(giocatore));
     	
     	mostracittaButton.setVisible(true);
@@ -216,6 +223,8 @@ public class CampoGiocoController {
     }
     
     public void caricaSchermataPlayerCPUDifficile() {
+    	
+    	giocaButtonCPU.setVisible(true);
     	
     	stampaCarteMano(partita.getMano(giocatore));
     	
@@ -292,11 +301,10 @@ public class CampoGiocoController {
     	iconTavolo1.setImage(carteT[0]);
     	iconTavolo2.setImage(carteT[1]);
     	iconTavolo3.setImage(carteT[2]);
-
     }
     
     private void stampaCarteMano(Carta[] carteMano) {
-    	Image[] carteM = new Image[3];
+    	Image[] carteM = new Image[4];
     	
     	for(int i = 0 ; i < carteM.length ; i++)
     		carteM[i] = new Image(carteMano[i].getPercorso());
@@ -304,7 +312,7 @@ public class CampoGiocoController {
     	iconMano1.setImage(carteM[0]);
     	iconMano2.setImage(carteM[1]);
     	iconMano3.setImage(carteM[2]);
-    	
+    	iconMano4.setImage(carteM[3]);
     }
     
     public void setInfo(Partita p, String g) {
@@ -319,10 +327,8 @@ public class CampoGiocoController {
     	giocatore = "";
     	tavolo = 2;
     	Image retro = new Image("/immagini/retrocarta.png");
-    	Image retroruotato = new Image("/immagini/retrocartaruotata.png");
     	Image homePage = new Image("/immagini/homepageIcon.png");
-    	
-    	iconRetroCarta.setImage(retroruotato);
+
     	iconMano1.setImage(retro);
     	iconMano2.setImage(retro);
     	iconMano3.setImage(retro);
@@ -353,6 +359,8 @@ public class CampoGiocoController {
     	
     	CreditiPuntatiField.setText("0");
 
+    	giocaButtonCPU.setVisible(false);
+    	
     }
     
     @FXML
