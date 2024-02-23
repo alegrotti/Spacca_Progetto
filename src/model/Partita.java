@@ -211,7 +211,7 @@ public class Partita implements Serializable{
 	public Carta[] creaTavolo() {
 		Carta[] carte = new Carta[3];
 		for (int i = 0 ; i < carte.length ; i++) {
-			carte[i] = mazzoTurno.getCarte().getFirst();
+			carte[i] = mazzoTurno.getCarte().get(0);
 			mazzoTurno.getCarte().remove(0);
 		}
 		return carte;
@@ -222,7 +222,7 @@ public class Partita implements Serializable{
 		for(String g : giocatori) {
 			Carta[] carte = new Carta[4];
 			for (int i = 0 ; i < carte.length ; i++) {
-				carte[i] = mazzoTurno.getCarte().getFirst();
+				carte[i] = mazzoTurno.getCarte().get(0);
 				mazzoTurno.getCarte().remove(0);
 			}
 			m.put(g, carte);
@@ -263,7 +263,7 @@ public class Partita implements Serializable{
 		giocatoriTurno.trimToSize();
 		
 		if (giocatoriTurno.size() == 1)
-			vincitore = giocatoriTurno.getFirst();
+			vincitore = giocatoriTurno.get(0);
 		else
 			vincitore = null;
 

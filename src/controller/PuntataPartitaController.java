@@ -46,7 +46,7 @@ public class PuntataPartitaController {
 	    		GestoreScene.vincitoreTurno(partita,false,"",playersPenalizzati);
 	    	}else if(players.size() == 1) {
 	    		players.trimToSize();
-	    		String winner = players.getFirst();
+	    		String winner = players.get(0);
 	    		if(partita.getGiocatoriPuntata().contains(winner)) {
 	    			for(String x : partita.getGiocatoriPuntata())
 	    				if(!x.equals(winner)) {
