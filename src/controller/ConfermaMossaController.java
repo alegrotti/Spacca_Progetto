@@ -54,7 +54,7 @@ public class ConfermaMossaController {
     			GestoreScene.schermataPuntata(partita);
     		else if (j == 1) {
     			partita.getGiocatoriTurno().trimToSize();
-    			String x = partita.getGiocatoriTurno().getFirst();
+    			String x = partita.getGiocatoriTurno().get(0);
     			GestoreScene.vincitoreTurno(partita,true,x,new ArrayList<String>());
     		}else {
     			int m = partita.getMano();
