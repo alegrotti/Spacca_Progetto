@@ -75,7 +75,6 @@ public class PlayerAreaController {
     
     private void caricaSchermata(String giocatore) {
     	tornei = DBTornei.getTornei();
-    	
     }
 
 }
