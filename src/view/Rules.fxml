@@ -6,10 +6,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RulesController">
    <children>
@@ -18,34 +18,151 @@
             <Label fx:id="titolo" alignment="CENTER" prefHeight="43.0" prefWidth="849.0" text="Regole e catalogo carte" />
             <TabPane fx:id="tabPane" maxWidth="854.0" prefHeight="414.0" prefWidth="850.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Partita" />
-                <Tab text="Torneo" />
-                  <Tab text="Tavolo" />
-                  <Tab text="Regole">
+                  <Tab text="Setup">
                      <content>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Pane prefHeight="383.0" prefWidth="849.0">
+                              <Pane prefHeight="369.0" prefWidth="851.0">
                                  <children>
-                                    <HBox layoutX="14.0" prefHeight="383.0" prefWidth="836.0">
+                                    <VBox layoutX="-6.0" layoutY="3.0" prefHeight="363.0" prefWidth="850.0">
                                        <children>
-                                          <TextArea prefHeight="383.0" prefWidth="393.0" text="REGOLAMENTO PARTITA A TURNI &#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;end&#10;">
-                                             <HBox.margin>
-                                                <Insets left="20.0" right="10.0" />
-                                             </HBox.margin>
-                                          </TextArea>
-                                          <TextArea prefHeight="383.0" prefWidth="365.0" text="REGOLAMENTO PARTITA A PALAZZI&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;end">
-                                             <HBox.margin>
-                                                <Insets left="10.0" />
-                                             </HBox.margin>
-                                          </TextArea>
+                                          <Label fx:id="secondoTitoloSetup" alignment="CENTER" prefHeight="74.0" prefWidth="850.0" text="SETUP">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="120.0" prefWidth="846.0" text="1. Il mazzo viene automaticamente mischiato.&#10;2. Ogni giocatore riceve un numero di gettoni da gioco (o denaro fittizio) come capitale iniziale.&#10;3. Decidere se si gioca con un numero di turni prestabilito o fino a quando un giocatore raggiunge il numero massimo di edifici consentiti nella propria cittadina.&#10;" textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                          </Label>
                                        </children>
-                                    </HBox>
+                                    </VBox>
                                  </children>
                               </Pane>
                            </children>
                         </HBox>
-                     </content></Tab>
+                     </content>
+                  </Tab>
+                  <Tab text="Fase iniziale">
+                     <content>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Pane prefHeight="369.0" prefWidth="851.0">
+                                 <children>
+                                    <VBox layoutX="-6.0" layoutY="3.0" prefHeight="363.0" prefWidth="850.0">
+                                       <children>
+                                          <Label fx:id="secondoTitoloFase" alignment="CENTER" prefHeight="74.0" prefWidth="850.0" text="FASE INIZIALE">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="228.0" prefWidth="850.0" text="1. All'inizio di ogni turno, vengono distribuite 3 carte edificio a ciascun giocatore.&#10;2. Poi, come nel poker, vengono girate sul tavolo 5 carte edificio una alla volta.&#10;3. Ogni giocatore valuta le carte ricevute e decide se vuole partecipare al turno.&#10;4. I giocatori, a partire dal primo giocatore in senso orario, decidono se vogliono puntare &#10;e partecipare alla mano o passare. &#10;Ogni giocatore può puntare un numero di gettoni a sua discrezione.&#10;5. Una volta che tutti i giocatori hanno fatto la loro scelta, si procede al confronto&#10; delle cittadine." textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </HBox>
+                     </content>
+                  </Tab>
+                  <Tab text="Confronto delle cittadine">
+                     <content>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Pane prefHeight="369.0" prefWidth="851.0">
+                                 <children>
+                                    <VBox layoutX="-6.0" layoutY="3.0" prefHeight="363.0" prefWidth="850.0">
+                                       <children>
+                                          <Label fx:id="secondoTitoloConfronto" alignment="CENTER" prefHeight="74.0" prefWidth="850.0" text="CONFRONTO DELLE CITTADINE">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="177.0" prefWidth="846.0" text="1. Ogni giocatore utilizza le carte in mano insieme alle carte sul tavolo per costruire&#10; la propria cittadina.&#10;2. Le carte hanno un punteggio diverso in base alle categorie: sociale, economico e sostenibilità. &#10;Ogni carta ha un valore numerico associato a ciascuna categoria.&#10;3. Le carte bonus/malus influenzano i valori delle carte in base alle combinazioni formate&#10; nella cittadina." textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </HBox>
+                     </content>
+                  </Tab>
+                  <Tab text="Determinazione del vincitore">
+                     <content>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Pane prefHeight="369.0" prefWidth="851.0">
+                                 <children>
+                                    <VBox layoutX="-6.0" layoutY="3.0" prefHeight="363.0" prefWidth="850.0">
+                                       <children>
+                                          <Label fx:id="secondoTitoloDetermina" alignment="CENTER" prefHeight="74.0" prefWidth="850.0" text="DETERMINAZIONE DEL VINCITORE">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="121.0" prefWidth="846.0" text="1. Il giocatore con la miglior cittadina, in base al punteggio totale delle carte edificio e delle &#10;combinazioni effettuate, vince la mano.&#10;2. Il vincitore prende tutte le puntate accumulate durante la mano.&#10;3. Il vincitore sceglie una delle carte sul tavolo o in mano da aggiungere alla propria cittadina.&#10;" textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </HBox>
+                     </content>
+                  </Tab>
+                  <Tab text="Fine del gioco">
+                     <content>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Pane prefHeight="369.0" prefWidth="851.0">
+                                 <children>
+                                    <VBox layoutX="-6.0" layoutY="3.0" prefHeight="363.0" prefWidth="850.0">
+                                       <children>
+                                          <Label fx:id="secondoTitoloFIne" alignment="CENTER" prefHeight="74.0" prefWidth="850.0" text="FINE DEL GIOCO">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="91.0" prefWidth="846.0" text="1. Il gioco termina quando viene raggiunto il numero prestabilito di turni o quando un giocatore raggiunge il numero massimo di edifici consentiti nella propria cittadina.&#10;2. Il giocatore con la miglior cittadina complessiva alla fine del gioco viene dichiarato vincitore." textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </HBox>
+                     </content>
+                  </Tab>
               </tabs>
                <VBox.margin>
                   <Insets top="5.0" />

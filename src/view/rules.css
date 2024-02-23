@@ -47,6 +47,59 @@
     -fx-font-style: italic;
 }
 
+#secondoTitoloFIne {
+    -fx-color: rgb(0, 64, 128);
+    -fx-text-fill: rgb(209, 155, 0);
+    -fx-font: 35px "Felix Titling", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+#secondoTitoloDetermina {
+    -fx-color: rgb(0, 64, 128);
+    -fx-text-fill: rgb(209, 155, 0);
+    -fx-font: 35px "Felix Titling", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+#secondoTitoloConfronto {
+    -fx-color: rgb(0, 64, 128);
+    -fx-text-fill: rgb(209, 155, 0);
+    -fx-font: 35px "Felix Titling", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+#secondoTitoloFase {
+    -fx-color: rgb(0, 64, 128);
+    -fx-text-fill: rgb(209, 155, 0);
+    -fx-font: 35px "Felix Titling", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+#secondoTitoloSetup {
+    -fx-color: rgb(0, 64, 128);
+    -fx-text-fill: rgb(209, 155, 0);
+    -fx-font: 35px "Felix Titling", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+#titoloCarta {
+    -fx-color: rgb(0, 64, 128);
+    -fx-font: 35px "Felix Titling", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+#infoCarta{
+	-fx-border-width: 2px;
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-text-fill: rgb(0, 64, 128);
+}
+
 #sfondo {
 	-fx-background-image: url("/immagini/sfondoWelcome.jpg");
 	-fx-border-width: 2px;
