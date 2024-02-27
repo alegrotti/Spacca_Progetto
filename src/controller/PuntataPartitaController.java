@@ -8,6 +8,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import model.DBGiocatori;
+import model.Giocatore;
+import model.GiocatoreCPUDifficile;
+import model.GiocatoreFisico;
 import model.Partita;
 
 public class PuntataPartitaController {
@@ -109,17 +113,38 @@ public class PuntataPartitaController {
     }
     
     private void creaRadioButton(String s) {
+    	Giocatore g = DBGiocatori.getGiocatore(s);
     	RadioButton rb = new RadioButton();
-    	rb.setText(s);
-    	rb.applyCss();
+    	if(g instanceof GiocatoreFisico) {
+	    	rb.setText(s);
+	    	rb.applyCss();
+	    	
+	    	rb.setOnAction(event -> {
+	            if (rb.isSelected()) {
+	                players.add(s);
+	            } else {
+	            	players.remove(s);
+	            }
+	        });
+    	}else if (g instanceof GiocatoreCPUDifficile) {
+    		GiocatoreCPUDifficile p = (GiocatoreCPUDifficile) g;
+    		rb.setText(s);
+	    	rb.applyCss();
+    		if(p.partecipa()) {
+    			players.add(s);
+    			rb.setSelected(true);
+    			rb.setOnAction(event -> {
+    				rb.setSelected(true);
+    			});
+    		}else{
+    			rb.setSelected(false);
+    			rb.setOnAction(event -> {
+    				rb.setSelected(false);
+    			});
+    		}
+    	}
     	
-    	rb.setOnAction(event -> {
-            if (rb.isSelected()) {
-                players.add(s);
-            } else {
-            	players.remove(s);
-            }
-        });
+    	
     	
     	giocatoriPuntate.getChildren().add(rb);
     }

@@ -325,6 +325,38 @@ public class GestoreScene {
 		}	
 	}
 	
+	public static void messaggioCPU(boolean x , int puntata, Partita partita ,String giocatore) {
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/MessaggioCPU.fxml"));
+			Parent root = loader.load();
+			
+			MessaggioCPUController controller = loader.getController();
+			controller.impostaTesto(x,puntata,partita,giocatore);
+			
+			Scene exitScene = new Scene(root);
+			exitScene.getStylesheets().add("/view/messaggiocpu.css");
+			
+			Stage exitStage = new Stage();
+			exitStage.setMaximized(false);
+			exitStage.centerOnScreen();
+			exitStage.setResizable(false);
+			exitStage.setScene(exitScene);
+			exitStage.initOwner(Main.parentWindow);
+			exitStage.initModality(Modality.APPLICATION_MODAL);
+			exitStage.setTitle("SPACCA - Mossa CPU");
+	        Image image = new Image("/immagini/icon.jpg");
+	        exitStage.getIcons().add(image);
+			
+	        exitStage.show();
+	        
+	        exitStage.setOnCloseRequest(event -> {
+				event.consume();
+	        });
+		} catch (Exception e) {
+			messaggioErrore("Errore apertura finestra");
+		}	
+	}
+	
 	public static void vincitoreTurno(Partita p, boolean b, String winner,ArrayList<String> g) {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/VincitoreTurno.fxml"));
@@ -342,10 +374,10 @@ public class GestoreScene {
 			exitScene.getStylesheets().add("/view/vincitoreturno.css");
 			
 			Stage exitStage = new Stage();
+			exitStage.setScene(exitScene);
 			exitStage.setMaximized(false);
 			exitStage.centerOnScreen();
 			exitStage.setResizable(false);
-			exitStage.setScene(exitScene);
 			exitStage.initOwner(Main.parentWindow);
 			exitStage.initModality(Modality.APPLICATION_MODAL);
 			exitStage.setTitle("SPACCA - Vincitore Turno");

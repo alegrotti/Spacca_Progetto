@@ -8,6 +8,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import model.Building;
 import model.Carta;
 import model.DBCarte;
 import model.DBPartite;
@@ -62,7 +63,8 @@ public class ScegliCartaController {
     	winner = w;
     	partita = p;
         for (String s : c) {
-            creaRadioButton(s);
+        	if(DBCarte.getCarta(s) instanceof Building)
+        		creaRadioButton(s);
         }
     }
 
