@@ -104,12 +104,11 @@ public class PuntataPartitaController {
     }
     
     public void inizializzaSchermata(Partita p) {
+    	partita = p;
     	valorePuntata.setText("Per giocare bisogna puntare : "+p.getPuntata());
     	crediti = p.getPuntata();
     	for(String s : p.getGiocatoriTurno())
     		creaRadioButton(s);
-    	
-    	partita = p;
     }
     
     private void creaRadioButton(String s) {
@@ -130,7 +129,7 @@ public class PuntataPartitaController {
     		GiocatoreCPUDifficile p = (GiocatoreCPUDifficile) g;
     		rb.setText(s);
 	    	rb.applyCss();
-    		if(p.partecipa()) {
+    		if(p.partecipa(partita.getCrediti(s),crediti)) {
     			players.add(s);
     			rb.setSelected(true);
     			rb.setOnAction(event -> {

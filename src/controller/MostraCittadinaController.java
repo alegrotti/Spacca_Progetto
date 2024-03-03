@@ -51,7 +51,7 @@ public class MostraCittadinaController {
     public void creaSchermata() {
     	titolo.setText("Cittadina di \n"+città.getNome());
     	punteggioTotale.setText("Punteggio cittadina: " + città.getPunteggio());
-
+    	
     	String s = "";
     	s+="Punteggio residenziale : "+città.getResidenziale();
     	s+="\nPunteggio culturale : "+città.getCulturale();

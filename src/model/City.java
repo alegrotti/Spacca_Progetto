@@ -60,8 +60,57 @@ public class City implements Serializable{
 	public void calcolaPunteggio() {
 		
 		punteggio = (int)((5/2)*(re+cu+pu+co));
+		
+		//bonus palazzi
 		punteggio += carte.size()*3;
 		
+		//bonus tipi
+		int n = getNGenere();
+		
+		switch (n) {
+			case 1 :
+				punteggio -= 5;
+			case 2 : 
+				punteggio += 10;
+				break;
+			case 3 : 
+				punteggio += 20;
+				break;
+			case 4 :
+				punteggio += 30;
+				break;
+			default:
+				break;
+		}
+		
+		
+		
+	}
+	
+	public int getNGenere() {
+		int[] n = new int[4];
+		for(Carta c : carte)
+			switch(c.getGenere()) {
+				
+				case "Residenziale":
+					n[0]++;
+					break;
+				case "Commerciale":
+					n[1]++;
+					break;
+				case "Pubblico":
+					n[2]++;
+					break;
+				case "commerciale":
+					n[3]++;
+					break;
+			}
+		int N = 0;
+		for(int x : n)
+			if(x!=0)
+				N++;
+		
+		return N;
 	}
 	
 	public ArrayList<Carta> getCarte() {

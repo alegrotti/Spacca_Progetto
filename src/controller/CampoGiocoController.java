@@ -191,8 +191,7 @@ public class CampoGiocoController {
     @FXML
     void giocaCPU(ActionEvent event) {
     	GiocatoreCPUDifficile g = (GiocatoreCPUDifficile) DBGiocatori.getGiocatore(giocatore);
-    	int a = g.giocaTurno();
-    	DBGiocatori.aggiungiGiocatore(g);
+    	int a = g.giocaTurno(partita,giocatore);
     	GestoreScene.messaggioCPU(true, a, partita, giocatore);
     }
 	

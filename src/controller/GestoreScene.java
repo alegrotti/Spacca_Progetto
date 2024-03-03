@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Building;
 import model.Carta;
 import model.City;
 import model.Partita;
@@ -162,6 +163,7 @@ public class GestoreScene {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/MostraCittadina.fxml"));
 			Parent root = loader.load();
 			MostraCittadinaController controller =  loader.getController();
+			
 			controller.importaCitta(c);
 			controller.creaSchermata();
 			
@@ -230,10 +232,12 @@ public class GestoreScene {
 			ArrayList<String> s = new ArrayList<String>();
 			
 			for(Carta carta : partita.getCarteTavolo())
-				s.add(carta.getNome());
+				if(carta instanceof Building)
+					s.add(carta.getNome());
 			
 			for(Carta carta : partita.getMano(g))
-				s.add(carta.getNome());
+				if(carta instanceof Building)
+					s.add(carta.getNome());
 			
 			c.inizializzaSchermata(s,partita,g);
 			
