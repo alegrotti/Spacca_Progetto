@@ -48,7 +48,7 @@ public class MostraCittadinaController {
     	riprendiPartita.getScene().getWindow().hide();
     }
 
-    public void creaSchermata() {
+    /*public void creaSchermata() {
     	titolo.setText("Cittadina di \n"+città.getNome());
     	punteggioTotale.setText("Punteggio cittadina: " + città.getPunteggio());
     	
@@ -69,21 +69,53 @@ public class MostraCittadinaController {
 	    	
 	    	stampaCarte.setPageFactory(this::creaPagina);
     	}
+    }*/
+    
+    public void creaSchermata() {
+        titolo.setText("Cittadina di \n" + città.getNome());
+        punteggioTotale.setText("Punteggio cittadina: " + città.getPunteggio());
+
+        // Concatenazione diretta per chiarezza
+        String s = "Punteggio residenziale : " + città.getResidenziale() +
+                   "\nPunteggio culturale : " + città.getCulturale() +
+                   "\nPunteggio pubblico : " + città.getPubblico() +
+                   "\nPunteggio commerciale : " + città.getCommerciale();
+        punteggiVari.setText(s);
+
+        // Preparazione della lista delle immagini
+        listaImmagini = new ArrayList<>();
+        città.getCarte().forEach(carta -> listaImmagini.add(new Image(carta.getPercorso())));
+
+        // Configurazione di Pagination
+        stampaCarte.setPageCount(listaImmagini.isEmpty() ? 0 : listaImmagini.size()-1);
+        stampaCarte.setPageFactory(this::creaPagina);
     }
     
     public void importaCitta(City c) {
     	città = c;
     }
     
+    /*
     private ImageView creaPagina(int indicePagina) {
         ImageView imageView = new ImageView();
         
         imageView.setImage(listaImmagini.get(indicePagina));
 
-        imageView.setFitWidth(200);
-        imageView.setFitHeight(260);
+        imageView.setFitWidth(225);
+        imageView.setFitHeight(315);
 
         return imageView;
+    }
+    */
+    private ImageView creaPagina(int indicePagina) {
+        if (indicePagina >= 0 && indicePagina < listaImmagini.size()) {
+            ImageView imageView = new ImageView(listaImmagini.get(indicePagina));
+            imageView.setFitWidth(225);
+            imageView.setFitHeight(315);
+            return imageView;
+        } else {
+            return new ImageView();
+        }
     }
     
 }

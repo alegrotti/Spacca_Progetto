@@ -12,6 +12,7 @@ public class GiocatoreCPUDifficile extends Giocatore implements Serializable{
 	}
 	
 	public int giocaTurno(Partita p, String g) {
+		
 		City city = new City(g);
     	
     	for(int i = 0; i<p.getMano(g).length ; i++)
@@ -31,7 +32,12 @@ public class GiocatoreCPUDifficile extends Giocatore implements Serializable{
 		return super.getUsername();
 	}
 	
-	public boolean partecipa(int crediti, int puntata) {
+	public boolean partecipa(Partita p , String g) {
+		int crediti = p.getCrediti(g);
+		int puntata = p.getPuntata();
+		
+		
+		
 		double x = crediti/puntata;
 		if(x>1.5)
 			return true;
@@ -52,6 +58,8 @@ public class GiocatoreCPUDifficile extends Giocatore implements Serializable{
 				max = c1.getPunteggio();
 				nome = s;
 			}
+			c1.rimuoviCarta(y);
+			
 		}
 		
 		return nome;

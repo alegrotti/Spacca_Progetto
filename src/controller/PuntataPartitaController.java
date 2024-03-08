@@ -129,7 +129,7 @@ public class PuntataPartitaController {
     		GiocatoreCPUDifficile p = (GiocatoreCPUDifficile) g;
     		rb.setText(s);
 	    	rb.applyCss();
-    		if(p.partecipa(partita.getCrediti(s),crediti)) {
+    		if(p.partecipa(partita,s)) {
     			players.add(s);
     			rb.setSelected(true);
     			rb.setOnAction(event -> {

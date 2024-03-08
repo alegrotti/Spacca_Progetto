@@ -129,10 +129,13 @@ public class GestoreScene {
 			ProssimoTurnoController c = loader.getController();
 			c.impostaPartita(p);
 			
-			if(p.checkWinner())
+			if(p.isCompletata())
 				c.inizializzaSchermataFinale();
-			else
-				c.inizializzaSchermata();
+			else 
+				if(p.checkWinner()) {
+					c.inizializzaSchermataFinale();
+				}else
+					c.inizializzaSchermata();
 				
 			Scene prossimoTurno= new Scene(root);
 			prossimoTurno.getStylesheets().add("/view/prossimoturno.css");
@@ -186,7 +189,8 @@ public class GestoreScene {
 				event.consume();
 	        });
 		} catch (Exception e) {
-			messaggioErrore("Errore apertura finestra");
+			System.out.println(e.getMessage());
+			//messaggioErrore("Errore apertura finestra");
 		}
 	}
 	
@@ -441,6 +445,8 @@ public class GestoreScene {
 			Scene exitScene = new Scene(root);
 			exitScene.getStylesheets().add("/view/messaggio.css");
 		
+			Main.parentWindow.hide();
+			
 			setScene(exitScene,false,(" - Vincitore partita "+partita.getCodice()));
 			
 			Main.parentWindow.setOnCloseRequest(event -> {

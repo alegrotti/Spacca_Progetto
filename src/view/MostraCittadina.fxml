@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="791.0" stylesheets="@mostracittadina.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MostraCittadinaController">
+<Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="469.0" prefWidth="742.0" stylesheets="@mostracittadina.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MostraCittadinaController">
    <children>
-      <VBox fx:id="centralBox" alignment="CENTER" layoutX="41.0" layoutY="41.0" prefHeight="434.0" prefWidth="710.0">
+      <VBox fx:id="centralBox" alignment="CENTER" layoutX="16.0" layoutY="18.0" prefHeight="434.0" prefWidth="710.0">
          <children>
             <HBox alignment="CENTER" prefHeight="370.0" prefWidth="706.0">
                <VBox.margin>

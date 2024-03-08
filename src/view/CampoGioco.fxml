@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="sfondo" prefHeight="860.0" prefWidth="1469.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CampoGiocoController">
+<AnchorPane fx:id="sfondo" prefHeight="860.0" prefWidth="1469.0" stylesheets="@campogioco.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CampoGiocoController">
    <children>
       <HBox fx:id="sfondoScuro" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -124,7 +124,20 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="450.0" prefWidth="418.0">
                      <children>
-                        <Button fx:id="giocaButtonCPU" mnemonicParsing="false" onAction="#giocaCPU" prefHeight="60.0" prefWidth="274.0" text="Gioca mossa CPU" />
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Button fx:id="giocaButtonCPU" mnemonicParsing="false" onAction="#giocaCPU" prefHeight="45.0" prefWidth="145.0" text="Gioca mossa CPU" textAlignment="CENTER" wrapText="true">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="mostraCarteCPUButton" mnemonicParsing="false" onAction="#mostraCarteCPU" prefHeight="45.0" prefWidth="145.0" text="Mostra carte CPU" textAlignment="CENTER" wrapText="true">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
                         <Button fx:id="mostracittaButton" mnemonicParsing="false" onAction="#mostracittaButtonClicked" prefHeight="45.0" prefWidth="182.0" text="Mostra cittadina">
                            <VBox.margin>
                               <Insets top="10.0" />

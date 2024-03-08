@@ -6,6 +6,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="/home/alessandro/Documenti/JavaFX/lib/javafx.base.jar"/>
 	<classpathentry kind="lib" path="/home/alessandro/Documenti/JavaFX/lib/javafx.controls.jar"/>
 	<classpathentry kind="lib" path="/home/alessandro/Documenti/JavaFX/lib/javafx.fxml.jar"/>
@@ -14,5 +15,15 @@
 	<classpathentry kind="lib" path="/home/alessandro/Documenti/JavaFX/lib/javafx.swing.jar"/>
 	<classpathentry kind="lib" path="/home/alessandro/Documenti/JavaFX/lib/javafx.web.jar"/>
 	<classpathentry kind="lib" path="/home/alessandro/Documenti/JavaFX/lib/javafx-swt.jar"/>
+=======
+	<classpathentry kind="lib" path="C:/Users/Admin/Desktop/JavaFX/javafx-sdk-20/lib/javafx.base.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Desktop/JavaFX/javafx-sdk-20/lib/javafx.controls.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Desktop/JavaFX/javafx-sdk-20/lib/javafx.fxml.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Desktop/JavaFX/javafx-sdk-20/lib/javafx.graphics.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Desktop/JavaFX/javafx-sdk-20/lib/javafx.media.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Desktop/JavaFX/javafx-sdk-20/lib/javafx.swing.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Desktop/JavaFX/javafx-sdk-20/lib/javafx.web.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Desktop/JavaFX/javafx-sdk-20/lib/javafx-swt.jar"/>
+>>>>>>> 478a5ca81b2d1f9f08223b7bce9420aa8b1b2b92
 	<classpathentry kind="output" path="bin"/>
 </classpath>

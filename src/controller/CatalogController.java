@@ -60,6 +60,12 @@ public class CatalogController {
 
     @FXML
     private Label titoloGenere;
+    
+    @FXML
+    private Label titoloPunteggi;
+    
+    @FXML
+    private Label punteggiCarte;
 
     @FXML
     void initialize() {
@@ -85,6 +91,11 @@ public class CatalogController {
 
     	descrizioneCarta.setText(c.getDescrizione());
     	
+    	punteggiCarte.setText("Residenziale : "+c.getResidenziale()+
+		    	"\nCommerciale : "+c.getCommerciale()+
+		    	"\nPubblico : "+c.getPubblico()+
+		    	"\nCulturale : "+c.getCulturale());
+
     	genereCarta.setText(c.getGenere());
     	
     	String imageURL = c.getPercorso();

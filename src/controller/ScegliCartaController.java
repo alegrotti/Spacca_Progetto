@@ -46,7 +46,6 @@ public class ScegliCartaController {
         if (selectedRadioButton != null) {
         	
         	String s = selectedRadioButton.getText();
-        	System.out.println(s);
         	Carta c = DBCarte.getCarta(s);
         	partita.getCittadina(winner).aggiungiCarta(c);
         	partita.getMazzo().rimuoviCarta(c);
@@ -78,20 +77,22 @@ public class ScegliCartaController {
 
     		String cartaScelta = g.scegliCarta(partita.getCittadina(winner),c);
     		
+    		boolean t = false;
+    		
     		for (String s : c) {
                 RadioButton rb = new RadioButton();
 
-                if (s.equals(cartaScelta)) {
+                if (s.equals(cartaScelta) && t == false) {
                     rb.setText(s);
                     rb.setToggleGroup(scelte);
-                    rb.setSelected(true); // Imposta questo RadioButton come selezionato
+                    rb.setSelected(true);
                     rb.setOnAction(event -> {
         				rb.setSelected(true);
         			});
+                    t=true;
                 } else {
                     rb.setText(s);
                     rb.setDisable(true);
-                    //rb.setToggleGroup(scelte);
                 }
                 carteDaScegliere.getChildren().add(rb);
             }

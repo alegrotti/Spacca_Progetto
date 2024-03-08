@@ -58,6 +58,9 @@ public class CampoGiocoController {
 
     @FXML
     private Button buttonPuntare;
+    
+    @FXML
+    private Button mostraCarteCPUButton;
 
     @FXML
     private Button confermaButton;
@@ -178,6 +181,11 @@ public class CampoGiocoController {
     void homepageIconClicked(MouseEvent event) {
     	GestoreScene.messaggioRitornoHomepage("Tornando alla homepage \nperderai il turno corrente, \ncontinuare?");    	
     }
+    
+    @FXML
+    void mostraCarteCPU(ActionEvent event) {
+    	stampaCarteMano(partita.getMano(giocatore));
+    }
 
     @FXML
     void mostracittaButtonClicked(ActionEvent event) {
@@ -211,7 +219,7 @@ public class CampoGiocoController {
     	
     	giocaButtonCPU.setVisible(true);
     	
-    	stampaCarteMano(partita.getMano(giocatore));
+    	mostraCarteCPUButton.setVisible(true);
     	
     	mostracittaButton.setVisible(true);
     	vboxPlay.setVisible(true);
@@ -228,7 +236,7 @@ public class CampoGiocoController {
     	
     	giocaButtonCPU.setVisible(true);
     	
-    	stampaCarteMano(partita.getMano(giocatore));
+    	mostraCarteCPUButton.setVisible(true);
     	
     	mostracittaButton.setVisible(true);
     	vboxPlay.setVisible(true);
@@ -362,6 +370,7 @@ public class CampoGiocoController {
     	CreditiPuntatiField.setText("0");
 
     	giocaButtonCPU.setVisible(false);
+    	mostraCarteCPUButton.setVisible(false);
     	
     }
     
