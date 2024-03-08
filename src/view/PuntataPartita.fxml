@@ -27,7 +27,10 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </Line>
-            <VBox fx:id="giocatoriPuntate" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="206.0" prefWidth="322.0" />
+            <VBox fx:id="giocatoriPuntate" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="206.0" prefWidth="322.0">
+               <padding>
+                  <Insets left="40.0" />
+               </padding></VBox>
             <Button fx:id="puntaButton" mnemonicParsing="false" onAction="#confermaPuntata" prefHeight="32.0" prefWidth="134.0" text="Punta">
                <VBox.margin>
                   <Insets top="10.0" />

@@ -21,7 +21,10 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </Line>
-            <VBox fx:id="carteDaScegliere" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="224.0" prefWidth="322.0" />
+            <VBox fx:id="carteDaScegliere" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="224.0" prefWidth="322.0">
+               <padding>
+                  <Insets left="40.0" />
+               </padding></VBox>
             <Button fx:id="confermaButton" mnemonicParsing="false" onAction="#chiudiTurno" prefHeight="32.0" prefWidth="134.0" text="Conferma">
                <VBox.margin>
                   <Insets top="10.0" />

@@ -27,63 +27,67 @@ public class City implements Serializable{
 	
 	public void aggiungiCarta(Carta carta) {
 		carte.add(carta);
-
+	}
+	
+	public void rimuoviCarta(Carta carta) {
+		carte.remove(carta);
+	}
+	
+	public void calcolaPunteggio() {
+		
 		re=0;
 		co=0;
 		pu=0;
 		cu=0;
 		
-		for(Carta c : carte)
-			if(c instanceof Building) {
-				re+=c.getResidenziale();
-				co+=c.getCommerciale();
-				pu+=c.getPubblico();
-				cu+=c.getCulturale();
+		punteggio = 0;
+		
+		if (carte.size()>0) {
+			for(Carta c : carte)
+				if(c instanceof Building) {
+					re+=c.getResidenziale();
+					co+=c.getCommerciale();
+					pu+=c.getPubblico();
+					cu+=c.getCulturale();
+				}
+			
+			re=(int)(re/carte.size());
+			co=(int)(co/carte.size());
+			pu = (int)(pu/carte.size());
+			cu = (int)(cu/carte.size());
+			
+			for(Carta c : carte)
+				if(c instanceof Special) {
+					re+=c.getResidenziale();
+					co+=c.getCommerciale();
+					pu+=c.getPubblico();
+					cu+=c.getCulturale();
+				}
+			
+			punteggio = (int)((5/2)*(re+cu+pu+co));
+			
+			//bonus palazzi
+			punteggio += carte.size()*3;
+			
+			//bonus tipi
+			int n = getNGenere();
+			
+			switch (n) {
+				case 1 :
+					punteggio -= 5;
+				case 2 : 
+					punteggio += 10;
+					break;
+				case 3 : 
+					punteggio += 20;
+					break;
+				case 4 :
+					punteggio += 30;
+					break;
+				default:
+					break;
 			}
-		
-		re=(int)(re/carte.size());
-		co=(int)(co/carte.size());
-		pu = (int)(pu/carte.size());
-		cu = (int)(cu/carte.size());
-		
-		for(Carta c : carte)
-			if(c instanceof Special) {
-				re+=c.getResidenziale();
-				co+=c.getCommerciale();
-				pu+=c.getPubblico();
-				cu+=c.getCulturale();
-			}
-		
-		calcolaPunteggio();
-	}
-	
-	public void calcolaPunteggio() {
-		
-		punteggio = (int)((5/2)*(re+cu+pu+co));
-		
-		//bonus palazzi
-		punteggio += carte.size()*3;
-		
-		//bonus tipi
-		int n = getNGenere();
-		
-		switch (n) {
-			case 1 :
-				punteggio -= 5;
-			case 2 : 
-				punteggio += 10;
-				break;
-			case 3 : 
-				punteggio += 20;
-				break;
-			case 4 :
-				punteggio += 30;
-				break;
-			default:
-				break;
 		}
-		
-		
 		
 	}
 	
@@ -118,6 +122,7 @@ public class City implements Serializable{
 	}
 
 	public int getPunteggio() {
+		calcolaPunteggio();
 		return punteggio;
 	}
 
@@ -126,18 +131,22 @@ public class City implements Serializable{
 	}
 
 	public int getResidenziale() {
+		calcolaPunteggio();
 		return re;
 	}
 
 	public int getCommerciale() {
+		calcolaPunteggio();
 		return co;
 	}
 
 	public int getPubblico() {
+		calcolaPunteggio();
 		return pu;
 	}
 
 	public int getCulturale() {
+		calcolaPunteggio();
 		return cu;
 	}
 	
