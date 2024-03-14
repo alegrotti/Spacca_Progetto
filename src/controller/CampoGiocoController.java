@@ -267,6 +267,9 @@ public class CampoGiocoController {
     }
     
     public void caricaSchermataDefault(){
+    	
+    	
+    	
     	Image retro = new Image("/immagini/retroCarta.png");
     	Image homePage = new Image("/immagini/homepageIcon.png");
     	
