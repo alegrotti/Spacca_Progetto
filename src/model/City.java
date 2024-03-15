@@ -105,7 +105,7 @@ public class City implements Serializable{
 				case "Pubblico":
 					n[2]++;
 					break;
-				case "commerciale":
+				case "Culturale":
 					n[3]++;
 					break;
 			}
