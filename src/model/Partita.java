@@ -396,8 +396,7 @@ public class Partita implements Serializable{
 	            }
 	        }
 	    });
-	    
-	    System.out.println(classifica);
+
 	}
 
 	public boolean isCompletata() {

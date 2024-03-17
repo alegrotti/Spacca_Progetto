@@ -59,3 +59,50 @@
 	-fx-border-width: 2px;
     -fx-border-color: rgb(0, 0, 0);
 }
+
+#classificato1{
+	-fx-color: rgb(0, 64, 128);
+    -fx-font: 25px "Georgia";
+    -fx-font-weight: bold;
+}
+
+#classificato2{
+	-fx-color: rgb(0, 64, 128);
+    -fx-font: 22px "Georgia";
+    -fx-font-weight: bold;
+}
+
+#classificato3{
+	-fx-color: rgb(0, 64, 128);
+    -fx-font: 19px "Georgia";
+    -fx-font-weight: bold;
+}
+
+#restoClassifica{
+	-fx-color: rgb(0, 64, 128);
+    -fx-font: 16px "Georgia";
+}
+
+#eliminati{
+	-fx-font-color: rgb(255, 0, 0);
+    -fx-font: 16px "Georgia";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
