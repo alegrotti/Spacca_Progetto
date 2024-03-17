@@ -63,8 +63,6 @@ public class MostraCittadinaController {
         listaImmagini = new ArrayList<>();
         città.getCarte().forEach(carta -> listaImmagini.add(new Image(carta.getPercorso())));
 
-        System.out.println(listaImmagini.size());
-        
         boolean z = listaImmagini.size()==0;
         
         stampaCarte.setVisible(!z);
@@ -75,8 +73,7 @@ public class MostraCittadinaController {
         	stampaCarte.setPageFactory(new Callback<Integer, Node>() {
         	       public Node call(Integer indicePagina) {
         	    	   ImageView imageView = new ImageView(listaImmagini.get(indicePagina));
-        	    	   System.out.println(listaImmagini.get(indicePagina));
-	    		       imageView.setFitWidth(225);
+        	    	   imageView.setFitWidth(225);
 	    		       imageView.setFitHeight(315);
 	    		       return imageView;
         	       }

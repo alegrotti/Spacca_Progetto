@@ -99,6 +99,8 @@ public class CatalogController {
     	genereCarta.setText(c.getGenere());
     	
     	String imageURL = c.getPercorso();
+    	
+    	System.out.println(c.getPercorso());
         
         Image image = new Image(imageURL);
         immagineCarta.setImage(image);

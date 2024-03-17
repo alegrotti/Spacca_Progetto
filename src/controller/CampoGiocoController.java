@@ -268,9 +268,7 @@ public class CampoGiocoController {
     
     public void caricaSchermataDefault(){
     	
-    	
-    	
-    	Image retro = new Image("/immagini/retroCarta.png");
+    	Image retro = new Image("/immagini/retrocarta.png");
     	Image homePage = new Image("/immagini/homepageIcon.png");
     	
     	iconMano1.setImage(retro);

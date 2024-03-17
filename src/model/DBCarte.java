@@ -22,6 +22,12 @@ public class DBCarte {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public static HashMap<String,Carta> Carte(){
+		carte = (HashMap<String,Carta>)GestioneFile.caricaDB(DATABASE_PATH);
+		return carte;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public static Carta getCarta(String carta) {
 		try {
 			carte = (HashMap<String,Carta>)GestioneFile.caricaDB(DATABASE_PATH);

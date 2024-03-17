@@ -43,31 +43,37 @@ public class City implements Serializable{
 		punteggio = 0;
 		
 		if (carte.size()>0) {
-			for(Carta c : carte)
+			int cE = 0 ;
+			for(Carta c : carte) {
 				if(c instanceof Building) {
 					re+=c.getResidenziale();
 					co+=c.getCommerciale();
 					pu+=c.getPubblico();
 					cu+=c.getCulturale();
+					cE++;
 				}
+			}
 			
-			re=(int)(re/carte.size());
-			co=(int)(co/carte.size());
-			pu = (int)(pu/carte.size());
-			cu = (int)(cu/carte.size());
 			
-			for(Carta c : carte)
-				if(c instanceof Special) {
-					re+=c.getResidenziale();
-					co+=c.getCommerciale();
-					pu+=c.getPubblico();
-					cu+=c.getCulturale();
-				}
 			
+			if(cE > 0) {
+				re=(int)(re/cE);
+				co=(int)(co/cE);
+				pu = (int)(pu/cE);
+				cu = (int)(cu/cE);
+				
+				for(Carta c : carte)
+					if(c instanceof Special) {
+						re+=c.getResidenziale();
+						co+=c.getCommerciale();
+						pu+=c.getPubblico();
+						cu+=c.getCulturale();
+					}
+			}
 			punteggio = (int)((5/2)*(re+cu+pu+co));
 			
 			//bonus palazzi
-			punteggio += carte.size()*3;
+			punteggio += cE*3;
 			
 			//bonus tipi
 			int n = getNGenere();
@@ -86,6 +92,10 @@ public class City implements Serializable{
 					break;
 				default:
 					break;
+			}
+			
+			if (punteggio < 0) {
+				punteggio = 0;
 			}
 		}
 		

@@ -22,10 +22,29 @@ public class GiocatoreCPUDifficile extends Giocatore implements Serializable{
     		city.aggiungiCarta(p.getCarteTavolo()[i]);
     	}
 		
+    	int p5 = 110;
+    	int p6 = 125;
+    	int p7 = 140;
     	
+    	int pMax = 0;
+    	double percPuntata = 0;
     	
+    	if(city.getCarte().size() == 5) {
+    		pMax = p5;
+			percPuntata = 0.3;
+    	}else if(city.getCarte().size() == 6) {
+			pMax = p6;
+			percPuntata = 0.6;
+    	}else if(city.getCarte().size() == 7) {
+			pMax = p7;
+			percPuntata = 1;
+    	}
+    	
+    	double w = (city.getPunteggio()/(double)pMax)*percPuntata;
+    	
+    	int puntata = (int)(p.getCrediti(g)*w);
 		
-		return 1000;
+    	return puntata;
 	}
 	
 	public String getUsername() {
@@ -33,16 +52,31 @@ public class GiocatoreCPUDifficile extends Giocatore implements Serializable{
 	}
 	
 	public boolean partecipa(Partita p , String g) {
-		int crediti = p.getCrediti(g);
-		int puntata = p.getPuntata();
+		int pp = p.getPuntata();
 		
+		int pg = giocaTurno(p,g);
 		
+		int dp = pp - pg;
 		
-		double x = crediti/puntata;
-		if(x>1.5)
-			return true;
-		else
-			return false;
+		double w1 = dp / pg;
+		
+		City c = p.getCittadina(g);
+		
+		if(c.getCarte().size() == 5)
+			if(w1<=0.2)
+				return true;
+			else 
+				return false;
+    	else if(c.getCarte().size() == 6)
+    		if(w1<=0.3)
+				return true;
+			else 
+				return false;
+    	else
+    		if(w1<=0.4)
+				return true;
+			else 
+				return false;
 	}
 	
 	public String scegliCarta(City c, ArrayList<String> carte) {

@@ -283,6 +283,7 @@ public class GestoreScene {
 	        setScene(scenaHomepage,true,(" - Game "+p.getCodice()));
 		} catch (Exception e) {
 	    	messaggioErrore("Errore apertura finestra");
+			//System.out.println(e.getMessage());
 		}
 	}
 	
