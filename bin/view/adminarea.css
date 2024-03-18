@@ -359,3 +359,113 @@
     -fx-background-color: transparent;
     -fx-background-radius: 5em;
 }
+
+#creaNuovoTorneoTitolo{
+	-fx-color: rgb(0, 64, 128);
+    -fx-font: 25px "Felix Titling", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+#torneoInCorsoTitolo{
+    -fx-color: rgb(0, 64, 128);
+    -fx-font: 25px "Felix Titling", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+#listaGiocatoriTorneo {
+    -fx-border-color: rgb(0, 64, 128); 
+    -fx-text-fill: rgb(0, 64, 128);
+    -fx-background-color: rgb(209, 155, 0);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#listaGiocatoriTorneo .list-cell {
+    -fx-border-color: rgb(0, 64, 128); 
+    -fx-text-fill: rgb(0, 64, 128);
+    -fx-background-color: rgb(209, 155, 0);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#listaGiocatoriTorneo .list-cell:selected{
+    -fx-border-color: rgb(209, 155, 0); 
+    -fx-text-fill: rgb(209, 155, 0);
+    -fx-background-color: rgb(0, 64, 128);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#codiceLabelTitoloTorneo{
+    -fx-background-color: rgb(209, 155, 0, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#giocatoriLabelTitoloTorneo{
+    -fx-background-color: rgb(209, 155, 0, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#tipoTorneoLabelTitolo{
+    -fx-background-color: rgb(209, 155, 0, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#creditiInizialiLabelTitoloTorneo{
+    -fx-background-color: rgb(209, 155, 0, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#statoTorneoLabelTitolo{
+    -fx-background-color: rgb(209, 155, 0, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+#infoTorneo1{
+	-fx-border-width: 2px;
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-text-fill: rgb(0, 64, 128);	
+}
+
+#infoTorneo2{
+	-fx-border-width: 2px;
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-text-fill: rgb(0, 64, 128);	
+}
+
+#statoTorneoLabel{
+	-fx-background-color: rgb(0, 64, 128, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 14px;
+}
+
+#creditiInizialiLabelTorneo{
+	-fx-background-color: rgb(0, 64, 128, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 14px;
+}
+
+#codiceLabelTorneo{
+	-fx-background-color: rgb(0, 64, 128, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 14px;
+}
+
+#giocatoriLabelTorneo{
+	-fx-background-color: rgb(0, 64, 128, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 14px;
+}
+
+#tipoTorneoLabel{
+	-fx-background-color: rgb(0, 64, 128, 0.5);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 14px;
+}

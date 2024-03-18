@@ -400,6 +400,183 @@
                            </children>
                         </VBox>
                      </content></Tab>
+                  <Tab text="Nuovo torneo ">
+                     <content>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label fx:id="creaNuovoTorneoTitolo" alignment="CENTER" contentDisplay="CENTER" text="Crea nuova torneo" />
+                              <HBox alignment="CENTER" prefHeight="32.0" prefWidth="434.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="106.0" text="Codice torneo: " />
+                                    <TextField fx:id="codiceTorneoField" prefHeight="32.0" prefWidth="162.0" />
+                                    <Button mnemonicParsing="false" onAction="#generaCodiceRandomTorneo" text="Genera random">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="189.0" prefWidth="841.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="146.0" prefWidth="418.0">
+                                       <children>
+                                          <HBox alignment="CENTER">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                             <children>
+                                                <Label text="Scegli mazzo: " />
+                                                <ComboBox fx:id="scegliMazzoTorneoButton" prefHeight="30.0" prefWidth="205.0" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER">
+                                             <VBox.margin>
+                                                <Insets top="20.0" />
+                                             </VBox.margin>
+                                             <children>
+                                                <Label text="Scegli tipo di torneo: " />
+                                                <ComboBox fx:id="tipoTorneoButton" onAction="#scegliTipoTorneo" prefHeight="30.0" prefWidth="205.0" />
+                                             </children>
+                                          </HBox>
+                                          <HBox fx:id="hBoxSliderTorneo" alignment="CENTER">
+                                             <VBox.margin>
+                                                <Insets top="20.0" />
+                                             </VBox.margin>
+                                             <children>
+                                                <Label fx:id="fraseSliderLabel1" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="106.0" />
+                                                <Slider fx:id="sliderTorneo" majorTickUnit="5.0" max="50.0" maxWidth="422.0" min="4.0" minorTickCount="5" prefHeight="6.0" prefWidth="188.0">
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Slider>
+                                                <Label fx:id="numeroSliderTorneo" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" layoutX="10.0" layoutY="124.0">
+                                             <children>
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="83.0" text="Crediti iniziali:" />
+                                                <Slider fx:id="sliderCreditiTorneo" blockIncrement="500.0" majorTickUnit="500.0" max="10000.0" maxWidth="422.0" min="1000.0" minorTickCount="500" prefHeight="14.0" prefWidth="244.0">
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Slider>
+                                                <Label fx:id="creditiSliderLabelTorneo" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="146.0" prefWidth="419.0">
+                                       <children>
+                                          <HBox alignment="CENTER">
+                                             <children>
+                                                <Label text="Giocatori da aggiungere: " />
+                                                <ComboBox fx:id="giocatoriDaAggiungereTorneo" prefHeight="30.0" prefWidth="132.0" />
+                                                <Button mnemonicParsing="false" onAction="#aggiungiGiocatoreTorneo" prefHeight="28.0" prefWidth="144.0" text="Aggiungi giocatore">
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="118.0" prefWidth="419.0">
+                                             <VBox.margin>
+                                                <Insets top="15.0" />
+                                             </VBox.margin>
+                                             <children>
+                                                <Label prefHeight="30.0" prefWidth="105.0" text="Giocatori del torneo: " textAlignment="RIGHT" wrapText="true">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </Label>
+                                                <ListView fx:id="listaGiocatoriTorneo" prefHeight="88.0" prefWidth="194.0" />
+                                                <Button mnemonicParsing="false" onAction="#eliminaGiocatoreNuovoTorneo" prefHeight="28.0" prefWidth="140.0" text="Elimina giocatore">
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <Button mnemonicParsing="false" onAction="#aggiungiTorneo" prefHeight="35.0" prefWidth="139.0" text="Crea torneo">
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="20.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </content>
+                  </Tab>
+                  <Tab text="Toneri in corso">
+                     <content>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label fx:id="torneoInCorsoTitolo" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="251.0" text="Torneo in corso" />
+                              <HBox alignment="CENTER">
+                                 <children>
+                                    <Label text="Codice torneo: " />
+                                    <ComboBox fx:id="codiceTorneoInCorso" onAction="#mostraTorneoInCorso" prefHeight="26.0" prefWidth="210.0" />
+                                    <Button mnemonicParsing="false" onAction="#eliminaTorneo" text="Elimina">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="239.0" prefWidth="850.0">
+                                 <children>
+                                    <VBox fx:id="infoTorneo1" alignment="CENTER" layoutX="385.0" layoutY="10.0" prefHeight="164.0" prefWidth="350.0">
+                                       <children>
+                                          <Label fx:id="codiceLabelTitoloTorneo" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="350.0" text="Codice" />
+                                          <HBox>
+                                             <children>
+                                                <Label fx:id="codiceLabelTorneo" alignment="CENTER" prefHeight="40.0" prefWidth="350.0" />
+                                                <Button mnemonicParsing="false" onAction="#copiaCodiceTorneo" prefHeight="34.0" prefWidth="142.0" text="Copia" />
+                                             </children>
+                                          </HBox>
+                                          <Label fx:id="giocatoriLabelTitoloTorneo" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="109.0" prefHeight="30.0" prefWidth="350.0" text="Giocatori" />
+                                          <Label fx:id="giocatoriLabelTorneo" alignment="CENTER" layoutX="10.0" layoutY="123.0" prefHeight="158.0" prefWidth="350.0" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox fx:id="infoTorneo2" alignment="CENTER" prefHeight="191.0" prefWidth="359.0">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                       <children>
+                                          <Label fx:id="tipoTorneoLabelTitolo" alignment="CENTER" prefHeight="30.0" prefWidth="359.0" text="Tipo torneo- obiettivo" />
+                                          <Label fx:id="tipoTorneoLabel" alignment="CENTER" prefHeight="50.0" prefWidth="359.0" />
+                                          <Label fx:id="creditiInizialiLabelTitoloTorneo" alignment="CENTER" prefHeight="30.0" prefWidth="361.0" text="Crediti iniziali" />
+                                          <Label fx:id="creditiInizialiLabelTorneo" alignment="CENTER" prefHeight="50.0" prefWidth="359.0" />
+                                          <Label fx:id="statoTorneoLabelTitolo" alignment="CENTER" prefHeight="30.0" prefWidth="359.0" text="Stato torneo - turno corrente" />
+                                          <Label fx:id="statoTorneoLabel" alignment="CENTER" prefHeight="50.0" prefWidth="359.0" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </Tab>
                </tabs>
                <VBox.margin>
                   <Insets />
