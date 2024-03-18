@@ -1,26 +1,11 @@
 package controller;
 
-
 import model.DBAdmin;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-/*
-import model.Carta;
-import model.City;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
-import model.DBCarte;
-import model.DBGiocatori;
-import model.DBMazzi;
-import model.DBPartite;
-import model.DBPartite;
-import model.DBCarte;
-*/
 
 public class Main extends Application {
 	
@@ -60,6 +45,7 @@ public class Main extends Application {
 		//simulaCitta();
 		
 		DBAdmin.creaAdmin();
+		
 		launch(args);
 
 	}
