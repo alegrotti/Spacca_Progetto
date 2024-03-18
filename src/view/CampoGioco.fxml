@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="sfondo" prefHeight="860.0" prefWidth="1469.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CampoGiocoController">
+<AnchorPane fx:id="sfondo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@campogioco.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CampoGiocoController">
    <children>
-      <HBox fx:id="sfondoScuro" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox fx:id="sfondoScuro" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox alignment="CENTER" prefHeight="942.0" prefWidth="1095.0">
                <children>
@@ -97,14 +97,14 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="850.0" prefWidth="471.0">
+            <VBox alignment="TOP_CENTER" prefHeight="932.0" prefWidth="576.0">
                <children>
                   <VBox alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="356.0">
                      <children>
                         <ImageView fx:id="homepageIcon" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#homepageIconClicked" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </VBox>
-                  <VBox fx:id="vboxProssimiGiocatori" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="255.0" prefWidth="304.0">
+                  <VBox fx:id="vboxProssimiGiocatori" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="255.0" prefWidth="251.0">
                      <children>
                         <Label fx:id="textNumTurno" alignment="CENTER" prefHeight="34.0" prefWidth="527.0">
                            <VBox.margin>
@@ -124,7 +124,20 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="450.0" prefWidth="418.0">
                      <children>
-                        <Button fx:id="giocaButtonCPU" mnemonicParsing="false" onAction="#giocaCPU" prefHeight="60.0" prefWidth="274.0" text="Gioca mossa CPU" />
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Button fx:id="giocaButtonCPU" mnemonicParsing="false" onAction="#giocaCPU" prefHeight="45.0" prefWidth="192.0" text="Gioca mossa CPU" textAlignment="CENTER" wrapText="true">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="mostraCarteCPUButton" mnemonicParsing="false" onAction="#mostraCarteCPU" prefHeight="45.0" prefWidth="210.0" text="Mostra carte CPU" textAlignment="CENTER" wrapText="true">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
                         <Button fx:id="mostracittaButton" mnemonicParsing="false" onAction="#mostracittaButtonClicked" prefHeight="45.0" prefWidth="182.0" text="Mostra cittadina">
                            <VBox.margin>
                               <Insets top="10.0" />
@@ -161,7 +174,7 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </TextField>
-                              <Button fx:id="confermaButton" mnemonicParsing="false" onAction="#confermaButtonClicked" prefHeight="30.0" prefWidth="91.0" text="Conferma">
+                              <Button fx:id="confermaButton" mnemonicParsing="false" onAction="#confermaButtonClicked" prefHeight="31.0" prefWidth="145.0" text="Conferma">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>

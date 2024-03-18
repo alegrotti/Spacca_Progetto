@@ -7,6 +7,30 @@
     -fx-font-size: 12px;
 }
 
+.combo-box {
+    -fx-border-color: rgb(0, 64, 128); 
+    -fx-text-fill: rgb(0, 64, 128);
+    -fx-background-color: rgb(209, 155, 0);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+.combo-box .list-cell{
+    -fx-border-color: rgb(0, 64, 128); 
+    -fx-text-fill: rgb(0, 64, 128);
+    -fx-background-color: rgb(209, 155, 0);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
+.combo-box .list-cell:selected {
+    -fx-border-color: rgb(209, 155, 0); 
+    -fx-text-fill: rgb(209, 155, 0);
+    -fx-background-color: rgb(0, 64, 128);
+    -fx-font-family: "Georgia";
+    -fx-font-size: 12px;
+}
+
 .button:hover {
     -fx-border-color: rgb(0, 64, 128);
     -fx-background-color: rgb(209, 155, 0);
@@ -35,3 +59,50 @@
 	-fx-border-width: 2px;
     -fx-border-color: rgb(0, 0, 0);
 }
+
+#classificato1{
+	-fx-color: rgb(0, 64, 128);
+    -fx-font: 25px "Georgia";
+    -fx-font-weight: bold;
+}
+
+#classificato2{
+	-fx-color: rgb(0, 64, 128);
+    -fx-font: 22px "Georgia";
+    -fx-font-weight: bold;
+}
+
+#classificato3{
+	-fx-color: rgb(0, 64, 128);
+    -fx-font: 19px "Georgia";
+    -fx-font-weight: bold;
+}
+
+#restoClassifica{
+	-fx-color: rgb(0, 64, 128);
+    -fx-font: 16px "Georgia";
+}
+
+#eliminati{
+	-fx-font-color: rgb(255, 0, 0);
+    -fx-font: 16px "Georgia";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

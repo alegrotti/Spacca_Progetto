@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 import controller.GestoreScene;
@@ -17,6 +19,7 @@ public class Partita implements Serializable{
 	private boolean completata;
 	private int mano;
 	private int puntata;
+	private ArrayList<String> classifica;
 	private ArrayList<String> giocatori;
 	private ArrayList<String> giocatoriTurno;
 	private ArrayList<String> giocatoriEliminati;
@@ -61,6 +64,7 @@ public class Partita implements Serializable{
 		this.giocatoriEliminati = new ArrayList<>();
 		this.mazzoTurno = null;
 		this.carteTavolo = null;
+		this.classifica = new ArrayList<String>();
 		this.giocatoriPuntata = null;
 		this.vincitore = null;
 		this.completata = false;
@@ -340,34 +344,67 @@ public class Partita implements Serializable{
 	public boolean checkWinner() {
 		if(this instanceof PartitaATurni) {
 			PartitaATurni partita = (PartitaATurni)this;
-			if(getTurno()>partita.getTurni())
+			if(getTurno()>partita.getTurni()) {
+				creaClassifica();
 				return true;
-			else
-				if(giocatori.size()==1)
+			}else
+				if(giocatori.size()==1) {
+					creaClassifica();
 					return true;
-				else if(giocatori.size()==0)
+				}else if(giocatori.size()==0) {
+					creaClassifica();
 					return true;
-				else
+				}else
 					return false;
 		}else if(this instanceof PartitaAPalazzi) {
 			PartitaAPalazzi partita = (PartitaAPalazzi)this;
-			if(cityMaggiore()==partita.getPalazzi())
+			if(cityMaggiore()==partita.getPalazzi()) {
+				creaClassifica();
 				return true;
-			else
-				if(giocatori.size()==1)
+			}else
+				if(giocatori.size()==1) {
+					creaClassifica();
 					return true;
-				else if(giocatori.size()==0)
+				}else if(giocatori.size()==0) {
+					creaClassifica();
 					return true;
-				else
+				}else
 					return false;
 		}else {
 			GestoreScene.messaggioErrore("Partita non caricata correttamente");
 			return false;
 		}
 	}
+	
+	public void creaClassifica() {
+		
+		chiudiPartita();
+
+		classifica = new ArrayList<>(giocatori);
+
+	    Collections.sort(classifica, new Comparator<String>() {
+	        @Override
+	        public int compare(String giocatore1, String giocatore2) {
+	            City cityGiocatore1 = cittadine.get(giocatore1);
+	            City cityGiocatore2 = cittadine.get(giocatore2);
+
+	            int confrontoPunteggio = Integer.compare(cityGiocatore2.getPunteggio(), cityGiocatore1.getPunteggio());
+	            if (confrontoPunteggio != 0) {
+	                return confrontoPunteggio; 
+	            } else {
+	                return Integer.compare(crediti.get(giocatore2), crediti.get(giocatore1));
+	            }
+	        }
+	    });
+
+	}
 
 	public boolean isCompletata() {
 		return completata;
+	}
+
+	public ArrayList<String> getClassifica() {
+		return classifica;
 	}
 	
 }

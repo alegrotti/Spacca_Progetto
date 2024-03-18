@@ -22,6 +22,12 @@ public class DBGiocatori {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public static HashMap<String,Giocatore> Giocatori(){
+		giocatori = (HashMap<String,Giocatore>)GestioneFile.caricaDB(DATABASE_PATH);
+		return giocatori;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public static Giocatore getGiocatore(String username) {
 		try {
 			giocatori = (HashMap<String,Giocatore>)GestioneFile.caricaDB(DATABASE_PATH);

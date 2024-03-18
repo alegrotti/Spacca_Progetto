@@ -10,7 +10,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.Carta;
 import model.DBCarte;
+import model.DBGiocatori;
 import model.DBPartite;
+import model.GiocatoreCPUDifficile;
+import model.GiocatoreFisico;
 import model.Partita;
 
 import java.util.ArrayList;
@@ -39,7 +42,9 @@ public class ScegliCartaController {
     @FXML
     void chiudiTurno(ActionEvent event) {
         RadioButton selectedRadioButton = (RadioButton) scelte.getSelectedToggle();
+        
         if (selectedRadioButton != null) {
+        	
         	String s = selectedRadioButton.getText();
         	Carta c = DBCarte.getCarta(s);
         	partita.getCittadina(winner).aggiungiCarta(c);
@@ -48,6 +53,7 @@ public class ScegliCartaController {
         	DBPartite.aggiungiPartita(partita);     	
         	GestoreScene.prossimoTurnoPopup(partita);
         	confermaButton.getScene().getWindow().hide();
+        	
         }else {
         	GestoreScene.messaggioErrore("Selezionare palazzo");
         }
@@ -61,9 +67,36 @@ public class ScegliCartaController {
     public void inizializzaSchermata(ArrayList<String> c, Partita p, String w) {
     	winner = w;
     	partita = p;
-        for (String s : c) {
-            creaRadioButton(s);
-        }
+    	
+    	if (DBGiocatori.getGiocatore(winner) instanceof GiocatoreFisico) {
+	        for (String s : c) {
+	        	creaRadioButton(s);
+	        }
+    	}else if (DBGiocatori.getGiocatore(winner) instanceof GiocatoreCPUDifficile) {
+    		GiocatoreCPUDifficile g = (GiocatoreCPUDifficile)DBGiocatori.getGiocatore(winner);
+
+    		String cartaScelta = g.scegliCarta(partita.getCittadina(winner),c);
+    		
+    		boolean t = false;
+    		
+    		for (String s : c) {
+                RadioButton rb = new RadioButton();
+
+                if (s.equals(cartaScelta) && t == false) {
+                    rb.setText(s);
+                    rb.setToggleGroup(scelte);
+                    rb.setSelected(true);
+                    rb.setOnAction(event -> {
+        				rb.setSelected(true);
+        			});
+                    t=true;
+                } else {
+                    rb.setText(s);
+                    rb.setDisable(true);
+                }
+                carteDaScegliere.getChildren().add(rb);
+            }
+    	}
     }
 
     private void creaRadioButton(String s) {

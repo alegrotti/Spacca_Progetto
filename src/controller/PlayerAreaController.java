@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.HashMap;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,14 +12,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.DBAdmin;
-import model.DBTornei;
-import model.Partita;
-import model.Torneo;
 
 public class PlayerAreaController {
 
-	private HashMap<String,Torneo> tornei;
-	private HashMap<String,Partita> partite;
+	//private HashMap<String,Torneo> tornei;
+	//private HashMap<String,Partita> partite;
 	
     @FXML
     private VBox centralBox;
@@ -74,7 +69,7 @@ public class PlayerAreaController {
     }
     
     private void caricaSchermata(String giocatore) {
-    	tornei = DBTornei.getTornei();
+    	//tornei = DBTornei.getTornei();
     }
 
 }

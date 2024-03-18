@@ -13,6 +13,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.DBAdmin;
 
+
 public class AdminLoginController {
 
     @FXML
@@ -38,6 +39,7 @@ public class AdminLoginController {
 
     @FXML
     void checkLogin(ActionEvent event) {
+    	
     	try {
 	    	if(usernameButton.getText().equals(DBAdmin.getUsername()))
 	    		if(passwordButton.getText().equals(DBAdmin.getPassword())) {
@@ -58,6 +60,7 @@ public class AdminLoginController {
 	    	GestoreScene.messaggioErrore(e.getMessage());
 	    }
     	initialize();
+    	
     }
 
     @FXML
@@ -70,5 +73,5 @@ public class AdminLoginController {
     	usernameButton.setText(DBAdmin.getAdmin().getUsername());
     	passwordButton.setText(DBAdmin.getAdmin().getPassword());
     }
-
+    
 }
