@@ -743,7 +743,7 @@ public class AdminAreaController {
     
     @FXML
     void aggiungiTorneo(ActionEvent event) {
-    	try {
+    	/*try {
 			Mazzo m = DBMazzi.getMazzo(scegliMazzoTorneoButton.getValue());
 			String codice = codiceTorneoField.getText();
 			int n = Integer.parseInt(creditiSliderLabelTorneo.getText());
@@ -755,7 +755,7 @@ public class AdminAreaController {
 						int turni = Integer.parseInt(numeroSliderTorneoLabel.getText());
 						if(giocatoriAggiunti.size()>1) {
 							giocatoriAggiunti.sort(null);
-							Torneo t = new PartitaATurni(m,giocatoriAggiunti,codice,turni,n);
+							Partita p = new PartitaATurni(m,giocatoriAggiunti,codice,turni,n);
 							DBPartite.aggiungiPartita(p);
 							DBAdmin.aggiungiPartita(p);
 							inizializzaSchermata();
@@ -782,7 +782,7 @@ public class AdminAreaController {
 				GestoreScene.messaggioErrore("Inserisci codice non nullo");
 		}catch(Exception e) {
 			GestoreScene.messaggioErrore("Errore creazione partita");
-		}
+		}*/
     }
     
     @FXML
