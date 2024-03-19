@@ -720,7 +720,7 @@ public class AdminAreaController {
     
     @FXML
     void aggiungiGiocatoreTorneo(ActionEvent event) {
-    	try {
+    	/*try {
     		String giocatore = giocatoriDaAggiungere.getValue();
     		
     		if (giocatore.equals(""))
@@ -738,7 +738,7 @@ public class AdminAreaController {
 	    	
     	}catch(Exception e) {
     		GestoreScene.messaggioErrore("Errore aggiunta giocatore");
-    	}
+    	}*/
     }
     
     @FXML
@@ -755,8 +755,8 @@ public class AdminAreaController {
 						int turni = Integer.parseInt(numeroSliderTorneoLabel.getText());
 						if(giocatoriAggiunti.size()>1) {
 							giocatoriAggiunti.sort(null);
-							Partita p = new PartitaATurni(m,giocatoriAggiunti,codice,turni,n);
-							DBPartite.aggiungiPartita(p);
+							Torneo t = new TorneoATurni(m,giocatoriAggiunti,codice,turni,n);
+							DBPartite.aggiungiTorneo(p);
 							DBAdmin.aggiungiPartita(p);
 							inizializzaSchermata();
 						}else {
@@ -792,7 +792,7 @@ public class AdminAreaController {
     
     @FXML
     void scegliTipoTorneo(ActionEvent event) {
-    	if("A turni".equals(tipoTorneoButton.getValue())) {
+    	/*if("A turni".equals(tipoTorneoButton.getValue())) {
     		hBoxSliderTorneo.setVisible(true);
     		fraseSliderLabel1.setText("Numero turni: ");
     		sliderTorneo.setMin(4);
@@ -802,7 +802,7 @@ public class AdminAreaController {
     		fraseSliderLabel1.setText("Numero palazzi: ");
     		sliderTorneo.setMin(3);
     		sliderTorneo.setMax(20);
-    	}
+    	}*/
     }
     
     @FXML
@@ -870,10 +870,10 @@ public class AdminAreaController {
     	inizializzaPartiteInCorso();
     	
     	//Nuovo Torneo
-    	//inizializzaNuovoTorneo();
+    	inizializzaNuovoTorneo();
     	
     	//Tornei in corso
-    	//inizializzaTorneoInCorso();
+    	inizializzaTorneoInCorso();
     }
     
     private void inizializzaProfilo() {
@@ -947,7 +947,7 @@ public class AdminAreaController {
         });
     }
     
-    /*private void inizializzaNuovoTorneo() {
+    private void inizializzaNuovoTorneo() {
     	tipoTorneoButton.setValue(null);
     	scegliMazzoTorneoButton.setValue(null);
     	giocatoriDaAggiungere.setValue(null);
@@ -990,7 +990,7 @@ public class AdminAreaController {
             int roundedValue = (int) (Math.round(newValue.doubleValue()));
             creditiSliderLabelTorneo.setText(String.valueOf(roundedValue*1000));
         });
-    }*/
+    }
     
     private void inizializzaGestioneMazzi() {
     	
@@ -1035,7 +1035,7 @@ public class AdminAreaController {
         tipoPartitaLabel.setText(null);
     }
     
-   /* private void inizializzaTorneoInCorso(){
+   private void inizializzaTorneoInCorso(){
     	ObservableList<String> tornei = FXCollections.observableArrayList();
     	for(String s : DBAdmin.getAdmin().getTornei())
     		tornei.add(s);
@@ -1047,6 +1047,6 @@ public class AdminAreaController {
         statoTorneoLabel.setText(null);
         creditiInizialiLabelTorneo.setText(null);
         tipoTorneoLabel.setText(null);
-    }*/
+    }
     
 }
