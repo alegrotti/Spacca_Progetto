@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-class TorneoATurni extends Torneo implements Serializable {
+public class TorneoATurni extends Torneo implements Serializable {
 	private static final long serialVersionUID = 1L;
 		
 		private int turni;

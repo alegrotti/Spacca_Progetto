@@ -78,6 +78,10 @@ public class Admin implements Serializable{
 		partite.add(p.getCodice());
 	}
 	
+	public void aggiungiTorneo(Torneo t) {
+		tornei.add(t.getCodice());
+	}
+	
 	public void eliminaGiocatore(String g) {
 		giocatori.remove(g);
 	}
@@ -93,6 +97,10 @@ public class Admin implements Serializable{
 	
 	public void eliminaPartita(String p) {
 		partite.remove(p);
+	}
+	
+	public void eliminaTorneo(String t) {
+		tornei.remove(t);
 	}
 	
 	public void inizializzaAdmin(HashSet<String> carte,HashSet<String> mazzi, HashSet<String> giocatori, HashSet<String> partite, HashSet<String> tornei){

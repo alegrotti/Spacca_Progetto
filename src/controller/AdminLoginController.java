@@ -47,7 +47,9 @@ public class AdminLoginController {
 	    		        scenaHomepage.getStylesheets().add("/view/adminarea.css");
 	    		        GestoreScene.setScene(scenaHomepage,false," - Area admin");
 	    	    	}catch(Exception e) {	
-	    	    		throw new Exception("Errore apertura finestra");
+	    	    		//throw new Exception("Errore apertura finestra");
+	    	    		//throw e;
+	    	    		System.out.println(e.getMessage());
 	    	    	}
 	    		}else
 	    			throw new Exception("Password errata");

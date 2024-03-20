@@ -59,7 +59,7 @@ public class DBPartite {
 			partite.remove(p);
 			GestioneFile.salvaDB(partite,DATABASE_PATH);
 		} catch (Exception e) {
-			GestoreScene.messaggioErrore("Errore aggiunta partita");
+			GestoreScene.messaggioErrore("Errore eliminazione partita");
 		}
 	}
 	

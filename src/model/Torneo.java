@@ -28,6 +28,7 @@ public class Torneo implements Serializable{
 	private HashMap<String, Carta[]> mani;
 	private HashMap<String, City> cittadine;
 	private HashMap<String, Integer> crediti;
+	private HashMap<String, Partita> partiteTorneo;
 	
 	public Torneo() {
 		this.mazzo = null;
@@ -66,8 +67,17 @@ public class Torneo implements Serializable{
 		this.completata = false;
 		this.crediti = creaCreditiIniziali(giocatori,creditiIniziali);
 		this.cittadine = creaCittadineIniziali(giocatori);
+		//this.partiteTorneo = creaPartite();
 	}
 
+	/*private HashMap<String,Carta[]> creaPartite(ArrayList<String> giocatori){
+		HashMap<String,Partita> gio = new HashMap<String,Partita>();
+		for(String s : giocatori) {
+			gio.put(s, new Carta[3]);
+		}
+		return gio;
+	}*/
+	
 	private HashMap<String,Carta[]> creaManiIniziali(ArrayList<String> giocatori){
 		HashMap<String,Carta[]> gio = new HashMap<String,Carta[]>();
 		for(String s : giocatori) {
