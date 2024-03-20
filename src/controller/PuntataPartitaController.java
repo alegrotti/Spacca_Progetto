@@ -41,6 +41,7 @@ public class PuntataPartitaController {
 
     @FXML
     void confermaPuntata(ActionEvent event) {
+    	System.out.println(players);
     	try {
 	    	if(players.size() == 0) {
 	    		for(String x : partita.getGiocatoriPuntata()) {
@@ -112,6 +113,7 @@ public class PuntataPartitaController {
     }
     
     private void creaRadioButton(String s) {
+    	
     	Giocatore g = DBGiocatori.getGiocatore(s);
     	RadioButton rb = new RadioButton();
     	if(g instanceof GiocatoreFisico) {
@@ -142,9 +144,7 @@ public class PuntataPartitaController {
     			});
     		}
     	}
-    	
-    	
-    	
+
     	giocatoriPuntate.getChildren().add(rb);
     }
     

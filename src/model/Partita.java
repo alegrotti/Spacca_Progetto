@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 import controller.GestoreScene;
 
@@ -156,6 +158,7 @@ public class Partita implements Serializable{
 				crediti.put(p, x-puntata);
 			}
 		}
+		System.out.println("Crediti aggiunti al tavolo e tolti ai partecipanti");
 	}
 	
 	public void aggiornaCreditiTurno(String player, int p) {
@@ -166,6 +169,7 @@ public class Partita implements Serializable{
 		}else if(puntata==p) {
 			giocatoriPuntata.add(player);
 		}
+		System.out.println("Puntata aggiornata");
 	}
 	
 	public int getTavolo() {
@@ -186,6 +190,7 @@ public class Partita implements Serializable{
 		carteTavolo = creaTavolo();
 		mani = creaMani();
 		
+		System.out.println("Turno inizializzato");
 		return giocatoriTurno.get(0);
 	}
 	
@@ -194,8 +199,10 @@ public class Partita implements Serializable{
 			mano++;
 			puntata = 0;
 			giocatoriPuntata.removeAll(giocatoriPuntata);
+			System.out.println("Turno aggiornato");
 			return giocatoriTurno.get(0);
 		}else {
+			System.out.println("Turno terminato");
 			return null;
 		}
 	}
@@ -213,24 +220,37 @@ public class Partita implements Serializable{
 	}
 	
 	public Carta[] creaTavolo() {
+		
+		HashMap<String,Carta> map = DBCarte.Carte();
+		List<String> keysAsArray = new ArrayList<String>(map.keySet());
+		Random r = new Random();
+		
 		Carta[] carte = new Carta[3];
-		for (int i = 0 ; i < carte.length ; i++) {
-			carte[i] = mazzoTurno.getCarte().get(0);
-			mazzoTurno.getCarte().remove(0);
-		}
+		for (int i = 0 ; i < carte.length ; i++)
+			carte[i] = map.get(keysAsArray.get(r.nextInt(keysAsArray.size())));
+			
+		System.out.println("Tavolo creato");
+		
 		return carte;
+		
 	}
 	
 	public HashMap<String,Carta[]> creaMani() {
+		
+		HashMap<String,Carta> map = DBCarte.Carte();
+		List<String> keysAsArray = new ArrayList<String>(map.keySet());
+		Random r = new Random();
+		
 		HashMap<String,Carta[]> m = new HashMap<String,Carta[]>();
 		for(String g : giocatori) {
 			Carta[] carte = new Carta[4];
-			for (int i = 0 ; i < carte.length ; i++) {
-				carte[i] = mazzoTurno.getCarte().get(0);
-				mazzoTurno.getCarte().remove(0);
-			}
+			for (int i = 0 ; i < carte.length ; i++)
+				carte[i] = map.get(keysAsArray.get(r.nextInt(keysAsArray.size())));
 			m.put(g, carte);
 		}
+		
+		System.out.println("Mani create");
+		
 		return m;
 	}
 
@@ -258,9 +278,10 @@ public class Partita implements Serializable{
 	public String nextPlayer(String s) {
 		boolean trovato = false;
 		for (String str : giocatoriTurno) {
-            if (trovato)
+            if (trovato) {
+            	System.out.println("Turno di "+s+" terminato, passato a "+str);
                 return str;
-            if (str.equals(s))
+            }if (str.equals(s))
                 trovato = true;
         }
 		
@@ -271,6 +292,8 @@ public class Partita implements Serializable{
 		else
 			vincitore = null;
 
+		System.out.println("Giocatori terminati in questa mano");
+		
 		return null;
 	}
 	
@@ -313,6 +336,9 @@ public class Partita implements Serializable{
 			
 		}
 		vincitore = w.getNome();
+		
+		System.out.println("Vincitore del turno trovato");
+		
 		return vincitore;
 	}
 	
@@ -324,6 +350,7 @@ public class Partita implements Serializable{
 			w = c.compareTo(w);
 		}
 		vincitore = w.getNome();
+		System.out.println("Vincitore della partita trovato");
 		return vincitore;
 	}
 	
@@ -342,6 +369,7 @@ public class Partita implements Serializable{
 	}
 	
 	public boolean checkWinner() {
+		System.out.println("Controllo del vincitore");
 		if(this instanceof PartitaATurni) {
 			PartitaATurni partita = (PartitaATurni)this;
 			if(getTurno()>partita.getTurni()) {
@@ -396,6 +424,8 @@ public class Partita implements Serializable{
 	            }
 	        }
 	    });
+	    
+	    System.out.println("Classifica della partita creata");
 
 	}
 
