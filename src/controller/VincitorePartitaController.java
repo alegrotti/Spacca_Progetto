@@ -89,7 +89,7 @@ public class VincitorePartitaController {
     public void creaSchermata() {
     	int j = partita.getGiocatori().size();
     	if(j>=1) {
-    		String g1 = partita.getClassifica().getFirst();
+    		String g1 = partita.getClassifica().get(0);
     		classificato1.setText(g1+" - "+partita.getCittadina(g1).getCarte().size()+" palazzi e "+partita.getCrediti(g1)+" crediti");
     	}if(j>=2) {
     		String g2 = partita.getClassifica().get(1);
