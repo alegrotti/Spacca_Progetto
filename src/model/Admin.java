@@ -70,10 +70,6 @@ public class Admin implements Serializable{
 		DBAdmin.salvaAdmin(this);
 	}
 	
-	public void aggiungiMazzo(Mazzo m) {
-		mazzi.add(m.getNome());
-	}
-	
 	public void aggiungiPartita(Partita p) {
 		partite.add(p.getCodice());
 	}
@@ -103,9 +99,8 @@ public class Admin implements Serializable{
 		tornei.remove(t);
 	}
 	
-	public void inizializzaAdmin(HashSet<String> carte,HashSet<String> mazzi, HashSet<String> giocatori, HashSet<String> partite, HashSet<String> tornei){
+	public void inizializzaAdmin(HashSet<String> carte, HashSet<String> giocatori, HashSet<String> partite, HashSet<String> tornei){
 		this.giocatori = giocatori;
-		this.mazzi = mazzi;
 		this.carte = carte;
 		this.partite = partite;
 		this.tornei = tornei;

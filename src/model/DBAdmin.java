@@ -24,10 +24,6 @@ public class DBAdmin {
 			for(String s : DBCarte.getCarte())
 				carte.add(s);
 			
-			HashSet<String> mazzi = new HashSet<String>();
-			for(String s : DBMazzi.getMazzi())
-				mazzi.add(s);
-			
 			HashSet<String> partite = new HashSet<String>();
 			HashMap<String,Partita> p = DBPartite.getPartite();
 			for(String s : p.keySet())
@@ -42,7 +38,7 @@ public class DBAdmin {
 			for(String s : t.keySet())
 				tornei.add(s);
 
-			admin.inizializzaAdmin(carte,mazzi,giocatori,partite,tornei);
+			admin.inizializzaAdmin(carte,giocatori,partite,tornei);
 
 			GestioneFile.salvaDB(admin,DATABASE_PATH);
 		}catch(Exception e) {
@@ -71,16 +67,6 @@ public class DBAdmin {
 		try {
 			admin = (Admin)GestioneFile.caricaDB(DATABASE_PATH);
 			admin.aggiungiGiocatore(g);
-			GestioneFile.salvaDB(admin,DATABASE_PATH);
-		}catch(Exception e) {
-			GestoreScene.messaggioErrore("Impossibile aggiungere mazzo");
-		}
-	}
-	
-	public static void aggiungiMazzo(Mazzo m) {
-		try {
-			admin = (Admin)GestioneFile.caricaDB(DATABASE_PATH);
-			admin.aggiungiMazzo(m);
 			GestioneFile.salvaDB(admin,DATABASE_PATH);
 		}catch(Exception e) {
 			GestoreScene.messaggioErrore("Impossibile aggiungere mazzo");

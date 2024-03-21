@@ -8,14 +8,10 @@ import java.util.ArrayList;
 import java.util.Random;
 import model.Giocatore;
 import model.GiocatoreFisico;
-import model.Mazzo;
 import model.GiocatoreCPUFacile;
 import model.GiocatoreCPUDifficile;
-import model.Carta;
 import model.DBAdmin;
-import model.DBCarte;
 import model.DBGiocatori;
-import model.DBMazzi;
 import model.DBPartite;
 import model.DBTornei;
 import model.Partita;
@@ -37,19 +33,9 @@ import javafx.scene.control.Slider;
 
 public class AdminAreaController {
 	
-	private ArrayList<Carta> carteMazzo;
 	private ArrayList<String> giocatoriAggiunti;
 
 	@FXML
-    private Button aggiungiCartaButton;
-
-    @FXML
-    private Label carteAggiungibiliLabel;
-
-    @FXML
-    private Label carteMazzoLabel;
-
-    @FXML
     private VBox centralBox;
 
     @FXML
@@ -107,16 +93,10 @@ public class AdminAreaController {
     private Button eliminaGiocatoreButton;
 
     @FXML
-    private Button eliminaMazzoButton;
-
-    @FXML
     private Label fraseSliderLabel;
 
     @FXML
     private Label fraseSliderLabel1;
-
-    @FXML
-    private Label gestisciMazzoTitolo;
 
     @FXML
     private ComboBox<String> giocatoriDaAggiungere;
@@ -152,12 +132,6 @@ public class AdminAreaController {
     private Label infoAdminTitolo;
 
     @FXML
-    private Label infoCartaDaAggiungere;
-
-    @FXML
-    private Label infoCartaDelMazzo;
-
-    @FXML
     private Label infoGiocatore;
 
     @FXML
@@ -173,12 +147,6 @@ public class AdminAreaController {
     private VBox infoTorneo2;
 
     @FXML
-    private ComboBox<String> listaCarteDaAggiungere;
-
-    @FXML
-    private ComboBox<String> listaCarteMazzo;
-
-    @FXML
     private ComboBox<String> listaGiocatoriButton;
 
     @FXML
@@ -189,12 +157,6 @@ public class AdminAreaController {
 
     @FXML
     private ListView<String> listaGiocatoriTorneo;
-
-    @FXML
-    private ComboBox<String> listaMazziButton;
-
-    @FXML
-    private TextField nomeMazzo;
 
     @FXML
     private Label numeroSliderPartitaLabel;
@@ -210,12 +172,6 @@ public class AdminAreaController {
 
     @FXML
     private TextField passwordField;
-
-    @FXML
-    private Button rimuoviCartaDalMazzoButton;
-
-    @FXML
-    private Button salvaMazzoButton;
 
     @FXML
     private Button saveInfoButton;
@@ -291,6 +247,7 @@ public class AdminAreaController {
 
     @FXML
     private TextField usernameField;
+
     
     
     //Admin
@@ -389,161 +346,6 @@ public class AdminAreaController {
     	infoGiocatore.setText(testo);
     }
     
-    //Mazzo
-    @FXML
-    void salvaMazzo(ActionEvent event) {
-    	try {
-    		String nomeMazzo = this.nomeMazzo.getText();
-    		if(!nomeMazzo.equals("")) {
-    			if(carteMazzo.size()!=0) {
-    				Mazzo m = new Mazzo(nomeMazzo,carteMazzo);
-    				DBAdmin.aggiungiMazzo(m);
-    				DBMazzi.aggiungiMazzo(m);
-	    		}else {
-	    			throw new Exception("Mazzo vuoto");
-	    		}
-    		}else {
-    			throw new Exception("Inserire nome mazzo");
-    		}
-    		inizializzaGestioneMazzi();
-    	}catch(Exception e) {
-    		GestoreScene.messaggioErrore(e.getMessage());
-    	}
-    }
-    
-    @FXML
-    void eliminaMazzo(ActionEvent event) {
-    	String mazzo = listaMazziButton.getValue();
-    	
-    	DBMazzi.eliminaMazzo(mazzo);
-    	
-    	DBAdmin.eliminaMazzo(mazzo);
-    	
-    	inizializzaSchermata();
-    }
-    
-    @FXML
-    void cartaSelezionata(ActionEvent event) {
-    	
-    	String s = listaCarteDaAggiungere.getValue();
-    	Carta c = DBCarte.getCarta(s);
-    	
-    	if(c!=null) {
-    	
-	    	String stampa =
-	    			"Residenziale : "+c.getResidenziale()+
-			    	"\nCommerciale : "+c.getCommerciale()+
-			    	"\nPubblico : "+c.getPubblico()+
-			    	"\nCulturale : "+c.getCulturale();
-	    	
-	    	infoCartaDaAggiungere.setText(stampa);
-    	}
-    }
-    
-    @FXML
-    void aggiungiCartaAlMazzo(ActionEvent event) {
-    	try {
-    		String carta = listaCarteDaAggiungere.getValue();
-    		if(!carta.isEmpty()) {
-		    	carteMazzo.add(DBCarte.getCarta(carta));
-		    	String s = nomeMazzo.getText();
-		    	inizializzaGestioneMazzi();
-		    	nomeMazzo.setText(s);
-    		}else
-    			throw new Exception();
-    	}catch(Exception e) {
-    		GestoreScene.messaggioErrore("Errore aggiunta");
-    	}
-    }
-    
-    @FXML
-    void cartaDaAggiungereSelezionata(ActionEvent event) {
-    	String s = listaCarteDaAggiungere.getValue();
-    	Carta c = DBCarte.getCarta(s);
-    	
-    	if(c!=null) {
-    	
-	    	String stampa =
-	    			"Residenziale : "+c.getResidenziale()+
-			    	"\nCommerciale : "+c.getCommerciale()+
-			    	"\nPubblico : "+c.getPubblico()+
-			    	"\nCulturale : "+c.getCulturale();
-	    	
-	    	infoCartaDaAggiungere.setText(stampa);
-    	}
-    }
-    
-    @FXML
-    void rimuoviCartaDalMazzo(ActionEvent event) {
-    	try {
-	    	String carta = listaCarteMazzo.getValue();
-	    	
-	    	if(!carta.isBlank()) {
-		    	Carta c = DBCarte.getCarta(carta);
-		    	
-		    	rimuoviDaMazzo(c);
-		    	
-		    	String s = nomeMazzo.getText();
-		    	inizializzaGestioneMazzi();
-		    	nomeMazzo.setText(s);
-	    	}else
-	    		throw new Exception();
-    	}catch(Exception e) {
-    		GestoreScene.messaggioErrore("Errore eliminazione");
-    	}
-    	
-    }
-    
-    private void rimuoviDaMazzo(Carta carta) {
-    	int x = 0;
-    	for(Carta c : carteMazzo)
-    		if(c.getNome().equals(carta.getNome()))
-    			break;
-    		else
-    			x++;
-    	carteMazzo.remove(x);
-    	carteMazzo.trimToSize();
-    }
-    
-    @FXML
-    void cartaDelMazzoSelezionata(ActionEvent event) {
-    	
-    	String s = listaCarteMazzo.getValue();
-    	Carta c = DBCarte.getCarta(s);
-    	
-    	if(c!=null) {
-    	
-	    	String stampa =
-	    			"Residenziale : "+c.getResidenziale()+
-			    	"\nCommerciale : "+c.getCommerciale()+
-			    	"\nPubblico : "+c.getPubblico()+
-			    	"\nCulturale : "+c.getCulturale();
-	    	
-	    	infoCartaDelMazzo.setText(stampa);
-    	}
-    	
-    }
-    
-    @FXML
-    void modificaMazzo(ActionEvent event){
-    	String nome = listaMazziButton.getValue();
-    	
-    	Mazzo m = DBMazzi.getMazzo(nome);
-    	
-    	if(m!=null) {
-	    	nomeMazzo.setText(m.getNome());
-	    	
-	    	carteMazzo= m.getCarte();
-	    	
-	    	ObservableList<String> carteAggiunte = FXCollections.observableArrayList();
-	    	for(int i = 0; i<carteMazzo.size(); i++)
-	    		carteAggiunte.add(carteMazzo.get(i).getNome());
-	    	carteAggiunte.sort(null);
-	    	listaCarteMazzo.setItems(carteAggiunte);
-    	}
-    }
-    
-    
     //Partita
     @FXML
     void generaCodiceRandom(ActionEvent event) {
@@ -622,7 +424,6 @@ public class AdminAreaController {
 	@FXML
     void aggiungiPartita(ActionEvent event) {
 		try {
-			Mazzo m = DBMazzi.getMazzo(scegliMazzoPartitaButton.getValue());
 			String codice = codicePartitaField.getText();
 			int n = Integer.parseInt(creditiSliderLabel.getText());
 			if(n<1000)
@@ -633,7 +434,7 @@ public class AdminAreaController {
 						int turni = Integer.parseInt(numeroSliderPartitaLabel.getText());
 						if(giocatoriAggiunti.size()>1) {
 							giocatoriAggiunti.sort(null);
-							Partita p = new PartitaATurni(m,giocatoriAggiunti,codice,turni,n);
+							Partita p = new PartitaATurni(giocatoriAggiunti,codice,turni,n);
 							DBPartite.aggiungiPartita(p);
 							DBAdmin.aggiungiPartita(p);
 							inizializzaSchermata();
@@ -643,7 +444,7 @@ public class AdminAreaController {
 					}else if(tipoPartitaButton.getValue().equals("A palazzi")) {
 						int palazzi = Integer.parseInt(numeroSliderPartitaLabel.getText());
 						if(giocatoriAggiunti.size()>1) {	
-							Partita p = new PartitaAPalazzi(m,giocatoriAggiunti,codice,palazzi,n);
+							Partita p = new PartitaAPalazzi(giocatoriAggiunti,codice,palazzi,n);
 							DBPartite.aggiungiPartita(p);
 							DBAdmin.aggiungiPartita(p);
 							inizializzaSchermata();
@@ -903,7 +704,6 @@ public class AdminAreaController {
     @FXML
     void initialize() {
     	
-    	carteMazzo = new ArrayList<Carta>();
     	giocatoriAggiunti = new ArrayList<String>();
     	
     	inizializzaSchermata();
@@ -919,9 +719,6 @@ public class AdminAreaController {
     	
     	//Nuova Partita
     	inizializzaNuovaPartita();
-    	
-    	//Gestione Mazzi
-    	inizializzaGestioneMazzi();
     	
     	//Partite in corso
     	inizializzaPartiteInCorso();
@@ -1046,35 +843,6 @@ public class AdminAreaController {
             int roundedValue = (int) (Math.round(newValue.doubleValue()));
             creditiSliderLabelTorneo.setText(String.valueOf(roundedValue*1000));
         });
-    }
-    
-    private void inizializzaGestioneMazzi() {
-    	
-    	nomeMazzo.setText(null);
-    	listaMazziButton.setValue(null);
-    	listaCarteDaAggiungere.setValue(null);
-    	listaCarteMazzo.setValue(null);
-    	infoCartaDelMazzo.setText(null);
-    	infoCartaDaAggiungere.setText(null);
-    	
-    	ObservableList<String> mazzi = FXCollections.observableArrayList();
-    	for(String s : DBAdmin.getAdmin().getMazzi())
-    		mazzi.add(s);
-    	mazzi.sort(null);
-    	listaMazziButton.setItems(mazzi);
-    	
-    	ObservableList<String> carteAggiunte = FXCollections.observableArrayList();
-    	for(int i = 0; i<carteMazzo.size(); i++)
-    		carteAggiunte.add(carteMazzo.get(i).getNome());
-    	carteAggiunte.sort(null);
-    	listaCarteMazzo.setItems(carteAggiunte);
-
-    	ObservableList<String> carteCreate = FXCollections.observableArrayList();
-    	for(String s : DBAdmin.getAdmin().getCarte())
-    		carteCreate.add(s);
-    	carteCreate.sort(null);
-    	listaCarteDaAggiungere.setItems(carteCreate);   
-
     }
     
     private void inizializzaPartiteInCorso(){

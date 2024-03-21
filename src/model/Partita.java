@@ -7,7 +7,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
-
 import controller.GestoreScene;
 
 public class Partita implements Serializable{
@@ -15,8 +14,6 @@ public class Partita implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private String vincitore;
-	private Mazzo mazzoTurno;
-	private Mazzo mazzo;
 	private int turno;
 	private boolean completata;
 	private int mano;
@@ -35,14 +32,12 @@ public class Partita implements Serializable{
 	private HashMap<String, Integer> crediti;
 	
 	public Partita() {
-		this.mazzo = null;
 		this.turno = 0;
 		this.mano = 0;
 		this.giocatori = null;
 		this.codice = null;
 		this.creditiIniziali = 0;
 		this.tavolo = 0;
-		this.mazzoTurno = null;
 		this.carteTavolo = null;
 		this.mani = null;
 		this.cittadine = null;
@@ -53,8 +48,7 @@ public class Partita implements Serializable{
 		this.setPuntata(0);
 	}
 
-	public Partita(Mazzo mazzo, ArrayList<String> giocatori, String codice, int creditiIniziali) {
-		this.mazzo = mazzo;
+	public Partita(ArrayList<String> giocatori, String codice, int creditiIniziali) {
 		this.giocatori = giocatori;
 		this.codice = codice;
 		this.turno = 1;
@@ -64,7 +58,6 @@ public class Partita implements Serializable{
 		this.creditiIniziali = creditiIniziali;
 		this.mani = creaManiIniziali(giocatori);
 		this.giocatoriEliminati = new ArrayList<>();
-		this.mazzoTurno = null;
 		this.carteTavolo = null;
 		this.classifica = new ArrayList<String>();
 		this.giocatoriPuntata = null;
@@ -98,14 +91,6 @@ public class Partita implements Serializable{
 		}
 		
 		return cit;
-	}
-	
-	public Mazzo getMazzo() {
-		return mazzo;
-	}
-
-	public void setMazzo(Mazzo mazzo) {
-		this.mazzo = mazzo;
 	}
 
 	public int getTurno() {
@@ -182,10 +167,7 @@ public class Partita implements Serializable{
 		puntata = 0;		
 		giocatoriTurno = new ArrayList<String>();
 		giocatoriTurno.addAll(giocatori);
-		mazzoTurno = new Mazzo();
-		mazzoTurno.getCarte().addAll(mazzo.getCarte());
 		mano = 0;
-		mazzoTurno.mix();
 		giocatoriPuntata = new ArrayList<String>();
 		carteTavolo = creaTavolo();
 		mani = creaMani();

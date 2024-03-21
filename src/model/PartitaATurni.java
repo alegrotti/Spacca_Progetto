@@ -9,8 +9,8 @@ public class PartitaATurni extends Partita implements Serializable{
 	
 	private int turni;
 
-	public PartitaATurni(Mazzo mazzo, ArrayList<String> giocatori, String codice, int turni, int creditiIniziali) {
-		super(mazzo, giocatori, codice, creditiIniziali);
+	public PartitaATurni(ArrayList<String> giocatori, String codice, int turni, int creditiIniziali) {
+		super(giocatori, codice, creditiIniziali);
 		this.setTurni(turni);
 	}
 

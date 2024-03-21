@@ -48,7 +48,6 @@ public class ScegliCartaController {
         	String s = selectedRadioButton.getText();
         	Carta c = DBCarte.getCarta(s);
         	partita.getCittadina(winner).aggiungiCarta(c);
-        	partita.getMazzo().rimuoviCarta(c);
         	partita.nextTurn();
         	DBPartite.aggiungiPartita(partita);     	
         	GestoreScene.prossimoTurnoPopup(partita);
