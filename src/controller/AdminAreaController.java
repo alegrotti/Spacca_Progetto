@@ -577,7 +577,7 @@ public class AdminAreaController {
 	    	for(String s : giocatoriAggiunti)
 	    		giocatori2.add(s);
 	    	giocatori2.sort(null);
-	    	listaGiocatoriPartita.setItems(giocatori2);
+	    	listaGiocatoriTorneo.setItems(giocatori2);
 	    	
 	    	giocatoriDaAggiungere.setValue(null);
 	    	
@@ -725,7 +725,7 @@ public class AdminAreaController {
     @FXML
     void aggiungiGiocatoreTorneo(ActionEvent event) {
     	try {
-    		String giocatore = giocatoriDaAggiungere.getValue();
+    		String giocatore = giocatoriDaAggiungereTorneo.getValue();
     		
     		if (giocatore.equals(""))
     			throw new Exception();
@@ -738,7 +738,7 @@ public class AdminAreaController {
 	    	giocatori2.sort(null);
 	    	listaGiocatoriTorneo.setItems(giocatori2);
 	    	
-	    	giocatoriDaAggiungere.setValue(null);
+	    	giocatoriDaAggiungereTorneo.setValue(null);
 	    	
     	}catch(Exception e) {
     		GestoreScene.messaggioErrore("Errore aggiunta giocatore");
@@ -1008,7 +1008,6 @@ public class AdminAreaController {
     	scegliMazzoTorneoButton.setValue(null);
     	giocatoriDaAggiungere.setValue(null);
     	codiceTorneoField.setText(null);
-    	System.out.println("1");
     	
     	ObservableList<String> mazzi = FXCollections.observableArrayList();
     	for(String s : DBAdmin.getAdmin().getMazzi())
@@ -1024,7 +1023,6 @@ public class AdminAreaController {
     		giocatori1.add(s);
     	giocatori1.sort(null);
     	giocatoriDaAggiungere.setItems(giocatori1);
-    	System.out.println("2");
     	ObservableList<String> giocatori2 = FXCollections.observableArrayList();
     	for(String s : giocatoriAggiunti)
     		giocatori2.add(s);
@@ -1032,13 +1030,11 @@ public class AdminAreaController {
     	listaGiocatoriTorneo.setItems(giocatori2);
     	
     	hBoxSliderTorneo.setVisible(false);
-    	System.out.println("2.5");
     	
     	numeroSliderTorneo.setText(String.valueOf((int) sliderTorneo.getValue()));
     	sliderTorneo.valueProperty().addListener((observable, oldValue, newValue) -> {
             int roundedValue = (int) Math.round(newValue.doubleValue());
             numeroSliderTorneo.setText(String.valueOf(roundedValue));
-            System.out.println("3");
         });
     	
     	sliderCreditiTorneo.setMin(1);
@@ -1048,7 +1044,6 @@ public class AdminAreaController {
     	sliderCreditiTorneo.valueProperty().addListener((observable, oldValue, newValue) -> {
             int roundedValue = (int) (Math.round(newValue.doubleValue()));
             creditiSliderLabelTorneo.setText(String.valueOf(roundedValue*1000));
-            System.out.println("4");
         });
     }
     
