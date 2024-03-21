@@ -97,6 +97,16 @@ public class DBAdmin {
 		}
 	}
 	
+	public static void aggiungiTorneo(Torneo t) {
+		try {
+			admin = (Admin)GestioneFile.caricaDB(DATABASE_PATH);
+			admin.aggiungiTorneo(t);
+			GestioneFile.salvaDB(admin,DATABASE_PATH);
+		}catch(Exception e) {
+			GestoreScene.messaggioErrore("Impossibile aggiungere torneo");
+		}
+	}
+	
 	public static void eliminaGiocatore(String g) {
 		try {
 			admin = (Admin)GestioneFile.caricaDB(DATABASE_PATH);
@@ -124,6 +134,16 @@ public class DBAdmin {
 			GestioneFile.salvaDB(admin,DATABASE_PATH);
 		} catch (Exception e) {
 			GestoreScene.messaggioErrore("Errore eliminazione partita");
+		}
+	}
+	
+	public static void eliminaTorneo(String t) {
+		try {
+			admin = (Admin)GestioneFile.caricaDB(DATABASE_PATH);
+			admin.eliminaTorneo(t);
+			GestioneFile.salvaDB(admin,DATABASE_PATH);
+		} catch (Exception e) {
+			GestoreScene.messaggioErrore("Errore eliminazione torneo");
 		}
 	}
 	

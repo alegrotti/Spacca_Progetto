@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="950.0" stylesheets="@adminarea.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminAreaController">
+<Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="950.0" stylesheets="@adminarea.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminAreaController">
    <children>
       <VBox fx:id="centralBox" alignment="CENTER" layoutX="50.0" layoutY="42.0" prefHeight="550.0" prefWidth="850.0">
          <children>
@@ -267,7 +267,7 @@
                                                 <Insets top="20.0" />
                                              </VBox.margin>
                                              <children>
-                                                <Label fx:id="fraseSliderLabel" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="130.0" wrapText="true" />
+                                                <Label fx:id="fraseSliderLabel" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="106.0" />
                                                 <Slider fx:id="sliderPartita" majorTickUnit="5.0" max="50.0" maxWidth="422.0" min="4.0" minorTickCount="5" prefHeight="6.0" prefWidth="188.0">
                                                    <HBox.margin>
                                                       <Insets left="10.0" />
@@ -276,9 +276,9 @@
                                                 <Label fx:id="numeroSliderPartitaLabel" />
                                              </children>
                                           </HBox>
-                                          <HBox alignment="CENTER" layoutX="10.0" layoutY="124.0" prefHeight="34.0" prefWidth="418.0">
+                                          <HBox alignment="CENTER" layoutX="10.0" layoutY="124.0">
                                              <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="116.0" text="Crediti iniziali:" wrapText="true" />
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="83.0" text="Crediti iniziali:" />
                                                 <Slider fx:id="sliderCreditiPartita" blockIncrement="500.0" majorTickUnit="500.0" max="10000.0" maxWidth="422.0" min="1000.0" minorTickCount="500" prefHeight="14.0" prefWidth="244.0">
                                                    <HBox.margin>
                                                       <Insets left="10.0" />
@@ -296,8 +296,8 @@
                                        <children>
                                           <HBox alignment="CENTER">
                                              <children>
-                                                <Label prefHeight="32.0" prefWidth="109.0" text="Giocatori da aggiungere: " textAlignment="RIGHT" wrapText="true" />
-                                                <ComboBox fx:id="giocatoriDaAggiungere" prefHeight="30.0" prefWidth="176.0" />
+                                                <Label text="Giocatori da aggiungere: " />
+                                                <ComboBox fx:id="giocatoriDaAggiungere" prefHeight="30.0" prefWidth="132.0" />
                                                 <Button mnemonicParsing="false" onAction="#aggiungiGiocatorePartita" prefHeight="28.0" prefWidth="144.0" text="Aggiungi giocatore">
                                                    <HBox.margin>
                                                       <Insets left="10.0" />
@@ -310,7 +310,7 @@
                                                 <Insets top="15.0" />
                                              </VBox.margin>
                                              <children>
-                                                <Label prefHeight="49.0" prefWidth="115.0" text="Giocatori della partita: " textAlignment="RIGHT" wrapText="true">
+                                                <Label prefHeight="30.0" prefWidth="135.0" text="Giocatori della partita: " textAlignment="RIGHT" wrapText="true">
                                                    <HBox.margin>
                                                       <Insets />
                                                    </HBox.margin></Label>
