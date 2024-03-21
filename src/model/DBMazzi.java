@@ -22,6 +22,12 @@ public class DBMazzi {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public static HashMap<String,Mazzo> Mazzi(){
+		mazzi = (HashMap<String,Mazzo>)GestioneFile.caricaDB(DATABASE_PATH);
+		return mazzi;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public static Mazzo getMazzo(String mazzo) {
 		try {
 			mazzi = (HashMap<String,Mazzo>)GestioneFile.caricaDB(DATABASE_PATH);

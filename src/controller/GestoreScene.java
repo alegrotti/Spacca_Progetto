@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Building;
 import model.Carta;
 import model.City;
 import model.Partita;
@@ -128,10 +129,13 @@ public class GestoreScene {
 			ProssimoTurnoController c = loader.getController();
 			c.impostaPartita(p);
 			
-			if(p.checkWinner())
+			if(p.isCompletata())
 				c.inizializzaSchermataFinale();
-			else
-				c.inizializzaSchermata();
+			else 
+				if(p.checkWinner()) {
+					c.inizializzaSchermataFinale();
+				}else
+					c.inizializzaSchermata();
 				
 			Scene prossimoTurno= new Scene(root);
 			prossimoTurno.getStylesheets().add("/view/prossimoturno.css");
@@ -162,6 +166,7 @@ public class GestoreScene {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/MostraCittadina.fxml"));
 			Parent root = loader.load();
 			MostraCittadinaController controller =  loader.getController();
+			
 			controller.importaCitta(c);
 			controller.creaSchermata();
 			
@@ -184,7 +189,8 @@ public class GestoreScene {
 				event.consume();
 	        });
 		} catch (Exception e) {
-			messaggioErrore("Errore apertura finestra");
+			System.out.println(e.getMessage());
+			//messaggioErrore("Errore apertura finestra");
 		}
 	}
 	
@@ -230,10 +236,12 @@ public class GestoreScene {
 			ArrayList<String> s = new ArrayList<String>();
 			
 			for(Carta carta : partita.getCarteTavolo())
-				s.add(carta.getNome());
+				if(carta instanceof Building)
+					s.add(carta.getNome());
 			
 			for(Carta carta : partita.getMano(g))
-				s.add(carta.getNome());
+				if(carta instanceof Building)
+					s.add(carta.getNome());
 			
 			c.inizializzaSchermata(s,partita,g);
 			
@@ -275,6 +283,7 @@ public class GestoreScene {
 	        setScene(scenaHomepage,true,(" - Game "+p.getCodice()));
 		} catch (Exception e) {
 	    	messaggioErrore("Errore apertura finestra");
+			//System.out.println(e.getMessage());
 		}
 	}
 	
@@ -325,6 +334,38 @@ public class GestoreScene {
 		}	
 	}
 	
+	public static void messaggioCPU(boolean x , int puntata, Partita partita ,String giocatore) {
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/MessaggioCPU.fxml"));
+			Parent root = loader.load();
+			
+			MessaggioCPUController controller = loader.getController();
+			controller.impostaTesto(x,puntata,partita,giocatore);
+			
+			Scene exitScene = new Scene(root);
+			exitScene.getStylesheets().add("/view/messaggiocpu.css");
+			
+			Stage exitStage = new Stage();
+			exitStage.setMaximized(false);
+			exitStage.centerOnScreen();
+			exitStage.setResizable(false);
+			exitStage.setScene(exitScene);
+			exitStage.initOwner(Main.parentWindow);
+			exitStage.initModality(Modality.APPLICATION_MODAL);
+			exitStage.setTitle("SPACCA - Mossa CPU");
+	        Image image = new Image("/immagini/icon.jpg");
+	        exitStage.getIcons().add(image);
+			
+	        exitStage.show();
+	        
+	        exitStage.setOnCloseRequest(event -> {
+				event.consume();
+	        });
+		} catch (Exception e) {
+			messaggioErrore("Errore apertura finestra");
+		}	
+	}
+	
 	public static void vincitoreTurno(Partita p, boolean b, String winner,ArrayList<String> g) {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/VincitoreTurno.fxml"));
@@ -342,10 +383,10 @@ public class GestoreScene {
 			exitScene.getStylesheets().add("/view/vincitoreturno.css");
 			
 			Stage exitStage = new Stage();
+			exitStage.setScene(exitScene);
 			exitStage.setMaximized(false);
 			exitStage.centerOnScreen();
 			exitStage.setResizable(false);
-			exitStage.setScene(exitScene);
 			exitStage.initOwner(Main.parentWindow);
 			exitStage.initModality(Modality.APPLICATION_MODAL);
 			exitStage.setTitle("SPACCA - Vincitore Turno");
@@ -405,6 +446,8 @@ public class GestoreScene {
 			Scene exitScene = new Scene(root);
 			exitScene.getStylesheets().add("/view/messaggio.css");
 		
+			Main.parentWindow.hide();
+			
 			setScene(exitScene,false,(" - Vincitore partita "+partita.getCodice()));
 			
 			Main.parentWindow.setOnCloseRequest(event -> {

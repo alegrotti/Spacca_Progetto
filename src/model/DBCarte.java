@@ -2,59 +2,48 @@ package model;
 
 import java.util.HashMap;
 import java.util.Set;
-import controller.GestoreScene;
+import java.io.Serializable;
 
-public class DBCarte {
+@SuppressWarnings("unchecked")
+public class DBCarte implements Serializable {
 
-	public static final String DATABASE_PATH = "log/carteDatabase.dat";
+    private static final long serialVersionUID = 1L; // Versione della serializzazione
 
-	private static HashMap<String,Carta> carte;
-	
-	public static void aggiornaDB() {
-		carte = new HashMap<String,Carta>();
-		GestioneFile.salvaDB(carte,DATABASE_PATH);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public static Set<String> getCarte(){
-		carte = (HashMap<String,Carta>)GestioneFile.caricaDB(DATABASE_PATH);
-		return carte.keySet();
-	}
-	
-	@SuppressWarnings("unchecked")
-	public static Carta getCarta(String carta) {
-		try {
-			carte = (HashMap<String,Carta>)GestioneFile.caricaDB(DATABASE_PATH);
-			return carte.get(carta);
-		} catch (Exception e) {
-			GestoreScene.messaggioErrore("Errore caricamento carta");
-		}
-		return null;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public static void aggiungiCarta(Carta c) {
-		try {
-			carte = (HashMap<String,Carta>)GestioneFile.caricaDB(DATABASE_PATH);
-			System.out.println("Lettura file ok");
-			carte.put(c.getNome(),c);
-			System.out.println("Aggiunta carta");
-			GestioneFile.salvaDB(carte,DATABASE_PATH);
-			System.out.println("Salvataggio db ok");
-		} catch (Exception e) {
-			GestoreScene.messaggioErrore("Errore aggiunta carta");
-		}
-	}
-	
-	@SuppressWarnings("unchecked")
-	public static void eliminaCarta(String c) {
-		try {
-			carte = (HashMap<String,Carta>)GestioneFile.caricaDB(DATABASE_PATH);
-			carte.remove(c);
-			GestioneFile.salvaDB(carte,DATABASE_PATH);
-		} catch (Exception e) {
-			GestoreScene.messaggioErrore("Errore aggiunta carta");
-		}
-	}
-	
+    public static final String DATABASE_PATH = "log/carteDatabase.dat";
+
+    private static HashMap<String, Carta> carte;
+
+    static {
+        // Inizializza il database al caricamento della classe
+        carte = (HashMap<String, Carta>) GestioneFile.caricaDB(DATABASE_PATH);
+        if (carte == null) {
+            carte = new HashMap<String, Carta>();
+        }
+    }
+
+    public static void aggiornaDB() {
+        GestioneFile.salvaDB(carte, DATABASE_PATH);
+    }
+
+    public static Set<String> getCarte() {
+        return carte.keySet();
+    }
+
+    public static HashMap<String, Carta> Carte() {
+        return carte;
+    }
+
+    public static Carta getCarta(String nomeCarta) {
+        return carte.get(nomeCarta);
+    }
+
+    public static void aggiungiCarta(Carta carta) {
+        carte.put(carta.getNome(), carta);
+        aggiornaDB();
+    }
+
+    public static void eliminaCarta(String nomeCarta) {
+        carte.remove(nomeCarta);
+        aggiornaDB();
+    }
 }

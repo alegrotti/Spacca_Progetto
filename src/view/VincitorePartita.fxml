@@ -2,13 +2,14 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<AnchorPane fx:id="sfondo" prefHeight="451.0" prefWidth="690.0" stylesheets="@vincitorepartita.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VincitorePartitaController">
+<AnchorPane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="669.0" prefWidth="844.0" stylesheets="@vincitorepartita.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VincitorePartitaController">
    <children>
       <VBox fx:id="sfondoBianco" alignment="CENTER" prefHeight="351.0" prefWidth="605.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
          <children>
@@ -18,11 +19,35 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </Line>
-            <HBox alignment="CENTER" prefHeight="271.0" prefWidth="651.0">
+            <VBox>
                <VBox.margin>
                   <Insets />
                </VBox.margin>
-            </HBox>
+               <children>
+                  <HBox fx:id="hBoxCity" alignment="CENTER" prefHeight="44.0" prefWidth="354.0">
+                     <children>
+                        <ComboBox fx:id="comboBox" prefHeight="32.0" prefWidth="150.0" />
+                        <Button fx:id="mostraCittadinaButton" mnemonicParsing="false" onAction="#mostraCittadina" prefHeight="25.0" prefWidth="116.0" text="Mostra cittadina">
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="414.0" prefWidth="806.0">
+                     <children>
+                        <Label fx:id="classificato1" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" textAlignment="CENTER" />
+                        <Label fx:id="classificato2" alignment="CENTER" layoutX="220.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" textAlignment="CENTER" />
+                        <Label fx:id="classificato3" alignment="CENTER" layoutX="220.0" layoutY="50.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" textAlignment="CENTER" />
+                        <Label fx:id="restoClassifica" alignment="CENTER" layoutX="220.0" layoutY="90.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="111.0" prefWidth="383.0" textAlignment="CENTER" />
+                        <Label fx:id="eliminati" alignment="CENTER" layoutX="220.0" layoutY="130.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="105.0" prefWidth="383.0" textAlignment="CENTER" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="25.0" />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+            </VBox>
             <HBox alignment="CENTER" prefHeight="48.0" prefWidth="660.0">
                <children>
                   <Button fx:id="tornaHomeButton" layoutX="174.0" layoutY="22.0" mnemonicParsing="false" onAction="#tornaHome" prefHeight="38.0" prefWidth="307.0" text="Torma alla schermata home e archivia partita">

@@ -2,7 +2,11 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 import controller.GestoreScene;
 
@@ -17,6 +21,7 @@ public class Partita implements Serializable{
 	private boolean completata;
 	private int mano;
 	private int puntata;
+	private ArrayList<String> classifica;
 	private ArrayList<String> giocatori;
 	private ArrayList<String> giocatoriTurno;
 	private ArrayList<String> giocatoriEliminati;
@@ -61,6 +66,7 @@ public class Partita implements Serializable{
 		this.giocatoriEliminati = new ArrayList<>();
 		this.mazzoTurno = null;
 		this.carteTavolo = null;
+		this.classifica = new ArrayList<String>();
 		this.giocatoriPuntata = null;
 		this.vincitore = null;
 		this.completata = false;
@@ -152,6 +158,7 @@ public class Partita implements Serializable{
 				crediti.put(p, x-puntata);
 			}
 		}
+		System.out.println("Crediti aggiunti al tavolo e tolti ai partecipanti");
 	}
 	
 	public void aggiornaCreditiTurno(String player, int p) {
@@ -162,6 +169,7 @@ public class Partita implements Serializable{
 		}else if(puntata==p) {
 			giocatoriPuntata.add(player);
 		}
+		System.out.println("Puntata aggiornata");
 	}
 	
 	public int getTavolo() {
@@ -182,6 +190,7 @@ public class Partita implements Serializable{
 		carteTavolo = creaTavolo();
 		mani = creaMani();
 		
+		System.out.println("Turno inizializzato");
 		return giocatoriTurno.get(0);
 	}
 	
@@ -190,8 +199,10 @@ public class Partita implements Serializable{
 			mano++;
 			puntata = 0;
 			giocatoriPuntata.removeAll(giocatoriPuntata);
+			System.out.println("Turno aggiornato");
 			return giocatoriTurno.get(0);
 		}else {
+			System.out.println("Turno terminato");
 			return null;
 		}
 	}
@@ -209,24 +220,37 @@ public class Partita implements Serializable{
 	}
 	
 	public Carta[] creaTavolo() {
+		
+		HashMap<String,Carta> map = DBCarte.Carte();
+		List<String> keysAsArray = new ArrayList<String>(map.keySet());
+		Random r = new Random();
+		
 		Carta[] carte = new Carta[3];
-		for (int i = 0 ; i < carte.length ; i++) {
-			carte[i] = mazzoTurno.getCarte().get(0);
-			mazzoTurno.getCarte().remove(0);
-		}
+		for (int i = 0 ; i < carte.length ; i++)
+			carte[i] = map.get(keysAsArray.get(r.nextInt(keysAsArray.size())));
+			
+		System.out.println("Tavolo creato");
+		
 		return carte;
+		
 	}
 	
 	public HashMap<String,Carta[]> creaMani() {
+		
+		HashMap<String,Carta> map = DBCarte.Carte();
+		List<String> keysAsArray = new ArrayList<String>(map.keySet());
+		Random r = new Random();
+		
 		HashMap<String,Carta[]> m = new HashMap<String,Carta[]>();
 		for(String g : giocatori) {
 			Carta[] carte = new Carta[4];
-			for (int i = 0 ; i < carte.length ; i++) {
-				carte[i] = mazzoTurno.getCarte().get(0);
-				mazzoTurno.getCarte().remove(0);
-			}
+			for (int i = 0 ; i < carte.length ; i++)
+				carte[i] = map.get(keysAsArray.get(r.nextInt(keysAsArray.size())));
 			m.put(g, carte);
 		}
+		
+		System.out.println("Mani create");
+		
 		return m;
 	}
 
@@ -254,9 +278,10 @@ public class Partita implements Serializable{
 	public String nextPlayer(String s) {
 		boolean trovato = false;
 		for (String str : giocatoriTurno) {
-            if (trovato)
+            if (trovato) {
+            	System.out.println("Turno di "+s+" terminato, passato a "+str);
                 return str;
-            if (str.equals(s))
+            }if (str.equals(s))
                 trovato = true;
         }
 		
@@ -267,6 +292,8 @@ public class Partita implements Serializable{
 		else
 			vincitore = null;
 
+		System.out.println("Giocatori terminati in questa mano");
+		
 		return null;
 	}
 	
@@ -309,6 +336,9 @@ public class Partita implements Serializable{
 			
 		}
 		vincitore = w.getNome();
+		
+		System.out.println("Vincitore del turno trovato");
+		
 		return vincitore;
 	}
 	
@@ -320,6 +350,7 @@ public class Partita implements Serializable{
 			w = c.compareTo(w);
 		}
 		vincitore = w.getNome();
+		System.out.println("Vincitore della partita trovato");
 		return vincitore;
 	}
 	
@@ -338,36 +369,72 @@ public class Partita implements Serializable{
 	}
 	
 	public boolean checkWinner() {
+		System.out.println("Controllo del vincitore");
 		if(this instanceof PartitaATurni) {
 			PartitaATurni partita = (PartitaATurni)this;
-			if(getTurno()>partita.getTurni())
+			if(getTurno()>partita.getTurni()) {
+				creaClassifica();
 				return true;
-			else
-				if(giocatori.size()==1)
+			}else
+				if(giocatori.size()==1) {
+					creaClassifica();
 					return true;
-				else if(giocatori.size()==0)
+				}else if(giocatori.size()==0) {
+					creaClassifica();
 					return true;
-				else
+				}else
 					return false;
 		}else if(this instanceof PartitaAPalazzi) {
 			PartitaAPalazzi partita = (PartitaAPalazzi)this;
-			if(cityMaggiore()==partita.getPalazzi())
+			if(cityMaggiore()==partita.getPalazzi()) {
+				creaClassifica();
 				return true;
-			else
-				if(giocatori.size()==1)
+			}else
+				if(giocatori.size()==1) {
+					creaClassifica();
 					return true;
-				else if(giocatori.size()==0)
+				}else if(giocatori.size()==0) {
+					creaClassifica();
 					return true;
-				else
+				}else
 					return false;
 		}else {
 			GestoreScene.messaggioErrore("Partita non caricata correttamente");
 			return false;
 		}
 	}
+	
+	public void creaClassifica() {
+		
+		chiudiPartita();
+
+		classifica = new ArrayList<>(giocatori);
+
+	    Collections.sort(classifica, new Comparator<String>() {
+	        @Override
+	        public int compare(String giocatore1, String giocatore2) {
+	            City cityGiocatore1 = cittadine.get(giocatore1);
+	            City cityGiocatore2 = cittadine.get(giocatore2);
+
+	            int confrontoPunteggio = Integer.compare(cityGiocatore2.getPunteggio(), cityGiocatore1.getPunteggio());
+	            if (confrontoPunteggio != 0) {
+	                return confrontoPunteggio; 
+	            } else {
+	                return Integer.compare(crediti.get(giocatore2), crediti.get(giocatore1));
+	            }
+	        }
+	    });
+	    
+	    System.out.println("Classifica della partita creata");
+
+	}
 
 	public boolean isCompletata() {
 		return completata;
+	}
+
+	public ArrayList<String> getClassifica() {
+		return classifica;
 	}
 	
 }

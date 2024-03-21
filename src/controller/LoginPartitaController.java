@@ -34,6 +34,7 @@ public class LoginPartitaController {
     				Partita p = DBPartite.getPartita(codice);
     				GestoreScene.campoDaGioco("", p, 0);
     		    	GestoreScene.prossimoTurnoPopup(p);
+    		    	System.out.println("Partita "+codice+" caricata");
     	    	}catch(Exception e) {
     	    		GestoreScene.messaggioErrore("Errore caricamento partita");
     	    	}
