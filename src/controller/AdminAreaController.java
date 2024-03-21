@@ -22,8 +22,6 @@ import model.Partita;
 import model.PartitaAPalazzi;
 import model.PartitaATurni;
 import model.Torneo;
-import model.TorneoAPalazzi;
-import model.TorneoATurni;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -748,7 +746,6 @@ public class AdminAreaController {
     @FXML
     void aggiungiTorneo(ActionEvent event) {
     	try {
-			Mazzo m = DBMazzi.getMazzo(scegliMazzoTorneoButton.getValue());
 			String codice = codiceTorneoField.getText();
 			int n = Integer.parseInt(creditiSliderLabelTorneo.getText());
 			if(n<1000)
@@ -759,7 +756,7 @@ public class AdminAreaController {
 						int turni = Integer.parseInt(numeroSliderTorneo.getText());
 						if(giocatoriAggiunti.size()>1) {
 							giocatoriAggiunti.sort(null);
-							Torneo t = new TorneoATurni(m,giocatoriAggiunti,codice,turni,n);
+							Torneo t = new Torneo("Turni",giocatoriAggiunti,codice,turni,n);
 							DBTornei.aggiungiTorneo(t);
 							DBAdmin.aggiungiTorneo(t);
 							inizializzaSchermata();
@@ -769,7 +766,7 @@ public class AdminAreaController {
 					}else if(tipoTorneoButton.getValue().equals("A palazzi")) {
 						int palazzi = Integer.parseInt(numeroSliderTorneo.getText());
 						if(giocatoriAggiunti.size()>1) {	
-							Torneo t = new TorneoAPalazzi(m,giocatoriAggiunti,codice,palazzi,n);
+							Torneo t = new Torneo("Palazzi",giocatoriAggiunti,codice,palazzi,n);
 							DBTornei.aggiungiTorneo(t);
 							DBAdmin.aggiungiTorneo(t);
 							inizializzaSchermata();
@@ -838,7 +835,7 @@ public class AdminAreaController {
 
 	    codiceTorneoField.setText(new String(codeTorneo));
     }
-    
+        
     //Torneo in corso
     @FXML
     void mostraTorneoInCorso(ActionEvent event) {
@@ -850,6 +847,7 @@ public class AdminAreaController {
     		for(String s : t.getGiocatori())
     			gioc+=(s+"\n");
     		giocatoriLabelTorneo.setText(gioc);
+    		/*
     		if(t instanceof TorneoAPalazzi) {
     			TorneoAPalazzi t1 = (TorneoAPalazzi) t;
     			tipoTorneoLabel.setText("A palazzi - "+t1.getPalazzi()+" palazzi");
@@ -858,7 +856,9 @@ public class AdminAreaController {
     			TorneoATurni t1 = (TorneoATurni) t;
     			tipoTorneoLabel.setText("A turni - "+t1.getTurni()+" turni");
     		}
+    		*/
     		creditiInizialiLabelTorneo.setText(t.getCreditiIniziali()+" crediti");
+    		/*
     		int turnoCorrente = t.getTurno();
     		if (turnoCorrente==0)
     			statoTorneoLabel.setText("Da iniziare");
@@ -866,6 +866,7 @@ public class AdminAreaController {
     			statoTorneoLabel.setText("In corso - Turno "+turnoCorrente);
     		else
     			statoTorneoLabel.setText("Terminata");
+    		*/
     	}
     }
     
@@ -1022,7 +1023,7 @@ public class AdminAreaController {
     	for(String s : DBAdmin.getAdmin().getGiocatori())
     		giocatori1.add(s);
     	giocatori1.sort(null);
-    	giocatoriDaAggiungere.setItems(giocatori1);
+    	giocatoriDaAggiungereTorneo.setItems(giocatori1);
     	ObservableList<String> giocatori2 = FXCollections.observableArrayList();
     	for(String s : giocatoriAggiunti)
     		giocatori2.add(s);

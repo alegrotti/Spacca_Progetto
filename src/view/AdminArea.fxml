@@ -457,7 +457,7 @@
                                           </HBox>
                                           <HBox alignment="CENTER" layoutX="10.0" layoutY="124.0">
                                              <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="83.0" text="Crediti iniziali:" />
+                                                <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="114.0" text="Crediti iniziali:" wrapText="true" />
                                                 <Slider fx:id="sliderCreditiTorneo" blockIncrement="500.0" majorTickUnit="500.0" max="10000.0" maxWidth="422.0" min="1000.0" minorTickCount="500" prefHeight="14.0" prefWidth="244.0">
                                                    <HBox.margin>
                                                       <Insets left="10.0" />
@@ -475,8 +475,8 @@
                                        <children>
                                           <HBox alignment="CENTER">
                                              <children>
-                                                <Label text="Giocatori da aggiungere: " />
-                                                <ComboBox fx:id="giocatoriDaAggiungereTorneo" prefHeight="30.0" prefWidth="132.0" />
+                                                <Label prefHeight="32.0" prefWidth="108.0" text="Giocatori da aggiungere: " textAlignment="RIGHT" wrapText="true" />
+                                                <ComboBox fx:id="giocatoriDaAggiungereTorneo" prefHeight="30.0" prefWidth="187.0" />
                                                 <Button mnemonicParsing="false" onAction="#aggiungiGiocatoreTorneo" prefHeight="28.0" prefWidth="144.0" text="Aggiungi giocatore">
                                                    <HBox.margin>
                                                       <Insets left="10.0" />
@@ -489,7 +489,7 @@
                                                 <Insets top="15.0" />
                                              </VBox.margin>
                                              <children>
-                                                <Label prefHeight="30.0" prefWidth="105.0" text="Giocatori del torneo: " textAlignment="RIGHT" wrapText="true">
+                                                <Label prefHeight="48.0" prefWidth="95.0" text="Giocatori del torneo: " textAlignment="RIGHT" wrapText="true">
                                                    <HBox.margin>
                                                       <Insets />
                                                    </HBox.margin>
@@ -518,7 +518,7 @@
                         </VBox>
                      </content>
                   </Tab>
-                  <Tab text="Toneri in corso">
+                  <Tab text="Tornei in corso">
                      <content>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
