@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="950.0" stylesheets="@adminarea.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminAreaController">
+<Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="950.0" stylesheets="@adminarea.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminAreaController">
    <children>
       <VBox fx:id="centralBox" alignment="CENTER" layoutX="50.0" layoutY="42.0" prefHeight="550.0" prefWidth="850.0">
          <children>
@@ -154,15 +154,6 @@
                                  <children>
                                     <VBox alignment="CENTER" prefHeight="146.0" prefWidth="418.0">
                                        <children>
-                                          <HBox alignment="CENTER">
-                                             <VBox.margin>
-                                                <Insets />
-                                             </VBox.margin>
-                                             <children>
-                                                <Label text="Scegli mazzo: " />
-                                                <ComboBox fx:id="scegliMazzoPartitaButton" prefHeight="30.0" prefWidth="205.0" />
-                                             </children>
-                                          </HBox>
                                           <HBox alignment="CENTER">
                                              <VBox.margin>
                                                 <Insets top="20.0" />
@@ -333,15 +324,6 @@
                                  <children>
                                     <VBox alignment="CENTER" prefHeight="146.0" prefWidth="418.0">
                                        <children>
-                                          <HBox alignment="CENTER">
-                                             <VBox.margin>
-                                                <Insets />
-                                             </VBox.margin>
-                                             <children>
-                                                <Label text="Scegli mazzo: " />
-                                                <ComboBox fx:id="scegliMazzoTorneoButton" prefHeight="30.0" prefWidth="205.0" />
-                                             </children>
-                                          </HBox>
                                           <HBox alignment="CENTER">
                                              <VBox.margin>
                                                 <Insets top="20.0" />

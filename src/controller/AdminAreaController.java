@@ -180,12 +180,6 @@ public class AdminAreaController {
     private Button savePlayerButton;
 
     @FXML
-    private ComboBox<String> scegliMazzoPartitaButton;
-
-    @FXML
-    private ComboBox<String> scegliMazzoTorneoButton;
-
-    @FXML
     private ComboBox<String> selezionaDifficoltaButton;
 
     @FXML
@@ -758,15 +752,8 @@ public class AdminAreaController {
     
     private void inizializzaNuovaPartita() {
     	tipoPartitaButton.setValue(null);
-    	scegliMazzoPartitaButton.setValue(null);
     	giocatoriDaAggiungere.setValue(null);
     	codicePartitaField.setText(null);
-    	
-    	ObservableList<String> mazzi = FXCollections.observableArrayList();
-    	for(String s : DBAdmin.getAdmin().getMazzi())
-    		mazzi.add(s);
-    	mazzi.sort(null);
-    	scegliMazzoPartitaButton.setItems(mazzi);
     	
     	ObservableList<String> tipoPartita = FXCollections.observableArrayList("A turni","A palazzi");
     	tipoPartitaButton.setItems(tipoPartita);
@@ -803,15 +790,8 @@ public class AdminAreaController {
     
     private void inizializzaNuovoTorneo() {
     	tipoTorneoButton.setValue(null);
-    	scegliMazzoTorneoButton.setValue(null);
     	giocatoriDaAggiungere.setValue(null);
     	codiceTorneoField.setText(null);
-    	
-    	ObservableList<String> mazzi = FXCollections.observableArrayList();
-    	for(String s : DBAdmin.getAdmin().getMazzi())
-    		mazzi.add(s);
-    	mazzi.sort(null);
-    	scegliMazzoTorneoButton.setItems(mazzi);
     	
     	ObservableList<String> tipoTorneo = FXCollections.observableArrayList("A turni","A palazzi");
     	tipoTorneoButton.setItems(tipoTorneo);
