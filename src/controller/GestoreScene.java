@@ -11,6 +11,7 @@ import model.Building;
 import model.Carta;
 import model.City;
 import model.Partita;
+import model.Torneo;
 
 public class GestoreScene {
 
@@ -148,6 +149,38 @@ public class GestoreScene {
 			popupStage.initOwner(Main.parentWindow);
 			popupStage.initModality(Modality.APPLICATION_MODAL);
 			popupStage.setTitle("SPACCA - Prossimo turno partita");
+	        Image image = new Image("/immagini/icon.jpg");
+	        popupStage.getIcons().add(image);
+	        
+	        popupStage.setOnCloseRequest(event -> {
+				event.consume();
+	        });
+	        
+	        popupStage.show();
+		} catch (Exception e) {
+			messaggioErrore("Errore apertura finestra");
+		}
+	}
+	
+	public static void tabelloneTorneo(Torneo t) {
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/TabelloneTorneo.fxml"));
+			Parent root = loader.load();
+			
+			TabelloneTorneoController c = loader.getController();
+			c.impostaTorneo(t);
+				
+			Scene prossimoTurno= new Scene(root);
+			prossimoTurno.getStylesheets().add("/view/tabellonetorneo.css");
+			
+			Stage popupStage = new Stage();
+			popupStage.setMaximized(false);
+			popupStage.centerOnScreen();
+			popupStage.setResizable(false);
+			popupStage.setScene(prossimoTurno);
+			popupStage.initOwner(Main.parentWindow);
+			popupStage.initModality(Modality.APPLICATION_MODAL);
+			popupStage.setTitle("SPACCA - Tabellone torneo "+t.getCodice());
 	        Image image = new Image("/immagini/icon.jpg");
 	        popupStage.getIcons().add(image);
 	        

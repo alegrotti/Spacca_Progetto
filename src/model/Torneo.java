@@ -13,6 +13,7 @@ public class Torneo implements Serializable{
 	private String tipo;
 	private int obiettivo;
 	private ArrayList<String> giocatori;
+	private HashMap<String, Giocatore> giocatoriCPU;
 	private ArrayList<String> giocatoriEliminati;
 	private String codice;
 	private int creditiIniziali;
@@ -22,6 +23,7 @@ public class Torneo implements Serializable{
 	
 	public Torneo() {
 		this.stato = 0;
+		this.giocatoriCPU = null;
 		this.tipo = null;
 		this.obiettivo = 0;
 		this.giocatori = null;
@@ -33,6 +35,7 @@ public class Torneo implements Serializable{
 
 	public Torneo(String tipo, ArrayList<String> giocatori, String codice, int obiettivo, int creditiIniziali) {
 		this.tipo = tipo;
+		this.giocatoriCPU = new HashMap<String,Giocatore> ();
 		this.giocatori = creaGiocatori(giocatori);
 		this.stato = creaStato(giocatori);
 		this.obiettivo = obiettivo;
@@ -53,6 +56,7 @@ public class Torneo implements Serializable{
 	}*/
 	
 	private ArrayList<String> creaGiocatori(ArrayList<String> g) {
+		
 		ArrayList<String> p = new ArrayList<String>();
 		
 		int x = 0;
@@ -73,7 +77,7 @@ public class Torneo implements Serializable{
 			
 			int b = r.nextInt(2);
 			
-			Giocatore player; // = new Giocatore("");;
+			Giocatore player;
 			
 			if (b == 0) {
 				player = new GiocatoreCPUFacile(name);
@@ -83,6 +87,7 @@ public class Torneo implements Serializable{
 			
 			p.add(player.getUsername());
 			
+			giocatoriCPU.put(player.getUsername(), player);
 			
 		}
 			

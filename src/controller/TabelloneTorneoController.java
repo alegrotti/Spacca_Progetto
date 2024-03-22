@@ -5,13 +5,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+//import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import model.Partita;
+import model.Torneo;
 
 public class TabelloneTorneoController {
 
+	private Torneo torneo;
+	
     @FXML
     private Button finaleButton;
 
@@ -204,6 +209,22 @@ public class TabelloneTorneoController {
     @FXML
     private ImageView homePageIcon;
     
+    @FXML
+    private VBox vboxIcon;
+    
+    public boolean impostaTorneo(Torneo t) {
+		try {
+			torneo = t;
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
+	}
+    
+    @FXML
+    void initialize() {
+    	Image homePage = new Image("/immagini/homepageIcon.png");
+    }
     
     @FXML
     void homepageIconClicked(MouseEvent event) {
