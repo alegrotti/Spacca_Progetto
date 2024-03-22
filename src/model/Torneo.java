@@ -11,34 +11,34 @@ public class Torneo implements Serializable{
 	private String vincitore;
 	private String tipo;
 	private int obiettivo;
-	private boolean completato;
 	private ArrayList<String> giocatori;
 	private ArrayList<String> giocatoriEliminati;
 	private String codice;
 	private int creditiIniziali;
+	private int stato;
 	private HashMap<String, Integer> crediti;
 	//private HashMap<String, Partita> partiteTorneo;
 	
 	public Torneo() {
+		this.stato = 0;
 		this.tipo = null;
 		this.obiettivo = 0;
 		this.giocatori = null;
 		this.codice = null;
 		this.creditiIniziali = 0;
-		this.completato = false;
 		this.crediti = null;
 		this.vincitore = null;
 	}
 
 	public Torneo(String tipo, ArrayList<String> giocatori, String codice, int obiettivo, int creditiIniziali) {
 		this.tipo = tipo;
+		this.giocatori = creaGiocatori(giocatori);
+		this.stato = creaStato(giocatori);
 		this.obiettivo = obiettivo;
-		this.giocatori = giocatori;
 		this.codice = codice;
 		this.creditiIniziali = creditiIniziali;
 		this.giocatoriEliminati = new ArrayList<>();
 		this.vincitore = null;
-		this.completato = false;
 		this.crediti = creaCreditiIniziali(giocatori,creditiIniziali);
 		//this.partiteTorneo = creaPartite();
 	}
@@ -50,6 +50,42 @@ public class Torneo implements Serializable{
 		}
 		return gio;
 	}*/
+	
+	private ArrayList<String> creaGiocatori(ArrayList<String> g) {
+		ArrayList<String> p = new ArrayList<String>();
+		
+		int x = 0;
+		if(g.size() <= 16) {
+			if(g.size() <= 8) {
+				if(g.size() <= 4)
+					x = (4-g.size());
+			}else
+				x = (8-g.size());
+		}else 
+			x = (16-g.size());
+	
+		for(int i = 0; i < x ; i++) {
+			
+			
+			
+			String name = "Giocatore"+1;
+			
+		}
+			
+		return p;
+	}
+	
+	private int creaStato(ArrayList<String> g) {
+		int x = 0;
+		if(g.size() == 4)
+			x = 2;
+		else if(g.size() == 8)
+			x = 3;	
+		else if(g.size() == 16)
+			x = 4;
+		
+		return x;
+	}
 	
 	private HashMap<String,Integer> creaCreditiIniziali(ArrayList<String> giocatori, int c){
 		HashMap<String,Integer> cre = new HashMap<String,Integer>();
@@ -91,10 +127,6 @@ public class Torneo implements Serializable{
 		return vincitore;
 	}
 	
-	public void chiudiTorneo() {
-		completato = true;
-	}
-	
 	/*
 	public boolean checkWinner() {
 		if(this instanceof TorneoATurni) {
@@ -125,10 +157,6 @@ public class Torneo implements Serializable{
 		}
 	}
 	*/
-
-	public boolean isCompletata() {
-		return completato;
-	}
 
 	public String getTipo() {
 		return tipo;
