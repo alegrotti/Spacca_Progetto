@@ -642,26 +642,13 @@ public class AdminAreaController {
     		for(String s : t.getGiocatori())
     			gioc+=(s+"\n");
     		giocatoriLabelTorneo.setText(gioc);
-    		/*
-    		if(t instanceof TorneoAPalazzi) {
-    			TorneoAPalazzi t1 = (TorneoAPalazzi) t;
-    			tipoTorneoLabel.setText("A palazzi - "+t1.getPalazzi()+" palazzi");
+    		if(t.getTipo().equals("A palazzi")) {
+    			tipoTorneoLabel.setText("A palazzi - "+t.getObiettivo()+" palazzi");
+    		}else {
+    			tipoTorneoLabel.setText("A turni - "+t.getObiettivo()+" turni");
     		}
-    		else {
-    			TorneoATurni t1 = (TorneoATurni) t;
-    			tipoTorneoLabel.setText("A turni - "+t1.getTurni()+" turni");
-    		}
-    		*/
     		creditiInizialiLabelTorneo.setText(t.getCreditiIniziali()+" crediti");
-    		/*
-    		int turnoCorrente = t.getTurno();
-    		if (turnoCorrente==0)
-    			statoTorneoLabel.setText("Da iniziare");
-    		else if(!t.isCompletata())
-    			statoTorneoLabel.setText("In corso - Turno "+turnoCorrente);
-    		else
-    			statoTorneoLabel.setText("Terminata");
-    		*/
+    		
     	}
     }
     
@@ -679,14 +666,14 @@ public class AdminAreaController {
     @FXML
     void copiaCodiceTorneo(ActionEvent event) {
     	if(codiceTorneoInCorso.getValue() != null) {
-   		 String testoDaCopiare = codiceLabelTorneo.getText();
-	         Clipboard clipboard = Clipboard.getSystemClipboard();
-	         ClipboardContent content = new ClipboardContent();
-	         content.putString(testoDaCopiare);
-	         clipboard.setContent(content);
-	   	 }else {
-	   		 GestoreScene.messaggioErrore("Seleziona torneo");
-	   	 }
+   		 	String testoDaCopiare = codiceLabelTorneo.getText();
+	        Clipboard clipboard = Clipboard.getSystemClipboard();
+	        ClipboardContent content = new ClipboardContent();
+	        content.putString(testoDaCopiare);
+	        clipboard.setContent(content);
+	   	}else {
+	   		GestoreScene.messaggioErrore("Seleziona torneo");
+	   	}
     }
     
     //Generale e inizializzazione
@@ -844,7 +831,7 @@ public class AdminAreaController {
     	for(String s : DBAdmin.getAdmin().getTornei())
     		tornei.add(s);
     	tornei.sort(null);
-    	codicePartitaInCorso.setItems(tornei);
+    	codiceTorneoInCorso.setItems(tornei);
     	
     	codiceLabelTorneo.setText(null);
         giocatoriLabelTorneo.setText(null);
