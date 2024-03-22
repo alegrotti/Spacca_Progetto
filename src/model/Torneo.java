@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class Torneo implements Serializable{
 	
@@ -64,11 +65,24 @@ public class Torneo implements Serializable{
 		}else 
 			x = (16-g.size());
 	
+		Random r = new Random();
+		
 		for(int i = 0; i < x ; i++) {
 			
+			String name = "Giocatore"+i;
 			
+			int b = r.nextInt(2);
 			
-			String name = "Giocatore"+1;
+			Giocatore player; // = new Giocatore("");;
+			
+			if (b == 0) {
+				player = new GiocatoreCPUFacile(name);
+			}else {
+				player = new GiocatoreCPUDifficile(name);
+			}
+			
+			p.add(player.getUsername());
+			
 			
 		}
 			
@@ -164,6 +178,10 @@ public class Torneo implements Serializable{
 
 	public int getObiettivo() {
 		return obiettivo;
+	}
+
+	public int getStato() {
+		return stato;
 	}
 	
 }
