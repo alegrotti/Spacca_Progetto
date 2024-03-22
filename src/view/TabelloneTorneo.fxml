@@ -3,181 +3,315 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="745.0" prefWidth="1132.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="792.0" prefWidth="1275.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TabelloneTorneoController">
    <children>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox fx:id="sfondoHBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="0.0" prefWidth="210.0">
+            <VBox alignment="CENTER" prefHeight="777.0" prefWidth="219.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox fx:id="ottavo1HBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <VBox.margin>
                         <Insets bottom="30.0" />
                      </VBox.margin>
                      <children>
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="122.0">
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="116.0">
                            <children>
-                              <Label text="Label">
+                              <Label fx:id="giocatoreOttavo1" text="Label">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label text="Label">
+                              <Label fx:id="giocatoreOttavo2" text="Label">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
                               </Label>
                            </children>
                         </VBox>
-                        <Button mnemonicParsing="false" text="Gioca" />
+                        <Button fx:id="ottavo1Button" mnemonicParsing="false" onAction="#giocaOttavo1Button" text="Gioca" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                  <HBox fx:id="ottavo2HBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
                      <VBox.margin>
                         <Insets bottom="30.0" top="30.0" />
                      </VBox.margin>
                      <children>
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="122.0">
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="109.0">
                            <children>
-                              <Label text="Label">
+                              <Label fx:id="giocatoreOttavo3" text="Label">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label text="Label">
+                              <Label fx:id="giocatoreOttavo4" text="Label">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
                               </Label>
                            </children>
                         </VBox>
-                        <Button mnemonicParsing="false" text="Button" />
+                        <Button fx:id="ottavo2Button" mnemonicParsing="false" onAction="#giocaOttavo2Button" prefWidth="58.0" text="Gioca" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0">
+                  <HBox fx:id="ottavo3HBox" alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0">
                      <VBox.margin>
                         <Insets bottom="30.0" top="30.0" />
                      </VBox.margin>
                      <children>
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="122.0">
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="113.0">
                            <children>
-                              <Label text="Label">
+                              <Label fx:id="giocatoreOttavo5" text="Label">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label text="Label">
+                              <Label fx:id="giocatoreOttavo6" text="Label">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
                               </Label>
                            </children>
                         </VBox>
-                        <Button mnemonicParsing="false" text="Button" />
+                        <Button fx:id="ottavo3Button" mnemonicParsing="false" onAction="#GiocaOttavo3Button" text="Gioca" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="210.0" prefHeight="100.0" prefWidth="200.0">
+                  <HBox fx:id="ottavo4HBox" alignment="CENTER" layoutX="10.0" layoutY="210.0" prefHeight="100.0" prefWidth="200.0">
                      <VBox.margin>
                         <Insets top="30.0" />
                      </VBox.margin>
                      <children>
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="122.0">
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="119.0">
                            <children>
-                              <Label text="Label">
+                              <Label fx:id="giocatoreOttavo7" text="Label">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label text="Label">
+                              <Label fx:id="giocatoreOttavo8" text="Label">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
                               </Label>
                            </children>
                         </VBox>
-                        <Button mnemonicParsing="false" text="Button" />
+                        <Button fx:id="ottavo4Button" mnemonicParsing="false" onAction="#giocaOttavo4Button" text="Gioca" />
                      </children>
                   </HBox>
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="0.0" prefWidth="210.0">
                <children>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                  <HBox fx:id="quarto1HBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
                      <VBox.margin>
                         <Insets bottom="100.0" />
                      </VBox.margin>
                      <children>
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="122.0">
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="118.0">
                            <children>
-                              <Label text="Label">
+                              <Label fx:id="giocatoreQuarto1" text="Label">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label text="Label">
+                              <Label fx:id="giocatoreQuarto2" text="Label">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
                               </Label>
                            </children>
                         </VBox>
-                        <Button mnemonicParsing="false" text="Button" />
+                        <Button fx:id="quarto1Button" mnemonicParsing="false" onAction="#giocaQuarto1Button" text="Gioca" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0">
+                  <HBox fx:id="quarto2HBox" alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0">
                      <VBox.margin>
                         <Insets top="100.0" />
                      </VBox.margin>
                      <children>
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="122.0">
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="119.0">
                            <children>
-                              <Label text="Label">
+                              <Label fx:id="giocatoreQuarto3" text="Label">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label text="Label">
+                              <Label fx:id="giocatoreQuarto4" text="Label">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
                               </Label>
                            </children>
                         </VBox>
-                        <Button mnemonicParsing="false" text="Button" />
+                        <Button fx:id="quarto2Button" mnemonicParsing="false" onAction="#GiocaQuarto2Button" text="Gioca" />
                      </children>
                   </HBox>
                </children>
             </VBox>
-            <VBox maxWidth="-Infinity" prefHeight="745.0" prefWidth="200.0">
+            <VBox alignment="BOTTOM_CENTER" prefHeight="692.0" prefWidth="358.0">
                <children>
-                  <Label text="Semi e finale" />
-               </children>
-            </VBox>
-            <VBox maxWidth="-Infinity" prefHeight="745.0" prefWidth="200.0">
-               <children>
-                  <Label text="Label" />
+                  <VBox fx:id="infoTorneoVBox" maxWidth="-Infinity" prefHeight="217.0" prefWidth="386.0">
+                     <VBox.margin>
+                        <Insets bottom="50.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <HBox>
+                     <children>
+                        <HBox fx:id="semifinale1HBox" alignment="CENTER" prefHeight="100.0" prefWidth="207.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="122.0">
+                                 <children>
+                                    <Label fx:id="giocatoreSemifinale1" text="Label">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label fx:id="giocatoreSemifinale2" text="Label">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <Button fx:id="semifinale1Button" mnemonicParsing="false" onAction="#giocaSemifinale1Button" text="Gioca" />
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </HBox>
+                        <HBox fx:id="semifinale2HBox" alignment="CENTER" prefHeight="100.0" prefWidth="188.0">
+                           <children>
+                              <Button fx:id="semifinale2Button" mnemonicParsing="false" onAction="#giocaSemifinale2Button" text="Gioca" />
+                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="122.0">
+                                 <children>
+                                    <Label fx:id="giocatoreSemifinale3" text="Label">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label fx:id="giocatoreSemifinale4" text="Label">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="131.0" prefWidth="410.0">
+                     <VBox.margin>
+                        <Insets bottom="40.0" top="50.0" />
+                     </VBox.margin>
+                     <children>
+                        <VBox fx:id="finaleVBox" alignment="CENTER" prefHeight="131.0" prefWidth="208.0">
+                           <children>
+                              <Label fx:id="giocatoreFinale1" text="Label">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label fx:id="giocatoreFinale2" text="Label">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Button fx:id="finaleButton" mnemonicParsing="false" onAction="#giocaFinaleButton" text="Gioca">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Label fx:id="vincitoreLabel" text="Il vincitore è: ">
+                     <VBox.margin>
+                        <Insets bottom="60.0" />
+                     </VBox.margin>
+                  </Label>
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="0.0" prefWidth="210.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox fx:id="quarto3HBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets bottom="100.0" />
+                     </VBox.margin>
+                     <children>
+                        <Button fx:id="quarto3Button" mnemonicParsing="false" onAction="#giocaQuarto3Button" text="Gioca" />
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="118.0">
+                           <children>
+                              <Label fx:id="giocatoreQuarto5" text="Label">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label fx:id="giocatoreQuarto6" text="Label">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="quarto4HBox" alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets top="100.0" />
+                     </VBox.margin>
+                     <children>
+                        <Button fx:id="quarto4Button" mnemonicParsing="false" onAction="#giocaQuarto4Button" text="Gioca" />
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="118.0">
+                           <children>
+                              <Label fx:id="giocatoreQuarto7" text="Label">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label fx:id="giocatoreQuarto8" text="Label">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="0.0" prefWidth="210.0">
+               <children>
+                  <ImageView fx:id="homePageIcon" fitHeight="58.0" fitWidth="70.0" onMouseClicked="#homepageIconClicked" pickOnBounds="true" preserveRatio="true" translateX="35.0" translateY="-15.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </ImageView>
+                  <HBox fx:id="ottavo5HBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <VBox.margin>
                         <Insets bottom="30.0" />
                      </VBox.margin>
                      <children>
-                        <Button mnemonicParsing="false" text="Gioca" />
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="122.0">
+                        <Button fx:id="ottavo5Button" mnemonicParsing="false" onAction="#giocaOttavo5Button" text="Gioca" />
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="117.0">
                            <children>
-                              <Label text="Label">
+                              <Label fx:id="giocatoreOttavo9" text="Label">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label text="Label">
+                              <Label fx:id="giocatoreOttavo10" text="Label">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
@@ -186,20 +320,20 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                  <HBox fx:id="ottavo6HBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
                      <VBox.margin>
                         <Insets bottom="30.0" top="30.0" />
                      </VBox.margin>
                      <children>
-                        <Button mnemonicParsing="false" text="Button" />
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="122.0">
+                        <Button fx:id="ottavo6Button" mnemonicParsing="false" onAction="#GIocaOttavo6Button" text="Gioca" />
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="119.0">
                            <children>
-                              <Label text="Label">
+                              <Label fx:id="giocatoreOttavo11" text="Label">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label text="Label">
+                              <Label fx:id="giocatoreOttavo12" text="Label">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
@@ -208,20 +342,20 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0">
+                  <HBox fx:id="ottavo7HBox" alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0">
                      <VBox.margin>
                         <Insets bottom="30.0" top="30.0" />
                      </VBox.margin>
                      <children>
-                        <Button mnemonicParsing="false" text="Button" />
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="122.0">
+                        <Button fx:id="ottavo7Button" mnemonicParsing="false" onAction="#giocaOttavo7Button" text="Gioca" />
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="118.0">
                            <children>
-                              <Label text="Label">
+                              <Label fx:id="giocatoreOttavo13" text="Label">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label text="Label">
+                              <Label fx:id="giocatoreOttavo14" text="Label">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
@@ -230,20 +364,20 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="210.0" prefHeight="100.0" prefWidth="200.0">
+                  <HBox fx:id="ottavo8HBox" alignment="CENTER" layoutX="10.0" layoutY="210.0" prefHeight="100.0" prefWidth="200.0">
                      <VBox.margin>
                         <Insets top="30.0" />
                      </VBox.margin>
                      <children>
-                        <Button mnemonicParsing="false" text="Button" />
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="122.0">
+                        <Button fx:id="ottavo8Button" mnemonicParsing="false" onAction="#giocaOttavo8Button" text="Gioca" />
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="118.0">
                            <children>
-                              <Label text="Label">
+                              <Label fx:id="giocatoreOttavo15" text="Label">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label text="Label">
+                              <Label fx:id="giocatoreOttavo16" text="Label">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
