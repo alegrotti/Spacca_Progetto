@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import model.DBGiocatori;
 import model.Giocatore;
 import model.GiocatoreCPUDifficile;
+import model.GiocatoreCPUFacile;
 import model.GiocatoreFisico;
 import model.Partita;
 
@@ -129,6 +130,23 @@ public class PuntataPartitaController {
 	        });
     	}else if (g instanceof GiocatoreCPUDifficile) {
     		GiocatoreCPUDifficile p = (GiocatoreCPUDifficile) g;
+    		rb.setText(s);
+	    	rb.applyCss();
+    		if(p.partecipa(partita,s)) {
+    			players.add(s);
+    			rb.setSelected(true);
+    			rb.setOnAction(event -> {
+    				rb.setSelected(true);
+    			});
+    		}else{
+    			rb.setSelected(false);
+    			rb.setOnAction(event -> {
+    				rb.setSelected(false);
+    			});
+    		}
+    	}
+    	else if (g instanceof GiocatoreCPUFacile) {
+    		GiocatoreCPUFacile p = (GiocatoreCPUFacile) g;
     		rb.setText(s);
 	    	rb.applyCss();
     		if(p.partecipa(partita,s)) {

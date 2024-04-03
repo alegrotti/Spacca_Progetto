@@ -13,6 +13,7 @@ import model.DBCarte;
 import model.DBGiocatori;
 import model.DBPartite;
 import model.GiocatoreCPUDifficile;
+import model.GiocatoreCPUFacile;
 import model.GiocatoreFisico;
 import model.Partita;
 
@@ -95,6 +96,31 @@ public class ScegliCartaController {
                 }
                 carteDaScegliere.getChildren().add(rb);
             }
+    	}
+    	else if (DBGiocatori.getGiocatore(winner) instanceof GiocatoreCPUFacile) {
+    		GiocatoreCPUFacile g = (GiocatoreCPUFacile)DBGiocatori.getGiocatore(winner);
+
+    		String cartaScelta = g.scegliCarta(partita.getCittadina(winner),c);
+		
+    		boolean t = false;
+		
+    		for (String s : c) {
+    			RadioButton rb = new RadioButton();
+
+    			if (s.equals(cartaScelta) && t == false) {
+    				rb.setText(s);
+    				rb.setToggleGroup(scelte);
+    				rb.setSelected(true);
+    				rb.setOnAction(event -> {
+    					rb.setSelected(true);
+    				});
+    				t=true;
+    			} else {
+            	   rb.setText(s);
+            	   rb.setDisable(true);
+    			}
+    			carteDaScegliere.getChildren().add(rb);
+    		}
     	}
     }
 
