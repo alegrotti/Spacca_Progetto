@@ -47,12 +47,13 @@ public class GiocatoreCPUFacile extends Giocatore implements Serializable{
     	double w = (city.getPunteggio()/(double)pMax)*percPuntata;
     	*/
     	
-    	Random rand = new Random();
-        int puntata = rand.nextInt(p.getCrediti(g)) + 1;
+    	if(p.getCrediti(g)>0) {
+    		Random rand = new Random();
+    		return rand.nextInt(p.getCrediti(g)) + 1;
+    	}
+    	else return 0;
     	
     	//int puntata = (int)(p.getCrediti(g)*w); // fare random questo qui tra max e numero di crediti
-		
-    	return puntata;
 	}
 	
 	public String getUsername() {
