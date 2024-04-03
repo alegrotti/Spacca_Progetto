@@ -34,6 +34,7 @@ import javafx.scene.control.Slider;
 public class AdminAreaController {
 	
 	private ArrayList<String> giocatoriAggiunti;
+	private ArrayList<String> giocatoriAggiuntiT;
 
 	@FXML
     private VBox centralBox;
@@ -523,10 +524,10 @@ public class AdminAreaController {
     		if (giocatore.equals(""))
     			throw new Exception();
     		else
-    			giocatoriAggiunti.add(giocatore);
+    			giocatoriAggiuntiT.add(giocatore);
 	    	
 	    	ObservableList<String> giocatori2 = FXCollections.observableArrayList();
-	    	for(String s : giocatoriAggiunti)
+	    	for(String s : giocatoriAggiuntiT)
 	    		giocatori2.add(s);
 	    	giocatori2.sort(null);
 	    	listaGiocatoriTorneo.setItems(giocatori2);
@@ -549,9 +550,9 @@ public class AdminAreaController {
 				if(!DBAdmin.getAdmin().getTornei().contains(codice)) {
 					if(tipoTorneoButton.getValue().equals("A turni")) {
 						int turni = Integer.parseInt(numeroSliderTorneo.getText());
-						if(giocatoriAggiunti.size()>1) {
-							giocatoriAggiunti.sort(null);
-							Torneo t = new Torneo("Turni",giocatoriAggiunti,codice,turni,n);
+						if(giocatoriAggiuntiT.size()>1) {
+							giocatoriAggiuntiT.sort(null);
+							Torneo t = new Torneo("Turni",giocatoriAggiuntiT,codice,turni,n);
 							DBTornei.aggiungiTorneo(t);
 							DBAdmin.aggiungiTorneo(t);
 							inizializzaSchermata();
@@ -560,8 +561,8 @@ public class AdminAreaController {
 						}
 					}else if(tipoTorneoButton.getValue().equals("A palazzi")) {
 						int palazzi = Integer.parseInt(numeroSliderTorneo.getText());
-						if(giocatoriAggiunti.size()>1) {	
-							Torneo t = new Torneo("Palazzi",giocatoriAggiunti,codice,palazzi,n);
+						if(giocatoriAggiuntiT.size()>1) {	
+							Torneo t = new Torneo("Palazzi",giocatoriAggiuntiT,codice,palazzi,n);
 							DBTornei.aggiungiTorneo(t);
 							DBAdmin.aggiungiTorneo(t);
 							inizializzaSchermata();
@@ -577,7 +578,8 @@ public class AdminAreaController {
 			else
 				GestoreScene.messaggioErrore("Inserisci codice non nullo");
 		}catch(Exception e) {
-			GestoreScene.messaggioErrore("Errore creazione torneo");
+			System.out.println(e.getMessage());
+			//GestoreScene.messaggioErrore("Errore creazione torneo");
 		}
     }
     
@@ -587,10 +589,10 @@ public class AdminAreaController {
 			String giocatore = listaGiocatoriTorneo.getSelectionModel().getSelectedItem();
 			if(giocatore.equalsIgnoreCase(""))
 				throw new Exception("Nessun giocatore selezionato");
-			giocatoriAggiunti.remove(giocatore);
+			giocatoriAggiuntiT.remove(giocatore);
 		
 			ObservableList<String> giocatori2 = FXCollections.observableArrayList();
-			for(String s : giocatoriAggiunti)
+			for(String s : giocatoriAggiuntiT)
 				giocatori2.add(s);
 			giocatori2.sort(null);
 			listaGiocatoriTorneo.setItems(giocatori2);
@@ -642,32 +644,19 @@ public class AdminAreaController {
     		for(String s : t.getGiocatori())
     			gioc+=(s+"\n");
     		giocatoriLabelTorneo.setText(gioc);
-    		/*
-    		if(t instanceof TorneoAPalazzi) {
-    			TorneoAPalazzi t1 = (TorneoAPalazzi) t;
-    			tipoTorneoLabel.setText("A palazzi - "+t1.getPalazzi()+" palazzi");
+    		if(t.getTipo().equals("A palazzi")) {
+    			tipoTorneoLabel.setText("A palazzi - "+t.getObiettivo()+" palazzi");
+    		}else {
+    			tipoTorneoLabel.setText("A turni - "+t.getObiettivo()+" turni");
     		}
-    		else {
-    			TorneoATurni t1 = (TorneoATurni) t;
-    			tipoTorneoLabel.setText("A turni - "+t1.getTurni()+" turni");
-    		}
-    		*/
     		creditiInizialiLabelTorneo.setText(t.getCreditiIniziali()+" crediti");
-    		/*
-    		int turnoCorrente = t.getTurno();
-    		if (turnoCorrente==0)
-    			statoTorneoLabel.setText("Da iniziare");
-    		else if(!t.isCompletata())
-    			statoTorneoLabel.setText("In corso - Turno "+turnoCorrente);
-    		else
-    			statoTorneoLabel.setText("Terminata");
-    		*/
+    		
     	}
     }
     
     @FXML
     void eliminaTorneo(ActionEvent event) {
-    	String torneo = codicePartitaInCorso.getValue();
+    	String torneo = codiceTorneoInCorso.getValue();
     	
     	DBTornei.eliminaTorneo(torneo);
     	
@@ -679,14 +668,14 @@ public class AdminAreaController {
     @FXML
     void copiaCodiceTorneo(ActionEvent event) {
     	if(codiceTorneoInCorso.getValue() != null) {
-   		 String testoDaCopiare = codiceLabelTorneo.getText();
-	         Clipboard clipboard = Clipboard.getSystemClipboard();
-	         ClipboardContent content = new ClipboardContent();
-	         content.putString(testoDaCopiare);
-	         clipboard.setContent(content);
-	   	 }else {
-	   		 GestoreScene.messaggioErrore("Seleziona torneo");
-	   	 }
+   		 	String testoDaCopiare = codiceLabelTorneo.getText();
+	        Clipboard clipboard = Clipboard.getSystemClipboard();
+	        ClipboardContent content = new ClipboardContent();
+	        content.putString(testoDaCopiare);
+	        clipboard.setContent(content);
+	   	}else {
+	   		GestoreScene.messaggioErrore("Seleziona torneo");
+	   	}
     }
     
     //Generale e inizializzazione
@@ -699,6 +688,7 @@ public class AdminAreaController {
     void initialize() {
     	
     	giocatoriAggiunti = new ArrayList<String>();
+    	giocatoriAggiuntiT = new ArrayList<String>();
     	
     	inizializzaSchermata();
     	
@@ -802,7 +792,7 @@ public class AdminAreaController {
     	giocatori1.sort(null);
     	giocatoriDaAggiungereTorneo.setItems(giocatori1);
     	ObservableList<String> giocatori2 = FXCollections.observableArrayList();
-    	for(String s : giocatoriAggiunti)
+    	for(String s : giocatoriAggiuntiT)
     		giocatori2.add(s);
     	giocatori2.sort(null);
     	listaGiocatoriTorneo.setItems(giocatori2);
@@ -844,7 +834,7 @@ public class AdminAreaController {
     	for(String s : DBAdmin.getAdmin().getTornei())
     		tornei.add(s);
     	tornei.sort(null);
-    	codicePartitaInCorso.setItems(tornei);
+    	codiceTorneoInCorso.setItems(tornei);
     	
     	codiceLabelTorneo.setText(null);
         giocatoriLabelTorneo.setText(null);

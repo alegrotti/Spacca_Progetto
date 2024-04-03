@@ -3,16 +3,22 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="792.0" prefWidth="1275.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TabelloneTorneoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="792.0" prefWidth="1291.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TabelloneTorneoController">
    <children>
-      <HBox fx:id="sfondoHBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox fx:id="sfondoHBox" alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="792.0" prefWidth="219.0">
+            <VBox fx:id="vboxIcon1" layoutX="1235.0" layoutY="20.0" maxWidth="-Infinity" prefHeight="782.0" prefWidth="40.0">
+               <HBox.margin>
+                  <Insets left="10.0" top="10.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="777.0" prefWidth="219.0">
                <children>
                   <HBox fx:id="ottavo1HBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <VBox.margin>
@@ -152,12 +158,17 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox alignment="BOTTOM_CENTER" prefHeight="792.0" prefWidth="397.0">
+            <VBox alignment="BOTTOM_CENTER" prefHeight="792.0" prefWidth="391.0">
                <children>
-                  <VBox fx:id="infoTorneoVBox" maxWidth="-Infinity" prefHeight="217.0" prefWidth="386.0">
+                  <VBox fx:id="infoTorneoVBox" alignment="CENTER" maxWidth="-Infinity" prefHeight="292.0" prefWidth="383.0">
                      <VBox.margin>
                         <Insets bottom="50.0" />
                      </VBox.margin>
+                     <children>
+                        <Label fx:id="titoloTorneo" alignment="CENTER" prefHeight="43.0" prefWidth="245.0" textAlignment="CENTER" />
+                        <Label fx:id="obiettivoTorneo" alignment="CENTER" layoutX="79.0" layoutY="97.0" prefHeight="43.0" prefWidth="245.0" textAlignment="CENTER" />
+                        <Label fx:id="giocatoriTorneo" alignment="CENTER" layoutX="79.0" layoutY="119.0" prefHeight="137.0" prefWidth="245.0" textAlignment="CENTER" />
+                     </children>
                   </VBox>
                   <HBox>
                      <children>
@@ -293,11 +304,6 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="0.0" prefWidth="210.0">
                <children>
-                  <ImageView fx:id="homePageIcon" fitHeight="58.0" fitWidth="70.0" onMouseClicked="#homepageIconClicked" pickOnBounds="true" preserveRatio="true" translateX="35.0" translateY="-15.0">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </ImageView>
                   <HBox fx:id="ottavo5HBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <VBox.margin>
                         <Insets bottom="30.0" />
@@ -386,6 +392,18 @@
                         </VBox>
                      </children>
                   </HBox>
+               </children>
+            </VBox>
+            <VBox fx:id="vboxIcon">
+               <HBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </HBox.margin>
+               <children>
+                  <ImageView fx:id="homepageIcon" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#homepageIconClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../immagini/homepageIcon.png" />
+                     </image>
+                  </ImageView>
                </children>
             </VBox>
          </children>

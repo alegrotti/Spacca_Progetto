@@ -50,10 +50,33 @@ public class DBGiocatori {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public static void aggiungiGiocatori(HashMap<String,Giocatore> g) {
+		try {
+			giocatori = (HashMap<String,Giocatore>)GestioneFile.caricaDB(DATABASE_PATH);
+			giocatori.putAll(g);
+			GestioneFile.salvaDB(giocatori,DATABASE_PATH);
+		} catch (Exception e) {
+			GestoreScene.messaggioErrore("Errore aggiunta giocatore");
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
 	public static void eliminaGiocatore(String g) {
 		try {
 			giocatori = (HashMap<String,Giocatore>)GestioneFile.caricaDB(DATABASE_PATH);
 			giocatori.remove(g);
+			GestioneFile.salvaDB(giocatori,DATABASE_PATH);
+		} catch (Exception e) {
+			GestoreScene.messaggioErrore("Errore eliminazione giocatore");
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static void eliminaGiocatori(HashMap<String,Giocatore> g) {
+		try {
+			giocatori = (HashMap<String,Giocatore>)GestioneFile.caricaDB(DATABASE_PATH);
+			for(String s : g.keySet())
+				giocatori.remove(s);
 			GestioneFile.salvaDB(giocatori,DATABASE_PATH);
 		} catch (Exception e) {
 			GestoreScene.messaggioErrore("Errore eliminazione giocatore");

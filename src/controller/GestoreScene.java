@@ -11,6 +11,7 @@ import model.Building;
 import model.Carta;
 import model.City;
 import model.Partita;
+import model.Torneo;
 
 public class GestoreScene {
 
@@ -120,6 +121,38 @@ public class GestoreScene {
 			messaggioErrore("Errore apertura finestra");
 		}	
 	}
+	
+	public static void messaggioRitornoHomepage(String s, Torneo t) {
+		
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/MessaggioRitornoHomepage.fxml"));
+			Parent root = loader.load();
+
+			MessaggioRitornoHomepageController controller = loader.getController();
+			controller.impostaTesto(s);
+			controller.impostaTorneo(t);
+			
+			Scene returnScene = new Scene(root);
+			returnScene.getStylesheets().add("/view/messaggioritornohomepage.css");
+			
+			Stage returnStage = new Stage();
+			returnStage.setResizable(false);
+			returnStage.setScene(returnScene);
+			returnStage.initOwner(Main.parentWindow);
+			returnStage.initModality(Modality.APPLICATION_MODAL);
+			returnStage.setTitle("SPACCA - Ritorno homepage senza salvataggio");
+	        Image image = new Image("/immagini/icon.jpg");
+	        returnStage.getIcons().add(image);
+			
+	        returnStage.setOnCloseRequest(event -> {
+				event.consume();
+	        });
+	        
+	        returnStage.show();
+		} catch (Exception e) {
+			messaggioErrore("Errore apertura finestra");
+		}	
+	}
 
 	public static void prossimoTurnoPopup(Partita p) {
 		try {
@@ -161,6 +194,40 @@ public class GestoreScene {
 		}
 	}
 	
+	public static void tabelloneTorneo(Torneo t) {
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/TabelloneTorneo.fxml"));
+			Parent root = loader.load();
+			
+			TabelloneTorneoController c = loader.getController();
+			c.impostaTorneo(t);
+			c.creaSchermata();
+				
+			Scene prossimoTurno= new Scene(root);
+			prossimoTurno.getStylesheets().add("/view/tabellonetorneo.css");
+			
+			Stage popupStage = new Stage();
+			popupStage.setMaximized(false);
+			popupStage.centerOnScreen();
+			popupStage.setResizable(false);
+			popupStage.setScene(prossimoTurno);
+			popupStage.initOwner(Main.parentWindow);
+			popupStage.initModality(Modality.APPLICATION_MODAL);
+			popupStage.setTitle("SPACCA - Tabellone torneo "+t.getCodice());
+	        Image image = new Image("/immagini/icon.jpg");
+	        popupStage.getIcons().add(image);
+	        
+	        popupStage.setOnCloseRequest(event -> {
+				event.consume();
+	        });
+	        
+	        popupStage.show();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			//messaggioErrore("Errore apertura finestra");
+		}
+	}
+	
 	public static void mostraCittadina(City c) {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/MostraCittadina.fxml"));
@@ -189,8 +256,7 @@ public class GestoreScene {
 				event.consume();
 	        });
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			//messaggioErrore("Errore apertura finestra");
+			messaggioErrore("Errore apertura finestra");
 		}
 	}
 	

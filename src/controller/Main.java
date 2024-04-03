@@ -61,10 +61,10 @@ public class Main extends Application {
 		int p = 0;
 		//int x = 5;
 		
-		for(int x = 7; x < 8; x++) { 
+		for(int x = 5; x < 8; x++) { 
 			t = 0;
 			p = 0;
-			while(t<100000000) {
+			while(t<1000000) {
 				C = new City ("Prova");
 				for(int i = 0; i < x ; i++ ) {
 					Carta c = map.get(keysAsArray.get(r.nextInt(keysAsArray.size())));
@@ -83,4 +83,5 @@ public class Main extends Application {
 		}
 	}
 	*/
+
 }

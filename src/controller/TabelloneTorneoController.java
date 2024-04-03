@@ -4,14 +4,26 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import model.DBGiocatori;
+import model.Torneo;
 
 public class TabelloneTorneoController {
 
+	private Torneo torneo;
+	
+    @FXML
+    private Label giocatoriTorneo;
+    
+    @FXML
+    private Label obiettivoTorneo;
+
+    @FXML
+    private Label titoloTorneo;
+	
     @FXML
     private Button finaleButton;
 
@@ -204,15 +216,37 @@ public class TabelloneTorneoController {
     @FXML
     private ImageView homePageIcon;
     
+    @FXML
+    private VBox vboxIcon;
+    
+    public boolean impostaTorneo(Torneo t) {
+		try {
+			torneo = t;
+			DBGiocatori.aggiungiGiocatori(torneo.getGiocatoriCPU());
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
+	}
+    
+    public void creaSchermata() {
+    	titoloTorneo.setText("Torneo - "+torneo.getCodice());
+    	
+    	if(torneo.getSize() == 16) {
+    		
+    	}
+    }
+    
     
     @FXML
     void homepageIconClicked(MouseEvent event) {
-    	GestoreScene.messaggioRitornoHomepage("Tornando alla homepage \nperderai il turno corrente, \ncontinuare?");
+    	GestoreScene.messaggioRitornoHomepage("Tornando alla homepage \nperderai il turno corrente, \ncontinuare?", torneo);
+    	
     }
 
     @FXML
     void GIocaOttavo6Button(ActionEvent event) {
-
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Ottavo-6"));
     }
 
     @FXML
@@ -277,12 +311,12 @@ public class TabelloneTorneoController {
 
     @FXML
     void giocaSemifinale1Button(ActionEvent event) {
-
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Semifinale-1"));
     }
 
     @FXML
     void giocaSemifinale2Button(ActionEvent event) {
-
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Semifinale-2"));
     }
 
 }
