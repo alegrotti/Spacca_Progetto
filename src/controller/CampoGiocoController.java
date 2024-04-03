@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Carta;
 import model.DBGiocatori;
+import model.Giocatore;
 import model.GiocatoreCPUDifficile;
 import model.GiocatoreCPUFacile;
 import model.GiocatoreFisico;
@@ -198,10 +199,34 @@ public class CampoGiocoController {
     
     @FXML
     void giocaCPU(ActionEvent event) {
+        Giocatore g = DBGiocatori.getGiocatore(giocatore);
+       	if(g instanceof GiocatoreCPUDifficile){
+       		GiocatoreCPUDifficile g1 = (GiocatoreCPUDifficile) DBGiocatori.getGiocatore(giocatore);
+       		int a = g1.giocaTurno(partita,giocatore);
+       		GestoreScene.messaggioCPU(true, a, partita, giocatore);
+       	}
+       	else if(g instanceof GiocatoreCPUFacile){
+       		GiocatoreCPUFacile g2 = (GiocatoreCPUFacile) DBGiocatori.getGiocatore(giocatore);
+       		int a = g2.giocaTurno(partita,giocatore);
+       		GestoreScene.messaggioCPU(true, a, partita, giocatore);
+       	}
+       	else {
+       	System.out.println("Errore caricamento CPU");
+       }
+	}
+    
+   /*
+    void giocaCPU(ActionEvent event) {
     	GiocatoreCPUDifficile g = (GiocatoreCPUDifficile) DBGiocatori.getGiocatore(giocatore);
     	int a = g.giocaTurno(partita,giocatore);
     	GestoreScene.messaggioCPU(true, a, partita, giocatore);
-    }
+    }*/
+     
+     
+     
+     
+     
+     
 	
     @FXML
     void playButtonClicked(ActionEvent event) {
