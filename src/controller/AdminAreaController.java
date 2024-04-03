@@ -34,6 +34,7 @@ import javafx.scene.control.Slider;
 public class AdminAreaController {
 	
 	private ArrayList<String> giocatoriAggiunti;
+	private ArrayList<String> giocatoriAggiuntiT;
 
 	@FXML
     private VBox centralBox;
@@ -523,10 +524,10 @@ public class AdminAreaController {
     		if (giocatore.equals(""))
     			throw new Exception();
     		else
-    			giocatoriAggiunti.add(giocatore);
+    			giocatoriAggiuntiT.add(giocatore);
 	    	
 	    	ObservableList<String> giocatori2 = FXCollections.observableArrayList();
-	    	for(String s : giocatoriAggiunti)
+	    	for(String s : giocatoriAggiuntiT)
 	    		giocatori2.add(s);
 	    	giocatori2.sort(null);
 	    	listaGiocatoriTorneo.setItems(giocatori2);
@@ -549,9 +550,9 @@ public class AdminAreaController {
 				if(!DBAdmin.getAdmin().getTornei().contains(codice)) {
 					if(tipoTorneoButton.getValue().equals("A turni")) {
 						int turni = Integer.parseInt(numeroSliderTorneo.getText());
-						if(giocatoriAggiunti.size()>1) {
-							giocatoriAggiunti.sort(null);
-							Torneo t = new Torneo("Turni",giocatoriAggiunti,codice,turni,n);
+						if(giocatoriAggiuntiT.size()>1) {
+							giocatoriAggiuntiT.sort(null);
+							Torneo t = new Torneo("Turni",giocatoriAggiuntiT,codice,turni,n);
 							DBTornei.aggiungiTorneo(t);
 							DBAdmin.aggiungiTorneo(t);
 							inizializzaSchermata();
@@ -560,8 +561,8 @@ public class AdminAreaController {
 						}
 					}else if(tipoTorneoButton.getValue().equals("A palazzi")) {
 						int palazzi = Integer.parseInt(numeroSliderTorneo.getText());
-						if(giocatoriAggiunti.size()>1) {	
-							Torneo t = new Torneo("Palazzi",giocatoriAggiunti,codice,palazzi,n);
+						if(giocatoriAggiuntiT.size()>1) {	
+							Torneo t = new Torneo("Palazzi",giocatoriAggiuntiT,codice,palazzi,n);
 							DBTornei.aggiungiTorneo(t);
 							DBAdmin.aggiungiTorneo(t);
 							inizializzaSchermata();
@@ -588,10 +589,10 @@ public class AdminAreaController {
 			String giocatore = listaGiocatoriTorneo.getSelectionModel().getSelectedItem();
 			if(giocatore.equalsIgnoreCase(""))
 				throw new Exception("Nessun giocatore selezionato");
-			giocatoriAggiunti.remove(giocatore);
+			giocatoriAggiuntiT.remove(giocatore);
 		
 			ObservableList<String> giocatori2 = FXCollections.observableArrayList();
-			for(String s : giocatoriAggiunti)
+			for(String s : giocatoriAggiuntiT)
 				giocatori2.add(s);
 			giocatori2.sort(null);
 			listaGiocatoriTorneo.setItems(giocatori2);
@@ -687,6 +688,7 @@ public class AdminAreaController {
     void initialize() {
     	
     	giocatoriAggiunti = new ArrayList<String>();
+    	giocatoriAggiuntiT = new ArrayList<String>();
     	
     	inizializzaSchermata();
     	
@@ -790,7 +792,7 @@ public class AdminAreaController {
     	giocatori1.sort(null);
     	giocatoriDaAggiungereTorneo.setItems(giocatori1);
     	ObservableList<String> giocatori2 = FXCollections.observableArrayList();
-    	for(String s : giocatoriAggiunti)
+    	for(String s : giocatoriAggiuntiT)
     		giocatori2.add(s);
     	giocatori2.sort(null);
     	listaGiocatoriTorneo.setItems(giocatori2);
