@@ -577,7 +577,8 @@ public class AdminAreaController {
 			else
 				GestoreScene.messaggioErrore("Inserisci codice non nullo");
 		}catch(Exception e) {
-			GestoreScene.messaggioErrore("Errore creazione torneo");
+			System.out.println(e.getMessage());
+			//GestoreScene.messaggioErrore("Errore creazione torneo");
 		}
     }
     
@@ -654,7 +655,7 @@ public class AdminAreaController {
     
     @FXML
     void eliminaTorneo(ActionEvent event) {
-    	String torneo = codicePartitaInCorso.getValue();
+    	String torneo = codiceTorneoInCorso.getValue();
     	
     	DBTornei.eliminaTorneo(torneo);
     	

@@ -19,7 +19,7 @@ public class Torneo implements Serializable{
 	private int creditiIniziali;
 	private int stato;
 	private HashMap<String, Integer> crediti;
-	//private HashMap<String, Partita> partiteTorneo;
+	private HashMap<String, Partita> partiteTorneo;
 	
 	public Torneo() {
 		this.stato = 0;
@@ -44,16 +44,40 @@ public class Torneo implements Serializable{
 		this.giocatoriEliminati = new ArrayList<>();
 		this.vincitore = null;
 		this.crediti = creaCreditiIniziali(giocatori,creditiIniziali);
-		//this.partiteTorneo = creaPartite();
+		this.partiteTorneo = new HashMap<String,Partita>();
+		creaPartite();
 	}
 
-	/*private HashMap<String,Carta[]> creaPartite(ArrayList<String> giocatori){
-		HashMap<String,Partita> gio = new HashMap<String,Partita>();
-		for(String s : giocatori) {
-			gio.put(s, new Carta[3]);
+	private void creaPartite() {
+		HashMap<String,Partita> games = new HashMap<String,Partita>();
+		Partita p;
+		String s = "";
+		if(stato==4) {
+			s = "Ottavo-";
+		}else if(stato == 3) {
+			s = "Quarto-";
+		}else if(stato == 2) {
+			s = "Semifinale-";
 		}
-		return gio;
-	}*/
+		
+		if(tipo.equals("Turni"))
+			for(int i = 0; i < giocatori.size(); i+=2) {
+				String cod = s + ((i/2) + 1);
+				ArrayList<String> pl = new ArrayList<String>();
+				pl.add(giocatori.get(i));
+				pl.add(giocatori.get(i+1));
+				p = new PartitaATurni(pl,cod,obiettivo,creditiIniziali);
+				games.put(cod, p);
+			}
+		else
+			for(int i = 0; i < giocatori.size(); i+=2) {
+				String cod = s + ((i/2) + 1);
+				p = new PartitaAPalazzi((ArrayList<String>)giocatori.subList(i, i+1),cod,obiettivo,creditiIniziali);
+				games.put(cod, p);
+			}
+		
+		partiteTorneo.putAll(games);
+	}
 	
 	private ArrayList<String> creaGiocatori(ArrayList<String> g) {
 		
@@ -91,7 +115,8 @@ public class Torneo implements Serializable{
 			
 		}
 			
-		return p;
+		g.addAll(p);
+		return g;
 	}
 	
 	private int creaStato(ArrayList<String> g) {
@@ -106,12 +131,20 @@ public class Torneo implements Serializable{
 		return x;
 	}
 	
+	public HashMap<String, Partita> getPartiteTorneo() {
+		return partiteTorneo;
+	}
+
 	private HashMap<String,Integer> creaCreditiIniziali(ArrayList<String> giocatori, int c){
 		HashMap<String,Integer> cre = new HashMap<String,Integer>();
 		for(String s : giocatori) {
 			cre.put(s, creditiIniziali);
 		}
 		return cre;
+	}
+	
+	public int getSize() {
+		return giocatori.size() + giocatoriEliminati.size();
 	}
 	
 	public String getCodice() {
@@ -132,6 +165,10 @@ public class Torneo implements Serializable{
 	
 	public int getCrediti(String s) {
 		return crediti.get(s);
+	}
+
+	public HashMap<String, Giocatore> getGiocatoriCPU() {
+		return giocatoriCPU;
 	}
 
 	public int getCreditiIniziali() {

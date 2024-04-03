@@ -121,6 +121,38 @@ public class GestoreScene {
 			messaggioErrore("Errore apertura finestra");
 		}	
 	}
+	
+	public static void messaggioRitornoHomepage(String s, Torneo t) {
+		
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/MessaggioRitornoHomepage.fxml"));
+			Parent root = loader.load();
+
+			MessaggioRitornoHomepageController controller = loader.getController();
+			controller.impostaTesto(s);
+			controller.impostaTorneo(t);
+			
+			Scene returnScene = new Scene(root);
+			returnScene.getStylesheets().add("/view/messaggioritornohomepage.css");
+			
+			Stage returnStage = new Stage();
+			returnStage.setResizable(false);
+			returnStage.setScene(returnScene);
+			returnStage.initOwner(Main.parentWindow);
+			returnStage.initModality(Modality.APPLICATION_MODAL);
+			returnStage.setTitle("SPACCA - Ritorno homepage senza salvataggio");
+	        Image image = new Image("/immagini/icon.jpg");
+	        returnStage.getIcons().add(image);
+			
+	        returnStage.setOnCloseRequest(event -> {
+				event.consume();
+	        });
+	        
+	        returnStage.show();
+		} catch (Exception e) {
+			messaggioErrore("Errore apertura finestra");
+		}	
+	}
 
 	public static void prossimoTurnoPopup(Partita p) {
 		try {
@@ -169,6 +201,7 @@ public class GestoreScene {
 			
 			TabelloneTorneoController c = loader.getController();
 			c.impostaTorneo(t);
+			c.creaSchermata();
 				
 			Scene prossimoTurno= new Scene(root);
 			prossimoTurno.getStylesheets().add("/view/tabellonetorneo.css");
@@ -190,7 +223,8 @@ public class GestoreScene {
 	        
 	        popupStage.show();
 		} catch (Exception e) {
-			messaggioErrore("Errore apertura finestra");
+			System.out.println(e.getMessage());
+			//messaggioErrore("Errore apertura finestra");
 		}
 	}
 	
@@ -222,8 +256,7 @@ public class GestoreScene {
 				event.consume();
 	        });
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			//messaggioErrore("Errore apertura finestra");
+			messaggioErrore("Errore apertura finestra");
 		}
 	}
 	

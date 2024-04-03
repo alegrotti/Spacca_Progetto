@@ -8,9 +8,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import model.DBGiocatori;
+import model.Torneo;
 
 public class MessaggioRitornoHomepageController {
 
+	private Torneo torneo;
+	
     @FXML
     private ImageView ImageIcon;
 
@@ -34,9 +38,15 @@ public class MessaggioRitornoHomepageController {
     	noButton.getScene().getWindow().hide();
     }
 
+    public void impostaTorneo(Torneo t) {
+        torneo = t;
+    }
+    
     @FXML
     void ButtonYesClicked(ActionEvent event) {
     	GestoreScene.welcome(true);
+    	if(torneo!=null)
+    		DBGiocatori.eliminaGiocatori(torneo.getGiocatoriCPU());
     	yesButton.getScene().getWindow().hide();
     }
     
