@@ -42,6 +42,8 @@ public class Main extends Application {
     	//DBPartite.aggiornaDB();
     	//DBTornei.aggiornaDB();
 		
+		//Commento prova
+		
 		//simulaCitta();
 		
 		DBAdmin.creaAdmin();
