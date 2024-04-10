@@ -3,6 +3,11 @@
 	-fx-background-size: cover;
 }
 
+#hBoxSemifinali{
+	-fx-background-color: rgba(255, 255, 255, 0);
+	-fx-border-width: 0px;
+}
+
 #vboxIcon{
 	
 }
