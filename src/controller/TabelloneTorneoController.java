@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.DBGiocatori;
+import model.Partita;
 import model.Torneo;
 
 public class TabelloneTorneoController {
@@ -17,6 +19,9 @@ public class TabelloneTorneoController {
 	
     @FXML
     private Label giocatoriTorneo;
+    
+    @FXML
+    private HBox hBoxSemifinali;
     
     @FXML
     private Label obiettivoTorneo;
@@ -229,19 +234,9 @@ public class TabelloneTorneoController {
 		}
 	}
     
-    public void creaSchermata() {
-    	titoloTorneo.setText("Torneo - "+torneo.getCodice());
-    	
-    	if(torneo.getSize() == 16) {
-    		
-    	}
-    }
-    
-    
     @FXML
     void homepageIconClicked(MouseEvent event) {
-    	GestoreScene.messaggioRitornoHomepage("Tornando alla homepage \nperderai il turno corrente, \ncontinuare?", torneo);
-    	
+    	GestoreScene.welcome(true);
     }
 
     @FXML
@@ -251,62 +246,62 @@ public class TabelloneTorneoController {
 
     @FXML
     void GiocaOttavo3Button(ActionEvent event) {
-
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Ottavo-6"));
     }
 
     @FXML
     void GiocaQuarto2Button(ActionEvent event) {
-
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Quarto-2"));
     }
 
     @FXML
     void giocaFinaleButton(ActionEvent event) {
-
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Finale"));
     }
 
     @FXML
     void giocaOttavo1Button(ActionEvent event) {
-
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Ottavo-1"));
     }
 
     @FXML
     void giocaOttavo2Button(ActionEvent event) {
-
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Ottavo-2"));
     }
 
     @FXML
     void giocaOttavo4Button(ActionEvent event) {
-
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Ottavo-4"));
     }
 
     @FXML
     void giocaOttavo5Button(ActionEvent event) {
-
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Ottavo-5"));
     }
 
     @FXML
     void giocaOttavo7Button(ActionEvent event) {
-
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Ottavo-7"));
     }
 
     @FXML
     void giocaOttavo8Button(ActionEvent event) {
-
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Quarto-8"));
     }
 
     @FXML
     void giocaQuarto1Button(ActionEvent event) {
-
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Quarto-1"));
     }
 
     @FXML
     void giocaQuarto3Button(ActionEvent event) {
-
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Quarto-3"));
     }
 
     @FXML
     void giocaQuarto4Button(ActionEvent event) {
-
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Quarto-4"));
     }
 
     @FXML
@@ -318,5 +313,164 @@ public class TabelloneTorneoController {
     void giocaSemifinale2Button(ActionEvent event) {
     	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Semifinale-2"));
     }
+    
+    public void creaSchermata() {
+    	titoloTorneo.setText("Torneo - "+torneo.getCodice());
+    	vincitoreLabel.setVisible(false);
+    	
+    	ottavo1HBox.setVisible(false);
+		ottavo2HBox.setVisible(false);
+		ottavo3HBox.setVisible(false);
+		ottavo4HBox.setVisible(false);
+		ottavo5HBox.setVisible(false);
+		ottavo6HBox.setVisible(false);
+		ottavo7HBox.setVisible(false);
+		ottavo8HBox.setVisible(false);
+    	
+		quarto1HBox.setVisible(false);
+		quarto2HBox.setVisible(false);
+		quarto3HBox.setVisible(false);
+		quarto4HBox.setVisible(false);
+		
+		semifinale1HBox.setVisible(false);
+		semifinale2HBox.setVisible(false);
+		
+		finaleVBox.setVisible(false);
+    	
+		if(torneo.getSize() > 8) {
+			creaOttavi();
+    	}if(torneo.getSize() > 4) {	
+    		if(torneo.getStato()<=3)
+    			creaQuarti();
+    	}
+    	if(torneo.getStato()<=2)
+    		creaSemifinali();
+    	if(torneo.getStato()<=1)
+    		creaFinale();
+    	if(torneo.getStato()==0) {
+    		vincitoreLabel.setVisible(true);
+    	}
+    		
+    	
+    }
+    
+    private void creaOttavi() {
+    	ottavo1HBox.setVisible(true);
+		ottavo2HBox.setVisible(true);
+		ottavo3HBox.setVisible(true);
+		ottavo4HBox.setVisible(true);
+		ottavo5HBox.setVisible(true);
+		ottavo6HBox.setVisible(true);
+		ottavo7HBox.setVisible(true);
+		ottavo8HBox.setVisible(true);
+		
+		Partita o1 = torneo.getPartiteTorneo().get("Ottavo-1");
+		Partita o2 = torneo.getPartiteTorneo().get("Ottavo-2");
+		Partita o3 = torneo.getPartiteTorneo().get("Ottavo-3");
+		Partita o4 = torneo.getPartiteTorneo().get("Ottavo-4");
+		Partita o5 = torneo.getPartiteTorneo().get("Ottavo-5");
+		Partita o6 = torneo.getPartiteTorneo().get("Ottavo-6");
+		Partita o7 = torneo.getPartiteTorneo().get("Ottavo-7");
+		Partita o8 = torneo.getPartiteTorneo().get("Ottavo-8");
+		
+		ArrayList<String> g1 = new ArrayList<String>();
+		ArrayList<String> g2 = new ArrayList<String>();
+		ArrayList<String> g3 = new ArrayList<String>();
+		ArrayList<String> g4 = new ArrayList<String>();
+		ArrayList<String> g5 = new ArrayList<String>();
+		ArrayList<String> g6 = new ArrayList<String>();
+		ArrayList<String> g7 = new ArrayList<String>();
+		ArrayList<String> g8 = new ArrayList<String>();
+		
+		g1.addAll(o1.getGiocatori());
+		g1.addAll(o1.getGiocatoriEliminati());
+		
+		g2.addAll(o2.getGiocatori());
+		g2.addAll(o2.getGiocatoriEliminati());
+		
+		g3.addAll(o3.getGiocatori());
+		g3.addAll(o3.getGiocatoriEliminati());
+		
+		g4.addAll(o4.getGiocatori());
+		g4.addAll(o4.getGiocatoriEliminati());
+		
+		g5.addAll(o5.getGiocatori());
+		g5.addAll(o5.getGiocatoriEliminati());
+		
+		g6.addAll(o6.getGiocatori());
+		g6.addAll(o6.getGiocatoriEliminati());
+		
+		g7.addAll(o7.getGiocatori());
+		g7.addAll(o7.getGiocatoriEliminati());
+		
+		g8.addAll(o8.getGiocatori());
+		g8.addAll(o8.getGiocatoriEliminati());
+		
+		
+	}
+    
+    private void creaQuarti() {
+    	quarto1HBox.setVisible(true);
+		quarto2HBox.setVisible(true);
+		quarto3HBox.setVisible(true);
+		quarto4HBox.setVisible(true);
+		
+		Partita q1 = torneo.getPartiteTorneo().get("Quarto-1");
+		Partita q2 = torneo.getPartiteTorneo().get("Quarto-2");
+		Partita q3 = torneo.getPartiteTorneo().get("Quarto-3");
+		Partita q4 = torneo.getPartiteTorneo().get("Quarto-4");
+		
+		ArrayList<String> g1 = new ArrayList<String>();
+		ArrayList<String> g2 = new ArrayList<String>();
+		ArrayList<String> g3 = new ArrayList<String>();
+		ArrayList<String> g4 = new ArrayList<String>();
+		
+		g1.addAll(q1.getGiocatori());
+		g1.addAll(q1.getGiocatoriEliminati());
+		
+		g2.addAll(q2.getGiocatori());
+		g2.addAll(q2.getGiocatoriEliminati());
+		
+		g3.addAll(q3.getGiocatori());
+		g3.addAll(q3.getGiocatoriEliminati());
+		
+		g4.addAll(q4.getGiocatori());
+		g4.addAll(q4.getGiocatoriEliminati());
+		
+		
+	}
 
+    private void creaSemifinali() {
+    	semifinale1HBox.setVisible(true);
+		semifinale2HBox.setVisible(true);
+		
+		Partita s1 = torneo.getPartiteTorneo().get("Semifinale-1");
+		Partita s2 = torneo.getPartiteTorneo().get("Semifinale-2");
+		
+		ArrayList<String> g1 = new ArrayList<String>();
+		ArrayList<String> g2 = new ArrayList<String>();
+		
+		g1.addAll(s1.getGiocatori());
+		g1.addAll(s1.getGiocatoriEliminati());
+		
+		g2.addAll(s2.getGiocatori());
+		g2.addAll(s2.getGiocatoriEliminati());
+		
+		
+	}
+    
+    private void creaFinale() {
+    	finaleVBox.setVisible(true);
+    	
+		Partita f1 = torneo.getPartiteTorneo().get("Finale-1");
+		
+		ArrayList<String> g1 = new ArrayList<String>();
+		
+		g1.addAll(f1.getGiocatori());
+		g1.addAll(f1.getGiocatoriEliminati());
+
+		
+		
+    }
+    
 }

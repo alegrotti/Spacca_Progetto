@@ -33,7 +33,7 @@ import javafx.scene.control.Slider;
 
 public class AdminAreaController {
 	
-	private ArrayList<String> giocatoriAggiunti;
+	private ArrayList<String> giocatoriAggiuntiP;
 	private ArrayList<String> giocatoriAggiuntiT;
 
 	@FXML
@@ -366,13 +366,13 @@ public class AdminAreaController {
     		if (giocatore.equals(""))
     			throw new Exception();
     		else
-    			giocatoriAggiunti.add(giocatore);
+    			giocatoriAggiuntiP.add(giocatore);
 	    	
 	    	ObservableList<String> giocatori2 = FXCollections.observableArrayList();
-	    	for(String s : giocatoriAggiunti)
+	    	for(String s : giocatoriAggiuntiP)
 	    		giocatori2.add(s);
 	    	giocatori2.sort(null);
-	    	listaGiocatoriTorneo.setItems(giocatori2);
+	    	listaGiocatoriPartita.setItems(giocatori2);
 	    	
 	    	giocatoriDaAggiungere.setValue(null);
 	    	
@@ -402,10 +402,10 @@ public class AdminAreaController {
 			String giocatore = listaGiocatoriPartita.getSelectionModel().getSelectedItem();
 			if(giocatore.equalsIgnoreCase(""))
 				throw new Exception("Nessun giocatore selezionato");
-			giocatoriAggiunti.remove(giocatore);
+			giocatoriAggiuntiP.remove(giocatore);
 		
 			ObservableList<String> giocatori2 = FXCollections.observableArrayList();
-			for(String s : giocatoriAggiunti)
+			for(String s : giocatoriAggiuntiP)
 				giocatori2.add(s);
 			giocatori2.sort(null);
 			listaGiocatoriPartita.setItems(giocatori2);
@@ -427,9 +427,9 @@ public class AdminAreaController {
 				if(!DBAdmin.getAdmin().getPartite().contains(codice)) {
 					if(tipoPartitaButton.getValue().equals("A turni")) {
 						int turni = Integer.parseInt(numeroSliderPartitaLabel.getText());
-						if(giocatoriAggiunti.size()>1) {
-							giocatoriAggiunti.sort(null);
-							Partita p = new PartitaATurni(giocatoriAggiunti,codice,turni,n);
+						if(giocatoriAggiuntiP.size()>1) {
+							giocatoriAggiuntiP.sort(null);
+							Partita p = new PartitaATurni(giocatoriAggiuntiP,codice,turni,n);
 							DBPartite.aggiungiPartita(p);
 							DBAdmin.aggiungiPartita(p);
 							inizializzaSchermata();
@@ -438,8 +438,8 @@ public class AdminAreaController {
 						}
 					}else if(tipoPartitaButton.getValue().equals("A palazzi")) {
 						int palazzi = Integer.parseInt(numeroSliderPartitaLabel.getText());
-						if(giocatoriAggiunti.size()>1) {	
-							Partita p = new PartitaAPalazzi(giocatoriAggiunti,codice,palazzi,n);
+						if(giocatoriAggiuntiP.size()>1) {	
+							Partita p = new PartitaAPalazzi(giocatoriAggiuntiP,codice,palazzi,n);
 							DBPartite.aggiungiPartita(p);
 							DBAdmin.aggiungiPartita(p);
 							inizializzaSchermata();
@@ -687,7 +687,7 @@ public class AdminAreaController {
     @FXML
     void initialize() {
     	
-    	giocatoriAggiunti = new ArrayList<String>();
+    	giocatoriAggiuntiP = new ArrayList<String>();
     	giocatoriAggiuntiT = new ArrayList<String>();
     	
     	inizializzaSchermata();
@@ -755,7 +755,7 @@ public class AdminAreaController {
     	giocatoriDaAggiungere.setItems(giocatori1);
     	
     	ObservableList<String> giocatori2 = FXCollections.observableArrayList();
-    	for(String s : giocatoriAggiunti)
+    	for(String s : giocatoriAggiuntiP)
     		giocatori2.add(s);
     	giocatori2.sort(null);
     	listaGiocatoriPartita.setItems(giocatori2);
