@@ -241,27 +241,27 @@ public class TabelloneTorneoController {
 
     @FXML
     void GIocaOttavo6Button(ActionEvent event) {
-    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Ottavo-6"));
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Ottavo-6"),true);
     }
 
     @FXML
     void GiocaOttavo3Button(ActionEvent event) {
-    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Ottavo-6"));
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Ottavo-6"),true);
     }
 
     @FXML
     void GiocaQuarto2Button(ActionEvent event) {
-    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Quarto-2"));
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Quarto-2"),true);
     }
 
     @FXML
     void giocaFinaleButton(ActionEvent event) {
-    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Finale"));
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Finale"),true);
     }
 
     @FXML
     void giocaOttavo1Button(ActionEvent event) {
-    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Ottavo-1"));
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Ottavo-1"),true);
     }
 
     @FXML
@@ -306,12 +306,12 @@ public class TabelloneTorneoController {
 
     @FXML
     void giocaSemifinale1Button(ActionEvent event) {
-    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Semifinale-1"));
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Semifinale-1"),true);
     }
 
     @FXML
     void giocaSemifinale2Button(ActionEvent event) {
-    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Semifinale-2"));
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Semifinale-2"),true);
     }
     
     public void creaSchermata() {
