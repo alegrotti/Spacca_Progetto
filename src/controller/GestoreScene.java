@@ -194,6 +194,43 @@ public class GestoreScene {
 		}
 	}
 	
+	public static void prossimoTurnoPopup(Partita p, boolean bool) {
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/ProssimoTurno.fxml"));
+			Parent root = loader.load();
+			
+			ProssimoTurnoController c = loader.getController();
+			c.impostaPartita(p);
+			
+			if(p.isCompletata())
+				c.inizializzaSchermataFinale();
+			else 
+				if(p.checkWinner()) {
+					c.inizializzaSchermataFinale();
+				}else
+					c.inizializzaSchermata();
+				
+			Scene prossimoTurno= new Scene(root);
+			prossimoTurno.getStylesheets().add("/view/prossimoturno.css");
+			
+			Stage popupStage = new Stage();
+			popupStage.setMaximized(false);
+			popupStage.centerOnScreen();
+			popupStage.setResizable(false);
+			popupStage.setScene(prossimoTurno);
+			popupStage.initOwner(Main.parentWindow);
+			popupStage.initModality(Modality.APPLICATION_MODAL);
+			popupStage.setTitle("SPACCA - Prossimo turno partita");
+	        Image image = new Image("/immagini/icon.jpg");
+	        popupStage.getIcons().add(image);
+	        
+	        popupStage.show();
+		} catch (Exception e) {
+			messaggioErrore("Errore apertura finestra");
+		}
+	}
+	
+	
 	public static void tabelloneTorneo(Torneo t) {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/TabelloneTorneo.fxml"));
@@ -334,7 +371,7 @@ public class GestoreScene {
 		}
 	}
 	
-	public static void campoDaGioco(String g,Partita p, int y) {
+	public static void campoDaGioco(String g, Partita p, int y) {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/CampoGioco.fxml"));
 			Parent root = loader.load();
