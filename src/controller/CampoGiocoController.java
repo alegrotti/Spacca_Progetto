@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Carta;
 import model.DBGiocatori;
+import model.DBTornei;
 import model.Giocatore;
 import model.GiocatoreCPUDifficile;
 import model.GiocatoreCPUFacile;
@@ -32,6 +33,9 @@ public class CampoGiocoController {
 	
     @FXML
     private ImageView iconMano4;
+    
+    @FXML
+    private ImageView torneoIcon;
 	
 	@FXML
     private TextField CreditiPuntatiField;
@@ -180,7 +184,15 @@ public class CampoGiocoController {
     
     @FXML
     void homepageIconClicked(MouseEvent event) {
+    	if(partita.isTorneo())
+    		DBTornei.getTorneo(partita.getCodiceTorneo()).eliminaGiocatoriDB();
     	GestoreScene.messaggioRitornoHomepage("Tornando alla homepage \nperderai il turno corrente, \ncontinuare?");    	
+    }
+    
+    @FXML
+    void tornaTorneo(MouseEvent event) {
+    	torneoIcon.getScene().getWindow().hide();
+    	GestoreScene.tabelloneTorneo(DBTornei.getTorneo(partita.getCodiceTorneo()));   
     }
     
     @FXML
@@ -355,6 +367,11 @@ public class CampoGiocoController {
     	partita = p;
     	giocatore = g;
     	tavolo = p.getMano();
+    }
+    
+    public void caricaTorneo() {
+    	Image torneoImage = new Image("/immagini/torneoicona.png");
+    	torneoIcon.setImage(torneoImage);
     }
     
     @FXML

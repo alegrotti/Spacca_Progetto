@@ -236,6 +236,8 @@ public class TabelloneTorneoController {
     
     @FXML
     void homepageIconClicked(MouseEvent event) {
+    	giocatoriTorneo.getScene().getWindow().hide();
+    	torneo.eliminaGiocatoriDB();
     	GestoreScene.welcome(true);
     }
 
@@ -266,42 +268,42 @@ public class TabelloneTorneoController {
 
     @FXML
     void giocaOttavo2Button(ActionEvent event) {
-    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Ottavo-2"));
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Ottavo-2"),true);
     }
 
     @FXML
     void giocaOttavo4Button(ActionEvent event) {
-    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Ottavo-4"));
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Ottavo-4"),true);
     }
 
     @FXML
     void giocaOttavo5Button(ActionEvent event) {
-    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Ottavo-5"));
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Ottavo-5"),true);
     }
 
     @FXML
     void giocaOttavo7Button(ActionEvent event) {
-    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Ottavo-7"));
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Ottavo-7"),true);
     }
 
     @FXML
     void giocaOttavo8Button(ActionEvent event) {
-    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Quarto-8"));
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Quarto-8"),true);
     }
 
     @FXML
     void giocaQuarto1Button(ActionEvent event) {
-    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Quarto-1"));
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Quarto-1"),true);
     }
 
     @FXML
     void giocaQuarto3Button(ActionEvent event) {
-    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Quarto-3"));
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Quarto-3"),true);
     }
 
     @FXML
     void giocaQuarto4Button(ActionEvent event) {
-    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Quarto-4"));
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Quarto-4"),true);
     }
 
     @FXML
@@ -462,7 +464,7 @@ public class TabelloneTorneoController {
     private void creaFinale() {
     	finaleVBox.setVisible(true);
     	
-		Partita f1 = torneo.getPartiteTorneo().get("Finale-1");
+		Partita f1 = torneo.getPartiteTorneo().get("Finale");
 		
 		ArrayList<String> g1 = new ArrayList<String>();
 		

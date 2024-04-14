@@ -429,7 +429,7 @@ public class AdminAreaController {
 						int turni = Integer.parseInt(numeroSliderPartitaLabel.getText());
 						if(giocatoriAggiuntiP.size()>1) {
 							giocatoriAggiuntiP.sort(null);
-							Partita p = new PartitaATurni(giocatoriAggiuntiP,codice,turni,n);
+							Partita p = new PartitaATurni(giocatoriAggiuntiP,codice,turni,n,"");
 							DBPartite.aggiungiPartita(p);
 							DBAdmin.aggiungiPartita(p);
 							inizializzaSchermata();
@@ -439,7 +439,7 @@ public class AdminAreaController {
 					}else if(tipoPartitaButton.getValue().equals("A palazzi")) {
 						int palazzi = Integer.parseInt(numeroSliderPartitaLabel.getText());
 						if(giocatoriAggiuntiP.size()>1) {	
-							Partita p = new PartitaAPalazzi(giocatoriAggiuntiP,codice,palazzi,n);
+							Partita p = new PartitaAPalazzi(giocatoriAggiuntiP,codice,palazzi,n,"");
 							DBPartite.aggiungiPartita(p);
 							DBAdmin.aggiungiPartita(p);
 							inizializzaSchermata();
@@ -551,7 +551,7 @@ public class AdminAreaController {
 					if(tipoTorneoButton.getValue().equals("A turni")) {
 						int turni = Integer.parseInt(numeroSliderTorneo.getText());
 						if(giocatoriAggiuntiT.size()>1) {
-							giocatoriAggiuntiT.sort(null);
+							//giocatoriAggiuntiT.sort(null);
 							Torneo t = new Torneo("Turni",giocatoriAggiuntiT,codice,turni,n);
 							DBTornei.aggiungiTorneo(t);
 							DBAdmin.aggiungiTorneo(t);
@@ -579,6 +579,7 @@ public class AdminAreaController {
 				GestoreScene.messaggioErrore("Inserisci codice non nullo");
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
+			System.out.println(e);
 			//GestoreScene.messaggioErrore("Errore creazione torneo");
 		}
     }
@@ -689,6 +690,8 @@ public class AdminAreaController {
     	
     	giocatoriAggiuntiP = new ArrayList<String>();
     	giocatoriAggiuntiT = new ArrayList<String>();
+    	
+    	DBAdmin.creaAdmin();
     	
     	inizializzaSchermata();
     	

@@ -11,11 +11,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.DBPartite;
+import model.DBTornei;
 import model.Partita;
+import model.Torneo;
 
 public class VincitorePartitaController {
 
 	private Partita partita;
+	
+    @FXML
+    private Button tornaTorneoButton;
 	
     @FXML
     private Label classificato1;
@@ -53,15 +58,30 @@ public class VincitorePartitaController {
     @FXML
     private Button tornaHomeButton;
 
+
+    @FXML
+    void tornaTorneo(ActionEvent event) {
+    	try {
+    		Torneo t = DBTornei.getTorneo(partita.getCodiceTorneo());
+    		
+    		t.aggiornaPartita(partita);
+    		
+    		DBTornei.aggiungiTorneo(t);
+    		
+    		GestoreScene.tabelloneTorneo(t);
+    	}catch(Exception e) {
+    		GestoreScene.messaggioErrore("Errore salvataggio torneo");
+    	}
+    }
+    
     @FXML
     void tornaHome(ActionEvent event) {
     	try {
     		DBPartite.aggiungiPartita(partita);
+    		GestoreScene.welcome(false);
     	}catch(Exception e) {
     		GestoreScene.messaggioErrore("Errore salvataggio partita");
     	}
-    	
-    	GestoreScene.welcome(false);
     }
     
     @FXML
@@ -113,5 +133,13 @@ public class VincitorePartitaController {
 			y+=(g+" - eliminato con 0 crediti\n");
 		}
     	eliminati.setText(y);
+    	
+    	tornaHomeButton.setVisible(false);
+    	tornaTorneoButton.setVisible(false);
+    	
+    	if(partita.isTorneo())
+    		tornaTorneoButton.setVisible(true);
+    	else
+    		tornaHomeButton.setVisible(true);
     }
 }

@@ -6,7 +6,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import model.DBPartite;
 import model.DBTornei;
+import model.Partita;
+import model.Torneo;
 
 public class LoginTorneoController {
 
@@ -25,9 +28,22 @@ public class LoginTorneoController {
     @FXML
     void giocaTorneo(ActionEvent event) {
     	try {
-    		GestoreScene.tabelloneTorneo(DBTornei.getTorneo(codiceTorneo.getText()));
+    		String codice = codiceTorneo.getText();
+    		if(codice.equals(""))
+    			throw new IllegalArgumentException("Nessun codice inserito");
+    		if(DBTornei.esisteTorneo(codice)) {
+    			try {
+    				Torneo t = DBTornei.getTorneo(codice);
+    				GestoreScene.tabelloneTorneo(t);
+    		    	System.out.println("Torneo "+codice+" caricato");
+    	    	}catch(Exception e) {
+    	    		GestoreScene.messaggioErrore("Errore caricamento torneo");
+    	    	}
+    		}else {
+    			throw new Exception("Torneo inesistente");
+    		}
     	}catch(Exception e) {
-    		GestoreScene.messaggioErrore("Errore apertura finestra");
+    		GestoreScene.messaggioErrore(e.getMessage());
     	}
     }
 
