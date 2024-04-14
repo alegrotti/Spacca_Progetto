@@ -364,7 +364,9 @@ public class AdminAreaController {
     		String giocatore = giocatoriDaAggiungere.getValue();
     		
     		if (giocatore.equals(""))
-    			throw new Exception();
+    			throw new Exception("Selezionare giocatore");
+    		else if(giocatoriAggiuntiP.contains(giocatore))
+    			throw new Exception("Massimo giocatori raggiunto");
     		else
     			giocatoriAggiuntiP.add(giocatore);
 	    	
@@ -377,7 +379,7 @@ public class AdminAreaController {
 	    	giocatoriDaAggiungere.setValue(null);
 	    	
     	}catch(Exception e) {
-    		GestoreScene.messaggioErrore("Errore aggiunta giocatore");
+    		GestoreScene.messaggioErrore(e.getMessage());
     	}
     }
     
@@ -428,21 +430,26 @@ public class AdminAreaController {
 					if(tipoPartitaButton.getValue().equals("A turni")) {
 						int turni = Integer.parseInt(numeroSliderPartitaLabel.getText());
 						if(giocatoriAggiuntiP.size()>1) {
-							giocatoriAggiuntiP.sort(null);
-							Partita p = new PartitaATurni(giocatoriAggiuntiP,codice,turni,n,"");
-							DBPartite.aggiungiPartita(p);
-							DBAdmin.aggiungiPartita(p);
-							inizializzaSchermata();
+							if(giocatoriAggiuntiP.size()<=8) {
+								Partita p = new PartitaATurni(giocatoriAggiuntiP,codice,turni,n,"");
+								DBPartite.aggiungiPartita(p);
+								DBAdmin.aggiungiPartita(p);
+								inizializzaSchermata();
+							}else
+								GestoreScene.messaggioErrore("Aggiungi al massimo 8 giocatori");
 						}else {
 							GestoreScene.messaggioErrore("Aggiungi almeno 2 giocatori");
 						}
 					}else if(tipoPartitaButton.getValue().equals("A palazzi")) {
 						int palazzi = Integer.parseInt(numeroSliderPartitaLabel.getText());
 						if(giocatoriAggiuntiP.size()>1) {	
-							Partita p = new PartitaAPalazzi(giocatoriAggiuntiP,codice,palazzi,n,"");
-							DBPartite.aggiungiPartita(p);
-							DBAdmin.aggiungiPartita(p);
-							inizializzaSchermata();
+							if(giocatoriAggiuntiP.size()<=8) {
+								Partita p = new PartitaAPalazzi(giocatoriAggiuntiP,codice,palazzi,n,"");
+								DBPartite.aggiungiPartita(p);
+								DBAdmin.aggiungiPartita(p);
+								inizializzaSchermata();
+							}else
+								GestoreScene.messaggioErrore("Aggiungi al massimo 8 giocatori");
 						}else 
 							GestoreScene.messaggioErrore("Aggiungi almeno 2 giocatori");
 
@@ -491,10 +498,10 @@ public class AdminAreaController {
     	Partita p = DBPartite.getPartita(partita);
     	if (p!=null) {
     		codiceLabel.setText(p.getCodice());
-    		String gioc="";
-    		for(String s : p.getGiocatori())
-    			gioc+=(s+"\n");
-    		giocatoriLabel.setText(gioc);
+    		ArrayList<String> s = p.getGiocatori();
+    		s.sort(null);
+    		String lista = String.join(", ", s);
+    		giocatoriLabel.setText(lista);
     		if(p instanceof PartitaAPalazzi) {
     			PartitaAPalazzi p1 = (PartitaAPalazzi) p;
     			tipoPartitaLabel.setText("A palazzi - "+p1.getPalazzi()+" palazzi");
@@ -522,7 +529,9 @@ public class AdminAreaController {
     		String giocatore = giocatoriDaAggiungereTorneo.getValue();
     		
     		if (giocatore.equals(""))
-    			throw new Exception();
+    			throw new Exception("Seleziona giocatore");
+    		else if(giocatoriAggiuntiT.contains(giocatore))
+    			throw new Exception("Numero massimo giocatori raggiunto");
     		else
     			giocatoriAggiuntiT.add(giocatore);
 	    	
@@ -535,7 +544,7 @@ public class AdminAreaController {
 	    	giocatoriDaAggiungereTorneo.setValue(null);
 	    	
     	}catch(Exception e) {
-    		GestoreScene.messaggioErrore("Errore aggiunta giocatore");
+    		GestoreScene.messaggioErrore(e.getMessage());
     	}
     }
     
@@ -551,22 +560,26 @@ public class AdminAreaController {
 					if(tipoTorneoButton.getValue().equals("A turni")) {
 						int turni = Integer.parseInt(numeroSliderTorneo.getText());
 						if(giocatoriAggiuntiT.size()>1) {
-							//giocatoriAggiuntiT.sort(null);
-							Torneo t = new Torneo("Turni",giocatoriAggiuntiT,codice,turni,n);
-							DBTornei.aggiungiTorneo(t);
-							DBAdmin.aggiungiTorneo(t);
-							inizializzaSchermata();
-						}else {
+							if(giocatoriAggiuntiT.size()<=16) {
+								Torneo t = new Torneo("Turni",giocatoriAggiuntiT,codice,turni,n);
+								DBTornei.aggiungiTorneo(t);
+								DBAdmin.aggiungiTorneo(t);
+								inizializzaSchermata();
+							}else
+								GestoreScene.messaggioErrore("Aggiungi al massimo 16 giocatori");
+						}else
 							GestoreScene.messaggioErrore("Aggiungi almeno 2 giocatori");
-						}
 					}else if(tipoTorneoButton.getValue().equals("A palazzi")) {
 						int palazzi = Integer.parseInt(numeroSliderTorneo.getText());
 						if(giocatoriAggiuntiT.size()>1) {	
-							Torneo t = new Torneo("Palazzi",giocatoriAggiuntiT,codice,palazzi,n);
-							DBTornei.aggiungiTorneo(t);
-							DBAdmin.aggiungiTorneo(t);
-							inizializzaSchermata();
-						}else 
+							if(giocatoriAggiuntiT.size()<=16) {
+								Torneo t = new Torneo("Palazzi",giocatoriAggiuntiT,codice,palazzi,n);
+								DBTornei.aggiungiTorneo(t);
+								DBAdmin.aggiungiTorneo(t);
+								inizializzaSchermata();
+							}else
+								GestoreScene.messaggioErrore("Aggiungi al massimo 16 giocatori");
+							}else 
 							GestoreScene.messaggioErrore("Aggiungi almeno 2 giocatori");
 
 					}else {
@@ -641,10 +654,10 @@ public class AdminAreaController {
     	Torneo t = DBTornei.getTorneo(torneo); //
     	if (t!=null) {
     		codiceLabelTorneo.setText(t.getCodice());
-    		String gioc="";
-    		for(String s : t.getGiocatori())
-    			gioc+=(s+"\n");
-    		giocatoriLabelTorneo.setText(gioc);
+    		ArrayList<String> s = t.getGiocatori();
+    		s.sort(null);
+    		String lista = String.join(", ", s);
+    		giocatoriLabelTorneo.setText(lista);
     		if(t.getTipo().equals("A palazzi")) {
     			tipoTorneoLabel.setText("A palazzi - "+t.getObiettivo()+" palazzi");
     		}else {
@@ -698,6 +711,10 @@ public class AdminAreaController {
     }
     
     private void inizializzaSchermata() {
+    	
+    	giocatoriAggiuntiP = new ArrayList<String>();
+    	giocatoriAggiuntiT = new ArrayList<String>();
+    	
     	//Profilo
     	inizializzaProfilo();
     	

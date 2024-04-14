@@ -63,4 +63,16 @@ public class DBPartite {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
+	public static void eliminaPartite(HashMap<String,Partita> p) {
+		try {
+			partite = (HashMap<String,Partita>)GestioneFile.caricaDB(DATABASE_PATH);
+			for(String s : p.keySet())
+				partite.remove(s);
+			GestioneFile.salvaDB(partite,DATABASE_PATH);
+		} catch (Exception e) {
+			GestoreScene.messaggioErrore("Errore eliminazione giocatore");
+		}
+	}
+	
 }

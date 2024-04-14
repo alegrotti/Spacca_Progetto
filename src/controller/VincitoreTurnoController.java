@@ -14,7 +14,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.City;
 import model.DBPartite;
+import model.DBTornei;
 import model.Partita;
+import model.Torneo;
 
 public class VincitoreTurnoController {
 
@@ -71,7 +73,12 @@ public class VincitoreTurnoController {
     		GestoreScene.scegliCartaSchermata(partita,winner);
     	}else {
     		partita.nextTurn();
-    		DBPartite.aggiungiPartita(partita);
+    		if(partita.isTorneo()) {
+        		Torneo t = DBTornei.getTorneo(partita.getCodiceTorneo());
+        		t.aggiornaPartita(partita);
+        		DBTornei.aggiungiTorneo(t);
+        	}else
+        		DBPartite.aggiungiPartita(partita);
     		GestoreScene.prossimoTurnoPopup(partita);
     	}
     }

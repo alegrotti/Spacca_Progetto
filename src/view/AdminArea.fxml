@@ -277,7 +277,10 @@
                                              </children>
                                           </HBox>
                                           <Label fx:id="giocatoriLabelTitolo" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="109.0" prefHeight="30.0" prefWidth="350.0" text="Giocatori" />
-                                          <Label fx:id="giocatoriLabel" alignment="CENTER" layoutX="10.0" layoutY="123.0" prefHeight="158.0" prefWidth="350.0" />
+                                          <Label fx:id="giocatoriLabel" alignment="CENTER" layoutX="10.0" layoutY="123.0" prefHeight="158.0" prefWidth="350.0" textAlignment="CENTER" wrapText="true">
+                                             <padding>
+                                                <Insets left="10.0" right="10.0" />
+                                             </padding></Label>
                                        </children>
                                        <HBox.margin>
                                           <Insets right="10.0" />
@@ -441,7 +444,10 @@
                                              </children>
                                           </HBox>
                                           <Label fx:id="giocatoriLabelTitoloTorneo" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="109.0" prefHeight="30.0" prefWidth="350.0" text="Giocatori" />
-                                          <Label fx:id="giocatoriLabelTorneo" alignment="CENTER" layoutX="10.0" layoutY="123.0" prefHeight="158.0" prefWidth="350.0" />
+                                          <Label fx:id="giocatoriLabelTorneo" alignment="CENTER" layoutX="10.0" layoutY="123.0" prefHeight="149.0" prefWidth="348.0" textAlignment="CENTER" wrapText="true">
+                                             <padding>
+                                                <Insets left="10.0" right="10.0" />
+                                             </padding></Label>
                                        </children>
                                        <HBox.margin>
                                           <Insets right="10.0" />
