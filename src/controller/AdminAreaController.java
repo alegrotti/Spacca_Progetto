@@ -704,7 +704,7 @@ public class AdminAreaController {
     	giocatoriAggiuntiP = new ArrayList<String>();
     	giocatoriAggiuntiT = new ArrayList<String>();
     	
-    	DBAdmin.creaAdmin();
+    	//DBAdmin.creaAdmin();
     	
     	inizializzaSchermata();
     	

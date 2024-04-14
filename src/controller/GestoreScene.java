@@ -238,12 +238,8 @@ public class GestoreScene {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/TabelloneTorneo.fxml"));
 			Parent root = loader.load();
 			
-			System.out.println(1);
-			
 			t.aggiorna();
 			DBTornei.aggiungiTorneo(t);
-			
-			System.out.println(2);
 			
 			TabelloneTorneoController c = loader.getController();
 			c.impostaTorneo(t);

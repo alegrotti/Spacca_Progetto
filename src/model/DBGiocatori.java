@@ -17,20 +17,33 @@ public class DBGiocatori {
 	
 	@SuppressWarnings("unchecked")
 	public static Set<String> getGiocatori(){
-		giocatori = (HashMap<String,Giocatore>)GestioneFile.caricaDB(DATABASE_PATH);
-		return giocatori.keySet();
+		try {
+			giocatori = (HashMap<String,Giocatore>)GestioneFile.caricaDB(DATABASE_PATH);
+			System.out.println("Giocatori caricati da DB");
+			return giocatori.keySet();
+		}catch(Exception e) {
+			GestoreScene.messaggioErrore("Errore caricamento giocatori");
+		}
+		return null;
 	}
 	
 	@SuppressWarnings("unchecked")
 	public static HashMap<String,Giocatore> Giocatori(){
-		giocatori = (HashMap<String,Giocatore>)GestioneFile.caricaDB(DATABASE_PATH);
-		return giocatori;
+		try {
+			giocatori = (HashMap<String,Giocatore>)GestioneFile.caricaDB(DATABASE_PATH);
+			System.out.println("Giocatori caricati da DB");
+			return giocatori;
+		}catch(Exception e) {
+			GestoreScene.messaggioErrore("Errore caricamento giocatori");
+		}
+		return null;
 	}
 	
 	@SuppressWarnings("unchecked")
 	public static Giocatore getGiocatore(String username) {
 		try {
 			giocatori = (HashMap<String,Giocatore>)GestioneFile.caricaDB(DATABASE_PATH);
+			System.out.println("Giocatore caricato da DB");
 			return giocatori.get(username);
 		} catch (Exception e) {
 			GestoreScene.messaggioErrore("Errore caricamento giocatore");
@@ -44,6 +57,7 @@ public class DBGiocatori {
 			giocatori = (HashMap<String,Giocatore>)GestioneFile.caricaDB(DATABASE_PATH);
 			giocatori.put(g.getUsername(),g);
 			GestioneFile.salvaDB(giocatori,DATABASE_PATH);
+			System.out.println("Giocatore aggiunto al DB");
 		} catch (Exception e) {
 			GestoreScene.messaggioErrore("Errore aggiunta giocatore");
 		}
@@ -55,6 +69,7 @@ public class DBGiocatori {
 			giocatori = (HashMap<String,Giocatore>)GestioneFile.caricaDB(DATABASE_PATH);
 			giocatori.putAll(g);
 			GestioneFile.salvaDB(giocatori,DATABASE_PATH);
+			System.out.println("Giocatori aggiunti al DB");
 		} catch (Exception e) {
 			GestoreScene.messaggioErrore("Errore aggiunta giocatore");
 		}
@@ -66,6 +81,7 @@ public class DBGiocatori {
 			giocatori = (HashMap<String,Giocatore>)GestioneFile.caricaDB(DATABASE_PATH);
 			giocatori.remove(g);
 			GestioneFile.salvaDB(giocatori,DATABASE_PATH);
+			System.out.println("Giocatore eliminato dal DB");
 		} catch (Exception e) {
 			GestoreScene.messaggioErrore("Errore eliminazione giocatore");
 		}
@@ -78,6 +94,7 @@ public class DBGiocatori {
 			for(String s : g.keySet())
 				giocatori.remove(s);
 			GestioneFile.salvaDB(giocatori,DATABASE_PATH);
+			System.out.println("Giocatori eliminati dal DB");
 		} catch (Exception e) {
 			GestoreScene.messaggioErrore("Errore eliminazione giocatore");
 		}

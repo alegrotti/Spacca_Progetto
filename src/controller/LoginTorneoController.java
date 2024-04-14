@@ -6,9 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import model.DBPartite;
 import model.DBTornei;
-import model.Partita;
 import model.Torneo;
 
 public class LoginTorneoController {

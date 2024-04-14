@@ -16,8 +16,14 @@ public class DBTornei {
 	
 	@SuppressWarnings("unchecked")
 	public static HashMap<String,Torneo> getTornei(){
-		tornei = (HashMap<String,Torneo>)GestioneFile.caricaDB(DATABASE_PATH);
-		return tornei;
+		try {
+			tornei = (HashMap<String,Torneo>)GestioneFile.caricaDB(DATABASE_PATH);
+			System.out.println("Tornei caricati da DB");
+			return tornei;
+		}catch(Exception e) {
+			GestoreScene.messaggioErrore("Errore caricamento tornei");
+		}
+		return null;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -34,6 +40,7 @@ public class DBTornei {
 	public static Torneo getTorneo(String codice) {
 		try {
 			tornei = (HashMap<String,Torneo>)GestioneFile.caricaDB(DATABASE_PATH);
+			System.out.println("Torneo caricato da DB");
 			return tornei.get(codice);
 		} catch (Exception e) {
 			GestoreScene.messaggioErrore("Errore caricamento torneo");
@@ -47,8 +54,9 @@ public class DBTornei {
 			tornei = (HashMap<String,Torneo>)GestioneFile.caricaDB(DATABASE_PATH);
 			tornei.put(t.getCodice(),t);
 			GestioneFile.salvaDB(tornei,DATABASE_PATH);
+			System.out.println("Torneo aggiunto al DB");
 		} catch (Exception e) {
-			GestoreScene.messaggioErrore("Errore aggiunta giocatore");
+			GestoreScene.messaggioErrore("Errore aggiunta torneo");
 		}
 	}
 	
@@ -58,6 +66,7 @@ public class DBTornei {
 			tornei = (HashMap<String,Torneo>)GestioneFile.caricaDB(DATABASE_PATH);
 			tornei.remove(t);
 			GestioneFile.salvaDB(tornei,DATABASE_PATH);
+			System.out.println("Toneo eliminato dal DB");
 		} catch (Exception e) {
 			GestoreScene.messaggioErrore("Errore eliminazione torneo");
 		}
