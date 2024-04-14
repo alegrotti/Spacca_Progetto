@@ -92,17 +92,21 @@ public class Torneo implements Serializable{
 		
 		ArrayList<String> p = new ArrayList<String>();
 		
+		System.out.println(g.size());
+		
 		int x = 0;
-		if(g.size() <= 16) {
+		if(g.size() <= 16)
 			if(g.size() <= 8) {
-				if(g.size() <= 4)
+				if(g.size() <= 4) {
 					x = (4-g.size());
-			}else
-				x = (8-g.size());
-		}else 
+				}else
+					x = (8-g.size());
+			}else 
 			x = (16-g.size());
-	
+		
 		Random r = new Random();
+		
+		System.out.println(x);
 		
 		for(int i = 0; i < x ; i++) {
 			
