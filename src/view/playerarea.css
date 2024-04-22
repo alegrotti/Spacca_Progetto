@@ -4,6 +4,14 @@
     -fx-border-color: rgb(0, 0, 0);
 }
 
+.scroll-bar:vertical {
+    -fx-background-color: rgb(0, 64, 128);
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: rgb(209, 155, 0);
+}
+
 #tabPane .tab {
     -fx-background-color: rgb(209, 155, 0);
 }

@@ -307,10 +307,14 @@ public class AdminAreaController {
     	String username = listaGiocatoriButton.getValue();
     	if(username==null)
     		GestoreScene.messaggioErrore("Seleziona giocatore");
-    	DBAdmin.eliminaGiocatore(username);
-    	DBGiocatori.eliminaGiocatore(username);
+    	else if(username.equals("ADMIN"))
+    		GestoreScene.messaggioErrore("Impossibile eliminare ADMIN");
+    	else {
+    		DBAdmin.eliminaGiocatore(username);
+    		DBGiocatori.eliminaGiocatore(username);
+    		inizializzaSchermata();
+    	}
     	
-    	inizializzaSchermata();
     }
 
     @FXML
@@ -591,9 +595,7 @@ public class AdminAreaController {
 			else
 				GestoreScene.messaggioErrore("Inserisci codice non nullo");
 		}catch(Exception e) {
-			System.out.println(e.getMessage());
-			System.out.println(e);
-			//GestoreScene.messaggioErrore("Errore creazione torneo");
+			GestoreScene.messaggioErrore("Errore creazione torneo");
 		}
     }
     
