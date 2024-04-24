@@ -40,9 +40,6 @@ public class WelcomeController {
     private Button playTournamentButton;
 
     @FXML
-    private Button playerArea;
-
-    @FXML
     private Button rulesButton;
 
     @FXML
@@ -72,18 +69,6 @@ public class WelcomeController {
 	        Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/adminlogin.css");
 	        GestoreScene.setScene(scenaHomepage,false," - Area admin login");
-    	}catch(Exception e) {
-    		GestoreScene.messaggioErrore("Errore apertura finestra");
-    	}
-    }
-
-    @FXML
-    void openPlayerArea(ActionEvent event) {
-    	try {
-	    	Parent root = FXMLLoader.load(getClass().getResource("/view/PlayerArea.fxml"));
-	        Scene scenaHomepage = new Scene(root);
-	        scenaHomepage.getStylesheets().add("/view/playerarea.css");
-	        GestoreScene.setScene(scenaHomepage,false," - Player area");
     	}catch(Exception e) {
     		GestoreScene.messaggioErrore("Errore apertura finestra");
     	}
