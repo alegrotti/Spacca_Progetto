@@ -36,7 +36,7 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="playerArea" mnemonicParsing="false" onAction="#openPlayerArea" prefHeight="40.0" prefWidth="170.0" text="Area giocatori">
+                  <Button fx:id="standingsButton" mnemonicParsing="false" onAction="#openStandings" prefHeight="40.0" prefWidth="170.0" text="Classifiche">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
@@ -50,7 +50,7 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="standingsButton" mnemonicParsing="false" onAction="#openStandings" prefHeight="40.0" prefWidth="170.0" text="Classifiche">
+                  <Button fx:id="impostazioniButton" mnemonicParsing="false" onAction="#openSettings" prefHeight="40.0" prefWidth="170.0" text="Catalogo carte">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
@@ -62,14 +62,9 @@
             </HBox>
             <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="216.0" prefHeight="40.0" prefWidth="459.0">
                <children>
-                  <Button fx:id="impostazioniButton" mnemonicParsing="false" onAction="#openSettings" prefHeight="40.0" prefWidth="170.0" text="Catalogo carte">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Button>
                   <Button fx:id="exitButton" mnemonicParsing="false" onAction="#closeProgram" prefHeight="40.0" prefWidth="170.0" text="Salva ed esci">
                      <HBox.margin>
-                        <Insets left="20.0" />
+                        <Insets />
                      </HBox.margin>
                   </Button>
                </children>

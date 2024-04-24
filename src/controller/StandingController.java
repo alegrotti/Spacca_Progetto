@@ -3,6 +3,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableView;
@@ -15,11 +16,20 @@ public class StandingController {
     private VBox centralBox;
 
     @FXML
+    private VBox centralBox1;
+
+    @FXML
     private Button homeButton;
 
     @FXML
+    private ComboBox<?> listaGiocatori;
+
+    @FXML
     private Pane sfondo;
-    
+
+    @FXML
+    private TabPane tabPane;
+
     @FXML
     private TableView<?> tableGenerale;
 
@@ -27,10 +37,10 @@ public class StandingController {
     private TableView<?> tablePartite;
 
     @FXML
-    private TableView<?> tableTornei;
+    private TableView<?> tablePartite2;
 
     @FXML
-    private TabPane tabPane;
+    private TableView<?> tableTornei;
 
     @FXML
     private Label titolo;
@@ -47,6 +57,11 @@ public class StandingController {
     @FXML
     void backWelcome(ActionEvent event) {
     	GestoreScene.welcome(false);
+    }
+
+    @FXML
+    void giocatoreScelto(ActionEvent event) {
+
     }
 
 }
