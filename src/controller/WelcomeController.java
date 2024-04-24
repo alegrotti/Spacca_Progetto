@@ -52,6 +52,11 @@ public class WelcomeController {
     private Label titolo;
 
     @FXML
+    void initialize() {
+    	DBAdmin.creaAdmin();
+    }
+    
+    @FXML
     void closeProgram(ActionEvent event) {
     	DBAdmin.salvaAdmin(DBAdmin.getAdmin());
     	Platform.exit();

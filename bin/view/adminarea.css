@@ -48,11 +48,11 @@
     -fx-font-size: 12px;
 }
 
-#listaGiocatoriPartita .scroll-bar:vertical {
+.scroll-bar:vertical {
     -fx-background-color: rgb(0, 64, 128);
 }
 
-#listaGiocatoriPartita .scroll-bar:vertical .thumb {
+.scroll-bar:vertical .thumb {
     -fx-background-color: rgb(209, 155, 0);
 }
 

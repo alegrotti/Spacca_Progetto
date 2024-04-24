@@ -26,6 +26,8 @@ public class Partita implements Serializable{
 	private ArrayList<String> giocatoriPuntata;
 	private int creditiIniziali;
 	private int tavolo;
+	private boolean isTorneo;
+	private String codiceTorneo;
 	private Carta[] carteTavolo;
 	private HashMap<String, Carta[]> mani;
 	private HashMap<String, City> cittadine;
@@ -45,10 +47,12 @@ public class Partita implements Serializable{
 		this.crediti = null;
 		this.giocatoriPuntata = null;
 		this.vincitore = null;
+		this.isTorneo = false;
+		this.codiceTorneo = null;
 		this.setPuntata(0);
 	}
 
-	public Partita(ArrayList<String> giocatori, String codice, int creditiIniziali) {
+	public Partita(ArrayList<String> giocatori, String codice, int creditiIniziali, String codiceTorneo) {
 		this.giocatori = giocatori;
 		this.codice = codice;
 		this.turno = 1;
@@ -65,6 +69,11 @@ public class Partita implements Serializable{
 		this.completata = false;
 		this.crediti = creaCreditiIniziali(giocatori,creditiIniziali);
 		this.cittadine = creaCittadineIniziali(giocatori);
+		this.codiceTorneo = codiceTorneo;
+		if(!codiceTorneo.equals(""))
+			isTorneo = true;
+		else
+			isTorneo = false;
 	}
 
 	private HashMap<String,Carta[]> creaManiIniziali(ArrayList<String> giocatori){
@@ -352,44 +361,47 @@ public class Partita implements Serializable{
 	
 	public boolean checkWinner() {
 		System.out.println("Controllo del vincitore");
-		if(this instanceof PartitaATurni) {
-			PartitaATurni partita = (PartitaATurni)this;
-			if(getTurno()>partita.getTurni()) {
-				creaClassifica();
-				return true;
-			}else
-				if(giocatori.size()==1) {
-					creaClassifica();
-					return true;
-				}else if(giocatori.size()==0) {
+		if(giocatori.size()>0)
+			if(this instanceof PartitaATurni) {
+				PartitaATurni partita = (PartitaATurni)this;
+				if(getTurno()>partita.getTurni()) {
 					creaClassifica();
 					return true;
 				}else
-					return false;
-		}else if(this instanceof PartitaAPalazzi) {
-			PartitaAPalazzi partita = (PartitaAPalazzi)this;
-			if(cityMaggiore()==partita.getPalazzi()) {
-				creaClassifica();
-				return true;
-			}else
-				if(giocatori.size()==1) {
-					creaClassifica();
-					return true;
-				}else if(giocatori.size()==0) {
+					if(giocatori.size()==1) {
+						creaClassifica();
+						return true;
+					}else if(giocatori.size()==0) {
+						creaClassifica();
+						return true;
+					}else
+						return false;
+			}else if(this instanceof PartitaAPalazzi) {
+				PartitaAPalazzi partita = (PartitaAPalazzi)this;
+				if(cityMaggiore()==partita.getPalazzi()) {
 					creaClassifica();
 					return true;
 				}else
-					return false;
-		}else {
-			GestoreScene.messaggioErrore("Partita non caricata correttamente");
-			return false;
+					if(giocatori.size()==1) {
+						creaClassifica();
+						return true;
+					}else if(giocatori.size()==0) {
+						creaClassifica();
+						return true;
+					}else
+						return false;
+			}else {
+				GestoreScene.messaggioErrore("Partita non caricata correttamente");
+				return false;
+			}
+		else {
+			vincitore = "";
+			return true;
 		}
 	}
 	
 	public void creaClassifica() {
 		
-		chiudiPartita();
-
 		classifica = new ArrayList<>(giocatori);
 
 	    Collections.sort(classifica, new Comparator<String>() {
@@ -407,6 +419,7 @@ public class Partita implements Serializable{
 	        }
 	    });
 	    
+	    vincitore = classifica.get(0);
 	    System.out.println("Classifica della partita creata");
 
 	}
@@ -417,6 +430,14 @@ public class Partita implements Serializable{
 
 	public ArrayList<String> getClassifica() {
 		return classifica;
+	}
+
+	public boolean isTorneo() {
+		return isTorneo;
+	}
+
+	public String getCodiceTorneo() {
+		return codiceTorneo;
 	}
 	
 }

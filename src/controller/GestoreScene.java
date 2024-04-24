@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import model.Building;
 import model.Carta;
 import model.City;
+import model.DBTornei;
 import model.Partita;
 import model.Torneo;
 
@@ -206,6 +207,7 @@ public class GestoreScene {
 				c.inizializzaSchermataFinale();
 			else 
 				if(p.checkWinner()) {
+					c.impostaPartita(p);
 					c.inizializzaSchermataFinale();
 				}else
 					c.inizializzaSchermata();
@@ -236,6 +238,9 @@ public class GestoreScene {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/TabelloneTorneo.fxml"));
 			Parent root = loader.load();
 			
+			t.aggiorna();
+			DBTornei.aggiungiTorneo(t);
+			
 			TabelloneTorneoController c = loader.getController();
 			c.impostaTorneo(t);
 			c.creaSchermata();
@@ -243,25 +248,11 @@ public class GestoreScene {
 			Scene prossimoTurno= new Scene(root);
 			prossimoTurno.getStylesheets().add("/view/tabellonetorneo.css");
 			
-			Stage popupStage = new Stage();
-			popupStage.setMaximized(false);
-			popupStage.centerOnScreen();
-			popupStage.setResizable(false);
-			popupStage.setScene(prossimoTurno);
-			popupStage.initOwner(Main.parentWindow);
-			popupStage.initModality(Modality.APPLICATION_MODAL);
-			popupStage.setTitle("SPACCA - Tabellone torneo "+t.getCodice());
-	        Image image = new Image("/immagini/icon.jpg");
-	        popupStage.getIcons().add(image);
-	        
-	        popupStage.setOnCloseRequest(event -> {
-				event.consume();
-	        });
-	        
-	        popupStage.show();
+			setScene(prossimoTurno, false," Tabellone torneo "+t.getCodice());
+	         
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
 			//messaggioErrore("Errore apertura finestra");
+			System.out.println(e.getMessage());
 		}
 	}
 	
@@ -379,6 +370,8 @@ public class GestoreScene {
 				CampoGiocoController controller = loader.getController();
 				controller.setInfo(p,g);
 				controller.caricaSchermataDefault();
+				if(p.isTorneo())
+					controller.caricaTorneo();
 			}
 			Scene scenaHomepage = new Scene(root);
 	        scenaHomepage.getStylesheets().add("/view/campogioco.css");
@@ -386,7 +379,6 @@ public class GestoreScene {
 	        setScene(scenaHomepage,true,(" - Game "+p.getCodice()));
 		} catch (Exception e) {
 	    	messaggioErrore("Errore apertura finestra");
-			//System.out.println(e.getMessage());
 		}
 	}
 	
@@ -543,6 +535,7 @@ public class GestoreScene {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/VincitorePartita.fxml"));
 			Parent root = loader.load();
 			
+			partita.chiudiPartita();
 			VincitorePartitaController controller = loader.getController();
 			controller.impostaPartita(partita);
 			

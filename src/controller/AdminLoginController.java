@@ -48,10 +48,9 @@ public class AdminLoginController {
 	    		        Scene scenaHomepage = new Scene(root);
 	    		        scenaHomepage.getStylesheets().add("/view/adminarea.css");
 	    		        GestoreScene.setScene(scenaHomepage,false," - Area admin");
+	    		        System.out.println("Accesso admin eseguito");
 	    	    	}catch(Exception e) {	
-	    	    		//throw new Exception("Errore apertura finestra");
-	    	    		//throw e;
-	    	    		System.out.println(e.getMessage());
+	    	    		throw new Exception("Errore apertura finestra");
 	    	    	}
 	    		}else
 	    			throw new Exception("Password errata");
@@ -72,8 +71,8 @@ public class AdminLoginController {
 
     @FXML
     void initialize() {
-    	usernameButton.setText(DBAdmin.getAdmin().getUsername());
-    	passwordButton.setText(DBAdmin.getAdmin().getPassword());
+    	//usernameButton.setText(DBAdmin.getAdmin().getUsername());
+    	//passwordButton.setText(DBAdmin.getAdmin().getPassword());
     }
     
 }

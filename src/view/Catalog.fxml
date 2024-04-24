@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="950.0" stylesheets="@catalog.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CatalogController">
+<Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="950.0" stylesheets="@catalog.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CatalogController">
    <children>
       <VBox fx:id="centralBox" alignment="CENTER" layoutX="44.0" layoutY="33.0" prefHeight="569.0" prefWidth="862.0">
          <children>
@@ -44,23 +44,23 @@
                               <Insets left="30.0" />
                            </HBox.margin>
                            <children>
-                              <Label fx:id="titoloCarta" alignment="CENTER" prefHeight="86.0" prefWidth="494.0" textAlignment="CENTER" wrapText="true">
+                              <Label fx:id="titoloCarta" alignment="CENTER" prefHeight="114.0" prefWidth="494.0" textAlignment="CENTER" wrapText="true">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </Label>
-                              <VBox fx:id="infoCarta" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="268.0" prefWidth="423.0">
+                              <VBox fx:id="infoCarta" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="286.0" prefWidth="502.0">
                                  <children>
-                                    <Label fx:id="titoloGenere" alignment="CENTER" prefHeight="45.0" prefWidth="423.0" text="Genere: " />
-                                    <Label fx:id="genereCarta" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="423.0" />
-                                    <Label fx:id="titoloDescrizione" alignment="CENTER" prefHeight="45.0" prefWidth="566.0" text="Descrizione:" />
-                                    <Label fx:id="descrizioneCarta" alignment="CENTER" prefHeight="87.0" prefWidth="423.0" textAlignment="CENTER" wrapText="true">
+                                    <Label fx:id="titoloGenere" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="45.0" text="Genere: " />
+                                    <Label fx:id="genereCarta" alignment="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="50.0" />
+                                    <Label fx:id="titoloDescrizione" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="45.0" text="Descrizione:" />
+                                    <Label fx:id="descrizioneCarta" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="87.0" textAlignment="CENTER" wrapText="true">
                                        <padding>
                                           <Insets left="10.0" right="10.0" />
                                        </padding>
                                     </Label>
-                                    <Label fx:id="titoloPunteggi" alignment="CENTER" layoutX="10.0" layoutY="9.0" prefHeight="45.0" prefWidth="423.0" text="Punteggi: " />
-                                    <Label fx:id="punteggiCarte" alignment="CENTER" layoutX="10.0" layoutY="96.0" prefHeight="106.0" prefWidth="423.0" textAlignment="CENTER" wrapText="true">
+                                    <Label fx:id="titoloPunteggi" alignment="CENTER" layoutX="10.0" layoutY="9.0" maxWidth="1.7976931348623157E308" prefHeight="45.0" text="Punteggi: " />
+                                    <Label fx:id="punteggiCarte" alignment="CENTER" layoutX="10.0" layoutY="96.0" maxWidth="1.7976931348623157E308" prefHeight="106.0" textAlignment="CENTER" wrapText="true">
                                        <padding>
                                           <Insets left="10.0" right="10.0" />
                                        </padding>

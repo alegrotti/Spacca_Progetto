@@ -9,9 +9,11 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.Carta;
+import model.Torneo;
 import model.DBCarte;
 import model.DBGiocatori;
 import model.DBPartite;
+import model.DBTornei;
 import model.GiocatoreCPUDifficile;
 import model.GiocatoreCPUFacile;
 import model.GiocatoreFisico;
@@ -50,7 +52,12 @@ public class ScegliCartaController {
         	Carta c = DBCarte.getCarta(s);
         	partita.getCittadina(winner).aggiungiCarta(c);
         	partita.nextTurn();
-        	DBPartite.aggiungiPartita(partita);     	
+        	if(partita.isTorneo()) {
+        		Torneo t = DBTornei.getTorneo(partita.getCodiceTorneo());
+        		t.aggiornaPartita(partita);
+        		DBTornei.aggiungiTorneo(t);
+        	}else
+        		DBPartite.aggiungiPartita(partita);     	
         	GestoreScene.prossimoTurnoPopup(partita);
         	confermaButton.getScene().getWindow().hide();
         	

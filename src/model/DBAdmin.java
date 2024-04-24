@@ -41,6 +41,8 @@ public class DBAdmin {
 			admin.inizializzaAdmin(carte,giocatori,partite,tornei);
 
 			GestioneFile.salvaDB(admin,DATABASE_PATH);
+			
+			System.out.println("Admin aggiornato e salvato");
 		}catch(Exception e) {
 			GestoreScene.messaggioErrore("Errore caricamento admin");
 		}
@@ -58,6 +60,7 @@ public class DBAdmin {
 	public static void salvaAdmin (Admin admin) {
 		try {
 			GestioneFile.salvaDB(admin,DATABASE_PATH);
+			System.out.println("Admin salvato");
 		}catch(Exception e) {
 			GestoreScene.messaggioErrore("Impossibile salvare Admin");
 		}
@@ -138,6 +141,7 @@ public class DBAdmin {
 			admin = (Admin)GestioneFile.caricaDB(DATABASE_PATH);
 			admin.setPassword(password);
 			GestioneFile.salvaDB(admin,DATABASE_PATH);
+			System.out.println("Password admin aggiornata");
 		} catch (Exception e) {
 			GestoreScene.messaggioErrore("Errore modifica password");
 		}
@@ -148,6 +152,7 @@ public class DBAdmin {
 			admin = (Admin)GestioneFile.caricaDB(DATABASE_PATH);
 			admin.setUsername(username);
 			GestioneFile.salvaDB(admin,DATABASE_PATH);
+			System.out.println("Username admin aggiornata");
 		} catch (Exception e) {
 			GestoreScene.messaggioErrore("Errore modifica username");
 		}

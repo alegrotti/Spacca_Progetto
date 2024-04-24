@@ -102,6 +102,11 @@
                   <VBox alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="356.0">
                      <children>
                         <ImageView fx:id="homepageIcon" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#homepageIconClicked" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="torneoIcon" fitHeight="40.0" fitWidth="40.0" layoutX="546.0" layoutY="10.0" onMouseClicked="#tornaTorneo" pickOnBounds="true" preserveRatio="true">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </ImageView>
                      </children>
                   </VBox>
                   <VBox fx:id="vboxProssimiGiocatori" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="255.0" prefWidth="251.0">

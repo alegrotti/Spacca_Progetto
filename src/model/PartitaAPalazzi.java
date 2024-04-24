@@ -9,8 +9,8 @@ public class PartitaAPalazzi extends Partita implements Serializable{
 	
 	private int palazzi;
 
-	public PartitaAPalazzi(ArrayList<String> giocatori, String codice, int palazzi, int creditiIniziali) {
-		super(giocatori, codice, creditiIniziali);
+	public PartitaAPalazzi(ArrayList<String> giocatori, String codice, int palazzi, int creditiIniziali, String codiceTorneo) {
+		super(giocatori, codice, creditiIniziali, codiceTorneo);
 		this.setPalazzi(palazzi);
 	}
 

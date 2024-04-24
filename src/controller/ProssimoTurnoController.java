@@ -6,9 +6,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import model.DBPartite;
+import model.DBTornei;
 import model.Partita;
 import model.PartitaAPalazzi;
 import model.PartitaATurni;
+import model.Torneo;
 
 public class ProssimoTurnoController {
 
@@ -54,6 +57,12 @@ public class ProssimoTurnoController {
     public boolean impostaPartita(Partita p) {
 		try {
 			partita = p;
+			if(partita.isTorneo()) {
+        		Torneo t = DBTornei.getTorneo(partita.getCodiceTorneo());
+        		t.aggiornaPartita(partita);
+        		DBTornei.aggiungiTorneo(t);
+        	}else
+        		DBPartite.aggiungiPartita(partita);     
 			return true;
 		}catch(Exception e) {
 			return false;
@@ -63,6 +72,8 @@ public class ProssimoTurnoController {
     @FXML
     void backHome(ActionEvent event) {
     	GestoreScene.welcome(true);
+    	if(partita.isTorneo())
+    		DBTornei.getTorneo(partita.getCodiceTorneo()).eliminaGiocatoriDB();
     	backHomeButton.getScene().getWindow().hide();
     }
 
@@ -122,6 +133,11 @@ public class ProssimoTurnoController {
     	listaGiocatori.setText(giocatori);
     	infoGiocatori.setText(palazzi);
     	giocaTurnoButton.setVisible(false);
+    	backHomeButton.setVisible(false);
+    	
+    	if(partita.isCompletata())
+    		backHomeButton.setVisible(true);
+    		
     }
     
     @FXML
