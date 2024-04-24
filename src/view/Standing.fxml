@@ -26,10 +26,10 @@
                               <Label fx:id="titoloPartite" text="Classifica delle partite" />
                               <TableView fx:id="tablePartite" prefHeight="300.0" prefWidth="822.0">
                                 <columns>
-                                  <TableColumn prefWidth="250.0" resizable="false" text="Giocatore" />
-                                  <TableColumn maxWidth="200.0" prefWidth="174.4000244140625" resizable="false" text="Partite giocate" />
-                                    <TableColumn prefWidth="188.79998779296875" resizable="false" text="Partite vinte" />
-                                    <TableColumn prefWidth="236.0" resizable="false" text="Punti totali (da partite)" />
+                                  <TableColumn fx:id="partiteGiocatoreCol" prefWidth="250.0" resizable="false" text="Giocatore" />
+                                  <TableColumn fx:id="partiteGiocateCol" maxWidth="200.0" prefWidth="174.4000244140625" resizable="false" text="Partite giocate" />
+                                    <TableColumn fx:id="partiteVinteCol" prefWidth="188.79998779296875" resizable="false" text="Partite vinte" />
+                                    <TableColumn fx:id="partitePuntiCol" prefWidth="236.0" resizable="false" text="Punti totali (da partite)" />
                                 </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
