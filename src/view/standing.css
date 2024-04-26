@@ -86,10 +86,6 @@
     -fx-border-color: rgb(0, 0, 0);
 }
 
-.table-view .column-header-background{
-   
-}
-
 .table-view .column-header-background .label{
     -fx-background-color: transparent;
     -fx-text-fill: rgb(209, 155, 0);

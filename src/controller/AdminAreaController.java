@@ -246,6 +246,8 @@ public class AdminAreaController {
     
     
     //Admin
+    
+    //Salva le nuove informazioni dell'admin
     @FXML
     void saveNewInfo(ActionEvent event) {
     	
@@ -257,6 +259,8 @@ public class AdminAreaController {
     }
     
     //Giocatore
+    
+    //Aggiunge un nuovo giocatore
     @FXML
     void aggiungiGiocatore(ActionEvent event) {
     	try {
@@ -302,6 +306,7 @@ public class AdminAreaController {
 		}
     }
     
+    //Elimina giocatore dal DB
     @FXML
     void eliminaGiocatore(ActionEvent event) {
     	String username = listaGiocatoriButton.getValue();
@@ -317,6 +322,7 @@ public class AdminAreaController {
     	
     }
 
+    //Mostra tasto per diversi tipi di CPU
     @FXML
     void selezionaTipoGiocatore(ActionEvent event) {
     	if("CPU".equals(tipoDiGiocatoreButton.getValue())) {
@@ -327,44 +333,53 @@ public class AdminAreaController {
     	
     }
     
+    //Carica informazioni del giocatore selezionato
     @FXML
     void giocatoreSelezionato(ActionEvent event) {
-    	
-    	String username = listaGiocatoriButton.getValue();
-    	
-    	Giocatore g = DBGiocatori.getGiocatore(username);
-    	
-    	String testo = "";
-    	if(g instanceof GiocatoreFisico)
-    		testo = "Giocatore fisico";
-    	else if(g instanceof GiocatoreCPUFacile)
-    		testo = "Giocatore CPU\nDifficoltà facile";
-    	else if(g instanceof GiocatoreCPUDifficile)
-    		testo = "Giocatore CPU\nDifficoltà difficile";
-    	
-    	infoGiocatore.setText(testo);
+    	try {
+	    	String username = listaGiocatoriButton.getValue();
+	    	
+	    	Giocatore g = DBGiocatori.getGiocatore(username);
+	    	
+	    	String testo = "";
+	    	if(g instanceof GiocatoreFisico)
+	    		testo = "Giocatore fisico";
+	    	else if(g instanceof GiocatoreCPUFacile)
+	    		testo = "Giocatore CPU\nDifficoltà facile";
+	    	else if(g instanceof GiocatoreCPUDifficile)
+	    		testo = "Giocatore CPU\nDifficoltà difficile";
+	    	
+	    	infoGiocatore.setText(testo);
+    	}catch (Exception e) {
+    		GestoreScene.messaggioErrore("Errore caricamento giocatore");
+    	}
     }
     
     //Partita
+    
+    //Genera codice partita
     @FXML
     void generaCodiceRandom(ActionEvent event) {
-    	String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-	    Random random = new Random();
-	    char[] code = new char[8];
-	    code[0] = 'P';
-	    
-
-	    for (int i = 1; i < 7; i++) {
-	        code[i] = characters.charAt(random.nextInt(characters.length()));
-	    }
-
-	    codicePartitaField.setText(new String(code));
+    	try {
+	    	String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		    Random random = new Random();
+		    char[] code = new char[8];
+		    code[0] = 'P';
+	
+		    for (int i = 1; i < 7; i++) {
+		        code[i] = characters.charAt(random.nextInt(characters.length()));
+		    }
+	
+		    codicePartitaField.setText(new String(code));
+    	}catch (Exception e) {
+    		GestoreScene.messaggioErrore("Errore creazione codice");
+    	}
     }
     
+    //Aggiunge giocatore alla partita
     @FXML
     void aggiungiGiocatorePartita(ActionEvent event) {
     	try {
-	    	
     		String giocatore = giocatoriDaAggiungere.getValue();
     		
     		if (giocatore.equals(""))
@@ -381,27 +396,32 @@ public class AdminAreaController {
 	    	listaGiocatoriPartita.setItems(giocatori2);
 	    	
 	    	giocatoriDaAggiungere.setValue(null);
-	    	
     	}catch(Exception e) {
     		GestoreScene.messaggioErrore(e.getMessage());
     	}
     }
     
+    //Sceglie tipo partita
     @FXML
     void scegliTipoPartita(ActionEvent event) {
-    	if("A turni".equals(tipoPartitaButton.getValue())) {
-    		hBoxSliderPartita.setVisible(true);
-    		fraseSliderLabel.setText("Numero turni: ");
-    		sliderPartita.setMin(4);
-    		sliderPartita.setMax(50);
-    	}else if("A palazzi".equals(tipoPartitaButton.getValue())) {
-    		hBoxSliderPartita.setVisible(true);
-    		fraseSliderLabel.setText("Numero palazzi: ");
-    		sliderPartita.setMin(3);
-    		sliderPartita.setMax(20);
+    	try {
+	    	if("A turni".equals(tipoPartitaButton.getValue())) {
+	    		hBoxSliderPartita.setVisible(true);
+	    		fraseSliderLabel.setText("Numero turni: ");
+	    		sliderPartita.setMin(4);
+	    		sliderPartita.setMax(50);
+	    	}else if("A palazzi".equals(tipoPartitaButton.getValue())) {
+	    		hBoxSliderPartita.setVisible(true);
+	    		fraseSliderLabel.setText("Numero palazzi: ");
+	    		sliderPartita.setMin(3);
+	    		sliderPartita.setMax(20);
+	    	}
+    	}catch(Exception e) {
+    		GestoreScene.messaggioErrore("Errore selezionamento");
     	}
     }
     
+    //Toglie un giocatore durante la creazione della partita
     @FXML
     void eliminaGiocatoreNuovaPartita(ActionEvent event) {
     	try {
