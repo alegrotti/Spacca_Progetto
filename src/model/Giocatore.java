@@ -6,17 +6,17 @@ public class Giocatore implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
-	private String nome;
-	private int partiteGiocate;
-	private int torneiGiocati;
-	private int partiteVinte;
-	private int torneiVinti;
-	private int puntiPartite;
-	private int puntiTornei;
-	private int puntiTotali;
+	private String username;
+	private Integer partiteGiocate;
+	private Integer torneiGiocati;
+	private Integer partiteVinte;
+	private Integer torneiVinti;
+	private Integer puntiPartite;
+	private Integer puntiTornei;
+	private Integer puntiTotali;
 	
 	public Giocatore(String nome) {
-		this.nome = nome;
+		this.username = nome;
 		this.partiteGiocate = 0;
 		this.torneiGiocati = 0;
 		this.partiteVinte = 0;
@@ -55,7 +55,7 @@ public class Giocatore implements Serializable{
 	}
 
 	public String getUsername() {
-		return nome;
+		return username;
 	}
 
   

@@ -80,15 +80,10 @@
     -fx-border-color: rgb(0, 0, 0);
 }
 
-\\da riguardare tutto
 
 .table-view{
 	-fx-border-width: 2px;
     -fx-border-color: rgb(0, 0, 0);
-}
-
-.table-view .column-header-background{
-    -fx-background-color: rgb(0, 64, 128);
 }
 
 .table-view .column-header-background .label{
@@ -98,24 +93,26 @@
 }
 
 .table-view .column-header {
-    -fx-background-color: transparent;
+	 -fx-background-color: rgb(0, 64, 128);
 }
 
 .table-view .table-cell{
-    -fx-text-fill: rgb(209, 155, 0);
+    -fx-text-fill: rgb(0, 64, 128);
+    -fx-alignment: center;
 }
 
 .table-row-cell{
-    -fx-background-color: rgb(0, 64, 128);
+    -fx-background-color: rgb(209, 155, 0);
     -fx-table-cell-border-color: rgb(209, 155, 0);
-    -fx-cell-size: 50px;
+    -fx-cell-size: 25px;
 }
 
 .table-row-cell:odd{
-    -fx-background-color: rgb(0, 64, 128);
+    -fx-background-color: rgb(209, 155, 0,0.5);
     -fx-table-cell-border-color: rgb(209, 155, 0);
-    -fx-text-fill: rgb(0, 64, 128);
+    -fx-cell-size: 25px;
 }
+
 .scroll-bar:horizontal {
     -fx-background-color: rgb(255, 255, 255);
 }
@@ -123,6 +120,7 @@
 .increment-button, .decrement-button {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
+    -fx-color :  rgb(209, 155, 0);
 }
 
 .scroll-bar:horizontal .track{
