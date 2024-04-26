@@ -1,22 +1,14 @@
 package controller;
 
-import java.util.Vector;
-
-import javax.swing.table.TableColumn;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import model.DBGiocatori;
 import model.Giocatore;
 
 public class StandingController {
@@ -25,25 +17,25 @@ public class StandingController {
     private VBox centralBox;
 
     @FXML
-    private VBox centralBox1;
+    private TableColumn<Giocatore,String> generaleGiocatoriCol;
+
+    @FXML
+    private TableColumn<Giocatore,Integer> generalePuntiCol;
 
     @FXML
     private Button homeButton;
 
     @FXML
-    private ComboBox<?> listaGiocatori;
+    private TableColumn<Giocatore,Integer> partiteGiocateCol;
 
     @FXML
-    private TableColumn<?, ?> partiteGiocateCol;
+    private TableColumn<Giocatore,String> partiteGiocatoreCol;
 
     @FXML
-    private TableColumn<?, ?> partiteGiocatoreCol;
+    private TableColumn<Giocatore,Integer> partitePuntiCol;
 
     @FXML
-    private TableColumn<?, ?> partitePuntiCol;
-
-    @FXML
-    private TableColumn<> partiteVinteCol;
+    private TableColumn<Giocatore,Integer> partiteVinteCol;
 
     @FXML
     private Pane sfondo;
@@ -52,16 +44,13 @@ public class StandingController {
     private TabPane tabPane;
 
     @FXML
-    private TableView<?> tableGenerale;
+    private TableView<Giocatore> tableGenerale;
 
     @FXML
-    private TableView<?> tablePartite;
+    private TableView<Giocatore> tablePartite;
 
     @FXML
-    private TableView<?> tablePartite2;
-
-    @FXML
-    private TableView<?> tableTornei;
+    private TableView<Giocatore> tableTornei;
 
     @FXML
     private Label titolo;
@@ -76,34 +65,20 @@ public class StandingController {
     private Label titoloTornei;
 
     @FXML
+    private TableColumn<Giocatore,Integer> torneiGiocatiCol;
+
+    @FXML
+    private TableColumn<Giocatore,String> torneiGiocatoriCol;
+
+    @FXML
+    private TableColumn<Giocatore,Integer> torneiPuntiCol;
+
+    @FXML
+    private TableColumn<Giocatore,Integer> torneiVintiCol;
+
+    @FXML
     void backWelcome(ActionEvent event) {
     	GestoreScene.welcome(false);
     }
 
-    @FXML
-    void giocatoreScelto(ActionEvent event) {
-
-    }
-
-    @FXML 
-    void initialize() {
-    	GestoreLog logManager = new GestoreLog();
-    	DBGiocatori db = logManager.leggiDatabase();
-    	Vector<Giocatore> giocatori = db.getDatabase();
-    	
-    	ObservableList<Giocatore> giocatoriClassifica = FXCollections.observableArrayList();
-    	
-    	for (Giocatore g : giocatori) {
-    		giocatoriClassifica.add(g);
-    	}
-    	
-    	this.nomeUtente.setCellValueFactory(new PropertyValueFactory<>("nome"));
-    	this.partiteGiocate.setCellValueFactory(new PropertyValueFactory<>("partiteGiocate"));
-    	this.partiteVinte.setCellValueFactory(new PropertyValueFactory<>("partiteVinte"));
-    	this.partitePareggiate.setCellValueFactory(new PropertyValueFactory<>("partitePareggiate"));
-    	
-    	this.tabellaPunteggi.setItems(giocatoriClassifica);	
-
-    }
-    
 }
