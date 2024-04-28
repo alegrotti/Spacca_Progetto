@@ -37,9 +37,9 @@ public class AdminLoginController {
     @FXML
     private TextField usernameButton;
 
+    //Controllo per username e password
     @FXML
     void checkLogin(ActionEvent event) {
-    	
     	try {
 	    	if(usernameButton.getText().equals(DBAdmin.getUsername()))
 	    		if(passwordButton.getText().equals(DBAdmin.getPassword())) {
@@ -60,19 +60,11 @@ public class AdminLoginController {
 	    catch(Exception e) {
 	    	GestoreScene.messaggioErrore(e.getMessage());
 	    }
-    	initialize();
-    	
     }
 
     @FXML
     void tornaWelcome(ActionEvent event) {
     	GestoreScene.welcome(false);
-    }
-
-    @FXML
-    void initialize() {
-    	//usernameButton.setText(DBAdmin.getAdmin().getUsername());
-    	//passwordButton.setText(DBAdmin.getAdmin().getPassword());
     }
     
 }
