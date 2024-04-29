@@ -53,22 +53,12 @@ public class PuntataPartitaController {
 	    	}else if(players.size() == 1) {
 	    		players.trimToSize();
 	    		String winner = players.get(0);
-	    		if(partita.getGiocatoriPuntata().contains(winner)) {
-	    			for(String x : partita.getGiocatoriPuntata())
-	    				if(!x.equals(winner)) {
-	    					partita.rimuoviCrediti(x);
-	    					playersPenalizzati.add(x);
-	    				}
-	    			GestoreScene.vincitoreTurno(partita,true,winner,playersPenalizzati);
-	    		}else{
-	    			for(String x : partita.getGiocatoriPuntata()) {
-	    				if(!x.equals(winner)) {
-	    					partita.rimuoviCrediti(x);
-	    					playersPenalizzati.add(x);
-	    				}
-	    			}
-	    			GestoreScene.vincitoreTurno(partita,true,winner,playersPenalizzati);
-	    		}
+	    		for(String x : partita.getGiocatoriPuntata())
+	    			if(!players.contains(x)) {
+    					partita.rimuoviCrediti(x);
+    					playersPenalizzati.add(x);
+    				}
+    			GestoreScene.vincitoreTurno(partita,true,winner,playersPenalizzati);	    		
 	    	}else{
 	    		partita.aggiornaCrediti(players, crediti);
 	        	String g = partita.aggiornaTurno();
@@ -76,21 +66,12 @@ public class PuntataPartitaController {
 	        		GestoreScene.campoDaGioco(g, partita, 1);
 	        	}else {
 	        		String winner = partita.confrontaCittadineTurno();
-	        		if(partita.getGiocatoriPuntata().contains(winner)) {
-	        			for(String x : partita.getGiocatoriPuntata())
-	        				if(!x.equals(winner)) {
-	        					partita.rimuoviCrediti(x);
-	        				}
-	        			GestoreScene.vincitoreTurno(partita,true,winner,playersPenalizzati);
-	        		}else{
-	        			for(String x : partita.getGiocatoriPuntata()) {
-	        				if(!x.equals(winner)) {
-	        					partita.rimuoviCrediti(x);
-	        					playersPenalizzati.add(x);
-	        				}
-	        			}
-	        			GestoreScene.vincitoreTurno(partita,true,winner,playersPenalizzati);
-	        		}
+	        		for(String x : partita.getGiocatoriPuntata())
+	        			if(!players.contains(x)) {
+	    					partita.rimuoviCrediti(x);
+	    					playersPenalizzati.add(x);
+	    				}
+        			GestoreScene.vincitoreTurno(partita,true,winner,playersPenalizzati);
 	        	}
 	    	}
 	    	puntaButton.getScene().getWindow().hide();
