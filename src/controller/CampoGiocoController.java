@@ -36,6 +36,9 @@ public class CampoGiocoController {
     
     @FXML
     private ImageView torneoIcon;
+    
+    @FXML
+    private Label labelTavolo;
 	
 	@FXML
     private TextField CreditiPuntatiField;
@@ -254,6 +257,9 @@ public class CampoGiocoController {
     
     public void caricaSchermataPlayerCPUFacile() {
     	
+    	labelTavolo.setVisible(true);
+    	labelTavolo.setText("Tavolo: "+partita.getTavolo());
+    	
     	giocaButtonCPU.setVisible(true);
     	
     	mostraCarteCPUButton.setVisible(true);
@@ -271,6 +277,9 @@ public class CampoGiocoController {
     
     public void caricaSchermataPlayerCPUDifficile() {
     	
+    	labelTavolo.setVisible(true);
+    	labelTavolo.setText("Tavolo: "+partita.getTavolo());
+    	
     	giocaButtonCPU.setVisible(true);
     	
     	mostraCarteCPUButton.setVisible(true);
@@ -287,6 +296,9 @@ public class CampoGiocoController {
     }
     
     public void caricaSchermataPlayerFisico() {
+    	
+    	labelTavolo.setVisible(true);
+    	labelTavolo.setText("Tavolo: "+partita.getTavolo());
     	
     	stampaCarteMano(partita.getMano(giocatore));
     	
@@ -311,7 +323,7 @@ public class CampoGiocoController {
     	iconMano1.setImage(retro);
     	iconMano2.setImage(retro);
     	iconMano3.setImage(retro);
-    	iconMano4.setImage(retro);
+    	iconMano4.setImage(retro);			
     	
     	stampaCarteTavolo(partita.getCarteTavolo());
     	
@@ -329,7 +341,7 @@ public class CampoGiocoController {
     	
     	textProssGiocatori.setText(x);
     	textNome.setText("E' il turno di: " + giocatore);
-    	
+		
     	textCrediti.setVisible(false);
     }
     
@@ -415,6 +427,7 @@ public class CampoGiocoController {
     	giocaButtonCPU.setVisible(false);
     	mostraCarteCPUButton.setVisible(false);
     	
+    	labelTavolo.setVisible(false);
     }
     
     @FXML
