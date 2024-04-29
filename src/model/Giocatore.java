@@ -58,5 +58,34 @@ public class Giocatore implements Serializable{
 		return username;
 	}
 
-  
+	//metodi per tabelle della classifiche e record
+	public void primoPosto() {
+		puntiPartite+=30;
+		puntiTotali+=30;
+		partiteVinte++;
+	}
+	
+	public void secondoPosto() {
+		puntiPartite+=20;
+		puntiTotali+=20;
+	}
+	
+	public void terzoPosto() {
+		puntiPartite+=10;
+		puntiTotali+=10;
+	}
+	
+	public void vincitoreTornei() {
+		puntiTornei+=50;
+		puntiTotali+=50;
+		torneiVinti++;
+	}
+	
+	public void aumentaPartiteGiocate() {
+		partiteGiocate++;
+	}
+	
+	public void aumentaTorneiGiocati() {
+		torneiGiocati++;
+	}
 }
