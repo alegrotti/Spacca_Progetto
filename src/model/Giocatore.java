@@ -75,10 +75,58 @@ public class Giocatore implements Serializable{
 		puntiTotali+=10;
 	}
 	
-	public void vincitoreTornei() {
-		puntiTornei+=50;
-		puntiTotali+=50;
+	public void vincitoreTorneo(int x) {
+		int p = 0;
+		switch(x) {
+			case 16: 
+				p=100;
+				break;
+			case 8:
+				p=80;
+				break;
+			case 4:
+				p=60;
+				break;
+		}
+		puntiTornei+=p;
+		puntiTotali+=p;
 		torneiVinti++;
+	}
+	
+	public void finalistaTorneo(int x) {
+		int p = 0;
+		switch(x) {
+			case 16: 
+				p=80;
+				break;
+			case 8:
+				p=60;
+				break;
+			case 4:
+				p=40;
+				break;
+		}
+		puntiTornei+=p;
+		puntiTotali+=p;
+	}
+	
+	public void semifinalistaTorneo(int x) {
+		int p = 0;
+		switch(x) {
+			case 16: 
+				p=30;
+				break;
+			case 8:
+				p=20;
+				break;
+		}
+		puntiTornei+=p;
+		puntiTotali+=p;
+	}
+	
+	public void aggiungiPuntiCity(int n) {
+		puntiPartite+=n;
+		puntiTotali+=n;
 	}
 	
 	public void aumentaPartiteGiocate() {

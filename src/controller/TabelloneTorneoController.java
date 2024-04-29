@@ -458,7 +458,6 @@ public class TabelloneTorneoController {
 		g2.addAll(s2.getGiocatori());
 		g2.addAll(s2.getGiocatoriEliminati());
 		
-		
 	}
     
     private void creaFinale() {
@@ -470,9 +469,6 @@ public class TabelloneTorneoController {
 		
 		g1.addAll(f1.getGiocatori());
 		g1.addAll(f1.getGiocatoriEliminati());
-
-		
-		
     }
     
 }

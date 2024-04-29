@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import model.Building;
 import model.Carta;
 import model.City;
+import model.DBGiocatori;
 import model.DBTornei;
 import model.Partita;
 import model.Torneo;
@@ -167,6 +168,8 @@ public class GestoreScene {
 				c.inizializzaSchermataFinale();
 			else 
 				if(p.checkWinner()) {
+					if(!p.isTorneo())
+						DBGiocatori.aggiornaPunti(p);
 					c.inizializzaSchermataFinale();
 				}else
 					c.inizializzaSchermata();

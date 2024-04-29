@@ -108,39 +108,68 @@ public class DBGiocatori {
 			
 			ArrayList<String> classifica = p.getClassifica();
 			
-			for(String s: giocatori.keySet()) {
-		    	if(classifica.get(0).contains(s)) {
-		    		Giocatore g1 = DBGiocatori.getGiocatore(s);
-		    		g1.primoPosto();
-		    		System.out.println("Punti aggiunti al vincitore");
-		    		System.out.println(DBGiocatori.getGiocatore(s).getUsername());
-		    		System.out.println(DBGiocatori.getGiocatore(s).getPuntiPartite());
-		    		DBGiocatori.aggiornaDB();
-		    	}
-		    	else if(classifica.get(1).contains(s)) {
-		    		Giocatore g2 = DBGiocatori.getGiocatore(s);
-		    		g2.secondoPosto();
-		    		DBGiocatori.aggiornaDB();
-		    	}
-		    	else if(classifica.get(2) != null){
-			    	if(classifica.get(2).contains(s)) {
-			    		Giocatore g3 = DBGiocatori.getGiocatore(s);
-			    		g3.terzoPosto();
-			    		DBGiocatori.aggiornaDB();
-			    	}
-		    	}
-		    	else 
-		    		continue;
-			
-			GestioneFile.salvaDB(giocatori,DATABASE_PATH);
+			for(int i = 0 ; i < classifica.size() ; i++) {
+				String s = classifica.get(i);
+				
+				Giocatore g = DBGiocatori.getGiocatore(s);
+				
+				g.aumentaPartiteGiocate();
+				g.aggiungiPuntiCity(p.getCittadina(s).getPunteggio());
+				
+		    	if(i==0) 
+		    		g.primoPosto();
+		    	else if(i==1)
+		    		g.secondoPosto();
+		    	else if(i==2)
+		    		g.terzoPosto();
+		    	
+	    		System.out.println(g.getPuntiPartite()+" punti aggiunti a "+g.getUsername());
+	    		aggiungiGiocatore(g);
+			}
+
 			System.out.println("Punteggi aggiornati");
 		} catch (Exception e) {
 			GestoreScene.messaggioErrore("Errore caricamento giocatore");
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static void aggiornaPunti (Torneo t) {
-		
+		try {
+			giocatori = (HashMap<String,Giocatore>)GestioneFile.caricaDB(DATABASE_PATH);
+			
+			int k = t.getSize();
+			
+			ArrayList<String> sf = new ArrayList<String>();
+			ArrayList<String> f = new ArrayList<String>();
+			
+			sf.addAll(t.getPartiteTorneo().get("Semifinale-1").getGiocatori());
+			sf.addAll(t.getPartiteTorneo().get("Semifinale-2").getGiocatori());
+			sf.addAll(t.getPartiteTorneo().get("Semifinale-1").getGiocatoriEliminati());
+			sf.addAll(t.getPartiteTorneo().get("Semifinale-2").getGiocatoriEliminati());
+			
+			f.addAll(t.getPartiteTorneo().get("Finale").getGiocatori());
+			f.addAll(t.getPartiteTorneo().get("Finale").getGiocatoriEliminati());
+			
+			for(String s : sf) {
+				giocatori.get(s).semifinalistaTorneo(k);
+			}
+			
+			for(String s : f) {
+				giocatori.get(s).finalistaTorneo(k);
+			}
+			
+			if(!t.getWinner().equals(""))
+				giocatori.get(t.getWinner()).vincitoreTorneo(k);
+			
+			for(String s : t.getGiocatori())
+				giocatori.get(s).aumentaTorneiGiocati();
+			
+			aggiungiGiocatori(giocatori);
+			System.out.println("Punteggi aggiornati");
+		} catch (Exception e) {
+			GestoreScene.messaggioErrore("Errore caricamento giocatore");
+		}
 	}
 	
 }

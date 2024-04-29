@@ -33,8 +33,6 @@ public class Partita implements Serializable{
 	private HashMap<String, City> cittadine;
 	private HashMap<String, Integer> crediti;
 	
-	private HashMap<String,Giocatore> g;
-	
 	public Partita() {
 		this.turno = 0;
 		this.mano = 0;
@@ -76,7 +74,6 @@ public class Partita implements Serializable{
 			isTorneo = true;
 		else
 			isTorneo = false;
-		g = DBGiocatori.Giocatori();
 	}
 
 	private HashMap<String,Carta[]> creaManiIniziali(ArrayList<String> giocatori){
@@ -422,39 +419,10 @@ public class Partita implements Serializable{
 	        }
 	    });
 	    
-	    vincitore = classifica.get(0);
-	    
-	    //per aggiungere i punti al primo, secondo e terzo della classfica
-	    for(String s: g.keySet()) {
-	    	if(classifica.get(0).contains(s)) {
-	    		Giocatore g1 = DBGiocatori.getGiocatore(s);
-	    		g1.primoPosto();
-	    		System.out.println("Punti aggiunti al vincitore");
-	    		System.out.println(DBGiocatori.getGiocatore(s).getUsername());
-	    		System.out.println(DBGiocatori.getGiocatore(s).getPuntiPartite());
-	    		DBGiocatori.aggiornaDB();
-	    	}
-	    	else if(classifica.get(1).contains(s)) {
-	    		Giocatore g2 = DBGiocatori.getGiocatore(s);
-	    		g2.secondoPosto();
-	    		DBGiocatori.aggiornaDB();
-	    	}
-	    	else if(classifica.get(2) != null){
-		    	if(classifica.get(2).contains(s)) {
-		    		Giocatore g3 = DBGiocatori.getGiocatore(s);
-		    		g3.terzoPosto();
-		    		DBGiocatori.aggiornaDB();
-		    	}
-	    	}
-	    	else 
-	    		continue;
-	    }
-	    //per aumentare il numero di partite giocate
-	    for(String s: g.keySet()) {
-	    	if(classifica.contains(s))
-	    		DBGiocatori.getGiocatore(s).aumentaPartiteGiocate();
-	    }
-	    
+	    if(classifica.size()>0)
+	    	vincitore = classifica.get(0);
+	    else
+	    	vincitore = "";
 	    
 	    
 	    System.out.println("Classifica della partita creata");
