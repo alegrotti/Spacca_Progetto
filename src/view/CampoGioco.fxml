@@ -109,6 +109,7 @@
                         </ImageView>
                      </children>
                   </VBox>
+                  <Label fx:id="labelTavolo" alignment="CENTER" prefHeight="44.0" prefWidth="251.0" text="Tavolo: 20000" textAlignment="CENTER" />
                   <VBox fx:id="vboxProssimiGiocatori" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="255.0" prefWidth="251.0">
                      <children>
                         <Label fx:id="textNumTurno" alignment="CENTER" prefHeight="34.0" prefWidth="527.0">
