@@ -19,6 +19,7 @@ public class Torneo implements Serializable{
 	private int creditiIniziali;
 	private int stato;
 	private int partiteFinite;
+	private boolean completato;
 	private HashMap<String, Integer> crediti;
 	private HashMap<String, Partita> partiteTorneo;
 	
@@ -33,6 +34,7 @@ public class Torneo implements Serializable{
 		this.creditiIniziali = 0;
 		this.crediti = null;
 		this.vincitore = null;
+		this.completato = false;
 	}
 
 	public Torneo(String tipo, ArrayList<String> giocatori, String codice, int obiettivo, int creditiIniziali) {
@@ -49,6 +51,7 @@ public class Torneo implements Serializable{
 		this.partiteTorneo = new HashMap<String,Partita>();
 		creaPartite();
 		this.partiteFinite = 0;
+		this.completato = false;
 	}
 
 	private void creaPartite() {
@@ -149,12 +152,17 @@ public class Torneo implements Serializable{
 		controllaPartite();
 		
 		if(aggiornaStato()) {
-			if(stato == 3) {
+			if(stato == 3)
 				creaQuarti();
-			}else if(stato == 2) {
+			else if(stato == 2) 
 				creaSemifinali();
-			}else if(stato == 1)
+			else if(stato == 1)
 				creaFinale();
+			else if(stato == 0) {
+				checkWinner();
+				chiudiTorneo();
+				DBGiocatori.aggiornaPunti(this);
+			}
 		}
 		
 	}
@@ -287,8 +295,6 @@ public class Torneo implements Serializable{
 		if(!p2.getWinner().equals(""))
 			g.add(p2.getWinner());
 		
-		
-		
 		HashMap<String,Partita> games = new HashMap<String,Partita>();
 		Partita p;
 		if(tipo.equals("Turni")) {
@@ -339,8 +345,6 @@ public class Torneo implements Serializable{
     		Partita p = partiteTorneo.get(s);
     			if (p.isCompletata())
     				partiteFinite++;
-    	}else {
-    		checkWinner();
     	}
 	}
 	
@@ -421,6 +425,10 @@ public class Torneo implements Serializable{
 		return tipo;
 	}
 
+	public void chiudiTorneo() {
+		completato = true;
+	}
+	
 	public int getObiettivo() {
 		return obiettivo;
 	}
@@ -435,6 +443,10 @@ public class Torneo implements Serializable{
 	
 	public void aggiornaPartita(Partita p) {
 		partiteTorneo.put(p.getCodice(), p);
+	}
+	
+	public boolean isCompletato() {
+		return completato;
 	}
 	
 }

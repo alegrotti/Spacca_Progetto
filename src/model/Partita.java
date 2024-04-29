@@ -419,7 +419,12 @@ public class Partita implements Serializable{
 	        }
 	    });
 	    
-	    vincitore = classifica.get(0);
+	    if(classifica.size()>0)
+	    	vincitore = classifica.get(0);
+	    else
+	    	vincitore = "";
+	    
+	    
 	    System.out.println("Classifica della partita creata");
 
 	}
