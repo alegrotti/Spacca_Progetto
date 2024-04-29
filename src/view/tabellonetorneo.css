@@ -44,3 +44,36 @@ HBox{
     -fx-text-fill: rgb(0, 64, 128);
     -fx-transition: background-color 0.3s ease;
 }
+
+#infoTorneoVBox{
+	-fx-background-color: rgba(255, 255, 255, 0.7);
+	-fx-border-width: 2px;
+    -fx-border-color: rgb(0, 0, 0);
+}
+
+#titoloTorneo {
+	-fx-color: rgb(0, 0, 0);
+	-fx-font: 25px "Georgia", sans-serif;
+  	-fx-font-weight: bold;
+  	-fx-font-style: italic;
+}
+
+#obiettivoTorneo {
+	-fx-color: rgb(0, 0, 0);
+	-fx-font: 20px "Georgia", sans-serif;
+  	-fx-font-weight: bold;
+  	-fx-font-style: italic;
+}
+
+#giocatoriTorneo{
+	-fx-color: rgb(0, 0, 0);
+	-fx-font: 12px "Georgia", sans-serif;
+  	-fx-font-weight: bold;
+  	-fx-font-style: italic;
+}
+
+.label{
+	-fx-color: rgb(0, 0, 0);
+	-fx-font: 14px "Georgia", sans-serif;
+  	-fx-font-weight: bold;
+}

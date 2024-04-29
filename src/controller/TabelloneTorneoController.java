@@ -338,7 +338,7 @@ public class TabelloneTorneoController {
 		semifinale2HBox.setVisible(false);
 		
 		finaleVBox.setVisible(false);
-    	
+		
 		if(torneo.getSize() > 8) {
 			creaOttavi();
     	}if(torneo.getSize() > 4) {	
@@ -408,6 +408,22 @@ public class TabelloneTorneoController {
 		g8.addAll(o8.getGiocatori());
 		g8.addAll(o8.getGiocatoriEliminati());
 		
+		giocatoreOttavo1.setText(g1.get(0));
+		giocatoreOttavo2.setText(g1.get(1));
+		giocatoreOttavo3.setText(g2.get(0));
+		giocatoreOttavo4.setText(g2.get(1));
+		giocatoreOttavo5.setText(g3.get(0));
+		giocatoreOttavo6.setText(g3.get(1));
+		giocatoreOttavo7.setText(g4.get(0));
+		giocatoreOttavo8.setText(g4.get(1));
+		giocatoreOttavo9.setText(g5.get(0));
+		giocatoreOttavo10.setText(g5.get(1));
+		giocatoreOttavo11.setText(g6.get(0));
+		giocatoreOttavo12.setText(g6.get(1));
+		giocatoreOttavo13.setText(g7.get(0));
+		giocatoreOttavo14.setText(g7.get(1));
+		giocatoreOttavo15.setText(g8.get(0));
+		giocatoreOttavo16.setText(g8.get(1));
 		
 	}
     
@@ -439,6 +455,14 @@ public class TabelloneTorneoController {
 		g4.addAll(q4.getGiocatori());
 		g4.addAll(q4.getGiocatoriEliminati());
 		
+		giocatoreQuarto1.setText(g1.get(0));
+		giocatoreQuarto2.setText(g1.get(1));
+		giocatoreQuarto3.setText(g2.get(0));
+		giocatoreQuarto4.setText(g2.get(1));
+		giocatoreQuarto5.setText(g3.get(0));
+		giocatoreQuarto6.setText(g3.get(1));
+		giocatoreQuarto7.setText(g4.get(0));
+		giocatoreQuarto8.setText(g4.get(1));
 		
 	}
 
@@ -458,6 +482,11 @@ public class TabelloneTorneoController {
 		g2.addAll(s2.getGiocatori());
 		g2.addAll(s2.getGiocatoriEliminati());
 		
+		giocatoreSemifinale1.setText(g1.get(0));
+		giocatoreSemifinale2.setText(g1.get(1));
+		giocatoreSemifinale3.setText(g2.get(0));
+		giocatoreSemifinale4.setText(g2.get(1));
+
 	}
     
     private void creaFinale() {
@@ -469,6 +498,10 @@ public class TabelloneTorneoController {
 		
 		g1.addAll(f1.getGiocatori());
 		g1.addAll(f1.getGiocatoriEliminati());
+		
+		giocatoreFinale1.setText(g1.get(0));
+		giocatoreFinale2.setText(g1.get(1));
+		
     }
     
 }
