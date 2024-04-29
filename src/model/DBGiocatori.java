@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 import controller.GestoreScene;
@@ -98,6 +99,48 @@ public class DBGiocatori {
 		} catch (Exception e) {
 			GestoreScene.messaggioErrore("Errore eliminazione giocatore");
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static void aggiornaPunti (Partita p) {
+		try {
+			giocatori = (HashMap<String,Giocatore>)GestioneFile.caricaDB(DATABASE_PATH);
+			
+			ArrayList<String> classifica = p.getClassifica();
+			
+			for(String s: giocatori.keySet()) {
+		    	if(classifica.get(0).contains(s)) {
+		    		Giocatore g1 = DBGiocatori.getGiocatore(s);
+		    		g1.primoPosto();
+		    		System.out.println("Punti aggiunti al vincitore");
+		    		System.out.println(DBGiocatori.getGiocatore(s).getUsername());
+		    		System.out.println(DBGiocatori.getGiocatore(s).getPuntiPartite());
+		    		DBGiocatori.aggiornaDB();
+		    	}
+		    	else if(classifica.get(1).contains(s)) {
+		    		Giocatore g2 = DBGiocatori.getGiocatore(s);
+		    		g2.secondoPosto();
+		    		DBGiocatori.aggiornaDB();
+		    	}
+		    	else if(classifica.get(2) != null){
+			    	if(classifica.get(2).contains(s)) {
+			    		Giocatore g3 = DBGiocatori.getGiocatore(s);
+			    		g3.terzoPosto();
+			    		DBGiocatori.aggiornaDB();
+			    	}
+		    	}
+		    	else 
+		    		continue;
+			
+			GestioneFile.salvaDB(giocatori,DATABASE_PATH);
+			System.out.println("Punteggi aggiornati");
+		} catch (Exception e) {
+			GestoreScene.messaggioErrore("Errore caricamento giocatore");
+		}
+	}
+	
+	public static void aggiornaPunti (Torneo t) {
+		
 	}
 	
 }
