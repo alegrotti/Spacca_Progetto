@@ -318,6 +318,9 @@ public class TabelloneTorneoController {
     
     public void creaSchermata() {
     	titoloTorneo.setText("Torneo - "+torneo.getCodice());
+    	obiettivoTorneo.setText("Torneo a "+torneo.getTipo());
+    	giocatoriTorneo.setText("Giocatori: "+ "\n" + torneo.getGiocatori());
+    	System.out.println(torneo.getGiocatori());
     	vincitoreLabel.setVisible(false);
     	
     	ottavo1HBox.setVisible(false);
@@ -350,6 +353,7 @@ public class TabelloneTorneoController {
     	if(torneo.getStato()<=1)
     		creaFinale();
     	if(torneo.getStato()==0) {
+    		vincitoreLabel.setText("Vincitore:  " + torneo.getWinner());
     		vincitoreLabel.setVisible(true);
     	}
     		
@@ -502,6 +506,5 @@ public class TabelloneTorneoController {
 		giocatoreFinale1.setText(g1.get(0));
 		giocatoreFinale2.setText(g1.get(1));
 		
-    }
-    
+    }   
 }

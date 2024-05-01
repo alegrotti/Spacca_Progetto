@@ -168,9 +168,9 @@
                         <Insets bottom="50.0" top="25.0" />
                      </VBox.margin>
                      <children>
-                        <Label fx:id="titoloTorneo" alignment="CENTER" prefHeight="43.0" prefWidth="245.0" textAlignment="CENTER" />
-                        <Label fx:id="obiettivoTorneo" alignment="CENTER" layoutX="79.0" layoutY="97.0" prefHeight="43.0" prefWidth="245.0" textAlignment="CENTER" />
-                        <Label fx:id="giocatoriTorneo" alignment="CENTER" layoutX="79.0" layoutY="119.0" prefHeight="137.0" prefWidth="245.0" textAlignment="CENTER" />
+                        <Label fx:id="titoloTorneo" alignment="CENTER" prefHeight="43.0" prefWidth="245.0" text="label" textAlignment="CENTER" />
+                        <Label fx:id="obiettivoTorneo" alignment="CENTER" layoutX="79.0" layoutY="97.0" prefHeight="43.0" prefWidth="245.0" text="label" textAlignment="CENTER" />
+                        <Label fx:id="giocatoriTorneo" alignment="TOP_CENTER" layoutX="79.0" layoutY="119.0" prefHeight="177.0" prefWidth="149.0" text="label " textAlignment="CENTER" wrapText="true" />
                      </children>
                   </VBox>
                   <HBox fx:id="hBoxSemifinali" alignment="CENTER">
