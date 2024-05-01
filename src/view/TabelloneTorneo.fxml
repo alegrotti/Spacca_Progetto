@@ -246,7 +246,7 @@
                         <Insets bottom="40.0" top="50.0" />
                      </VBox.margin>
                   </VBox>
-                  <Label fx:id="vincitoreLabel" alignment="CENTER" prefHeight="75.0" prefWidth="308.0" text="Il vincitore è: ">
+                  <Label fx:id="vincitoreLabel" alignment="CENTER" prefHeight="75.0" prefWidth="308.0">
                      <VBox.margin>
                         <Insets bottom="60.0" />
                      </VBox.margin>
