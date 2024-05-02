@@ -351,9 +351,15 @@ public class TabelloneTorneoController {
     		creaFinale();
     	if(torneo.getStato()==0) {
     		vincitoreLabel.setVisible(true);
+    		if(torneo.getWinner().equals(null))
+    			vincitoreLabel.setText("Nessun vincitore per questo torneo");
+    		else
+    			vincitoreLabel.setText("Il vincitore è: " + torneo.getWinner());
     	}
-    		
     	
+    	obiettivoTorneo.setText("Torneo a " + torneo.getTipo());
+    	giocatoriTorneo.setText("Giocatori del torneo:\n" + torneo.getGiocatori());
+    	//da fixare
     }
     
     private void creaOttavi() {
