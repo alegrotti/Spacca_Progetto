@@ -288,7 +288,7 @@ public class TabelloneTorneoController {
 
     @FXML
     void giocaOttavo8Button(ActionEvent event) {
-    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Quarto-8"),true);
+    	GestoreScene.prossimoTurnoPopup(torneo.getPartiteTorneo().get("Ottavo-8"),true);
     }
 
     @FXML
