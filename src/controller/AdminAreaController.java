@@ -685,9 +685,20 @@ public class AdminAreaController {
     		}else {
     			tipoTorneoLabel.setText("A turni - "+t.getObiettivo()+" turni");
     		}
-    		creditiInizialiLabelTorneo.setText(t.getCreditiIniziali()+" crediti");
-    		
+    		creditiInizialiLabelTorneo.setText(t.getCreditiIniziali()+" crediti");	
     	}
+    	int stato = t.getStato();
+		if (stato==4)
+			statoTorneoLabel.setText("Ottavi");
+		else if(stato==3)
+			statoTorneoLabel.setText("Quarti");
+		else if(stato==2)
+			statoTorneoLabel.setText("Semifinale");
+		else if(stato==1)
+			statoTorneoLabel.setText("Finale");
+		else
+			statoPartitaLabel.setText("Terminato");
+    	
     }
     
     @FXML
