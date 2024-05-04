@@ -31,7 +31,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
                <children>
-                  <Button fx:id="adminLogin" mnemonicParsing="false" onAction="#openAdminLogin" prefHeight="40.0" prefWidth="170.0" text="Admin Login">
+                  <Button fx:id="adminLogin" mnemonicParsing="false" onAction="#openAdminLogin" prefHeight="40.0" prefWidth="170.0" text="Area Admin">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
