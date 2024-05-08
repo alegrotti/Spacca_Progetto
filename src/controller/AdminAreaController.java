@@ -688,6 +688,7 @@ public class AdminAreaController {
     		creditiInizialiLabelTorneo.setText(t.getCreditiIniziali()+" crediti");	
     	}
     	int stato = t.getStato();
+    	System.out.println(stato);
 		if (stato==4)
 			statoTorneoLabel.setText("Ottavi");
 		else if(stato==3)
@@ -697,7 +698,7 @@ public class AdminAreaController {
 		else if(stato==1)
 			statoTorneoLabel.setText("Finale");
 		else
-			statoPartitaLabel.setText("Terminato");
+			statoTorneoLabel.setText("Terminato");
     	
     }
     
