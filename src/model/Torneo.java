@@ -113,7 +113,7 @@ public class Torneo implements Serializable{
 		
 		for(int i = 0; i < x ; i++) {
 			
-			String name = "Giocatore"+i;
+			String name = "G"+i;
 			
 			int b = r.nextInt(2);
 			

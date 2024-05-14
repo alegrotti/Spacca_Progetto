@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="711.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TabelloneTorneoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="711.0" prefWidth="1290.0" stylesheets="@tabellonetorneo.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TabelloneTorneoController">
    <children>
       <HBox fx:id="sfondoHBox" alignment="TOP_CENTER" layoutY="61.0" prefHeight="731.0" prefWidth="1291.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -160,17 +160,20 @@
                      </children>
                   </HBox>
                </children>
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </HBox.margin>
             </VBox>
             <VBox alignment="BOTTOM_CENTER" prefHeight="792.0" prefWidth="460.0">
                <children>
-                  <VBox fx:id="infoTorneoVBox" alignment="CENTER" maxWidth="-Infinity" prefHeight="292.0" prefWidth="383.0">
+                  <VBox fx:id="infoTorneoVBox" alignment="CENTER" maxWidth="-Infinity" prefHeight="253.0" prefWidth="409.0">
                      <VBox.margin>
                         <Insets bottom="50.0" top="25.0" />
                      </VBox.margin>
                      <children>
                         <Label fx:id="titoloTorneo" alignment="CENTER" prefHeight="43.0" prefWidth="360.0" textAlignment="CENTER" />
                         <Label fx:id="obiettivoTorneo" alignment="CENTER" layoutX="79.0" layoutY="97.0" prefHeight="43.0" prefWidth="360.0" textAlignment="CENTER" />
-                        <Label fx:id="giocatoriTorneo" alignment="CENTER" layoutX="79.0" layoutY="119.0" prefHeight="137.0" prefWidth="360.0" textAlignment="CENTER" />
+                        <Label fx:id="giocatoriTorneo" alignment="CENTER" layoutX="79.0" layoutY="119.0" prefHeight="137.0" prefWidth="380.0" textAlignment="CENTER" />
                      </children>
                   </VBox>
                   <HBox fx:id="hBoxSemifinali" alignment="CENTER">
@@ -253,7 +256,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="0.0" prefWidth="250.0">
+            <VBox alignment="CENTER" maxWidth="-Infinity" prefHeight="0.0" prefWidth="250.0">
                <children>
                   <HBox fx:id="quarto3HBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
                      <VBox.margin>
@@ -300,8 +303,11 @@
                      </children>
                   </HBox>
                </children>
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </HBox.margin>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="0.0" prefWidth="250.0">
+            <VBox alignment="CENTER" maxWidth="-Infinity" prefHeight="0.0" prefWidth="250.0">
                <children>
                   <HBox fx:id="ottavo5HBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <VBox.margin>
@@ -392,6 +398,9 @@
                      </children>
                   </HBox>
                </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
             </VBox>
             <VBox fx:id="vboxIcon">
                <HBox.margin>

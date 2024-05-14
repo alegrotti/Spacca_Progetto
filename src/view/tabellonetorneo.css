@@ -67,8 +67,6 @@ HBox{
 #giocatoriTorneo {
 	-fx-color: rgb(0, 0, 0);
 	-fx-font: 14px "Georgia", sans-serif;
-  	-fx-font-weight: bold;
-  	-fx-font-style: italic;
 }
 
 .label {

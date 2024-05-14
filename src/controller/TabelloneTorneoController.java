@@ -358,8 +358,19 @@ public class TabelloneTorneoController {
     	}
     	
     	obiettivoTorneo.setText("Torneo a " + torneo.getTipo());
-    	giocatoriTorneo.setText("Giocatori del torneo:\n" + torneo.getGiocatori());
-    	//da fixare
+    	
+    	ArrayList<String> a = new ArrayList<String>();
+    	a.addAll(torneo.getGiocatori());
+    	String s = "";
+    	a.sort(null);
+    	for (int i = 0 ; i < a.size() ; i++) {
+    		s+=a.get(i);
+    		if(i%4 == 3)
+    			s+="\n";
+    		else
+    			s+="\t";
+    	}
+    	giocatoriTorneo.setText("Giocatori del torneo:\n" + s);
     }
     
     private void creaOttavi() {

@@ -635,7 +635,7 @@ public class AdminAreaController {
 			
 			giocatoriDaAggiungere.setValue(null);
     	}catch(Exception e) {
-    		GestoreScene.messaggioErrore(e.getMessage());
+    		GestoreScene.messaggioErrore("Errore rimozione giocatore");
     	}
     }
     
@@ -673,7 +673,7 @@ public class AdminAreaController {
     @FXML
     void mostraTorneoInCorso(ActionEvent event) {
     	String torneo = codiceTorneoInCorso.getValue();
-    	Torneo t = DBTornei.getTorneo(torneo); //
+    	Torneo t = DBTornei.getTorneo(torneo); 
     	if (t!=null) {
     		codiceLabelTorneo.setText(t.getCodice());
     		ArrayList<String> s = t.getGiocatori();
@@ -686,31 +686,35 @@ public class AdminAreaController {
     			tipoTorneoLabel.setText("A turni - "+t.getObiettivo()+" turni");
     		}
     		creditiInizialiLabelTorneo.setText(t.getCreditiIniziali()+" crediti");	
-    	}
-    	int stato = t.getStato();
-    	System.out.println(stato);
-		if (stato==4)
-			statoTorneoLabel.setText("Ottavi");
-		else if(stato==3)
-			statoTorneoLabel.setText("Quarti");
-		else if(stato==2)
-			statoTorneoLabel.setText("Semifinale");
-		else if(stato==1)
-			statoTorneoLabel.setText("Finale");
-		else
-			statoTorneoLabel.setText("Terminato");
     	
+	    	int stato = t.getStato();
+	    	System.out.println(stato);
+			if (stato==4)
+				statoTorneoLabel.setText("Ottavi");
+			else if(stato==3)
+				statoTorneoLabel.setText("Quarti");
+			else if(stato==2)
+				statoTorneoLabel.setText("Semifinale");
+			else if(stato==1)
+				statoTorneoLabel.setText("Finale");
+			else
+				statoTorneoLabel.setText("Terminato");
+    	}
     }
     
     @FXML
     void eliminaTorneo(ActionEvent event) {
-    	String torneo = codiceTorneoInCorso.getValue();
-    	
-    	DBTornei.eliminaTorneo(torneo);
-    	
-    	DBAdmin.eliminaTorneo(torneo);
-    	
-    	inizializzaSchermata();
+    	try {
+	    	String torneo = codiceTorneoInCorso.getValue();
+	    	
+	    	DBTornei.eliminaTorneo(torneo);
+	    	
+	    	DBAdmin.eliminaTorneo(torneo);
+	    	
+	    	inizializzaSchermata();
+    	}catch(Exception e) {
+    		GestoreScene.messaggioErrore("Errore eliminazione torneo");
+    	}
     }
     
     @FXML
