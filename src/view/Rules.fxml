@@ -17,7 +17,68 @@
          <children>
             <Label fx:id="titolo" alignment="CENTER" prefHeight="43.0" prefWidth="849.0" text="Regole e catalogo carte" />
             <TabPane fx:id="tabPane" maxWidth="854.0" prefHeight="414.0" prefWidth="850.0" tabClosingPolicy="UNAVAILABLE">
-              <tabs>
+               <tabs>
+                  <Tab text="Introduzione">
+                     <content>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Pane prefHeight="369.0" prefWidth="851.0">
+                                 <children>
+                                    <VBox layoutX="-6.0" layoutY="3.0" prefHeight="363.0" prefWidth="850.0">
+                                       <children>
+                                          <Label fx:id="secondoTitoloSetup11" alignment="CENTER" prefHeight="74.0" prefWidth="850.0" text="Introduzione">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="219.0" prefWidth="830.0" text="Pokeropoly è basato sulla meccanica del poker, che è stata però ampiamente rivisitata per permettere alcune funzionalità particolari. Il gioco si articola in vari step che hanno come scopo finale quello di creare la cittadina migliore possibile. Si parte da un mazzo di carte impostato alla creazione della partita, che può essere personalizzato durante quella fase. Esso contiene 2 tipologie di carte, le carte Edificio, fulcro del gioco, e le carte Bonus/Malus, che possono ribaltare le sorti di un turno.&#10;Le carte edificio possiedono 4 punteggi: residenziale, commerciale, pubblico e culturale. &#10;In ogni carta, uno di questi quattro punteggi sarà il maggiore e la carta rientrerà in quella sotto-categoria. Questi punteggi, combinati tra loro, servono a creare la cittadina più bilanciata possibile. &#10;" textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <VBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </HBox>
+                     </content>
+                  </Tab>
+                  <Tab text="Creazione Partita">
+                     <content>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Pane prefHeight="369.0" prefWidth="851.0">
+                                 <children>
+                                    <VBox layoutX="-6.0" layoutY="3.0" prefHeight="363.0" prefWidth="850.0">
+                                       <children>
+                                          <Label fx:id="secondoTitoloSetup1" alignment="CENTER" prefHeight="74.0" prefWidth="850.0" text="Creazione Partita">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="251.0" prefWidth="846.0" text="1. L'Admin effettua l'accesso nell'apposita &quot;Area Admin&quot;. &#10;2. Nella sezione &quot;Nuova Partita&quot; inserire in ordine il nome/codice, selezionare il tipo di partita con la quantità di crediti/turni, inserire i giocatori e creare la partita. &#10;(NOTA: Se si crea una partita con un codice generato automaticamente, sarà necessario segnarsi quel codice)&#10;3. Tornare alla &quot;Home&quot; con l'apposito tasto ed entrare nella sezione &quot;Gioca Partita&quot;.&#10;4. Inserire il codice e premere &quot;Gioca&quot;&#10;&#10;&#10;" textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </HBox>
+                     </content>
+                  </Tab>
                   <Tab text="Setup">
                      <content>
                         <HBox prefHeight="100.0" prefWidth="200.0">
@@ -31,13 +92,16 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="120.0" prefWidth="846.0" text="1. Il mazzo viene automaticamente mischiato.&#10;2. Ogni giocatore riceve un numero di gettoni da gioco (o denaro fittizio) come capitale iniziale.&#10;3. Decidere se si gioca con un numero di turni prestabilito o fino a quando un giocatore raggiunge il numero massimo di edifici consentiti nella propria cittadina.&#10;" textAlignment="CENTER" wrapText="true">
+                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="210.0" prefWidth="846.0" text="1. Il mazzo viene automaticamente mischiato.&#10;2. Ogni giocatore riceve un numero di crediti (o denaro fittizio) come capitale iniziale.&#10;3. Il primo giocatore verrà segnalato dal gioco.&#10;4. Ad ogni mano, ogni giocatore che deciderà di rimanere in gioco effettuerà la sua mossa (possibilmente senza essere visto, altrimenti si perde lo spirito del gioco) e passerà il dispositivo al giocatore successivo che procederà di conseguenza. &#10;" textAlignment="CENTER" wrapText="true">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
                                              <opaqueInsets>
                                                 <Insets />
                                              </opaqueInsets>
+                                             <padding>
+                                                <Insets left="10.0" right="10.0" />
+                                             </padding>
                                           </Label>
                                        </children>
                                     </VBox>
@@ -60,7 +124,7 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="228.0" prefWidth="850.0" text="1. All'inizio di ogni turno, vengono distribuite 3 carte edificio a ciascun giocatore.&#10;2. Poi, come nel poker, vengono girate sul tavolo 5 carte edificio una alla volta.&#10;3. Ogni giocatore valuta le carte ricevute e decide se vuole partecipare al turno.&#10;4. I giocatori, a partire dal primo giocatore in senso orario, decidono se vogliono puntare &#10;e partecipare alla mano o passare. &#10;Ogni giocatore può puntare un numero di gettoni a sua discrezione.&#10;5. Una volta che tutti i giocatori hanno fatto la loro scelta, si procede al confronto&#10; delle cittadine." textAlignment="CENTER" wrapText="true">
+                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="228.0" prefWidth="850.0" text="1. All'inizio di ogni turno, vengono distribuite 4 carte a ciascun giocatore.&#10;2. Poi, in modo simile al poker, vengono girate sul tavolo 3 carte una alla volta.&#10;3. Ogni giocatore valuta le carte ricevute e decide se vuole partecipare al turno.&#10;4. I giocatori, a partire dal primo giocatore in senso orario, decidono se vogliono puntare &#10;e partecipare alla mano o passare. &#10;Ogni giocatore può puntare un numero di creditia sua discrezione.&#10;5. Una volta che tutti i giocatori hanno fatto la loro scelta, si procede al confronto&#10; delle cittadine." textAlignment="CENTER" wrapText="true">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
@@ -89,7 +153,7 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="177.0" prefWidth="846.0" text="1. Ogni giocatore utilizza le carte in mano insieme alle carte sul tavolo per costruire&#10; la propria cittadina.&#10;2. Le carte hanno un punteggio diverso in base alle categorie: sociale, economico e sostenibilità. &#10;Ogni carta ha un valore numerico associato a ciascuna categoria.&#10;3. Le carte bonus/malus influenzano i valori delle carte in base alle combinazioni formate&#10; nella cittadina." textAlignment="CENTER" wrapText="true">
+                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="313.0" prefWidth="846.0" text="1. Ogni giocatore utilizza le carte in mano insieme alle carte sul tavolo per costruire&#10; la propria cittadina.&#10;2. Le carte hanno un punteggio diverso in base alle categorie: residenziale, commerciale, pubblico e culturale. &#10;Ogni carta ha un valore numerico associato a ciascuna categoria.&#10;3. Le carte bonus/malus influenzano i valori delle carte in base alle combinazioni formate&#10; nella cittadina.&#10;&#10;NOTA: se si hanno più carte della stessa &quot;sotto categoria&quot; si riceve un malus&#10; (si immagini una cittadina con solo villette e nessun servizio).&#10;" textAlignment="CENTER" wrapText="true">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
@@ -163,7 +227,7 @@
                         </HBox>
                      </content>
                   </Tab>
-              </tabs>
+               </tabs>
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
