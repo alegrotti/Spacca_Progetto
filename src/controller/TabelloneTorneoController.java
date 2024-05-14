@@ -351,7 +351,7 @@ public class TabelloneTorneoController {
     		creaFinale();
     	if(torneo.getStato()==0) {
     		vincitoreLabel.setVisible(true);
-    		if(torneo.getWinner().equals(null))
+    		if(torneo.getWinner().equals(""))
     			vincitoreLabel.setText("Nessun vincitore per questo torneo");
     		else
     			vincitoreLabel.setText("Il vincitore è: " + torneo.getWinner());
