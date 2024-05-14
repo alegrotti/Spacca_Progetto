@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="711.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TabelloneTorneoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="711.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TabelloneTorneoController">
    <children>
       <HBox fx:id="sfondoHBox" alignment="TOP_CENTER" layoutY="61.0" prefHeight="731.0" prefWidth="1291.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -168,9 +168,9 @@
                         <Insets bottom="50.0" top="25.0" />
                      </VBox.margin>
                      <children>
-                        <Label fx:id="titoloTorneo" alignment="CENTER" prefHeight="43.0" prefWidth="245.0" textAlignment="CENTER" />
-                        <Label fx:id="obiettivoTorneo" alignment="CENTER" layoutX="79.0" layoutY="97.0" prefHeight="43.0" prefWidth="245.0" textAlignment="CENTER" />
-                        <Label fx:id="giocatoriTorneo" alignment="CENTER" layoutX="79.0" layoutY="119.0" prefHeight="137.0" prefWidth="245.0" textAlignment="CENTER" />
+                        <Label fx:id="titoloTorneo" alignment="CENTER" prefHeight="43.0" prefWidth="360.0" textAlignment="CENTER" />
+                        <Label fx:id="obiettivoTorneo" alignment="CENTER" layoutX="79.0" layoutY="97.0" prefHeight="43.0" prefWidth="360.0" textAlignment="CENTER" />
+                        <Label fx:id="giocatoriTorneo" alignment="CENTER" layoutX="79.0" layoutY="119.0" prefHeight="137.0" prefWidth="360.0" textAlignment="CENTER" />
                      </children>
                   </VBox>
                   <HBox fx:id="hBoxSemifinali" alignment="CENTER">
@@ -246,7 +246,7 @@
                         <Insets bottom="40.0" top="50.0" />
                      </VBox.margin>
                   </VBox>
-                  <Label fx:id="vincitoreLabel" alignment="CENTER" prefHeight="75.0" prefWidth="308.0">
+                  <Label fx:id="vincitoreLabel" alignment="CENTER" prefHeight="94.0" prefWidth="404.0" wrapText="true">
                      <VBox.margin>
                         <Insets bottom="60.0" />
                      </VBox.margin>
