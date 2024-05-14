@@ -254,8 +254,7 @@ public class GestoreScene {
 			setScene(prossimoTurno, false," Tabellone torneo "+t.getCodice());
 	         
 		} catch (Exception e) {
-			//messaggioErrore("Errore apertura finestra");
-			System.out.println(e.getMessage());
+			messaggioErrore("Errore apertura finestra");
 		}
 	}
 	

@@ -397,7 +397,7 @@ public class AdminAreaController {
 	    	
 	    	giocatoriDaAggiungere.setValue(null);
     	}catch(Exception e) {
-    		GestoreScene.messaggioErrore(e.getMessage());
+    		GestoreScene.messaggioErrore("Errore aggiunta giocatore");
     	}
     }
     
@@ -417,7 +417,7 @@ public class AdminAreaController {
 	    		sliderPartita.setMax(20);
 	    	}
     	}catch(Exception e) {
-    		GestoreScene.messaggioErrore("Errore selezionamento");
+    		GestoreScene.messaggioErrore("Errore selezione");
     	}
     }
     
@@ -438,7 +438,7 @@ public class AdminAreaController {
 			
 			giocatoriDaAggiungere.setValue(null);
     	}catch(Exception e) {
-    		GestoreScene.messaggioErrore(e.getMessage());
+    		GestoreScene.messaggioErrore("Errore eliminazione giocatore");
     	}
     }
     
