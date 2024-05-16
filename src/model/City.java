@@ -171,7 +171,7 @@ public class City implements Serializable{
 			return this;
 		else if (getPunteggio()>c.getPunteggio())
 			return this;
-		else if(getPunteggio()>c.getPunteggio())
+		else if(getPunteggio()<c.getPunteggio())
 			return c;
 		else {
 			int nc=0;

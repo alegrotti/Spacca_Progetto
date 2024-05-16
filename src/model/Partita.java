@@ -323,6 +323,7 @@ public class Partita implements Serializable{
 	    	
 	    	for(int i = 0; i<this.getCarteTavolo().length ; i++)
 	    		c.aggiungiCarta(this.getCarteTavolo()[i]);
+	    	
 			w = c.compareTo(w);
 			
 		}

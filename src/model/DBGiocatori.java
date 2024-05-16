@@ -107,6 +107,7 @@ public class DBGiocatori {
 			giocatori = (HashMap<String,Giocatore>)GestioneFile.caricaDB(DATABASE_PATH);
 			
 			ArrayList<String> classifica = p.getClassifica();
+			classifica.addAll(p.getGiocatoriEliminati());
 			
 			for(int i = 0 ; i < classifica.size() ; i++) {
 				String s = classifica.get(i);
