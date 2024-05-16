@@ -55,6 +55,22 @@
     -fx-font-style: italic;
 }
 
+#secondoTitoloFIne1 {
+    -fx-color: rgb(0, 64, 128);
+    -fx-text-fill: rgb(209, 155, 0);
+    -fx-font: 35px "Felix Titling", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+#secondoTitoloFIne11 {
+    -fx-color: rgb(0, 64, 128);
+    -fx-text-fill: rgb(209, 155, 0);
+    -fx-font: 35px "Felix Titling", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
 #secondoTitoloDetermina {
     -fx-color: rgb(0, 64, 128);
     -fx-text-fill: rgb(209, 155, 0);
@@ -80,6 +96,22 @@
 }
 
 #secondoTitoloSetup {
+    -fx-color: rgb(0, 64, 128);
+    -fx-text-fill: rgb(209, 155, 0);
+    -fx-font: 35px "Felix Titling", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+#secondoTitoloSetup11 {
+    -fx-color: rgb(0, 64, 128);
+    -fx-text-fill: rgb(209, 155, 0);
+    -fx-font: 35px "Felix Titling", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+#secondoTitoloSetup1 {
     -fx-color: rgb(0, 64, 128);
     -fx-text-fill: rgb(209, 155, 0);
     -fx-font: 35px "Felix Titling", sans-serif;
