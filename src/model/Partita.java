@@ -360,7 +360,8 @@ public class Partita implements Serializable{
 	}
 	
 	public boolean checkWinner() {
-		System.out.println("Controllo del vincitore");
+		System.out.println("Controllo del vincitore"+giocatori);
+		
 		if(giocatori.size()>0)
 			if(this instanceof PartitaATurni) {
 				PartitaATurni partita = (PartitaATurni)this;

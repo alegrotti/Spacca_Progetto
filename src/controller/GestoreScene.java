@@ -510,7 +510,7 @@ public class GestoreScene {
 			controller.impostaPartita(partita);
 			
 			Scene exitScene = new Scene(root);
-			exitScene.getStylesheets().add("/view/messaggio.css");
+			exitScene.getStylesheets().add("/view/vincitorepartita.css");
 		
 			Main.parentWindow.hide();
 			

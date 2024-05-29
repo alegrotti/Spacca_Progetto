@@ -67,11 +67,12 @@ public class VincitoreTurnoController {
     @FXML
     void procedi(ActionEvent event) {
     	procediButton.getScene().getWindow().hide();
-    	partita.controllaCrediti();
     	if(x) {
     		partita.assegnaTavolo(winner);
+    		partita.controllaCrediti();
     		GestoreScene.scegliCartaSchermata(partita,winner);
     	}else {
+    		partita.controllaCrediti();
     		partita.nextTurn();
     		if(partita.isTorneo()) {
         		Torneo t = DBTornei.getTorneo(partita.getCodiceTorneo());
