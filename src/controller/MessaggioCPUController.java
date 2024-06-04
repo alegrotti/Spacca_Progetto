@@ -33,9 +33,7 @@ public class MessaggioCPUController {
     void prosegui(ActionEvent event) {
     	proseguiButton.getScene().getWindow().hide();
     	String next = partita.nextPlayer(giocatore);
-    	if(bool) {
-	    	partita.aggiornaCreditiTurno(giocatore,puntata);
-    	} else {
+    	if(!bool) {
 	    	partita.eliminaGiocatoreTurno(giocatore);
     	}
     	
@@ -49,11 +47,12 @@ public class MessaggioCPUController {
     			String x = partita.getGiocatoriTurno().get(0);
     			GestoreScene.vincitoreTurno(partita,true,x,new ArrayList<String>());
     		}else {
+    			/*
     			int m = partita.getMano();
     			if(m==0)
     				GestoreScene.vincitoreTurno(partita,false,"",new ArrayList<String>());
     			else
-    				GestoreScene.vincitoreTurno(partita,false,"",new ArrayList<String>());
+    			*/	GestoreScene.vincitoreTurno(partita,false,"",new ArrayList<String>());
 			}
     	}
     	else

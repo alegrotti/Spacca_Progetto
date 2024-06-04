@@ -209,7 +209,7 @@ public class Torneo implements Serializable{
 
 		HashMap<String,Partita> games = new HashMap<String,Partita>();
 		Partita p;
-		String s = "Ottavo-";
+		String s = "Quarti-";
 		if(tipo.equals("Turni")) {
 			p = new PartitaATurni(g1,s+1,obiettivo,creditiIniziali, codice);
 			games.put(p.getCodice(), p);
